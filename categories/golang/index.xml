@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Ernestas Poškus .io</title>
+    <link>http://ernestas-poskus.github.io/categories/golang/</link>
+    <description>Recent content in Golang on Ernestas Poškus .io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Mar 2015 12:59:46 +0300</lastBuildDate>
+    <atom:link href="http://ernestas-poskus.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Programming languages in bytes</title>
+      <link>http://ernestas-poskus.github.io/posts/programming-languages/</link>
+      <pubDate>Sun, 29 Mar 2015 12:59:46 +0300</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/posts/programming-languages/</guid>
+      <description>&lt;div id=&#34;pieChart&#34;&gt;&lt;/div&gt;
+
+&lt;script src=&#34;//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://ernestas-poskus.github.io/js/d3pie.min.js&#34;&gt;&lt;/script&gt;
+&lt;script&gt;
+var pie = new d3pie(&#34;pieChart&#34;, {
+  &#34;header&#34;: {
+    &#34;subtitle&#34;: {
+      &#34;color&#34;: &#34;#999999&#34;,
+      &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;,
+      &#34;fontSize&#34;: 12,
+      &#34;font&#34;: &#34;open sans&#34;
+    },
+    &#34;titleSubtitlePadding&#34;: 9
+  },
+  &#34;footer&#34;: {
+    &#34;color&#34;: &#34;#999999&#34;,
+    &#34;fontSize&#34;: 10,
+    &#34;font&#34;: &#34;open sans&#34;,
+    &#34;location&#34;: &#34;bottom-left&#34;
+  },
+  &#34;size&#34;: {
+    &#34;canvasHeight&#34;: 400,
+    &#34;canvasWidth&#34;: 490,
+    &#34;pieInnerRadius&#34;: &#34;50%&#34;,
+    &#34;pieOuterRadius&#34;: &#34;80%&#34;
+  },
+  &#34;data&#34;: {
+    &#34;sortOrder&#34;: &#34;value-desc&#34;,
+    &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;, &#34;value&#34;: 89142, &#34;color&#34;: &#34;#dc566d&#34;},{&#34;label&#34;: &#34;Scala&#34;, &#34;value&#34;: 288778, &#34;color&#34;: &#34;#7dd3b0&#34;},{&#34;label&#34;: &#34;Python&#34;, &#34;value&#34;: 308794, &#34;color&#34;: &#34;#3581ba&#34;},{&#34;label&#34;: &#34;Shell&#34;, &#34;value&#34;: 37004, &#34;color&#34;: &#34;#89e051&#34;},{&#34;label&#34;: &#34;CoffeeScript&#34;, &#34;value&#34;: 3723, &#34;color&#34;: &#34;#244776&#34;},{&#34;label&#34;: &#34;Racket&#34;, &#34;value&#34;: 50190, &#34;color&#34;: &#34;#ae17ff&#34;},{&#34;label&#34;: &#34;PHP&#34;, &#34;value&#34;: 431573, &#34;color&#34;: &#34;#4F5D95&#34;},{&#34;label&#34;: &#34;Makefile&#34;, &#34;value&#34;: 3960, &#34;color&#34;: &#34;&#34;},{&#34;label&#34;: &#34;Puppet&#34;, &#34;value&#34;: 15697, &#34;color&#34;: &#34;#cc5555&#34;},{&#34;label&#34;: &#34;Go&#34;, &#34;value&#34;: 823140, &#34;color&#34;: &#34;#375eab&#34;},{&#34;label&#34;: &#34;JavaScript&#34;, &#34;value&#34;: 450901, &#34;color&#34;: &#34;#f1e05a&#34;},{&#34;label&#34;: &#34;C++&#34;, &#34;value&#34;: 40479, &#34;color&#34;: &#34;&#34;},{&#34;label&#34;: &#34;Ruby&#34;, &#34;value&#34;: 253162, &#34;color&#34;: &#34;#701516&#34;},{&#34;label&#34;: &#34;Clojure&#34;, &#34;value&#34;: 1627, &#34;color&#34;: &#34;#db5855&#34;},{&#34;label&#34;: &#34;CSS&#34;, &#34;value&#34;: 13432, &#34;color&#34;: &#34;#563d7c&#34;},{&#34;label&#34;: &#34;VimL&#34;, &#34;value&#34;: 32990, &#34;color&#34;: &#34;#199c4b&#34;},{&#34;label&#34;: &#34;Erlang&#34;, &#34;value&#34;: 395, &#34;color&#34;: &#34;#0faf8d&#34;},{&#34;label&#34;: &#34;C&#34;, &#34;value&#34;: 3968, &#34;color&#34;: &#34;#555&#34;},{&#34;label&#34;: &#34;Java&#34;, &#34;value&#34;: 10361, &#34;color&#34;: &#34;#b07219&#34;}]
+  },
+  &#34;labels&#34;: {
+    &#34;outer&#34;: {
+      &#34;pieDistance&#34;: 20
+    },
+    &#34;inner&#34;: {
+      &#34;hideWhenLessThanPercentage&#34;: 3
+    },
+    &#34;mainLabel&#34;: {
+      &#34;fontSize&#34;: 11
+    },
+    &#34;percentage&#34;: {
+      &#34;color&#34;: &#34;#ffffff&#34;,
+      &#34;decimalPlaces&#34;: 0
+    },
+    &#34;value&#34;: {
+      &#34;color&#34;: &#34;#adadad&#34;,
+      &#34;fontSize&#34;: 11
+    },
+    &#34;lines&#34;: {
+      &#34;enabled&#34;: true
+    }
+  },
+  &#34;effects&#34;: {
+    &#34;pullOutSegmentOnClick&#34;: {
+      &#34;effect&#34;: &#34;linear&#34;,
+      &#34;speed&#34;: 400,
+      &#34;size&#34;: 8
+    }
+  },
+  &#34;misc&#34;: {
+    &#34;gradient&#34;: {
+      &#34;enabled&#34;: true,
+      &#34;percentage&#34;: 100
+    }
+  }
+});
+&lt;/script&gt;
+
+Wrote little Go + d3pie script which shows user programmed languages in bytes (not actual lines of programming language).
+Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/ernestas-poskus/github-languages&#34;&gt;github.com/ernestas-poskus/github-languages&lt;/a&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

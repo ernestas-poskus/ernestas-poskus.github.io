@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> Programming languages in bytes &middot; Ernestas Poškus .io </title>
+
+  
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/poole.css">
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/syntax.css">
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus .io" />
+</head>
+
+<body class="layout-reverse theme-base-0c">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="/">Ernestas Poškus .io</a></h1>
+      <p class="lead">
+       Gopher, Ruby techie, pragmatic &amp; ambitious vim hacker 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+        <li><a href="/cv/"> cv </a></li>
+      
+    </ul>
+
+    <p>&copy; 2015. All rights reserved. </p>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>Programming languages in bytes</h1>
+    <span class="post-date">Sun, Mar 29, 2015</span>
+    <div id="pieChart"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
+<script src="/js/d3pie.min.js"></script>
+<script>
+var pie = new d3pie("pieChart", {
+  "header": {
+    "subtitle": {
+      "color": "#999999",
+      "text": "Generated from github.com/ernestas-poskus",
+      "fontSize": 12,
+      "font": "open sans"
+    },
+    "titleSubtitlePadding": 9
+  },
+  "footer": {
+    "color": "#999999",
+    "fontSize": 10,
+    "font": "open sans",
+    "location": "bottom-left"
+  },
+  "size": {
+    "canvasHeight": 400,
+    "canvasWidth": 490,
+    "pieInnerRadius": "50%",
+    "pieOuterRadius": "80%"
+  },
+  "data": {
+    "sortOrder": "value-desc",
+    "content": [{"label": "Haskell", "value": 801, "color": "#29b544"},{"label": "Lua", "value": 1152, "color": "#fa1fa1"},{"label": "Standard ML", "value": 89142, "color": "#dc566d"},{"label": "Scala", "value": 288778, "color": "#7dd3b0"},{"label": "Python", "value": 308794, "color": "#3581ba"},{"label": "Shell", "value": 37004, "color": "#89e051"},{"label": "CoffeeScript", "value": 3723, "color": "#244776"},{"label": "Racket", "value": 50190, "color": "#ae17ff"},{"label": "PHP", "value": 431573, "color": "#4F5D95"},{"label": "Makefile", "value": 3960, "color": ""},{"label": "Puppet", "value": 15697, "color": "#cc5555"},{"label": "Go", "value": 823140, "color": "#375eab"},{"label": "JavaScript", "value": 450901, "color": "#f1e05a"},{"label": "C++", "value": 40479, "color": ""},{"label": "Ruby", "value": 253162, "color": "#701516"},{"label": "Clojure", "value": 1627, "color": "#db5855"},{"label": "CSS", "value": 13432, "color": "#563d7c"},{"label": "VimL", "value": 32990, "color": "#199c4b"},{"label": "Erlang", "value": 395, "color": "#0faf8d"},{"label": "C", "value": 3968, "color": "#555"},{"label": "Java", "value": 10361, "color": "#b07219"}]
+  },
+  "labels": {
+    "outer": {
+      "pieDistance": 20
+    },
+    "inner": {
+      "hideWhenLessThanPercentage": 3
+    },
+    "mainLabel": {
+      "fontSize": 11
+    },
+    "percentage": {
+      "color": "#ffffff",
+      "decimalPlaces": 0
+    },
+    "value": {
+      "color": "#adadad",
+      "fontSize": 11
+    },
+    "lines": {
+      "enabled": true
+    }
+  },
+  "effects": {
+    "pullOutSegmentOnClick": {
+      "effect": "linear",
+      "speed": 400,
+      "size": 8
+    }
+  },
+  "misc": {
+    "gradient": {
+      "enabled": true,
+      "percentage": 100
+    }
+  }
+});
+</script>
+
+Wrote little Go + d3pie script which shows user programmed languages in bytes (not actual lines of programming language).
+Code can be found here: <a target="_blank" href="https://github.com/ernestas-poskus/github-languages">github.com/ernestas-poskus/github-languages</a>
+
+  </div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61312403-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
