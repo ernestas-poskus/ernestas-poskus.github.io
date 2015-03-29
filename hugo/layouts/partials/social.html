@@ -1,0 +1,6 @@
+<ul class="sidebar-nav">
+  <li><a name="social">Social</a>
+  {{ range .Site.Menus.social }}
+    <li><a href="{{.Url}}" target="_blank"> {{ .Name }} </a></li>
+  {{end}}
+</ul>
