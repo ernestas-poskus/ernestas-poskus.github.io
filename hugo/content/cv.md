@@ -1,10 +1,11 @@
 +++
+title = "CV"
+description = "CV of Ernestas Poskus"
+keywords = "CV"
 Categories = []
-Description = ""
 Tags = ["cv"]
 date = "2015-03-27T16:15:10+02:00"
 menu = "main"
-title = "cv"
 layout = "cv"
 
 +++

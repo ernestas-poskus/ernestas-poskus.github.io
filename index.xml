@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ernestas Poškus .io</title>
+    <title>Ernestas Poškus.io</title>
     <link>http://ernestas-poskus.github.io/</link>
-    <description>Recent content on Ernestas Poškus .io</description>
+    <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 29 Mar 2015 12:59:46 +0300</lastBuildDate>
@@ -90,7 +90,7 @@ Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.c
     </item>
     
     <item>
-      <title>cv</title>
+      <title>CV</title>
       <link>http://ernestas-poskus.github.io/cv/</link>
       <pubDate>Fri, 27 Mar 2015 16:15:10 +0200</pubDate>
       
