@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on Ernestas Poškus.io</title>
+    <link>http://ernestas-poskus.github.io/categories/github/</link>
+    <description>Recent content in Github on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Apr 2015 06:36:43 +0300</lastBuildDate>
+    <atom:link href="http://ernestas-poskus.github.io/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Request client hunt</title>
+      <link>http://ernestas-poskus.github.io/posts/request-client-hunt/</link>
+      <pubDate>Sat, 04 Apr 2015 06:36:43 +0300</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/posts/request-client-hunt/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s been a while I am on a hunt for elibile &amp;amp; configurable HTTP request client.
+So I decided to write my own with blackjack &amp;amp; hookers, extensible, idiomatic,
+exposing low/high level of API.&lt;/p&gt;
+
+&lt;p&gt;Package: &lt;a href=&#34;https://github.com/ernestas-poskus/requestclient&#34;&gt;https://github.com/ernestas-poskus/requestclient&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Main features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Exposure of low/high API&lt;/li&gt;
+&lt;li&gt;Connection and response timeouts&lt;/li&gt;
+&lt;li&gt;Extensibility&lt;/li&gt;
+&lt;li&gt;Connection Pooling&lt;/li&gt;
+&lt;li&gt;Options struct for: TLS, Dialer, Transport &amp;amp; Client&lt;/li&gt;
+&lt;li&gt;Retries&lt;/li&gt;
+&lt;li&gt;Following redirects&lt;/li&gt;
+&lt;li&gt;Delayed requests&lt;/li&gt;
+&lt;li&gt;Multiple/Single request timeout&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
