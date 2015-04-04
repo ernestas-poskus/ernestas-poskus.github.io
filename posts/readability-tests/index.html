@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Readability tests - Ernestas Poškus.io</title>
+  <meta name="description" content="The Flesch/Flesch–Kincaid Readability Tests are readability tests designed to indicate how difficult a reading passage in English is to understand."/>
+  <meta name="keywords" content=""/>
+
+  <meta property="og:title" content="Readability tests" />
+  <meta property="og:description" content="The Flesch/Flesch–Kincaid Readability Tests are readability tests designed to indicate how difficult a reading passage in English is to understand." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://ernestas-poskus.github.io/posts/readability-tests/" />
+  <meta property="og:image" content="http://ernestas-poskus.github.io//images/og-image.png" />
+
+  
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/poole.css">
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/syntax.css">
+  <link rel="stylesheet" href="http://ernestas-poskus.github.io//css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+</head>
+
+<body class="layout-reverse theme-base-0c">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="/">Ernestas Poškus.io</a></h1>
+      <p class="lead">
+       Pragmatic &amp; ambitious - vicious vimer. 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+        <li><a href="/cv/">CV</a></li>
+      
+    </ul>
+
+    <p>&copy; 2015. All rights reserved. </p>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>Readability tests</h1>
+    <span class="post-date">Sat, Apr 4, 2015</span>
+    
+
+<p><a href="http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests">Flesch–Kincaid readability tests</a>.
+Are readability tests designed to indicate how difficult a reading passage in English is to understand. There are two tests, the Flesch Reading Ease, and the Flesch–Kincaid Grade Level. [WIKI]</p>
+
+<p>Due to own usage reasons I have decided to implement these readability tests in favourite language.
+Algorithm is quite simple I will focus on Flesch Reading ease.</p>
+
+<blockquote>
+<p>Flesch Reading Ease test</p>
+
+<p><img src="/images/reading_ease.png" alt="Flesh Reading Ease test" />
+</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>90.0–100.0</td>
+<td>easily understood by an average 11-year-old student</td>
+</tr>
+
+<tr>
+<td>60.0–70.0</td>
+<td>easily understood by 13- to 15-year-old students</td>
+</tr>
+
+<tr>
+<td>0.0–30.0</td>
+<td>best understood by university graduates</td>
+</tr>
+</tbody>
+</table>
+
+<p>Implementation is trivial except <code>total_syllables</code> part. I have had number of struggles with this one.
+Main caveat with syllables is that there no reliable facicility to reach consensus on exact syllable count.
+Every source where I was verifying number of syllables had a difference usually +/- 1 in some cases +2 syllables per sentence.</p>
+
+<p>Eventually decided to trust this: <a href="http://www.syllablecount.com/syllables/word">http://www.syllablecount.com/syllables/word</a>.</p>
+
+<p>Test cases here: <a href="https://github.com/ernestas-poskus/syllables/blob/master/syllables_test.go">syllables_test.go</a></p>
+
+<p>tl;dr</p>
+
+<h1 id="flesch-reading-ease-in-action:087a6de45ee2190737386abc77c5e519">Flesch Reading Ease in action</h1>
+
+<p>Took presidential speeches from <a href="http://millercenter.org/president/speeches">http://millercenter.org/president/speeches</a>.</p>
+
+<h4 id="george-washington-first-inaugural-address-april-30-1789:087a6de45ee2190737386abc77c5e519">George Washington, First Inaugural Address (April 30, 1789)</h4>
+
+<blockquote>
+<p>&ldquo;In this conflict of emotions, all I dare aver, is, that it has been my faithful study to collect my duty from a just appreciation of every circumstance, by which it might be affected. All I dare hope, is, that, if in executing this task I have been too much swayed by a grateful remembrance of former instances, or by an affectionate sensibility to this transcendent proof, of the confidence of my fellow-citizens; and have thence too little consulted my incapacity as well as disinclination for the weighty and untried cares before me; my error will be palliated by the motives which misled me, and its consequences be judged by my Country, with some share of the partiality in which they originated.&rdquo;,</p>
+</blockquote>
+
+<h4 id="abraham-lincoln-first-inaugural-address-march-4-1861:087a6de45ee2190737386abc77c5e519">Abraham Lincoln, First Inaugural Address (March 4, 1861)</h4>
+
+<blockquote>
+<p>&ldquo;I take the official oath to-day with no mental reservations, and with no purpose to construe the Constitution or laws by any hypercritical rules. And while I do not choose now to specify particular acts of Congress as proper to be enforced, I do suggest that it will be much safer for all, both in official and private stations, to conform to and abide by all those acts which stand unrepealed, than to violate any of them, trusting to find impunity in having them held to be unconstitutional.&rdquo;,</p>
+</blockquote>
+
+<h4 id="barack-obama-acceptance-speech-at-the-democratic-national-convention-august-28-2008:087a6de45ee2190737386abc77c5e519">Barack Obama, Acceptance Speech at the Democratic National Convention (August 28, 2008)</h4>
+
+<blockquote>
+<p>&ldquo;It is that promise that has always set this country apart—that through hard work and sacrifice, each of us can pursue our individual dreams but still come together as one American family, to ensure that the next generation can pursue their dreams as well. That&rsquo;s why I stand here tonight. Because for two hundred and thirty two years, at each moment when that promise was in jeopardy, ordinary men and women—students and soldiers, farmers and teachers, nurses and janitors—found the courage to keep it alive. We meet at one of those defining moments—a moment when our nation is at war, our economy is in turmoil, and the American promise has been threatened once more.&rdquo;,</p>
+</blockquote>
+
+<h1 id="results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519">Results <a href="/code/flesch_reading_ease.go">code</a></h1>
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>year</th>
+<th>length</th>
+<th>Score(Flesch Reading ease)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>George Washington</td>
+<td>1789</td>
+<td>701</td>
+<td>16.6</td>
+</tr>
+
+<tr>
+<td>Abraham Lincoln</td>
+<td>1861</td>
+<td>493</td>
+<td>35.3</td>
+</tr>
+
+<tr>
+<td>Barack Obama</td>
+<td>2008</td>
+<td>676</td>
+<td>50.3</td>
+</tr>
+</tbody>
+</table>
+
+<p>It is interesting to see how complexity of presidential speeches changed as time passed.</p>
+
+    <hr />
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'ernestasposkusio';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61312403-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
