@@ -7,7 +7,7 @@ languageCode = "en-us"
 title = "Ernestas Poškus.io"
 
 [params]
-  Description = "Gopher, Ruby techie, pragmatic & ambitious, - vicious vim hacker."
+  Description = "Pragmatic & ambitious - vicious vimer."
   disqusShortname = "ernestasposkusio"
 
 [[menu.social]]
