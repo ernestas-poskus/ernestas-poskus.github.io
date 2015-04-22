@@ -1,0 +1,7 @@
+.sidebar {
+	display: none !important;
+}
+
+hr + h1 {
+	page-break-before: always;
+}
