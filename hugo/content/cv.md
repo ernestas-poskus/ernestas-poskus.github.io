@@ -119,6 +119,7 @@ jQuery, jQuery UI, SASS, Compass, Git
 
 Name | Institution | Date | Certificate
 ---- | ----------- | ---- | -----------
+[Cloud Computing Concepts 2](https://www.coursera.org/course/cloudcomputing2) | University of Illinois at Urbana-Champaign | June 2015 – Present | ![Cloud Computing Concepts](/certificates/cc2.jpg)
 [Cloud Computing Concepts](https://www.coursera.org/course/cloudcomputing) | University of Illinois at Urbana-Champaign | May 2015 – Present | ![Cloud Computing Concepts](/certificates/cc1.jpg)
 [M102: MongoDB for DBAs](https://university.mongodb.com/courses/M102/about) | MongoDB | July 2014 – Present | ![MongoDB M102 certificate for Ernestas Poskus](/certificates/m102.jpg)
 [Web Application Architectures](https://www.coursera.org/course/webapplications) | University of New Mexico | May 2014 – Present  | ![Web Application Architectures certificate for Ernestas Poskus](/certificates/waa.jpg)
@@ -169,6 +170,17 @@ NFQ Solutions - PHP Academy Certificate | NFQ | May 2013 – Present | ![NFQ PHP
 ---------
 
 ## 2015
+
+### University of Illinois at Urbana-Champaign
+#### Cloud Computing Concepts part 2, 94.3%
+
+- Leader Election, Mutual Exclusion
+- Concurrency Control, Replication Control
+- Stream Processing, Graph Processing, Structure of Networks, Scheduling
+- Distributed File Systems, Distributed Shared Memory, Sensor Networks
+- Security, Datacenter Outage Studies
+
+
 
 ### University of Illinois at Urbana-Champaign
 #### Cloud Computing Concepts, 85.4%

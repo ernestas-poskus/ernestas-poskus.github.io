@@ -381,6 +381,14 @@ jQuery, jQuery UI, SASS, Compass, Git
 
 &lt;tbody&gt;
 &lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing2&#34;&gt;Cloud Computing Concepts 2&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
+&lt;td&gt;June 2015 – Present&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc2.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing&#34;&gt;Cloud Computing Concepts&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
 &lt;td&gt;May 2015 – Present&lt;/td&gt;
@@ -497,6 +505,18 @@ jQuery, jQuery UI, SASS, Compass, Git
 &lt;h2 id=&#34;2015:7e6115c4d209379befeb3847e8c4905b&#34;&gt;2015&lt;/h2&gt;
 
 &lt;h3 id=&#34;university-of-illinois-at-urbana-champaign:7e6115c4d209379befeb3847e8c4905b&#34;&gt;University of Illinois at Urbana-Champaign&lt;/h3&gt;
+
+&lt;h4 id=&#34;cloud-computing-concepts-part-2-94-3:7e6115c4d209379befeb3847e8c4905b&#34;&gt;Cloud Computing Concepts part 2, 94.3%&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Leader Election, Mutual Exclusion&lt;/li&gt;
+&lt;li&gt;Concurrency Control, Replication Control&lt;/li&gt;
+&lt;li&gt;Stream Processing, Graph Processing, Structure of Networks, Scheduling&lt;/li&gt;
+&lt;li&gt;Distributed File Systems, Distributed Shared Memory, Sensor Networks&lt;/li&gt;
+&lt;li&gt;Security, Datacenter Outage Studies&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;university-of-illinois-at-urbana-champaign-1:7e6115c4d209379befeb3847e8c4905b&#34;&gt;University of Illinois at Urbana-Champaign&lt;/h3&gt;
 
 &lt;h4 id=&#34;cloud-computing-concepts-85-4:7e6115c4d209379befeb3847e8c4905b&#34;&gt;Cloud Computing Concepts, 85.4%&lt;/h4&gt;
 
