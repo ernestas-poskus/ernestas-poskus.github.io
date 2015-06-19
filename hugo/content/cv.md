@@ -47,7 +47,7 @@ Search Engines, web ranking algorithms & semantics.
 
 ### Software developer @ [Vinted](http://vinted.com/)
 ##### Peer-to-peer marketplace for women and men to sell, buy and swap clothes.
-###### April 2014 – Present (1 year)
+###### April 2014 – Present (15 months)
 
 - Brands service (decoupled brands from core application), administration system
 - Traffic hacks, Sitemap optimizations
@@ -56,6 +56,9 @@ Search Engines, web ranking algorithms & semantics.
 - User interactions event tracking
 - Queues, nightly tasks cron jobs
 - Item [SERP](http://en.wikipedia.org/wiki/Search_engine_results_page) algorithm ranking
+- Instant buy button allowing anonymous users to buy
+- Item Score - onsite scoring items on various facts and offsite social data retrieval from API's
+- Growth hacking
 
 ```
 Ruby on Rails, Sinatra, MySQL, Sphinx, Redis, JavaScript, SCSS, ERB, Resque

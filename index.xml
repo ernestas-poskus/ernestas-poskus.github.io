@@ -288,7 +288,7 @@ Search Engines, web ranking algorithms &amp;amp; semantics.
 
 &lt;h5 id=&#34;peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes:7e6115c4d209379befeb3847e8c4905b&#34;&gt;Peer-to-peer marketplace for women and men to sell, buy and swap clothes.&lt;/h5&gt;
 
-&lt;h6 id=&#34;april-2014-present-1-year:7e6115c4d209379befeb3847e8c4905b&#34;&gt;April 2014 – Present (1 year)&lt;/h6&gt;
+&lt;h6 id=&#34;april-2014-present-15-months:7e6115c4d209379befeb3847e8c4905b&#34;&gt;April 2014 – Present (15 months)&lt;/h6&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Brands service (decoupled brands from core application), administration system&lt;/li&gt;
@@ -298,6 +298,9 @@ Search Engines, web ranking algorithms &amp;amp; semantics.
 &lt;li&gt;User interactions event tracking&lt;/li&gt;
 &lt;li&gt;Queues, nightly tasks cron jobs&lt;/li&gt;
 &lt;li&gt;Item &lt;a href=&#34;http://en.wikipedia.org/wiki/Search_engine_results_page&#34;&gt;SERP&lt;/a&gt; algorithm ranking&lt;/li&gt;
+&lt;li&gt;Instant buy button allowing anonymous users to buy&lt;/li&gt;
+&lt;li&gt;Item Score - onsite scoring items on various facts and offsite social data retrieval from API&amp;rsquo;s&lt;/li&gt;
+&lt;li&gt;Growth hacking&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;Ruby on Rails, Sinatra, MySQL, Sphinx, Redis, JavaScript, SCSS, ERB, Resque
