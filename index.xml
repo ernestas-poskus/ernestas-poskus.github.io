@@ -6,8 +6,54 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2015 15:13:11 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2015 23:16:16 +0300</lastBuildDate>
     <atom:link href="http://ernestas-poskus.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Monkey in silk</title>
+      <link>http://ernestas-poskus.github.io/quotes/monkey/</link>
+      <pubDate>Sun, 23 Aug 2015 23:16:16 +0300</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/quotes/monkey/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Monkey in silk is a monkey no less - Sixto Rodiguez.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mnemonic PEG system</title>
+      <link>http://ernestas-poskus.github.io/learning/peg/</link>
+      <pubDate>Sun, 23 Aug 2015 19:58:09 +0300</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/learning/peg/</guid>
+      <description>&lt;div class=&#34;large-6 columns text-center&#34;&gt;
+  &lt;h4&gt;PEG system&lt;/h4&gt;
+  &lt;ul class=&#34;no-bullet&#34;&gt;
+    &lt;li&gt;One = Bun&lt;/li&gt;
+    &lt;li&gt;Two = Shoe&lt;/li&gt;
+    &lt;li&gt;Three = Tree&lt;/li&gt;
+    &lt;li&gt;Four = Door&lt;/li&gt;
+    &lt;li&gt;Five = Hive&lt;/li&gt;
+    &lt;li&gt;Six = Sticks&lt;/li&gt;
+    &lt;li&gt;Seven = Heaven&lt;/li&gt;
+    &lt;li&gt;Eight = Gate&lt;/li&gt;
+    &lt;li&gt;9 = Line&lt;/li&gt;
+    &lt;li&gt;10 = Hen&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>http://ernestas-poskus.github.io/quotes/ai/</link>
+      <pubDate>Sun, 23 Aug 2015 13:52:54 +0300</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/quotes/ai/</guid>
+      <description>&lt;p&gt;There is no learning without memory though computer don&amp;rsquo;t know how to learn.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Readability tests</title>
@@ -26,8 +72,7 @@ Algorithm is quite simple I will focus on Flesch Reading ease.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Flesch Reading Ease test&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;table&gt;
@@ -246,15 +291,14 @@ Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.c
 
 &lt;h1 id=&#34;a-name-cv-cv-ernestas-poškus-a:7e6115c4d209379befeb3847e8c4905b&#34;&gt;&lt;a name=&#34;cv&#34;&gt;CV Ernestas Poškus&lt;/a&gt;&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/profile.jpeg&#34; alt=&#34;Profile picture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/profile.jpeg&#34; alt=&#34;Profile picture&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Pragmatic &amp;amp; Ambitious&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;Keen interest in SOA, massive scalability, Machine Learning,
-Search Engines, web ranking algorithms &amp;amp; semantics.
+ Search Engines, web ranking algorithms &amp;amp; semantics.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;hr /&gt;
@@ -329,8 +373,8 @@ Search Engines, web ranking algorithms &amp;amp; semantics.
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;PHP5, PHP libraries, MySQL, LESS, SASS + Compass,
-Smarty 2, HTML5, jQuery, jQuery UI, AJAX,
-Apache Solr, Vagrant, Puppet
+ Smarty 2, HTML5, jQuery, jQuery UI, AJAX,
+ Apache Solr, Vagrant, Puppet
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;
@@ -358,7 +402,7 @@ Apache Solr, Vagrant, Puppet
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;PHP5, MySQL, Apache, HTML5 + CSS3, CSS Foundation 4,
-jQuery, jQuery UI, SASS, Compass, Git
+ jQuery, jQuery UI, SASS, Compass, Git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;
@@ -387,80 +431,70 @@ jQuery, jQuery UI, SASS, Compass, Git
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing2&#34;&gt;Cloud Computing Concepts 2&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
 &lt;td&gt;June 2015 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc2.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc2.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing&#34;&gt;Cloud Computing Concepts&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
 &lt;td&gt;May 2015 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc1.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc1.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M102/about&#34;&gt;M102: MongoDB for DBAs&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;July 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;MongoDB M102 certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;MongoDB M102 certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/webapplications&#34;&gt;Web Application Architectures&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of New Mexico&lt;/td&gt;
 &lt;td&gt;May 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/waa.jpg&#34; alt=&#34;Web Application Architectures certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/waa.jpg&#34; alt=&#34;Web Application Architectures certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M101P/about&#34;&gt;M101P: MongoDB for Python Developers&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;February 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101p.jpg&#34; alt=&#34;MongoDB M101P certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101p.jpg&#34; alt=&#34;MongoDB M101P certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M101JS/about&#34;&gt;M101JS: MongoDB for Node.js Developers&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;January 2014 – Present!&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101js.jpg&#34; alt=&#34;MongoDB M101JS certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101js.jpg&#34; alt=&#34;MongoDB M101JS certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/proglang&#34;&gt;Programming Languages: SML, Racket, Ruby&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Washington&lt;/td&gt;
 &lt;td&gt;December 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/proglang.jpg&#34; alt=&#34;Programming Languages certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/proglang.jpg&#34; alt=&#34;Programming Languages certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/interactivepython1&#34;&gt;Interactive Programming in Python&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Rice University&lt;/td&gt;
 &lt;td&gt;December 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/python.jpg&#34; alt=&#34;Interactive Programming in Python certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/python.jpg&#34; alt=&#34;Interactive Programming in Python certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/progfun&#34;&gt;Functional Programming Principles in Scala&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;École polytechnique fédérale de Lausanne&lt;/td&gt;
 &lt;td&gt;November 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;Functional Programming in Scala certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;Functional Programming in Scala certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;NFQ Solutions - PHP Academy Certificate&lt;/td&gt;
 &lt;td&gt;NFQ&lt;/td&gt;
 &lt;td&gt;May 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/nfq.jpg&#34; alt=&#34;NFQ PHP Academy certificate for Ernestas Poskus&#34; /&gt;
-&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/nfq.jpg&#34; alt=&#34;NFQ PHP Academy certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
