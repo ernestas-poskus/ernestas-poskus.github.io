@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Learnings on Ernestas Poškus.io</title>
-    <link>http://ernestas-poskus.github.io/learning/</link>
-    <description>Recent content in Learnings on Ernestas Poškus.io</description>
+    <title>Memory on Ernestas Poškus.io</title>
+    <link>http://ernestas-poskus.github.io/tags/memory/</link>
+    <description>Recent content in Memory on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 23 Aug 2015 19:58:09 +0300</lastBuildDate>
-    <atom:link href="http://ernestas-poskus.github.io/learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ernestas-poskus.github.io/tags/memory/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mnemonic PEG system</title>
