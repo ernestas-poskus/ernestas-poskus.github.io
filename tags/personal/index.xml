@@ -6,8 +6,58 @@
     <description>Recent content in Personal on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2015 20:43:24 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jan 2016 20:42:45 +0200</lastBuildDate>
     <atom:link href="http://ernestas-poskus.github.io/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang dynamic struct decoration</title>
+      <link>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</link>
+      <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
+      
+      <guid>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</guid>
+      <description>
+
+&lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion:617fb6684b7fd2a7eacd8ed968ab5966&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Use cases: API / templates.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Having simple map of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input :=  map[string]interface{}{
+    &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;},
+    &amp;quot;key3&amp;quot;: nil,
+    &amp;quot;val&amp;quot;: 2,
+    &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;,
+    &amp;quot;val3&amp;quot;: 4,
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One can decorate it using type assertion by iterating over it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  for key, value := range input {
+    slice, ok := value.([]string)
+    if ok {
+      input[&amp;quot;Count&amp;quot;+key] = len(slice)
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This becomes very useful when serializing struct into json.
+To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input := structs.Map(...)
+
+  for key, value := range input {
+    slice, ok := value.([]string)
+    if ok {
+      input[&amp;quot;Count&amp;quot;+key] = len(slice)
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Setup Rust Racer with multiple Rust versions</title>
@@ -42,7 +92,6 @@ This will let you navigate &amp;amp; jump to definition between Rust versions.&l
 
 &lt;blockquote&gt;
 &lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
-&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;total 56K
 drwxrwxr-x  2 user user 4.0K Sep 14 21:31 test
@@ -59,6 +108,7 @@ drwx------ 24 user user 4.0K Sep 21 22:17 ..
 -rw-rw-r--  1 user user 1.8K Sep 14 21:31 README.md
 lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2.0
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
 
 &lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
 

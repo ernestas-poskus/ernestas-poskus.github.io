@@ -42,7 +42,6 @@ This will let you navigate &amp;amp; jump to definition between Rust versions.&l
 
 &lt;blockquote&gt;
 &lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
-&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;total 56K
 drwxrwxr-x  2 user user 4.0K Sep 14 21:31 test
@@ -59,6 +58,7 @@ drwx------ 24 user user 4.0K Sep 21 22:17 ..
 -rw-rw-r--  1 user user 1.8K Sep 14 21:31 README.md
 lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2.0
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
 
 &lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
 
