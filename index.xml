@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ernestas Poškus.io</title>
-    <link>http://ernestas-poskus.github.io/</link>
+    <link>http://out13.com/</link>
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Jan 2016 20:42:45 +0200</lastBuildDate>
-    <atom:link href="http://ernestas-poskus.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Golang dynamic struct decoration</title>
-      <link>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</link>
+      <link>http://out13.com/posts/golang-dynamic-struct-decoration/</link>
       <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</guid>
+      <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
       <description>
 
 &lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion:617fb6684b7fd2a7eacd8ed968ab5966&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
@@ -61,10 +61,10 @@ To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&
     
     <item>
       <title>Setup Rust Racer with multiple Rust versions</title>
-      <link>http://ernestas-poskus.github.io/posts/racer-with-multiple-rust-versions/</link>
+      <link>http://out13.com/posts/racer-with-multiple-rust-versions/</link>
       <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/racer-with-multiple-rust-versions/</guid>
+      <guid>http://out13.com/posts/racer-with-multiple-rust-versions/</guid>
       <description>
 
 &lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
@@ -148,87 +148,11 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2
     </item>
     
     <item>
-      <title>Personal progress</title>
-      <link>http://ernestas-poskus.github.io/quotes/progress/</link>
-      <pubDate>Mon, 24 Aug 2015 20:52:26 +0300</pubDate>
-      
-      <guid>http://ernestas-poskus.github.io/quotes/progress/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;When you realize you’ve stopped progressing, it’s time to pack and move on – into another technology, team or company. - Ivan Pepelnjak&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Monkey in silk</title>
-      <link>http://ernestas-poskus.github.io/quotes/monkey/</link>
-      <pubDate>Sun, 23 Aug 2015 23:16:16 +0300</pubDate>
-      
-      <guid>http://ernestas-poskus.github.io/quotes/monkey/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Monkey in silk is a monkey no less - Sixto Rodiguez.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mnemonic PEG system</title>
-      <link>http://ernestas-poskus.github.io/learning/peg/</link>
-      <pubDate>Sun, 23 Aug 2015 19:58:09 +0300</pubDate>
-      
-      <guid>http://ernestas-poskus.github.io/learning/peg/</guid>
-      <description>&lt;div class=&#34;large-6 columns text-center&#34;&gt;
-  &lt;h4&gt;PEG system&lt;/h4&gt;
-  &lt;ul class=&#34;no-bullet&#34;&gt;
-    &lt;li&gt;One = Bun&lt;/li&gt;
-    &lt;li&gt;Two = Shoe&lt;/li&gt;
-    &lt;li&gt;Three = Tree&lt;/li&gt;
-    &lt;li&gt;Four = Door&lt;/li&gt;
-    &lt;li&gt;Five = Hive&lt;/li&gt;
-    &lt;li&gt;Six = Sticks&lt;/li&gt;
-    &lt;li&gt;Seven = Heaven&lt;/li&gt;
-    &lt;li&gt;Eight = Gate&lt;/li&gt;
-    &lt;li&gt;9 = Line&lt;/li&gt;
-    &lt;li&gt;10 = Hen&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;large-6 columns text-center&#34;&gt;
-  &lt;h4&gt;My system&lt;/h4&gt;
-  &lt;ul class=&#34;no-bullet&#34;&gt;
-    &lt;li&gt;One = Gun&lt;/li&gt;
-    &lt;li&gt;Two = Shoe&lt;/li&gt;
-    &lt;li&gt;Three = Tree&lt;/li&gt;
-    &lt;li&gt;Four = Door&lt;/li&gt;
-    &lt;li&gt;Five = Hive&lt;/li&gt;
-    &lt;li&gt;Six = Dicks&lt;/li&gt;
-    &lt;li&gt;Seven = Heaven&lt;/li&gt;
-    &lt;li&gt;Eight = Gate&lt;/li&gt;
-    &lt;li&gt;9 = Line&lt;/li&gt;
-    &lt;li&gt;10 = Hen&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>AI</title>
-      <link>http://ernestas-poskus.github.io/quotes/ai/</link>
-      <pubDate>Sun, 23 Aug 2015 13:52:54 +0300</pubDate>
-      
-      <guid>http://ernestas-poskus.github.io/quotes/ai/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;There is no learning without memory though computer don&amp;rsquo;t know how to learn.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Readability tests</title>
-      <link>http://ernestas-poskus.github.io/posts/readability-tests/</link>
+      <link>http://out13.com/posts/readability-tests/</link>
       <pubDate>Sat, 04 Apr 2015 15:13:11 +0300</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/readability-tests/</guid>
+      <guid>http://out13.com/posts/readability-tests/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests&#34;&gt;Flesch–Kincaid readability tests&lt;/a&gt;.
@@ -240,7 +164,7 @@ Algorithm is quite simple I will focus on Flesch Reading ease.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Flesch Reading Ease test&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://out13.com/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;table&gt;
@@ -301,7 +225,7 @@ Every source where I was verifying number of syllables had a difference usually 
 &lt;p&gt;&amp;ldquo;It is that promise that has always set this country apart—that through hard work and sacrifice, each of us can pursue our individual dreams but still come together as one American family, to ensure that the next generation can pursue their dreams as well. That&amp;rsquo;s why I stand here tonight. Because for two hundred and thirty two years, at each moment when that promise was in jeopardy, ordinary men and women—students and soldiers, farmers and teachers, nurses and janitors—found the courage to keep it alive. We meet at one of those defining moments—a moment when our nation is at war, our economy is in turmoil, and the American promise has been threatened once more.&amp;rdquo;,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519&#34;&gt;Results &lt;a href=&#34;http://ernestas-poskus.github.io/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519&#34;&gt;Results &lt;a href=&#34;http://out13.com/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -342,43 +266,15 @@ Every source where I was verifying number of syllables had a difference usually 
     </item>
     
     <item>
-      <title>Request client hunt</title>
-      <link>http://ernestas-poskus.github.io/posts/request-client-hunt/</link>
-      <pubDate>Sat, 04 Apr 2015 06:36:43 +0300</pubDate>
-      
-      <guid>http://ernestas-poskus.github.io/posts/request-client-hunt/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s been a while I am on a hunt for elibile &amp;amp; configurable HTTP request client.
-So I decided to write my own with blackjack &amp;amp; hookers, extensible, idiomatic,
-exposing low/high level of API.&lt;/p&gt;
-
-&lt;p&gt;Package: &lt;a href=&#34;https://github.com/ernestas-poskus/requestclient&#34;&gt;https://github.com/ernestas-poskus/requestclient&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Main features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Exposure of low/high API&lt;/li&gt;
-&lt;li&gt;Connection and response timeouts&lt;/li&gt;
-&lt;li&gt;Extensibility&lt;/li&gt;
-&lt;li&gt;Connection Pooling&lt;/li&gt;
-&lt;li&gt;Options struct for: TLS, Dialer, Transport &amp;amp; Client&lt;/li&gt;
-&lt;li&gt;Retries&lt;/li&gt;
-&lt;li&gt;Following redirects&lt;/li&gt;
-&lt;li&gt;Delayed requests&lt;/li&gt;
-&lt;li&gt;Multiple/Single request timeout&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Programming languages in bytes</title>
-      <link>http://ernestas-poskus.github.io/posts/programming-languages/</link>
+      <link>http://out13.com/posts/programming-languages/</link>
       <pubDate>Sun, 29 Mar 2015 12:59:46 +0300</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/programming-languages/</guid>
+      <guid>http://out13.com/posts/programming-languages/</guid>
       <description>&lt;div id=&#34;pieChart&#34;&gt;&lt;/div&gt;
 
 &lt;script src=&#34;//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;http://ernestas-poskus.github.io/js/d3pie.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://out13.com/js/d3pie.min.js&#34;&gt;&lt;/script&gt;
 &lt;script&gt;
 var pie = new d3pie(&#34;pieChart&#34;, {
   &#34;header&#34;: {
@@ -451,15 +347,15 @@ Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.c
     
     <item>
       <title>CV</title>
-      <link>http://ernestas-poskus.github.io/cv/</link>
+      <link>http://out13.com/cv/</link>
       <pubDate>Fri, 27 Mar 2015 16:15:10 +0200</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/cv/</guid>
+      <guid>http://out13.com/cv/</guid>
       <description>
 
 &lt;h1 id=&#34;a-name-cv-cv-ernestas-poškus-a:7e6115c4d209379befeb3847e8c4905b&#34;&gt;&lt;a name=&#34;cv&#34;&gt;CV Ernestas Poškus&lt;/a&gt;&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/profile.jpeg&#34; alt=&#34;Profile picture&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://out13.com/images/profile.jpeg&#34; alt=&#34;Profile picture&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Pragmatic &amp;amp; Ambitious&lt;/p&gt;
@@ -599,70 +495,70 @@ Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.c
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing2&#34;&gt;Cloud Computing Concepts 2&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
 &lt;td&gt;June 2015 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc2.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/cc2.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/cloudcomputing&#34;&gt;Cloud Computing Concepts&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
 &lt;td&gt;May 2015 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/cc1.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/cc1.jpg&#34; alt=&#34;Cloud Computing Concepts&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M102/about&#34;&gt;M102: MongoDB for DBAs&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;July 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;MongoDB M102 certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/m102.jpg&#34; alt=&#34;MongoDB M102 certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/webapplications&#34;&gt;Web Application Architectures&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of New Mexico&lt;/td&gt;
 &lt;td&gt;May 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/waa.jpg&#34; alt=&#34;Web Application Architectures certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/waa.jpg&#34; alt=&#34;Web Application Architectures certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M101P/about&#34;&gt;M101P: MongoDB for Python Developers&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;February 2014 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101p.jpg&#34; alt=&#34;MongoDB M101P certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/m101p.jpg&#34; alt=&#34;MongoDB M101P certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://university.mongodb.com/courses/M101JS/about&#34;&gt;M101JS: MongoDB for Node.js Developers&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;MongoDB&lt;/td&gt;
 &lt;td&gt;January 2014 – Present!&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m101js.jpg&#34; alt=&#34;MongoDB M101JS certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/m101js.jpg&#34; alt=&#34;MongoDB M101JS certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/proglang&#34;&gt;Programming Languages: SML, Racket, Ruby&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;University of Washington&lt;/td&gt;
 &lt;td&gt;December 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/proglang.jpg&#34; alt=&#34;Programming Languages certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/proglang.jpg&#34; alt=&#34;Programming Languages certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/interactivepython1&#34;&gt;Interactive Programming in Python&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Rice University&lt;/td&gt;
 &lt;td&gt;December 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/python.jpg&#34; alt=&#34;Interactive Programming in Python certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/python.jpg&#34; alt=&#34;Interactive Programming in Python certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://www.coursera.org/course/progfun&#34;&gt;Functional Programming Principles in Scala&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;École polytechnique fédérale de Lausanne&lt;/td&gt;
 &lt;td&gt;November 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/m102.jpg&#34; alt=&#34;Functional Programming in Scala certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/m102.jpg&#34; alt=&#34;Functional Programming in Scala certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;NFQ Solutions - PHP Academy Certificate&lt;/td&gt;
 &lt;td&gt;NFQ&lt;/td&gt;
 &lt;td&gt;May 2013 – Present&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/certificates/nfq.jpg&#34; alt=&#34;NFQ PHP Academy certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://out13.com/certificates/nfq.jpg&#34; alt=&#34;NFQ PHP Academy certificate for Ernestas Poskus&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

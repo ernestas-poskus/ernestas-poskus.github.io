@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Ernestas Poškus.io</title>
-    <link>http://ernestas-poskus.github.io/tags/blog/</link>
+    <link>http://out13.com/tags/blog/</link>
     <description>Recent content in Blog on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Jan 2016 20:42:45 +0200</lastBuildDate>
-    <atom:link href="http://ernestas-poskus.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://out13.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Golang dynamic struct decoration</title>
-      <link>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</link>
+      <link>http://out13.com/posts/golang-dynamic-struct-decoration/</link>
       <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/golang-dynamic-struct-decoration/</guid>
+      <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
       <description>
 
 &lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion:617fb6684b7fd2a7eacd8ed968ab5966&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
@@ -61,10 +61,10 @@ To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&
     
     <item>
       <title>Setup Rust Racer with multiple Rust versions</title>
-      <link>http://ernestas-poskus.github.io/posts/racer-with-multiple-rust-versions/</link>
+      <link>http://out13.com/posts/racer-with-multiple-rust-versions/</link>
       <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/racer-with-multiple-rust-versions/</guid>
+      <guid>http://out13.com/posts/racer-with-multiple-rust-versions/</guid>
       <description>
 
 &lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.

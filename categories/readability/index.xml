@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Readability on Ernestas Poškus.io</title>
-    <link>http://ernestas-poskus.github.io/categories/readability/</link>
+    <link>http://out13.com/categories/readability/</link>
     <description>Recent content in Readability on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Apr 2015 15:13:11 +0300</lastBuildDate>
-    <atom:link href="http://ernestas-poskus.github.io/categories/readability/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://out13.com/categories/readability/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Readability tests</title>
-      <link>http://ernestas-poskus.github.io/posts/readability-tests/</link>
+      <link>http://out13.com/posts/readability-tests/</link>
       <pubDate>Sat, 04 Apr 2015 15:13:11 +0300</pubDate>
       
-      <guid>http://ernestas-poskus.github.io/posts/readability-tests/</guid>
+      <guid>http://out13.com/posts/readability-tests/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests&#34;&gt;Flesch–Kincaid readability tests&lt;/a&gt;.
@@ -26,7 +26,7 @@ Algorithm is quite simple I will focus on Flesch Reading ease.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Flesch Reading Ease test&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ernestas-poskus.github.io/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://out13.com/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;table&gt;
@@ -87,7 +87,7 @@ Every source where I was verifying number of syllables had a difference usually 
 &lt;p&gt;&amp;ldquo;It is that promise that has always set this country apart—that through hard work and sacrifice, each of us can pursue our individual dreams but still come together as one American family, to ensure that the next generation can pursue their dreams as well. That&amp;rsquo;s why I stand here tonight. Because for two hundred and thirty two years, at each moment when that promise was in jeopardy, ordinary men and women—students and soldiers, farmers and teachers, nurses and janitors—found the courage to keep it alive. We meet at one of those defining moments—a moment when our nation is at war, our economy is in turmoil, and the American promise has been threatened once more.&amp;rdquo;,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519&#34;&gt;Results &lt;a href=&#34;http://ernestas-poskus.github.io/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519&#34;&gt;Results &lt;a href=&#34;http://out13.com/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
