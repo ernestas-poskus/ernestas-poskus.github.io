@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Golang dynamic struct decoration - Ernestas Poškus.io</title>
-  <meta name="description" content="Personal findings, thoughts &amp; blog"/>
+  <title>Container based operating system virtualization - Ernestas Poškus.io</title>
+  <meta name="description" content="Take away from scientific papers, discussion &amp; summarize"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Golang dynamic struct decoration" />
-  <meta property="og:description" content="Personal findings, thoughts &amp; blog" />
+  <meta property="og:title" content="Container based operating system virtualization" />
+  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summarize" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/posts/golang-dynamic-struct-decoration/" />
+  <meta property="og:url" content="http://out13.com/paper/container-based-operating-system-virtualization/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -107,51 +107,77 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Golang dynamic struct decoration</h1>
-    <time>Thu, Jan 28, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 96 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <h1>Container based operating system virtualization</h1>
+    <ul>
+      <li>Author: Stephen Soltesz, Herbert Pötzl, Marc E. Fiuczynski, Andy Bavier, Larry Peterson</li>
+      <li>Name: Container-based Operating System Virtualization: A Scalable, High-performance Alternative to Hypervisors</li>
+      
+      <li>Link: <a href="http://dl.acm.org/citation.cfm?id=1273025" rel="nofollow" target="_blank">http://dl.acm.org/citation.cfm?id=1273025</a></li>
+      
+    </ul>
+    <time>Tue, Apr 19, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 368 / <abbr title="Reading time">RT</abbr> 2min</p>
     <hr />
     
 
-<h2 id="dynamic-struct-decoration-using-type-assertion:617fb6684b7fd2a7eacd8ed968ab5966">Dynamic struct decoration using type assertion.</h2>
+<h2 id="alternative-to-hypervisors:88e79775d07b2065d6114eda0760b392">Alternative to hypervisors.</h2>
 
 <blockquote>
-<p>Use cases: API / templates.</p>
+<p>Workload requirements for a given system will direct users to the point in the design space that
+requires the least trade-off.</p>
 </blockquote>
 
-<p>Having simple map of:</p>
+<h3 id="sharing-over-isolation:88e79775d07b2065d6114eda0760b392">Sharing over isolation?</h3>
 
-<pre><code class="language-go">  input :=  map[string]interface{}{
-    &quot;Key1&quot;: []string{&quot;some&quot;, &quot;key&quot;},
-    &quot;key3&quot;: nil,
-    &quot;val&quot;: 2,
-    &quot;val2&quot;: &quot;str&quot;,
-    &quot;val3&quot;: 4,
-  }
-</code></pre>
+<p>Hypervisors often deployed to let a single machine host multiple, unrelated
+applications, which may run on behalf of independent organizations, as is common when a data center
+consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
+However, when each virtual machine is running the same kernel and similar operating system
+distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
+relative to running all applications on a single kernel.</p>
 
-<p>One can decorate it using type assertion by iterating over it.</p>
+<h3 id="usage:88e79775d07b2065d6114eda0760b392">Usage</h3>
 
-<pre><code class="language-go">  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
-    }
-  }
-</code></pre>
+<p>Software configuration problems incompatibilities between specific OS distributions.</p>
 
-<p>This becomes very useful when serializing struct into json.
-To serialize struct use <code>github.com/fatih/structs</code></p>
+<p>Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&rsquo;s.</p>
 
-<pre><code class="language-go">  input := structs.Map(...)
+<p>Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.</p>
 
-  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
-    }
-  }
-</code></pre>
+<p>The key point is that both hypervisors and COS&rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.</p>
+
+<h3 id="security-isolation:88e79775d07b2065d6114eda0760b392">Security isolation</h3>
+
+<p>Configuration independence - cannot conflict with other VM&rsquo;s
+Safety - global namespace shared</p>
+
+<h3 id="fair-share-and-reservations:88e79775d07b2065d6114eda0760b392">Fair share and Reservations</h3>
+
+<p>Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.</p>
+
+<p>For memory storage one can specify the following limits:
+ * a) the maximum resident set size (RSS)
+ * b) number of anonymous memory pages have (ANON)
+ * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).</p>
+
+<h3 id="conclusion:88e79775d07b2065d6114eda0760b392">Conclusion</h3>
+
+<p>Xen is able to support multiple kernels while by design VServer cannot.
+Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.</p>
+
+<h4 id="notes:88e79775d07b2065d6114eda0760b392">Notes</h4>
+
+<blockquote>
+<p>Undesired interactions between VMs are sometimes called cross-talk.</p>
+
+<p>COS - Container based Operating System</p>
+
+<p>TBF - token bucker filter</p>
+
+<p>HTB - Hierarchical Token Bucket</p>
+
+<p>RSS - maximum resident set size</p>
+</blockquote>
 
     <hr />
     <div id="disqus_thread"></div>
