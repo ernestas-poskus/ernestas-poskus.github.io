@@ -6,8 +6,56 @@
     <description>Recent content in Operating Systems on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Apr 2016 19:30:48 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 22 Apr 2016 21:26:15 +0300</lastBuildDate>
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tiny LFU highly efficient cache admission policy</title>
+      <link>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</link>
+      <pubDate>Fri, 22 Apr 2016 21:26:15 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
+      <description>
+
+&lt;h2 id=&#34;frequency-based-cache-admission-policy:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Frequency based cache admission policy&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.&lt;/p&gt;
+
+&lt;h3 id=&#34;usage:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;The intuitive reason why caching works is that data accesses in many
+domains of computer science exhibit a considerable degree of “locality”.&lt;/p&gt;
+
+&lt;p&gt;When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss. The ratio between the number of cache hits and the total number of data accesses is known as the cache hit-ratio.&lt;/p&gt;
+
+&lt;p&gt;Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).&lt;/p&gt;
+
+&lt;h3 id=&#34;architecture:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
+To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Time locality - access pattern, and consequently the corresponding probability distribution, change over time&lt;/p&gt;
+
+&lt;p&gt;WLFU - Window Least Frequently Used, access frequency for a window, needs to keep track order of requests. Samples of the request stream (called window).&lt;/p&gt;
+
+&lt;p&gt;PLFU - Perfect LFU, popularity based has metadata with counters&lt;/p&gt;
+
+&lt;p&gt;In-memory LFU, outperformed by WLFU at the cost of larger meta-data&lt;/p&gt;
+
+&lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
+
+&lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Container based operating system virtualization</title>
