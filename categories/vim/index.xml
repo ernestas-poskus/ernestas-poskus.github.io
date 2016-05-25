@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Ernestas Poškus.io</title>
+    <link>http://out13.com/categories/vim/</link>
+    <description>Recent content in Vim on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Sep 2015 20:43:24 +0300</lastBuildDate>
+    <atom:link href="http://out13.com/categories/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setup Rust Racer with multiple Rust versions</title>
+      <link>http://out13.com/posts/racer-with-multiple-rust-versions/</link>
+      <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
+      
+      <guid>http://out13.com/posts/racer-with-multiple-rust-versions/</guid>
+      <description>
+
+&lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
+This will let you navigate &amp;amp; jump to definition between Rust versions.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-install-rust-version-manager:6ad97dc18e1d9984a357248b82266434&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/sdepold/rsvm#installation&#34;&gt;https://github.com/sdepold/rsvm#installation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;2-install-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;rsvm install 0.12.0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;3-switch-use-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;rsvm use 0.12.0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in:6ad97dc18e1d9984a357248b82266434&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;total 56K
+drwxrwxr-x  2 user user 4.0K Sep 14 21:31 test
+drwxrwxr-x  4 user user 4.0K Sep 15 14:33 1.2.0
+drwxrwxr-x  5 user user 4.0K Sep 15 14:48 .
+drwxrwxr-x  8 user user 4.0K Sep 21 22:15 .git
+drwx------ 24 user user 4.0K Sep 21 22:17 ..
+-rw-rw-r--  1 user user 1.1K Sep 14 21:31 LICENSE
+-rw-rw-r--  1 user user  324 Sep 14 21:31 CHANGELOG.md
+-rw-rw-r--  1 user user  249 Sep 14 21:31 .travis.yml
+-rw-rw-r--  1 user user 9.1K Sep 14 21:31 rsvm.sh
+-rw-rw-r--  1 user user 2.1K Sep 14 21:31 rsvm.fish
+-rw-rw-r--  1 user user 1.3K Sep 14 21:31 install.sh
+-rw-rw-r--  1 user user 1.8K Sep 14 21:31 README.md
+lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;export RUST_SRC_PATH=&amp;quot;$HOME/.rsvm/current&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;6-install-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;6) Install Rust racer&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;git clone &lt;a href=&#34;https://github.com/phildawes/racer.git&#34;&gt;https://github.com/phildawes/racer.git&lt;/a&gt; &amp;ldquo;$HOME/rust-racer&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;7-build-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Build Rust racer&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;cd $HOME/rust-racer; cargo build &amp;ndash;release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/phildawes/racer#vim-integration&#34;&gt;https://github.com/phildawes/racer#vim-integration&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc:6ad97dc18e1d9984a357248b82266434&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;let g:racer_cmd = &amp;ldquo;$HOME/rust-racer/target/release/racer&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;9-done:6ad97dc18e1d9984a357248b82266434&#34;&gt;9) Done&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Enjoy multi Rust environment with code completion &amp;amp; goto-definition&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
