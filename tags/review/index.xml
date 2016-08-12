@@ -6,8 +6,62 @@
     <description>Recent content in Review on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Aug 2016 22:02:54 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 12 Aug 2016 16:57:55 +0300</lastBuildDate>
     <atom:link href="http://out13.com/tags/review/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Queues Are Databases</title>
+      <link>http://out13.com/paper/queues-are-databases/</link>
+      <pubDate>Fri, 12 Aug 2016 16:57:55 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/queues-are-databases/</guid>
+      <description>
+
+&lt;h2 id=&#34;queued-transaction-processing-over-pure-client-server-transaction-processing:0b1542f91fe7f0bf1010ad37008f765c&#34;&gt;Queued transaction processing over pure client-server transaction processing.&lt;/h2&gt;
+
+&lt;p&gt;Queued systems are build on top of direct systems.&lt;/p&gt;
+
+&lt;p&gt;TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.&lt;/p&gt;
+
+&lt;p&gt;Queue manager is best built as a naive resource manager atop an object-relational database system.
+That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.&lt;/p&gt;
+
+&lt;p&gt;Queues pose difficult problems when implemented atop a database:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Performance: An enqueue transaction is an insert followed by a commit. This places
+extreme performance demands on the concurrency control and recovery components
+of a database &amp;ndash; it exposes hotspots and high-overhead code.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Concurrency control: The dequeue transaction typically involves deleting a record from
+the queue, processing the request, enqueuing results in other queues, and then
+committing. Serializable isolation requires that there can be at most one dequeue
+executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Read past: locks allow a program to skip over dirty (uncommitted records) to find the
+first committed record. This is what a dequeue() operation wants.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Read through: locks allow a program to examine records that have not yet been
+committed. This is useful in polling the status of a queued request that is currently
+being processed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Notify: allow a program to wait for a state change in a lock. This allows a
+dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;notes:0b1542f91fe7f0bf1010ad37008f765c&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MOM - message oriented middleware&lt;/p&gt;
+
+&lt;p&gt;TP - transaction processing&lt;/p&gt;
+
+&lt;p&gt;P2P - peer to peer&lt;/p&gt;
+
+&lt;p&gt;ORB - object request broker&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>An Argument for Increasing TCP’s Initial Congestion Window</title>

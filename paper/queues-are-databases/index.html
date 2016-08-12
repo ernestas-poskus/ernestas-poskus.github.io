@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Tiny LFU highly efficient cache admission policy - Ernestas Poškus.io</title>
+  <title>Queues Are Databases - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Tiny LFU highly efficient cache admission policy" />
+  <meta property="og:title" content="Queues Are Databases" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/" />
+  <meta property="og:url" content="http://out13.com/paper/queues-are-databases/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -88,55 +88,61 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Tiny LFU highly efficient cache admission policy</h1>
+    <h1>Queues Are Databases</h1>
     <ul>
-      <li>Author: Gil Einziger, Roy Friedman</li>
-      <li>Name: TinyLFU: A Highly Efficient Cache Admission Policy</li>
+      <li>Author: Jim Gray</li>
+      <li>Name: Queues Are Databases</li>
       
-      <li>Link: <a href="http://arxiv.org/pdf/1512.00727.pdf" rel="nofollow" target="_blank">http://arxiv.org/pdf/1512.00727.pdf</a></li>
+      <li>Link: <a href="https://arxiv.org/pdf/cs/0701158.pdf" rel="nofollow" target="_blank">https://arxiv.org/pdf/cs/0701158.pdf</a></li>
       
     </ul>
-    <time>Fri, Apr 22, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 367 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <time>Fri, Aug 12, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 261 / <abbr title="Reading time">RT</abbr> 2min</p>
     <hr />
     
 
-<h2 id="frequency-based-cache-admission-policy:68edccfde492ba8dc936e9e5aa09f425">Frequency based cache admission policy</h2>
+<h2 id="queued-transaction-processing-over-pure-client-server-transaction-processing:0b1542f91fe7f0bf1010ad37008f765c">Queued transaction processing over pure client-server transaction processing.</h2>
+
+<p>Queued systems are build on top of direct systems.</p>
+
+<p>TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.</p>
+
+<p>Queue manager is best built as a naive resource manager atop an object-relational database system.
+That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.</p>
+
+<p>Queues pose difficult problems when implemented atop a database:</p>
+
+<ul>
+<li><p>Performance: An enqueue transaction is an insert followed by a commit. This places
+extreme performance demands on the concurrency control and recovery components
+of a database &ndash; it exposes hotspots and high-overhead code.</p></li>
+
+<li><p>Concurrency control: The dequeue transaction typically involves deleting a record from
+the queue, processing the request, enqueuing results in other queues, and then
+committing. Serializable isolation requires that there can be at most one dequeue
+executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.</p></li>
+
+<li><p>Read past: locks allow a program to skip over dirty (uncommitted records) to find the
+first committed record. This is what a dequeue() operation wants.</p></li>
+
+<li><p>Read through: locks allow a program to examine records that have not yet been
+committed. This is useful in polling the status of a queued request that is currently
+being processed.</p></li>
+
+<li><p>Notify: allow a program to wait for a state change in a lock. This allows a
+dequeue() operation to wait for one or more queues to become non-empty.</p></li>
+</ul>
+
+<h4 id="notes:0b1542f91fe7f0bf1010ad37008f765c">Notes</h4>
 
 <blockquote>
-<p>Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.</p>
-</blockquote>
+<p>MOM - message oriented middleware</p>
 
-<p>TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.</p>
+<p>TP - transaction processing</p>
 
-<h3 id="usage:68edccfde492ba8dc936e9e5aa09f425">Usage</h3>
+<p>P2P - peer to peer</p>
 
-<p>The intuitive reason why caching works is that data accesses in many
-domains of computer science exhibit a considerable degree of “locality”.</p>
-
-<p>When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss. The ratio between the number of cache hits and the total number of data accesses is known as the cache hit-ratio.</p>
-
-<p>Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).</p>
-
-<h3 id="architecture:68edccfde492ba8dc936e9e5aa09f425">Architecture</h3>
-
-<p>The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
-To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.</p>
-
-<h4 id="notes:68edccfde492ba8dc936e9e5aa09f425">Notes</h4>
-
-<blockquote>
-<p>Time locality - access pattern, and consequently the corresponding probability distribution, change over time</p>
-
-<p>WLFU - Window Least Frequently Used, access frequency for a window, needs to keep track order of requests. Samples of the request stream (called window).</p>
-
-<p>PLFU - Perfect LFU, popularity based has metadata with counters</p>
-
-<p>In-memory LFU, outperformed by WLFU at the cost of larger meta-data</p>
-
-<p>SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period</p>
-
-<p>LRU-K - combination of LRU &amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.</p>
+<p>ORB - object request broker</p>
 </blockquote>
 
     <hr />
