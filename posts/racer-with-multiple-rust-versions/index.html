@@ -97,25 +97,25 @@
 <p>Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
 This will let you navigate &amp; jump to definition between Rust versions.</p>
 
-<h3 id="1-install-rust-version-manager:6ad97dc18e1d9984a357248b82266434">1) Install Rust version manager</h3>
+<h3 id="1-install-rust-version-manager">1) Install Rust version manager</h3>
 
 <blockquote>
 <p><a href="https://github.com/sdepold/rsvm#installation">https://github.com/sdepold/rsvm#installation</a></p>
 </blockquote>
 
-<h3 id="2-install-desired-rust-version:6ad97dc18e1d9984a357248b82266434">2) Install desired Rust version</h3>
+<h3 id="2-install-desired-rust-version">2) Install desired Rust version</h3>
 
 <blockquote>
 <p>rsvm install 0.12.0</p>
 </blockquote>
 
-<h3 id="3-switch-use-desired-rust-version:6ad97dc18e1d9984a357248b82266434">3) Switch/use desired Rust version</h3>
+<h3 id="3-switch-use-desired-rust-version">3) Switch/use desired Rust version</h3>
 
 <blockquote>
 <p>rsvm use 0.12.0</p>
 </blockquote>
 
-<h3 id="4-rsvm-makes-symbolic-link-to-current-rust-version-in:6ad97dc18e1d9984a357248b82266434">4) rsvm - makes symbolic link to current rust version in</h3>
+<h3 id="4-rsvm-makes-symbolic-link-to-current-rust-version-in">4) rsvm - makes symbolic link to current rust version in</h3>
 
 <blockquote>
 <p>ls -la $HOME/.rsvm/current</p>
@@ -137,36 +137,36 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&gt; /home/user/.rsvm/1.2.0
 </code></pre>
 </blockquote>
 
-<h3 id="5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434">5) Export Rust source path to that symbolic link</h3>
+<h3 id="5-export-rust-source-path-to-that-symbolic-link">5) Export Rust source path to that symbolic link</h3>
 
 <pre><code>export RUST_SRC_PATH=&quot;$HOME/.rsvm/current&quot;
 </code></pre>
 
-<h3 id="6-install-rust-racer:6ad97dc18e1d9984a357248b82266434">6) Install Rust racer</h3>
+<h3 id="6-install-rust-racer">6) Install Rust racer</h3>
 
 <blockquote>
 <p>git clone <a href="https://github.com/phildawes/racer.git">https://github.com/phildawes/racer.git</a> &ldquo;$HOME/rust-racer&rdquo;</p>
 </blockquote>
 
-<h3 id="7-build-rust-racer:6ad97dc18e1d9984a357248b82266434">7) Build Rust racer</h3>
+<h3 id="7-build-rust-racer">7) Build Rust racer</h3>
 
 <blockquote>
 <p>cd $HOME/rust-racer; cargo build &ndash;release.</p>
 </blockquote>
 
-<h3 id="7-install-vim-racer-vim-plugin-emacs-kate-available:6ad97dc18e1d9984a357248b82266434">7) Install vim-racer vim plugin (Emacs, Kate available)</h3>
+<h3 id="7-install-vim-racer-vim-plugin-emacs-kate-available">7) Install vim-racer vim plugin (Emacs, Kate available)</h3>
 
 <blockquote>
 <p><a href="https://github.com/phildawes/racer#vim-integration">https://github.com/phildawes/racer#vim-integration</a></p>
 </blockquote>
 
-<h3 id="8-define-g-racer-cmd-in-vimrc:6ad97dc18e1d9984a357248b82266434">8) Define g:racer_cmd in .vimrc</h3>
+<h3 id="8-define-g-racer-cmd-in-vimrc">8) Define g:racer_cmd in .vimrc</h3>
 
 <blockquote>
 <p>let g:racer_cmd = &ldquo;$HOME/rust-racer/target/release/racer&rdquo;</p>
 </blockquote>
 
-<h3 id="9-done:6ad97dc18e1d9984a357248b82266434">9) Done</h3>
+<h3 id="9-done">9) Done</h3>
 
 <blockquote>
 <p>Enjoy multi Rust environment with code completion &amp; goto-definition</p>
@@ -212,6 +212,23 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&gt; /home/user/.rsvm/1.2.0
   ga('create', 'UA-61312403-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 </body>
 </html>
 

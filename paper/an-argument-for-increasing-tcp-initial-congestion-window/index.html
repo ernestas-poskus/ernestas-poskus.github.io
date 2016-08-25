@@ -98,10 +98,11 @@
     </ul>
     <time>Thu, Aug 4, 2016</time>
     <p><abbr title="Word count">WC</abbr> 97 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=An%20Argument%20for%20Increasing%20TCP%e2%80%99s%20Initial%20Congestion%20Window%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="tcp-congestion-window:0b8c139c67352ec9a78470bb60eabaac">TCP congestion window</h2>
+<h2 id="tcp-congestion-window">TCP congestion window</h2>
 
 <blockquote>
 <p>TCP flows start with initial congestion window of 4 segments (4KB of data).</p>
@@ -117,7 +118,7 @@
 
 <p>Increasing init_cwnd enables transfers to finish in fewer RTT.</p>
 
-<h4 id="notes:0b8c139c67352ec9a78470bb60eabaac">Notes</h4>
+<h4 id="notes">Notes</h4>
 
 <blockquote>
 <p>BDP - bandwidth delay product.</p>
@@ -167,6 +168,23 @@
   ga('create', 'UA-61312403-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 </body>
 </html>
 

@@ -17,7 +17,7 @@
       <guid>http://out13.com/paper/queues-are-databases/</guid>
       <description>
 
-&lt;h2 id=&#34;queued-transaction-processing-over-pure-client-server-transaction-processing:0b1542f91fe7f0bf1010ad37008f765c&#34;&gt;Queued transaction processing over pure client-server transaction processing.&lt;/h2&gt;
+&lt;h2 id=&#34;queued-transaction-processing-over-pure-client-server-transaction-processing&#34;&gt;Queued transaction processing over pure client-server transaction processing.&lt;/h2&gt;
 
 &lt;p&gt;Queued systems are build on top of direct systems.&lt;/p&gt;
 
@@ -49,7 +49,7 @@ being processed.&lt;/p&gt;&lt;/li&gt;
 dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;notes:0b1542f91fe7f0bf1010ad37008f765c&#34;&gt;Notes&lt;/h4&gt;
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;MOM - message oriented middleware&lt;/p&gt;
@@ -71,7 +71,7 @@ dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt
       <guid>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</guid>
       <description>
 
-&lt;h2 id=&#34;tcp-congestion-window:0b8c139c67352ec9a78470bb60eabaac&#34;&gt;TCP congestion window&lt;/h2&gt;
+&lt;h2 id=&#34;tcp-congestion-window&#34;&gt;TCP congestion window&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;TCP flows start with initial congestion window of 4 segments (4KB of data).&lt;/p&gt;
@@ -87,7 +87,7 @@ dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt
 
 &lt;p&gt;Increasing init_cwnd enables transfers to finish in fewer RTT.&lt;/p&gt;
 
-&lt;h4 id=&#34;notes:0b8c139c67352ec9a78470bb60eabaac&#34;&gt;Notes&lt;/h4&gt;
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;BDP - bandwidth delay product.&lt;/p&gt;
@@ -107,7 +107,7 @@ dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt
       <guid>http://out13.com/paper/mesos-platform-for-resource-sharing/</guid>
       <description>
 
-&lt;h2 id=&#34;platform-for-resource-sharing:7ec476dc4fb778dc0cf421ef9caa0b43&#34;&gt;Platform for resource sharing&lt;/h2&gt;
+&lt;h2 id=&#34;platform-for-resource-sharing&#34;&gt;Platform for resource sharing&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Sharing improves cluster utilization and avoids per-framework data repli-cation
@@ -115,7 +115,7 @@ Organizations will want to run multiple frameworks in the same cluster, picking 
 Sharing a cluster between frameworks improves utilization and allows applications to share access to large datasets that may be too costly to replicate&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;architecture:7ec476dc4fb778dc0cf421ef9caa0b43&#34;&gt;Architecture&lt;/h3&gt;
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
 
 &lt;p&gt;Mesos decides how many resources to offer each framework, based on an organizational policy such as fair sharing, while frameworks decide which resources to accept and which tasks to run on them.&lt;/p&gt;
 
@@ -146,7 +146,7 @@ Sharing a cluster between frameworks improves utilization and allows application
 &lt;li&gt;Preferred if a framework performs “better” using it, but can also run using another equivalent resource.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;notes:7ec476dc4fb778dc0cf421ef9caa0b43&#34;&gt;Notes&lt;/h4&gt;
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Two-level scheduling mechanism called resource offers&lt;/p&gt;
@@ -180,7 +180,7 @@ Sharing a cluster between frameworks improves utilization and allows application
       <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
       <description>
 
-&lt;h2 id=&#34;frequency-based-cache-admission-policy:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Frequency based cache admission policy&lt;/h2&gt;
+&lt;h2 id=&#34;frequency-based-cache-admission-policy&#34;&gt;Frequency based cache admission policy&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.&lt;/p&gt;
@@ -188,7 +188,7 @@ Sharing a cluster between frameworks improves utilization and allows application
 
 &lt;p&gt;TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.&lt;/p&gt;
 
-&lt;h3 id=&#34;usage:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Usage&lt;/h3&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;The intuitive reason why caching works is that data accesses in many
 domains of computer science exhibit a considerable degree of “locality”.&lt;/p&gt;
@@ -197,12 +197,12 @@ domains of computer science exhibit a considerable degree of “locality”.&lt;
 
 &lt;p&gt;Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).&lt;/p&gt;
 
-&lt;h3 id=&#34;architecture:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Architecture&lt;/h3&gt;
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
 
 &lt;p&gt;The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
 To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.&lt;/p&gt;
 
-&lt;h4 id=&#34;notes:68edccfde492ba8dc936e9e5aa09f425&#34;&gt;Notes&lt;/h4&gt;
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Time locality - access pattern, and consequently the corresponding probability distribution, change over time&lt;/p&gt;
@@ -228,14 +228,14 @@ To do so, TinyLFU maintains statistics of items frequency over a sizable recent 
       <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
       <description>
 
-&lt;h2 id=&#34;alternative-to-hypervisors:88e79775d07b2065d6114eda0760b392&#34;&gt;Alternative to hypervisors.&lt;/h2&gt;
+&lt;h2 id=&#34;alternative-to-hypervisors&#34;&gt;Alternative to hypervisors.&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Workload requirements for a given system will direct users to the point in the design space that
 requires the least trade-off.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;sharing-over-isolation:88e79775d07b2065d6114eda0760b392&#34;&gt;Sharing over isolation?&lt;/h3&gt;
+&lt;h3 id=&#34;sharing-over-isolation&#34;&gt;Sharing over isolation?&lt;/h3&gt;
 
 &lt;p&gt;Hypervisors often deployed to let a single machine host multiple, unrelated
 applications, which may run on behalf of independent organizations, as is common when a data center
@@ -244,7 +244,7 @@ However, when each virtual machine is running the same kernel and similar operat
 distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
 relative to running all applications on a single kernel.&lt;/p&gt;
 
-&lt;h3 id=&#34;usage:88e79775d07b2065d6114eda0760b392&#34;&gt;Usage&lt;/h3&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;Software configuration problems incompatibilities between specific OS distributions.&lt;/p&gt;
 
@@ -254,12 +254,12 @@ relative to running all applications on a single kernel.&lt;/p&gt;
 
 &lt;p&gt;The key point is that both hypervisors and COS&amp;rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.&lt;/p&gt;
 
-&lt;h3 id=&#34;security-isolation:88e79775d07b2065d6114eda0760b392&#34;&gt;Security isolation&lt;/h3&gt;
+&lt;h3 id=&#34;security-isolation&#34;&gt;Security isolation&lt;/h3&gt;
 
 &lt;p&gt;Configuration independence - cannot conflict with other VM&amp;rsquo;s
 Safety - global namespace shared&lt;/p&gt;
 
-&lt;h3 id=&#34;fair-share-and-reservations:88e79775d07b2065d6114eda0760b392&#34;&gt;Fair share and Reservations&lt;/h3&gt;
+&lt;h3 id=&#34;fair-share-and-reservations&#34;&gt;Fair share and Reservations&lt;/h3&gt;
 
 &lt;p&gt;Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.&lt;/p&gt;
 
@@ -268,12 +268,12 @@ Safety - global namespace shared&lt;/p&gt;
  * b) number of anonymous memory pages have (ANON)
  * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusion:88e79775d07b2065d6114eda0760b392&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
 &lt;p&gt;Xen is able to support multiple kernels while by design VServer cannot.
 Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.&lt;/p&gt;
 
-&lt;h4 id=&#34;notes:88e79775d07b2065d6114eda0760b392&#34;&gt;Notes&lt;/h4&gt;
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Undesired interactions between VMs are sometimes called cross-talk.&lt;/p&gt;

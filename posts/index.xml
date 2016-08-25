@@ -17,7 +17,7 @@
       <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
       <description>
 
-&lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion:617fb6684b7fd2a7eacd8ed968ab5966&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
+&lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Use cases: API / templates.&lt;/p&gt;
@@ -70,25 +70,25 @@ To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&
 &lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
 This will let you navigate &amp;amp; jump to definition between Rust versions.&lt;/p&gt;
 
-&lt;h3 id=&#34;1-install-rust-version-manager:6ad97dc18e1d9984a357248b82266434&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
+&lt;h3 id=&#34;1-install-rust-version-manager&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/sdepold/rsvm#installation&#34;&gt;https://github.com/sdepold/rsvm#installation&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;2-install-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
+&lt;h3 id=&#34;2-install-desired-rust-version&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;rsvm install 0.12.0&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;3-switch-use-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
+&lt;h3 id=&#34;3-switch-use-desired-rust-version&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;rsvm use 0.12.0&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in:6ad97dc18e1d9984a357248b82266434&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
+&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
@@ -110,36 +110,36 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
+&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;export RUST_SRC_PATH=&amp;quot;$HOME/.rsvm/current&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;6-install-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;6) Install Rust racer&lt;/h3&gt;
+&lt;h3 id=&#34;6-install-rust-racer&#34;&gt;6) Install Rust racer&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;git clone &lt;a href=&#34;https://github.com/phildawes/racer.git&#34;&gt;https://github.com/phildawes/racer.git&lt;/a&gt; &amp;ldquo;$HOME/rust-racer&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;7-build-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Build Rust racer&lt;/h3&gt;
+&lt;h3 id=&#34;7-build-rust-racer&#34;&gt;7) Build Rust racer&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;cd $HOME/rust-racer; cargo build &amp;ndash;release.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
+&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/phildawes/racer#vim-integration&#34;&gt;https://github.com/phildawes/racer#vim-integration&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc:6ad97dc18e1d9984a357248b82266434&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
+&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;let g:racer_cmd = &amp;ldquo;$HOME/rust-racer/target/release/racer&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;9-done:6ad97dc18e1d9984a357248b82266434&#34;&gt;9) Done&lt;/h3&gt;
+&lt;h3 id=&#34;9-done&#34;&gt;9) Done&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Enjoy multi Rust environment with code completion &amp;amp; goto-definition&lt;/p&gt;
@@ -203,29 +203,29 @@ Every source where I was verifying number of syllables had a difference usually 
 
 &lt;p&gt;tl;dr&lt;/p&gt;
 
-&lt;h1 id=&#34;flesch-reading-ease-in-action:087a6de45ee2190737386abc77c5e519&#34;&gt;Flesch Reading Ease in action&lt;/h1&gt;
+&lt;h1 id=&#34;flesch-reading-ease-in-action&#34;&gt;Flesch Reading Ease in action&lt;/h1&gt;
 
 &lt;p&gt;Took presidential speeches from &lt;a href=&#34;http://millercenter.org/president/speeches&#34;&gt;http://millercenter.org/president/speeches&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;george-washington-first-inaugural-address-april-30-1789:087a6de45ee2190737386abc77c5e519&#34;&gt;George Washington, First Inaugural Address (April 30, 1789)&lt;/h4&gt;
+&lt;h4 id=&#34;george-washington-first-inaugural-address-april-30-1789&#34;&gt;George Washington, First Inaugural Address (April 30, 1789)&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;In this conflict of emotions, all I dare aver, is, that it has been my faithful study to collect my duty from a just appreciation of every circumstance, by which it might be affected. All I dare hope, is, that, if in executing this task I have been too much swayed by a grateful remembrance of former instances, or by an affectionate sensibility to this transcendent proof, of the confidence of my fellow-citizens; and have thence too little consulted my incapacity as well as disinclination for the weighty and untried cares before me; my error will be palliated by the motives which misled me, and its consequences be judged by my Country, with some share of the partiality in which they originated.&amp;rdquo;,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4 id=&#34;abraham-lincoln-first-inaugural-address-march-4-1861:087a6de45ee2190737386abc77c5e519&#34;&gt;Abraham Lincoln, First Inaugural Address (March 4, 1861)&lt;/h4&gt;
+&lt;h4 id=&#34;abraham-lincoln-first-inaugural-address-march-4-1861&#34;&gt;Abraham Lincoln, First Inaugural Address (March 4, 1861)&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;I take the official oath to-day with no mental reservations, and with no purpose to construe the Constitution or laws by any hypercritical rules. And while I do not choose now to specify particular acts of Congress as proper to be enforced, I do suggest that it will be much safer for all, both in official and private stations, to conform to and abide by all those acts which stand unrepealed, than to violate any of them, trusting to find impunity in having them held to be unconstitutional.&amp;rdquo;,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4 id=&#34;barack-obama-acceptance-speech-at-the-democratic-national-convention-august-28-2008:087a6de45ee2190737386abc77c5e519&#34;&gt;Barack Obama, Acceptance Speech at the Democratic National Convention (August 28, 2008)&lt;/h4&gt;
+&lt;h4 id=&#34;barack-obama-acceptance-speech-at-the-democratic-national-convention-august-28-2008&#34;&gt;Barack Obama, Acceptance Speech at the Democratic National Convention (August 28, 2008)&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;It is that promise that has always set this country apart—that through hard work and sacrifice, each of us can pursue our individual dreams but still come together as one American family, to ensure that the next generation can pursue their dreams as well. That&amp;rsquo;s why I stand here tonight. Because for two hundred and thirty two years, at each moment when that promise was in jeopardy, ordinary men and women—students and soldiers, farmers and teachers, nurses and janitors—found the courage to keep it alive. We meet at one of those defining moments—a moment when our nation is at war, our economy is in turmoil, and the American promise has been threatened once more.&amp;rdquo;,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go:087a6de45ee2190737386abc77c5e519&#34;&gt;Results &lt;a href=&#34;http://out13.com/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go&#34;&gt;Results &lt;a href=&#34;http://out13.com/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
 
 &lt;table&gt;
 &lt;thead&gt;

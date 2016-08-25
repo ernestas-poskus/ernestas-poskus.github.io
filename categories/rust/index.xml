@@ -20,25 +20,25 @@
 &lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
 This will let you navigate &amp;amp; jump to definition between Rust versions.&lt;/p&gt;
 
-&lt;h3 id=&#34;1-install-rust-version-manager:6ad97dc18e1d9984a357248b82266434&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
+&lt;h3 id=&#34;1-install-rust-version-manager&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/sdepold/rsvm#installation&#34;&gt;https://github.com/sdepold/rsvm#installation&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;2-install-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
+&lt;h3 id=&#34;2-install-desired-rust-version&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;rsvm install 0.12.0&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;3-switch-use-desired-rust-version:6ad97dc18e1d9984a357248b82266434&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
+&lt;h3 id=&#34;3-switch-use-desired-rust-version&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;rsvm use 0.12.0&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in:6ad97dc18e1d9984a357248b82266434&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
+&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
@@ -60,36 +60,36 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link:6ad97dc18e1d9984a357248b82266434&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
+&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;export RUST_SRC_PATH=&amp;quot;$HOME/.rsvm/current&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;6-install-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;6) Install Rust racer&lt;/h3&gt;
+&lt;h3 id=&#34;6-install-rust-racer&#34;&gt;6) Install Rust racer&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;git clone &lt;a href=&#34;https://github.com/phildawes/racer.git&#34;&gt;https://github.com/phildawes/racer.git&lt;/a&gt; &amp;ldquo;$HOME/rust-racer&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;7-build-rust-racer:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Build Rust racer&lt;/h3&gt;
+&lt;h3 id=&#34;7-build-rust-racer&#34;&gt;7) Build Rust racer&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;cd $HOME/rust-racer; cargo build &amp;ndash;release.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available:6ad97dc18e1d9984a357248b82266434&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
+&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/phildawes/racer#vim-integration&#34;&gt;https://github.com/phildawes/racer#vim-integration&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc:6ad97dc18e1d9984a357248b82266434&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
+&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;let g:racer_cmd = &amp;ldquo;$HOME/rust-racer/target/release/racer&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;9-done:6ad97dc18e1d9984a357248b82266434&#34;&gt;9) Done&lt;/h3&gt;
+&lt;h3 id=&#34;9-done&#34;&gt;9) Done&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Enjoy multi Rust environment with code completion &amp;amp; goto-definition&lt;/p&gt;

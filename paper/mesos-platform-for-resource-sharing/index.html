@@ -98,10 +98,11 @@
     </ul>
     <time>Thu, Apr 28, 2016</time>
     <p><abbr title="Word count">WC</abbr> 471 / <abbr title="Reading time">RT</abbr> 3min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Mesos:%20A%20Platform%20for%20Fine-Grained%20Resource%20Sharing%20in%20the%20Data%20Center%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="platform-for-resource-sharing:7ec476dc4fb778dc0cf421ef9caa0b43">Platform for resource sharing</h2>
+<h2 id="platform-for-resource-sharing">Platform for resource sharing</h2>
 
 <blockquote>
 <p>Sharing improves cluster utilization and avoids per-framework data repli-cation
@@ -109,7 +110,7 @@ Organizations will want to run multiple frameworks in the same cluster, picking 
 Sharing a cluster between frameworks improves utilization and allows applications to share access to large datasets that may be too costly to replicate</p>
 </blockquote>
 
-<h3 id="architecture:7ec476dc4fb778dc0cf421ef9caa0b43">Architecture</h3>
+<h3 id="architecture">Architecture</h3>
 
 <p>Mesos decides how many resources to offer each framework, based on an organizational policy such as fair sharing, while frameworks decide which resources to accept and which tasks to run on them.</p>
 
@@ -140,7 +141,7 @@ Sharing a cluster between frameworks improves utilization and allows application
 <li>Preferred if a framework performs “better” using it, but can also run using another equivalent resource.</li>
 </ul>
 
-<h4 id="notes:7ec476dc4fb778dc0cf421ef9caa0b43">Notes</h4>
+<h4 id="notes">Notes</h4>
 
 <blockquote>
 <p>Two-level scheduling mechanism called resource offers</p>
@@ -204,6 +205,23 @@ Sharing a cluster between frameworks improves utilization and allows application
   ga('create', 'UA-61312403-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 </body>
 </html>
 
