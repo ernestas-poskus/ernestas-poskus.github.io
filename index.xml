@@ -6,8 +6,51 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Aug 2016 16:57:55 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 25 Aug 2016 19:13:56 +0300</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>On the fly garbage collection</title>
+      <link>http://out13.com/paper/on-the-fly-garbage-collection/</link>
+      <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
+      <description>
+
+&lt;p&gt;In our abstract form of the problem, we consider a
+directed graph of varying structure but with a fixed
+number of nodes, in which each node has at most two
+outgoing edges. More precisely, each node may have a
+left-hand outgoing edge and may have a right-hand
+outgoing edge, but either of them or both may be missing.
+In this graph a fixed set of nodes exists, called &amp;ldquo;the
+roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable
+from at least one root via a directed path along the edges.&lt;/p&gt;
+
+&lt;p&gt;The subgraph consists of all reachable nodes and their interconnections is
+called &amp;lsquo;the data structure&amp;rsquo;; nonreachable nodes that do not belong to the
+data structure are called garbage.&lt;/p&gt;
+
+&lt;p&gt;Data structure can modified:
+ - Redirecting an outgoing edge of a reachable node towards an already reachable one.
+ - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
+ - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
+ - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
+ - Removing an outgoing edge of a reachable node&lt;/p&gt;
+
+&lt;p&gt;Mutator: redirect an outgoing edge of reachable node towards an already reachable one.&lt;/p&gt;
+
+&lt;p&gt;Collector:
+ - marking phase: mark all reachable nodes
+ - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Queues Are Databases</title>
