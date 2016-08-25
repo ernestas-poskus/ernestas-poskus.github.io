@@ -6,8 +6,58 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Aug 2016 19:13:56 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 25 Aug 2016 20:39:03 +0300</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ownership is theft experiences building an embedded os in rust</title>
+      <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
+      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
+      <description>
+
+&lt;h2 id=&#34;embedded-os-in-rust&#34;&gt;Embedded OS in Rust&lt;/h2&gt;
+
+&lt;p&gt;Embedded systems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;lack hardware protection mechanism&lt;/li&gt;
+&lt;li&gt;less tolerant to crashes&lt;/li&gt;
+&lt;li&gt;no easy way for debugging&lt;/li&gt;
+&lt;li&gt;GC introduces non-deterministic delay&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
+
+&lt;p&gt;Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.&lt;/p&gt;
+
+&lt;p&gt;Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.&lt;/p&gt;
+
+&lt;p&gt;Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.&lt;/p&gt;
+
+&lt;p&gt;Preserved type safety without relying on a runtime GC for memory management.&lt;/p&gt;
+
+&lt;p&gt;Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Borrowing&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Value can only be mutably borrowed if there are no other borrows of the value.&lt;/li&gt;
+&lt;li&gt;Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;execution-context-extension-for-rust&#34;&gt;Execution context (extension for Rust)&lt;/h3&gt;
+
+&lt;p&gt;Reflects the thread of a value&amp;rsquo;s owner in its type.&lt;/p&gt;
+
+&lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
+
+&lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>On the fly garbage collection</title>

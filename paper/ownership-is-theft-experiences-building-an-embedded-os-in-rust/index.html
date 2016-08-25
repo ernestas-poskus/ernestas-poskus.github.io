@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Review - Ernestas Poškus.io</title>
-  <meta name="description" content=""/>
+  <title>Ownership is theft experiences building an embedded os in rust - Ernestas Poškus.io</title>
+  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Review" />
-  <meta property="og:description" content="" />
+  <meta property="og:title" content="Ownership is theft experiences building an embedded os in rust" />
+  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/tags/review/" />
+  <meta property="og:url" content="http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -25,7 +25,7 @@
   <link rel="shortcut icon" href="http://out13.com/favicon.ico">
 
   
-  <link href="http://out13.com/tags/review/index.xml" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
 </head>
 <body>
 
@@ -92,59 +92,77 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <ul class="no-bullet">
-      <h1>Review</h1>
+    <h1>Ownership is theft experiences building an embedded os in rust</h1>
+    <ul>
+      <li>Author: Amit Levy, Michael P Andersen, Bradford Campbell, David Culler,Prabal Dutta, Branden Ghena, Philip Levis, Pat Pannuto</li>
+      <li>Name: Ownership is Theft: Experiences Building an Embedded OS in Rust</li>
       
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/">Ownership is theft experiences building an embedded os in rust</a>
-            <small><time>Thu, Aug 25, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/on-the-fly-garbage-collection/">On the fly garbage collection</a>
-            <small><time>Thu, Aug 25, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/queues-are-databases/">Queues Are Databases</a>
-            <small><time>Fri, Aug 12, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/">An Argument for Increasing TCP’s Initial Congestion Window</a>
-            <small><time>Thu, Aug 4, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/mesos-platform-for-resource-sharing/">Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center</a>
-            <small><time>Thu, Apr 28, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/">Tiny LFU highly efficient cache admission policy</a>
-            <small><time>Fri, Apr 22, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/paper/container-based-operating-system-virtualization/">Container based operating system virtualization</a>
-            <small><time>Tue, Apr 19, 2016</time></small>
-          </h3>
-        </li>
+      <li>Link: <a href="https://sing.stanford.edu/site/publications/levy-plos15-tock.pdf" rel="nofollow" target="_blank">https://sing.stanford.edu/site/publications/levy-plos15-tock.pdf</a></li>
       
     </ul>
+    <time>Thu, Aug 25, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 208 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Ownership%20is%20theft%20experiences%20building%20an%20embedded%20os%20in%20rust%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <hr />
+    
+
+<h2 id="embedded-os-in-rust">Embedded OS in Rust</h2>
+
+<p>Embedded systems:</p>
+
+<ul>
+<li>lack hardware protection mechanism</li>
+<li>less tolerant to crashes</li>
+<li>no easy way for debugging</li>
+<li>GC introduces non-deterministic delay</li>
+</ul>
+
+<h3 id="rust">Rust</h3>
+
+<p>Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.</p>
+
+<p>Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.</p>
+
+<p>Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.</p>
+
+<p>Preserved type safety without relying on a runtime GC for memory management.</p>
+
+<p>Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.</p>
+
+<blockquote>
+<p>Borrowing</p>
+</blockquote>
+
+<ul>
+<li>Value can only be mutably borrowed if there are no other borrows of the value.</li>
+<li>Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.</li>
+</ul>
+
+<h3 id="execution-context-extension-for-rust">Execution context (extension for Rust)</h3>
+
+<p>Reflects the thread of a value&rsquo;s owner in its type.</p>
+
+<p>Allows multiple borrows of a value from within same thread, but not across threads.</p>
+
+<p>The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.</p>
+
+    <hr />
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'ernestasposkusio';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
   </div>
 </div>
 <hr />
