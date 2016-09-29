@@ -6,8 +6,155 @@
     <description>Recent content in Posts on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Jan 2016 20:42:45 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 25 Sep 2016 18:12:59 +0300</lastBuildDate>
     <atom:link href="http://out13.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Testing Ansible on multiple platforms</title>
+      <link>http://out13.com/posts/ansible-testing-multiple-platforms/</link>
+      <pubDate>Sun, 25 Sep 2016 18:12:59 +0300</pubDate>
+      
+      <guid>http://out13.com/posts/ansible-testing-multiple-platforms/</guid>
+      <description>
+
+&lt;p&gt;It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.&lt;/p&gt;
+
+&lt;p&gt;When playbook is created with Ansible command &lt;code&gt;ansible-galaxy init myplaybook&lt;/code&gt; it creates number of directories and files, includes basic Travis CI .travis.yml file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;script:
+  # Basic role syntax check
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.04 LTS Server Edition 64 bit by default.
+This limits testing playbooks on multiple operating systems.
+In fact Travis CI virtual environment is limited to Debian operating systems and includes BETA Ubuntu 14.04 LTS Server Edition 64 bit container configurable via.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;dist: trusty
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;fortunately-travis-supports-docker&#34;&gt;Fortunately Travis supports docker.&lt;/h4&gt;
+
+&lt;p&gt;I have created bare docker containers that include ansible, can be found here &lt;a href=&#34;https://github.com/ansible-docker-images&#34;&gt;https://github.com/ansible-docker-images&lt;/a&gt; and in docker hub &lt;a href=&#34;https://hub.docker.com/r/ernestasposkus&#34;&gt;https://hub.docker.com/r/ernestasposkus&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Currently available containers are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu1404&lt;/li&gt;
+&lt;li&gt;ubuntu1604&lt;/li&gt;
+&lt;li&gt;centos6&lt;/li&gt;
+&lt;li&gt;centos7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you need extra platforms let me now or join organization and contribute.&lt;/p&gt;
+
+&lt;h2 id=&#34;drop-in-replacement-travis-yml-script-for-testing-ansible-on-multiple-platforms&#34;&gt;Drop in replacement .travis.yml script for testing ansible on multiple platforms&lt;/h2&gt;
+
+&lt;p&gt;Template can be found here: &lt;a href=&#34;https://github.com/ansible-docker-images/template&#34;&gt;https://github.com/ansible-docker-images/template&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This includes four files:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.travis.yml for starting CI itself&lt;/li&gt;
+&lt;li&gt;tests/dependencies.yml for extra dependencies to be installed before testing playbook&lt;/li&gt;
+&lt;li&gt;playbook.yml for syntax check, first install and idempotence tests&lt;/li&gt;
+&lt;li&gt;test.yml where tests are defined basically Ansible tasks with exit status checking&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you are looking for real examples:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/AnsibleShipyard/ansible-zookeeper&#34;&gt;https://github.com/AnsibleShipyard/ansible-zookeeper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/AnsibleShipyard/ansible-mesos&#34;&gt;https://github.com/AnsibleShipyard/ansible-mesos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ernestas-poskus/ansible-nsq&#34;&gt;https://github.com/ernestas-poskus/ansible-nsq&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ernestas-poskus/ansible-prometheus&#34;&gt;https://github.com/ernestas-poskus/ansible-prometheus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sample .travis.yml script below.
+Includes testing on 4 platforms, dependencies installation, Ansible syntax check, idempotence test and actual tests.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;sudo: required
+
+env:
+  global:
+    # https://github.com/travis-ci/travis-ci/issues/6461#issuecomment-239577306
+    DOCKER_VERSION: &amp;quot;1.9.1-0~trusty&amp;quot;
+  matrix:
+    - distro: ernestasposkus/centos7
+      init: /usr/lib/systemd/systemd
+      run_opts: &amp;quot;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&amp;quot;
+    - distro: ernestasposkus/centos6
+      init: /sbin/init
+      run_opts: &amp;quot;&amp;quot;
+    - distro: ernestasposkus/ubuntu1604
+      init: /lib/systemd/systemd
+      run_opts: &amp;quot;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&amp;quot;
+    - distro: ernestasposkus/ubuntu1404
+      init: /sbin/init
+      run_opts: &amp;quot;&amp;quot;
+
+services:
+  - docker
+
+before_install:
+  # Downgrade to specific version of Docker engine.
+  - sudo apt-get update
+  - sudo apt-get remove docker-engine -yq
+  - sudo apt-get install docker-engine=$DOCKER_VERSION -yq --no-install-suggests --no-install-recommends --force-yes -o Dpkg::Options::=&amp;quot;--force-confnew&amp;quot;
+
+  # Pull container.
+  - &#39;sudo docker pull ${distro}:latest&#39;
+
+script:
+  - container_id=$(mktemp)
+    # Run container in detached state.
+  - &#39;sudo docker run --detach --volume=&amp;quot;${PWD}&amp;quot;:/etc/ansible/roles/role_under_test:ro ${run_opts} ${distro}:latest &amp;quot;${init}&amp;quot; &amp;gt; &amp;quot;${container_id}&amp;quot;&#39;
+
+  # Inspect docker container
+  - &#39;sudo docker inspect $(cat ${container_id})&#39;
+
+  # Print ansible version
+  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible --version&#39;
+
+  # Check Ansible host setup
+  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible all -i &amp;quot;localhost,&amp;quot; -c local -m setup&#39;
+
+  # Install dependencies
+  # Uncomment to install dependencies
+  # - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-galaxy install geerlingguy.java&#39;
+  # - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/dependencies.yml&#39;
+
+  # Ansible syntax check.
+  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml --syntax-check&#39;
+
+  # Test role.
+  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml&#39;
+
+  # Test role idempotence.
+  - idempotence=$(mktemp)
+  - sudo docker exec &amp;quot;$(cat ${container_id})&amp;quot; ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml | tee -a ${idempotence}
+  - &amp;gt;
+    tail ${idempotence}
+    | grep -q &#39;changed=0.*failed=0&#39;
+    &amp;amp;&amp;amp; (echo &#39;Idempotence test: pass&#39; &amp;amp;&amp;amp; exit 0)
+    || (echo &#39;Idempotence test: fail&#39; &amp;amp;&amp;amp; exit 1)
+
+  # Test role.
+  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml&#39;
+
+  # View container logs
+  - &#39;sudo docker logs &amp;quot;$(cat ${container_id})&amp;quot;&#39;
+
+  # Clean up.
+  - &#39;sudo docker stop &amp;quot;$(cat ${container_id})&amp;quot;&#39;
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Golang dynamic struct decoration</title>

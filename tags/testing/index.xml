@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Personal on Ernestas Poškus.io</title>
-    <link>http://out13.com/tags/personal/</link>
-    <description>Recent content in Personal on Ernestas Poškus.io</description>
+    <title>Testing on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/testing/</link>
+    <description>Recent content in Testing on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 25 Sep 2016 18:12:59 +0300</lastBuildDate>
-    <atom:link href="http://out13.com/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://out13.com/tags/testing/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Testing Ansible on multiple platforms</title>
