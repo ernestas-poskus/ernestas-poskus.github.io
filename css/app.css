@@ -1618,3 +1618,6 @@ table.hover tr:hover {
 
 table.hover tr:nth-of-type(even):hover {
   background-color: #ececec; }
+
+pre {
+  padding: 0 0 1.875rem; }

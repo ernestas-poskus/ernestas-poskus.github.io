@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Golang dynamic struct decoration - Ernestas Poškus.io</title>
+  <title>Generating configuration from Ansible variables - Ernestas Poškus.io</title>
   <meta name="description" content="Personal findings, thoughts &amp; blog"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Golang dynamic struct decoration" />
+  <meta property="og:title" content="Generating configuration from Ansible variables" />
   <meta property="og:description" content="Personal findings, thoughts &amp; blog" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/posts/golang-dynamic-struct-decoration/" />
+  <meta property="og:url" content="http://out13.com/posts/generating-configuration-from-ansible-variables/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -100,52 +100,114 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Golang dynamic struct decoration</h1>
-    <time>Thu, Jan 28, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 96 / <abbr title="Reading time">RT</abbr> 1min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Golang%20dynamic%20struct%20decoration%20#out13posts%20@ernestas_poskus">Tweet</a>
+    <h1>Generating configuration from Ansible variables</h1>
+    <time>Thu, Nov 3, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 281 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Generating%20configuration%20from%20Ansible%20variables%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="dynamic-struct-decoration-using-type-assertion">Dynamic struct decoration using type assertion.</h2>
+<p>If you have ever tried to render Ansible multi hash or list variable you probably something alike.</p>
 
-<blockquote>
-<p>Use cases: API / templates.</p>
-</blockquote>
-
-<p>Having simple map of:</p>
-
-<pre><code class="language-go">  input :=  map[string]interface{}{
-    &quot;Key1&quot;: []string{&quot;some&quot;, &quot;key&quot;},
-    &quot;key3&quot;: nil,
-    &quot;val&quot;: 2,
-    &quot;val2&quot;: &quot;str&quot;,
-    &quot;val3&quot;: 4,
-  }
+<pre><code class="language-yaml">global:
+  scrape_interval: &quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&quot;
+  evaluation_interval: &quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&quot;
+  scrape_timeout: &quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&quot;
+  external_labels: &quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&quot;
 </code></pre>
 
-<p>One can decorate it using type assertion by iterating over it.</p>
+<p>This generates invalid and ugly YAML.</p>
 
-<pre><code class="language-go">  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
-    }
-  }
+<pre><code class="language-yaml">global:
+  scrape_interval: &quot;15s
+...
+&quot;
+  evaluation_interval: &quot;30s
+...
+&quot;
+  scrape_timeout: &quot;10s
+...
+&quot;
+  external_labels: &quot;null
+...
+&quot;
 </code></pre>
 
-<p>This becomes very useful when serializing struct into json.
-To serialize struct use <code>github.com/fatih/structs</code></p>
+<h3 id="tldr">TLDR</h3>
 
-<pre><code class="language-go">  input := structs.Map(...)
+<p>If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.
+But there is a better way that I came up with.</p>
 
-  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
-    }
-  }
+<pre><code class="language-yaml">{{
+{
+'global': {
+  'scrape_interval': prometheus_config_global_scrape_interval,
+  'evaluation_interval': prometheus_config_global_evaluation_interval,
+  'scrape_timeout': prometheus_config_global_scrape_timeout,
+  'external_labels': prometheus_config_global_external_labels }
+} | to_nice_yaml
+}}
 </code></pre>
+
+<p>Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through <code>to_nice_yaml</code> filter as well.
+This generates pretty and valid YAML.</p>
+
+<pre><code class="language-yaml">global:
+    evaluation_interval: 30s
+    external_labels: null
+    scrape_interval: 15s
+    scrape_timeout: 10s
+</code></pre>
+
+<p>Same applies to more complex variable definitions like this hash configuration inside of array/list.</p>
+
+<pre><code class="language-yaml">prometheus_config_scrape_configs:
+  - job_name: 'prometheus'
+    honor_labels: true
+    scrape_interval: '15s'
+    scrape_timeout: '2s'
+    metrics_path: '/metrics'
+    scheme: 'http'
+    static_configs:
+      - targets:
+          - &quot;{{ prometheus_web__listen_address }}&quot; # Prometheus itself
+          - &quot;{{ prometheus_alert_manager_web__listen_address }}&quot; # Alert manager
+
+  - job_name: 'consul-services'
+    consul_sd_configs:
+      - server: &quot;consul.service.consul:8500&quot;
+        services:
+          - nodeexporter
+</code></pre>
+
+<p>Variable used in template.</p>
+
+<pre><code class="language-yaml">{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; 0 %}
+{{ {'scrape_configs': prometheus_config_scrape_configs} | to_nice_yaml }}
+{% endif %}
+</code></pre>
+
+<p>End result here.</p>
+
+<pre><code class="language-yaml">scrape_configs:
+-   honor_labels: true
+    job_name: prometheus
+    metrics_path: /metrics
+    scheme: http
+    scrape_interval: 15s
+    scrape_timeout: 2s
+    static_configs:
+    -   targets:
+        - 192.168.250.11:9090
+        - 192.168.250.11:9093
+-   consul_sd_configs:
+    -   server: consul.service.consul:8500
+        services:
+        - nodeexporter
+    job_name: consul-services
+</code></pre>
+
+<p>Examples are taken from by ansible-prometheus playbook: <a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a>.</p>
 
     <hr />
     <div id="disqus_thread"></div>
