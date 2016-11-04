@@ -9,6 +9,73 @@
     <atom:link href="http://out13.com/tags/review/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Bigtable: A Distributed Storage System for Structured Data</title>
+      <link>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</link>
+      <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</guid>
+      <description>
+
+&lt;h2 id=&#34;bigtable&#34;&gt;Bigtable&lt;/h2&gt;
+
+&lt;p&gt;Bigtable is a distributed storage system for managing structured data that is
+designed to scale to a very large size: petabytes of data across thousands of commodity servers.&lt;/p&gt;
+
+&lt;p&gt;Bigtable does not support a full relational data model; instead, it provides
+clients with a simple data model that supports dynamic control over data layout
+and format, and allows clients to reason about the locality properties of the data
+represented in the underlying storage.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-model&#34;&gt;Data model&lt;/h3&gt;
+
+&lt;p&gt;A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
+The map is indexed by a row key, column key, and a timestamp; each value in the map
+is an uninterpreted array of bytes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;(row:string, column:string, time:int64) → string&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
+Each row range is called a tablet, which is the unit of distribution and load balancing.&lt;/p&gt;
+
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.&lt;/p&gt;
+
+&lt;p&gt;First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.&lt;/p&gt;
+
+&lt;p&gt;Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
+Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.&lt;/p&gt;
+
+&lt;p&gt;Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure&lt;/p&gt;
+
+&lt;h3 id=&#34;client&#34;&gt;Client&lt;/h3&gt;
+
+&lt;p&gt;The client library caches tablet locations.
+If the client does not know the location of a tablet, or if it discovers that cached
+location information is incorrect, then it recursively moves up the tablet location hierarchy.&lt;/p&gt;
+
+&lt;h3 id=&#34;caching&#34;&gt;Caching&lt;/h3&gt;
+
+&lt;p&gt;To improve read performance, tablet servers use two levels of caching.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.&lt;/li&gt;
+&lt;li&gt;Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;GFS - Google File System&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ownership is theft experiences building an embedded os in rust</title>
       <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
       <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
