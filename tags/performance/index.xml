@@ -9,6 +9,52 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Dynamo: Amazon’s Highly Available Key-value Store</title>
+      <link>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</link>
+      <pubDate>Sun, 06 Nov 2016 12:32:44 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</guid>
+      <description>
+
+&lt;h2 id=&#34;dynamo&#34;&gt;Dynamo&lt;/h2&gt;
+
+&lt;p&gt;Dynamo sacrifices Consistency for Availability under certain failure scenarios.
+It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.&lt;/p&gt;
+
+&lt;p&gt;Gossip based distributed failure detection and membership protocol.&lt;/p&gt;
+
+&lt;h3 id=&#34;query-model&#34;&gt;Query Model&lt;/h3&gt;
+
+&lt;p&gt;Read &amp;amp; Write operations to data item that is uniquely identified by a key.
+State is stored as blobs.
+Targets application that store objects up to 1MB.&lt;/p&gt;
+
+&lt;h3 id=&#34;acid&#34;&gt;ACID&lt;/h3&gt;
+
+&lt;p&gt;Dynamo targets applications that operate with weaker consistency (the “C” in ACID) if this results in high availability.&lt;/p&gt;
+
+&lt;p&gt;No isolation guarantees. Permits only single key updates.&lt;/p&gt;
+
+&lt;h3 id=&#34;design&#34;&gt;Design&lt;/h3&gt;
+
+&lt;p&gt;Incremental scalability: Dynamo should be able to scale out one storage host (henceforth, referred to as “node”) at a time,
+with minimal impact on both operators of the system and the system itself.&lt;/p&gt;
+
+&lt;p&gt;Symmetry: Every node in Dynamo should have the same set of responsibilities as its peers; there should be no distinguished node
+or nodes that take special roles or extra set of responsibilities. In our experience, symmetry simplifies the process of system
+provisioning and maintenance.&lt;/p&gt;
+
+&lt;p&gt;Decentralization: An extension of symmetry, the design should favor decentralized peer-to-peer techniques over centralized
+control. In the past, centralized control has resulted in outages and the goal is to avoid it as much as possible. This leads to a simpler,
+more scalable, and more available system.&lt;/p&gt;
+
+&lt;p&gt;Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
+distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
+higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Bigtable: A Distributed Storage System for Structured Data</title>
       <link>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</link>
       <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>

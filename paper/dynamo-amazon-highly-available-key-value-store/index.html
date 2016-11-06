@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Ansible - Ernestas Poškus.io</title>
-  <meta name="description" content=""/>
+  <title>Dynamo: Amazon’s Highly Available Key-value Store - Ernestas Poškus.io</title>
+  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Ansible" />
-  <meta property="og:description" content="" />
+  <meta property="og:title" content="Dynamo: Amazon’s Highly Available Key-value Store" />
+  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/tags/ansible/" />
+  <meta property="og:url" content="http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -25,7 +25,7 @@
   <link rel="shortcut icon" href="http://out13.com/favicon.ico">
 
   
-  <link href="http://out13.com/tags/ansible/index.xml" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
 </head>
 <body>
 
@@ -100,24 +100,73 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <ul class="no-bullet">
-      <h1>Ansible</h1>
+    <h1>Dynamo: Amazon’s Highly Available Key-value Store</h1>
+    <ul>
+      <li>Author: Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall and Werner Vogels</li>
+      <li>Name: Dynamo: Amazon’s Highly Available Key-value Store</li>
       
-        <li>
-          <h3>
-            <a href="http://out13.com/posts/generating-configuration-from-ansible-variables/">Generating configuration from Ansible variables</a>
-            <small><time>Thu, Nov 3, 2016</time></small>
-          </h3>
-        </li>
-      
-        <li>
-          <h3>
-            <a href="http://out13.com/posts/ansible-testing-multiple-platforms/">Testing Ansible on multiple platforms</a>
-            <small><time>Sun, Sep 25, 2016</time></small>
-          </h3>
-        </li>
+      <li>Link: <a href="http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf" rel="nofollow" target="_blank">http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf</a></li>
       
     </ul>
+    <time>Sun, Nov 6, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 269 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Dynamo:%20Amazon%e2%80%99s%20Highly%20Available%20Key-value%20Store%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <hr />
+    
+
+<h2 id="dynamo">Dynamo</h2>
+
+<p>Dynamo sacrifices Consistency for Availability under certain failure scenarios.
+It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.</p>
+
+<p>Gossip based distributed failure detection and membership protocol.</p>
+
+<h3 id="query-model">Query Model</h3>
+
+<p>Read &amp; Write operations to data item that is uniquely identified by a key.
+State is stored as blobs.
+Targets application that store objects up to 1MB.</p>
+
+<h3 id="acid">ACID</h3>
+
+<p>Dynamo targets applications that operate with weaker consistency (the “C” in ACID) if this results in high availability.</p>
+
+<p>No isolation guarantees. Permits only single key updates.</p>
+
+<h3 id="design">Design</h3>
+
+<p>Incremental scalability: Dynamo should be able to scale out one storage host (henceforth, referred to as “node”) at a time,
+with minimal impact on both operators of the system and the system itself.</p>
+
+<p>Symmetry: Every node in Dynamo should have the same set of responsibilities as its peers; there should be no distinguished node
+or nodes that take special roles or extra set of responsibilities. In our experience, symmetry simplifies the process of system
+provisioning and maintenance.</p>
+
+<p>Decentralization: An extension of symmetry, the design should favor decentralized peer-to-peer techniques over centralized
+control. In the past, centralized control has resulted in outages and the goal is to avoid it as much as possible. This leads to a simpler,
+more scalable, and more available system.</p>
+
+<p>Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
+distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
+higher capacity without having to upgrade all hosts at once.</p>
+
+    <hr />
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
   </div>
 </div>
 <hr />
