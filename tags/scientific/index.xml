@@ -9,6 +9,49 @@
     <atom:link href="http://out13.com/tags/scientific/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution</title>
+      <link>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</link>
+      <pubDate>Thu, 10 Nov 2016 22:27:23 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</guid>
+      <description>
+
+&lt;h2 id=&#34;replication-under-scalable-hashing&#34;&gt;Replication Under Scalable Hashing&lt;/h2&gt;
+
+&lt;p&gt;Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used;
+adding or removing components results in either extensive reorganization of data or load imbalance in the system.&lt;/p&gt;
+
+&lt;p&gt;RUSH variants also support weighting, allowing disks of different vintages to be added to a system.&lt;/p&gt;
+
+&lt;p&gt;RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system,
+or old disks are retired, RUSH variants minimize the number of objects that need to
+be moved in order to bring the system back into balance.&lt;/p&gt;
+
+&lt;p&gt;RUSH variants can perform reorganization online without locking the filesystem for a long time to relocate data.&lt;/p&gt;
+
+&lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
+
+&lt;p&gt;Subcluster in a system managed by RUSH t must have at least as many disks as an object has replicas.&lt;/p&gt;
+
+&lt;p&gt;RUSH t is the best algorithms for distributing data over very large clusters of disks.&lt;/p&gt;
+
+&lt;p&gt;RUSH r may be the best option for systems which need to remove disks one at a time from the system.&lt;/p&gt;
+
+&lt;p&gt;RUSH p may be the best option for smaller systems where storage space is at a premium.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;RUSH t - RUSH tree&lt;/p&gt;
+
+&lt;p&gt;RUSH r - RUSH support for removal&lt;/p&gt;
+
+&lt;p&gt;PUSH p - RUSH placement using prime numbers&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Dynamo: Amazon’s Highly Available Key-value Store</title>
       <link>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</link>
       <pubDate>Sun, 06 Nov 2016 12:32:44 +0200</pubDate>
