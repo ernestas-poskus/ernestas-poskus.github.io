@@ -9,6 +9,76 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Interaction of Buffer Size and TCP Protocol Handling and its Impact</title>
+      <link>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</link>
+      <pubDate>Thu, 17 Nov 2016 19:23:07 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</guid>
+      <description>
+
+&lt;h3 id=&#34;abstract&#34;&gt;Abstract&lt;/h3&gt;
+
+&lt;p&gt;Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
+data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.&lt;/p&gt;
+
+&lt;h4 id=&#34;tcp-congestion-control-versus-system-buffer-management&#34;&gt;TCP Congestion Control versus System Buffer Management&lt;/h4&gt;
+
+&lt;p&gt;TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
+protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
+Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
+reconstructed and verified at the recipient’s end. The congestion-control mechanism
+was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
+transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
+depending on network conditions.&lt;/p&gt;
+
+&lt;p&gt;System buffer management. Every network device that transports data has buffers,
+usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
+that periodic data bursts can be accommodated without having to drop packets.
+Network systems such as switch-routers are architected differently, however, and can
+vary significantly in the size of their buffers and how they manage different traffic flows.&lt;/p&gt;
+
+&lt;h4 id=&#34;deep-buffer-vs-intelligent-buffer&#34;&gt;Deep buffer vs Intelligent buffer&lt;/h4&gt;
+
+&lt;p&gt;A common practice is to put in as much buffer as possible. However, since the
+buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
+how to use this shared resource can significantly impact applications’ performance.&lt;/p&gt;
+
+&lt;p&gt;The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
+not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
+and hence longer flow completion time.&lt;/p&gt;
+
+&lt;p&gt;Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
+resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
+because large buffers do not create more link bandwidth.&lt;/p&gt;
+
+&lt;h4 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Since mice flows are often mission critical (including, for example, control and alarm messages,
+Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
+them to complete faster and their applications to perform better overall. The above test results
+show that expediting mice flows and regulating the elephant flows early under the intelligent
+buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
+magnitude better performance for mission critical flows without causing elephant flows to slow
+down.&lt;/p&gt;
+
+&lt;p&gt;Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
+there is enough buffer space for the bursts of mice flows while the elephant flows are properly
+regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
+in the form of longer queuing latency, and hence longer flow completion time for all flow types.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Elephant - big flows&lt;/p&gt;
+
+&lt;p&gt;Mice - small flows&lt;/p&gt;
+
+&lt;p&gt;FCT - flow completion time&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution</title>
       <link>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</link>
       <pubDate>Thu, 10 Nov 2016 22:27:23 +0200</pubDate>

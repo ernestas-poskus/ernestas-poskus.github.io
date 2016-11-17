@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Container based operating system virtualization - Ernestas Poškus.io</title>
+  <title>The Interaction of Buffer Size and TCP Protocol Handling and its Impact - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Container based operating system virtualization" />
+  <meta property="og:title" content="The Interaction of Buffer Size and TCP Protocol Handling and its Impact" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/container-based-operating-system-virtualization/" />
+  <meta property="og:url" content="http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -102,77 +102,78 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Container based operating system virtualization</h1>
+    <h1>The Interaction of Buffer Size and TCP Protocol Handling and its Impact</h1>
     <ul>
-      <li>Author: Stephen Soltesz, Herbert Pötzl, Marc E. Fiuczynski, Andy Bavier, Larry Peterson</li>
-      <li>Name: Container-based Operating System Virtualization: A Scalable, High-performance Alternative to Hypervisors</li>
+      <li>Author: Miercom</li>
+      <li>Name: Speeding Applications in Data Center Networks The Interaction of Buffer Size and TCP Protocol Handling and its Impact on Data-Mining and Large Enterprise IT Traffic Flows</li>
       
-      <li>Link: <a href="http://dl.acm.org/citation.cfm?id=1273025" rel="nofollow" target="_blank">http://dl.acm.org/citation.cfm?id=1273025</a></li>
+      <li>Link: <a href="http://miercom.com/pdf/reports/20160210.pdf" rel="nofollow" target="_blank">http://miercom.com/pdf/reports/20160210.pdf</a></li>
       
     </ul>
-    <time>Tue, Apr 19, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 368 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Container%20based%20operating%20system%20virtualization%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Nov 17, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 467 / <abbr title="Reading time">RT</abbr> 3min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=The%20Interaction%20of%20Buffer%20Size%20and%20TCP%20Protocol%20Handling%20and%20its%20Impact%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="alternative-to-hypervisors">Alternative to hypervisors.</h2>
+<h3 id="abstract">Abstract</h3>
 
-<blockquote>
-<p>Workload requirements for a given system will direct users to the point in the design space that
-requires the least trade-off.</p>
-</blockquote>
+<p>Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
+data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.</p>
 
-<h3 id="sharing-over-isolation">Sharing over isolation?</h3>
+<h4 id="tcp-congestion-control-versus-system-buffer-management">TCP Congestion Control versus System Buffer Management</h4>
 
-<p>Hypervisors often deployed to let a single machine host multiple, unrelated
-applications, which may run on behalf of independent organizations, as is common when a data center
-consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
-However, when each virtual machine is running the same kernel and similar operating system
-distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
-relative to running all applications on a single kernel.</p>
+<p>TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
+protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
+Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
+reconstructed and verified at the recipient’s end. The congestion-control mechanism
+was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
+transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
+depending on network conditions.</p>
 
-<h3 id="usage">Usage</h3>
+<p>System buffer management. Every network device that transports data has buffers,
+usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
+that periodic data bursts can be accommodated without having to drop packets.
+Network systems such as switch-routers are architected differently, however, and can
+vary significantly in the size of their buffers and how they manage different traffic flows.</p>
 
-<p>Software configuration problems incompatibilities between specific OS distributions.</p>
+<h4 id="deep-buffer-vs-intelligent-buffer">Deep buffer vs Intelligent buffer</h4>
 
-<p>Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&rsquo;s.</p>
+<p>A common practice is to put in as much buffer as possible. However, since the
+buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
+how to use this shared resource can significantly impact applications’ performance.</p>
 
-<p>Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.</p>
+<p>The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
+not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
+and hence longer flow completion time.</p>
 
-<p>The key point is that both hypervisors and COS&rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.</p>
+<p>Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
+resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
+because large buffers do not create more link bandwidth.</p>
 
-<h3 id="security-isolation">Security isolation</h3>
+<h4 id="conclusion">Conclusion</h4>
 
-<p>Configuration independence - cannot conflict with other VM&rsquo;s
-Safety - global namespace shared</p>
+<p>Since mice flows are often mission critical (including, for example, control and alarm messages,
+Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
+them to complete faster and their applications to perform better overall. The above test results
+show that expediting mice flows and regulating the elephant flows early under the intelligent
+buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
+magnitude better performance for mission critical flows without causing elephant flows to slow
+down.</p>
 
-<h3 id="fair-share-and-reservations">Fair share and Reservations</h3>
-
-<p>Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.</p>
-
-<p>For memory storage one can specify the following limits:
- * a) the maximum resident set size (RSS)
- * b) number of anonymous memory pages have (ANON)
- * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).</p>
-
-<h3 id="conclusion">Conclusion</h3>
-
-<p>Xen is able to support multiple kernels while by design VServer cannot.
-Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.</p>
+<p>Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
+there is enough buffer space for the bursts of mice flows while the elephant flows are properly
+regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
+in the form of longer queuing latency, and hence longer flow completion time for all flow types.</p>
 
 <h4 id="notes">Notes</h4>
 
 <blockquote>
-<p>Undesired interactions between VMs are sometimes called cross-talk.</p>
+<p>Elephant - big flows</p>
 
-<p>COS - Container based Operating System</p>
+<p>Mice - small flows</p>
 
-<p>TBF - token bucker filter</p>
-
-<p>HTB - Hierarchical Token Bucket</p>
-
-<p>RSS - maximum resident set size</p>
+<p>FCT - flow completion time</p>
 </blockquote>
 
     <hr />
