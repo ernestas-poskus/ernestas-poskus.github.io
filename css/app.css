@@ -1388,64 +1388,6 @@ kbd {
   .large-text-justify {
     text-align: justify; } }
 
-.show-for-print {
-  display: none !important; }
-
-@media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important; }
-  .show-for-print {
-    display: block !important; }
-  .hide-for-print {
-    display: none !important; }
-  table.show-for-print {
-    display: table !important; }
-  thead.show-for-print {
-    display: table-header-group !important; }
-  tbody.show-for-print {
-    display: table-row-group !important; }
-  tr.show-for-print {
-    display: table-row !important; }
-  td.show-for-print {
-    display: table-cell !important; }
-  th.show-for-print {
-    display: table-cell !important; }
-  a,
-  a:visited {
-    text-decoration: underline; }
-  a[href]:after {
-    content: " (" attr(href) ")"; }
-  .ir a:after,
-  a[href^='javascript:']:after,
-  a[href^='#']:after {
-    content: ''; }
-  abbr[title]:after {
-    content: " (" attr(title) ")"; }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid; }
-  thead {
-    display: table-header-group; }
-  tr,
-  img {
-    page-break-inside: avoid; }
-  img {
-    max-width: 100% !important; }
-  @page {
-    margin: 0.5cm; }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3; }
-  h2,
-  h3 {
-    page-break-after: avoid; } }
-
 .hide {
   display: none !important; }
 

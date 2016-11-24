@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>SEDA: An Architecture for Well-Conditioned, Scalable Internet Services - Ernestas Poškus.io</title>
+  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <meta name="keywords" content=""/>
+
+  <meta property="og:title" content="SEDA: An Architecture for Well-Conditioned, Scalable Internet Services" />
+  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://out13.com/paper/seda-an-architecture-for-well-conditioned-scalable-internet-services/" />
+  <meta property="og:image" content="http://out13.com/images/og-image.png" />
+
+  
+  <link rel="stylesheet" href="http://out13.com/css/app.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://out13.com/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://out13.com/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+</head>
+<body>
+
+<div class="callout large primary">
+  <div class="row">
+    <div class="large-3 columns">
+      <h1><a href="http://out13.com/">Ernestas Poškus</a></h1>
+    </div>
+
+    <div class="large-3 columns">
+      <h2>Categories</h2>
+      <ul class="circle">
+        
+          <li><a href="http://out13.com/categories/algorithms">algorithms</a> 1</li>
+        
+          <li><a href="http://out13.com/categories/ansible">ansible</a> 1</li>
+        
+          <li><a href="http://out13.com/categories/golang">golang</a> 3</li>
+        
+          <li><a href="http://out13.com/categories/rust">rust</a> 1</li>
+        
+          <li><a href="http://out13.com/categories/vim">vim</a> 1</li>
+        
+      </ul>
+    </div>
+
+    <div class="large-3 columns">
+      <h2>Tags</h2>
+      <ul class="circle">
+        
+          <li><a href="http://out13.com/tags/ansible">ansible</a> 2</li>
+        
+          <li><a href="http://out13.com/tags/cisco">cisco</a> 1</li>
+        
+          <li><a href="http://out13.com/tags/garbage-collection">garbage-collection</a> 1</li>
+        
+          <li><a href="http://out13.com/tags/learning">learning</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/operating-systems">operating-systems</a> 11</li>
+        
+          <li><a href="http://out13.com/tags/paper">paper</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/performance">performance</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/personal">personal</a> 2</li>
+        
+          <li><a href="http://out13.com/tags/research">research</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/review">review</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/rust">rust</a> 1</li>
+        
+          <li><a href="http://out13.com/tags/scientific">scientific</a> 12</li>
+        
+          <li><a href="http://out13.com/tags/testing">testing</a> 1</li>
+        
+      </ul>
+    </div>
+
+    <div class="large-3 columns">
+      <h2>Social</h2>
+      <ul class="circle">
+        
+          <li><a href="https://github.com/ernestas-poskus">github.com/ernestas-poskus</a></li>
+        
+          <li><a href="https://www.linkedin.com/in/ernestasposkus">linkedin.com/in/ernestasposkus</a></li>
+        
+          <li><a href="https://twitter.com/ernestas_poskus">twitter.com/ernestas_poskus</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>SEDA: An Architecture for Well-Conditioned, Scalable Internet Services</h1>
+    <ul>
+      <li>Author: Matt Welsh, David Culler, and Eric Brewer</li>
+      <li>Name: SEDA: An Architecture for Well-Conditioned, Scalable Internet Services</li>
+      
+      <li>Link: <a href="http://www.sosp.org/2001/papers/welsh.pdf" rel="nofollow" target="_blank">http://www.sosp.org/2001/papers/welsh.pdf</a></li>
+      
+    </ul>
+    <time>Thu, Nov 24, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 735 / <abbr title="Reading time">RT</abbr> 4min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=SEDA:%20An%20Architecture%20for%20Well-Conditioned,%20Scalable%20Internet%20Services%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <hr />
+    
+
+<h2 id="seda-staged-event-driven-architecture">SEDA - staged event driven architecture</h2>
+
+<p>A SEDA is intended to support massive concurrency demands and simplify the construction of well-conditioned services.
+In SEDA, applications consist of a network of event-driven stages connected by explicit queues.
+This architecture allows services to be well-conditioned to load, preventing resources from being overcommitted when demand exceeds service capacity.</p>
+
+<p>SEDA combines aspects of threads and event-based programming models to manage the concurrency, I/O, scheduling, and resource management needs of Internet services.</p>
+
+<p>Applications are constructed as a network of stages, each with an associated incoming event queue.
+Each stage represents a robust building block that may be individually conditioned to load by thresholding or filtering its event queue.</p>
+
+<h3 id="architecture">Architecture</h3>
+
+<p>Service is well-conditioned if it behaves like a simple pipeline, where the depth of the pipeline is determined by the path through the network and the processing stages within the service itself.
+As the offered load increases, the delivered throughput increases proportionally until the pipeline is full and the throughput saturates; additional load should not degrade throughput.</p>
+
+<h4 id="thread-based-concurrency">Thread based concurrency</h4>
+
+<p>Operating system overlaps computation and I/O by transparently switching among threads.
+Although relatively easy to program, the overheads associated with threading — including cache and TLB misses, scheduling overhead,
+and lock contention — can lead to serious performance degradation when the number of threads is large.</p>
+
+<h4 id="bounded-thread-pools">Bounded thread pools</h4>
+
+<p>To avoid the overuse of threads, a number of systems adopt a coarse form of load conditioning that serves to bound the size of the thread
+pool associated with a service. When the number of requests in the server exceeds some fixed limit, additional connections are not accepted.
+This approach is used by Web servers such as Apache, IIS, and Netscape Enterprise Server.
+By limiting the number of concurrent threads, the server can avoid throughput degradation,
+and the overall performance is more robust than the unconstrained thread-per-task model.</p>
+
+<h4 id="event-driven-concurrency">Event-driven concurrency</h4>
+
+<p>Server consists of a small number of threads (typically one per CPU) that loop continuously, processing events of different types from a queue.
+Events may be generated by the operating system or internally by the application,
+and generally correspond to network and disk I/O readiness and completion notifications, timers, or other application-specific events.</p>
+
+<p>Certain I/O operations (in this case, filesystem access) do not have asynchronous interfaces, the main server
+process handles these events by dispatching them to helper processes via IPC.
+Helper processes issue (blocking) I/O requests and return an event to the main process upon completion.</p>
+
+<p>Important limitation of this model is that it assumes that event handling threads do not block,
+and for this reason nonblocking I/O mechanisms must be employed.</p>
+
+<h4 id="structured-event-queues">Structured event queues</h4>
+
+<p>Common aspect of these designs is to structure an event-driven application using a
+set of event queues to improve code modularity and simplify application design.</p>
+
+<h4 id="staged-event-driven-architecture">Staged event driven architecture</h4>
+
+<p>Support massive concurrency: To avoid performance degradation due to threads,
+SEDA makes use of event-driven execution wherever possible.
+This also requires that the system provide efficient and scalable I/O primitives.</p>
+
+<p>Simplify the construction of well-conditioned services: To reduce the complexity of building Internet services,
+SEDA shields application programmers from many of the details of scheduling and resource management.
+The design also supports modular construction of these applications, and provides support for debugging and performance profiling.</p>
+
+<p>Enable introspection: Applications should be able to analyze the request stream to adapt behavior to
+changing load conditions. For example, the system should be able to
+prioritize and filter requests to support degraded service under heavy load.</p>
+
+<p>Support self-tuning resource management: Rather than mandate a priori
+knowledge of application resource requirements and client load
+characteristics, the system should adjust its resource management parameters dynamically
+to meet performance targets. For example, the number of threads allocated to
+a stage can be determined automatically based on perceived concurrency demands,
+rather than hard-coded by the programmer or administrator.</p>
+
+<blockquote>
+<p>Building blocks</p>
+</blockquote>
+
+<p>The fundamental unit of processing within SEDA is the stage.
+Stage is a self-contained application component consisting of an event handler, an incoming event queue, and a thread pool.</p>
+
+<p>The core logic for each stage is provided by the event handler, the input to which is a batch of multiple events.
+Event handlers do not have direct control over queue operations or threads.</p>
+
+<p>Event queues in SEDA is that they may be finite: that is, an enqueue operation may fail
+if the queue wishes to reject new entries, say, because it has reached a threshold.</p>
+
+    <hr />
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'ernestasposkusio';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+</div>
+<hr />
+
+<div class="row">
+  <div class="large-12 columns">
+    &copy; 2016 imagination & perception 
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61312403-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+</body>
+</html>
+
