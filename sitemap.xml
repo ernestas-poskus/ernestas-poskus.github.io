@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</loc>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://out13.com/paper/seda-an-architecture-for-well-conditioned-scalable-internet-services/</loc>
     <lastmod>2016-11-24T19:50:13+02:00</lastmod>
   </url>
@@ -122,7 +127,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,31 +145,31 @@
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://out13.com/tags/operating-systems/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://out13.com/tags/performance/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -182,13 +187,13 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -206,7 +211,7 @@
   
   <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2016-11-24T19:50:13+02:00</lastmod>
+    <lastmod>2016-12-01T16:05:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   

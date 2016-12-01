@@ -6,8 +6,78 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Nov 2016 19:50:13 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 01 Dec 2016 16:05:39 +0200</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Efficient Reconciliation and Flow Control for Anti-Entropy Protocols</title>
+      <link>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</link>
+      <pubDate>Thu, 01 Dec 2016 16:05:39 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</guid>
+      <description>
+
+&lt;h2 id=&#34;flow-gossip&#34;&gt;Flow Gossip&lt;/h2&gt;
+
+&lt;p&gt;Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements.
+With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss.
+The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.&lt;/p&gt;
+
+&lt;h3 id=&#34;gossip-basics&#34;&gt;Gossip basics&lt;/h3&gt;
+
+&lt;p&gt;There are two classes of gossip: anti-entropy and rumor mongering protocols.
+Anti-entropy protocols gossip information until it is made obsolete by newer information,
+and are useful for reliably sharing information among a group of participants.
+Rumor-mongering has participants gossip information for some amount of time chosen sufficiently
+high so that with high likelihood all participants receive the information.&lt;/p&gt;
+
+&lt;p&gt;3 Gossip styles:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;push: push everything and apply everything&lt;/li&gt;
+&lt;li&gt;pull: sends its state with values removed, leaving only keys and version numbers, then returns only necessary updates&lt;/li&gt;
+&lt;li&gt;push-pull: like pull but sends a list of participant-key pairs for which if has outdated entries (most efficient)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;precise-reconciliation&#34;&gt;Precise reconciliation&lt;/h3&gt;
+
+&lt;p&gt;The two participants in a gossip exchange send exactly those mappings that are more recent
+than those of the peer. Thus, if the participants are p and q, p sends to q the set of deltas.&lt;/p&gt;
+
+&lt;h3 id=&#34;scuttlebutt-reconciliation&#34;&gt;Scuttlebutt reconciliation&lt;/h3&gt;
+
+&lt;p&gt;A gossiper never transmits updates that were already known at the receiver.
+If gossip messages were unlimited in size, then the sets contains the exact differences, just like with precise reconciliation.
+If a set does not fit in the gossip message, then it is not allowed to use an arbitrary subsetas in precise reconciliation.&lt;/p&gt;
+
+&lt;h3 id=&#34;flow-control&#34;&gt;Flow control&lt;/h3&gt;
+
+&lt;p&gt;The objective of a flow control mechanism for gossip is to determine, adaptively,
+the maximum rate at which a participant can submit updates without creating a backlog of updates.
+A flow control mechanism should be fair, and under high load afford each participant that wants to submit updates the same update rate.
+As there is no global oversight, the flow control mechanism has to be decentralized,
+where the desired behavior emerges from participants responding to local events.&lt;/p&gt;
+
+&lt;h3 id=&#34;local-adaptation&#34;&gt;Local adaptation&lt;/h3&gt;
+
+&lt;p&gt;For local adaptation, we use an approach inspired by TCP flow control.
+In TCP, the send window adapts according to a strategy called Additive Increase Multiplicative decrease.&lt;/p&gt;
+
+&lt;p&gt;In this strategy, window size grows linearly with each successful transmission,
+but is decreased by a certain factor whenever overflow occurs.
+In the case of TCP, the overflow signal is the absence of an acknowledgment.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Anti-entropy - gossip information until it is made obsolete.&lt;/p&gt;
+
+&lt;p&gt;Rumor-mongering - gossip information for some of high amount of time with high likelihood all participants received the information.&lt;/p&gt;
+
+&lt;p&gt;AIMD - additive increase multiplicative decrease&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>SEDA: An Architecture for Well-Conditioned, Scalable Internet Services</title>
@@ -956,56 +1026,6 @@ Xen also has greater support for virtualizing the network stack and allows for t
 
 &lt;p&gt;RSS - maximum resident set size&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Golang dynamic struct decoration</title>
-      <link>http://out13.com/posts/golang-dynamic-struct-decoration/</link>
-      <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
-      
-      <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
-      <description>
-
-&lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Use cases: API / templates.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Having simple map of:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input :=  map[string]interface{}{
-    &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;},
-    &amp;quot;key3&amp;quot;: nil,
-    &amp;quot;val&amp;quot;: 2,
-    &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;,
-    &amp;quot;val3&amp;quot;: 4,
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;One can decorate it using type assertion by iterating over it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&amp;quot;Count&amp;quot;+key] = len(slice)
-    }
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This becomes very useful when serializing struct into json.
-To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input := structs.Map(...)
-
-  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&amp;quot;Count&amp;quot;+key] = len(slice)
-    }
-  }
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
