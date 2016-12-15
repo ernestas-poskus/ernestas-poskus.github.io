@@ -9,6 +9,71 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>TAO: Facebook’s Distributed Data Store for the Social Graph</title>
+      <link>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</link>
+      <pubDate>Thu, 15 Dec 2016 19:36:32 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</guid>
+      <description>
+
+&lt;h2 id=&#34;distributed-data-store-for-social-graph&#34;&gt;Distributed data store for social graph&lt;/h2&gt;
+
+&lt;p&gt;TAO is geographically distributed data store that provides efficient and timely
+access to the social graph using a fixed set of queries.
+Read optimized, persisted in MySQL.&lt;/p&gt;
+
+&lt;p&gt;Inefficient edge lists: A key-value cache is not a good
+semantic fit for lists of edges; queries must always fetch
+the entire edge list and changes to a single edge require
+the entire list to be reloaded.&lt;/p&gt;
+
+&lt;p&gt;Distributed control logic: In a lookaside cache architecture
+the control logic is run on clients that don’t communicate
+with each other. This increases the number of
+failure modes, and makes it difficult to avoid thundering herds.&lt;/p&gt;
+
+&lt;p&gt;Expensive read-after-write consistency: Facebook
+uses asynchronous master/slave replication for MySQL,
+which poses a problem for caches in data centers using a
+replica. Writes are forwarded to the master, but some
+time will elapse before they are reflected in the local
+replica. By restricting the data model
+to objects and associations we can update the replica’s
+cache at write time, then use graph semantics to interpret
+cache maintenance messages from concurrent updates.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-model-and-api&#34;&gt;Data model and API&lt;/h3&gt;
+
+&lt;p&gt;Facebook focuses on people, actions, and relationships.
+We model these entities and connections as nodes and
+edges in a graph. This representation is very flexible;
+it directly models real-life objects, and can also be used
+to store an application’s internal implementation-specific
+data.&lt;/p&gt;
+
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;TAO needs to handle a far larger volume of data than can be stored on a
+single MySQL server, therefore data is divided into logical shards.&lt;/p&gt;
+
+&lt;h3 id=&#34;mysql-mapping&#34;&gt;MySQL mapping&lt;/h3&gt;
+
+&lt;p&gt;Each shard is assigned to a logical MySQL database
+that has a table for objects and a table
+for associations. All of the fields of an object are serialized into a
+single ‘data‘ column. This approach allows
+us to store objects of different types within the same table,
+Objects that benefit from separate data management
+polices are stored in separate custom tables.
+Associations are stored similarly to objects, but to support
+range queries, their tables have an additional index
+based on id1, atype, and time. To avoid potentially expensive
+SELECT COUNT queries, association counts
+are stored in a separate table.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Efficient Reconciliation and Flow Control for Anti-Entropy Protocols</title>
       <link>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</link>
       <pubDate>Thu, 01 Dec 2016 16:05:39 +0200</pubDate>
