@@ -9,6 +9,34 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Approximating Data with the Count-Min Data Structure</title>
+      <link>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</link>
+      <pubDate>Thu, 29 Dec 2016 20:25:26 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</guid>
+      <description>
+
+&lt;h2 id=&#34;count-min-data-structure&#34;&gt;Count-Min Data Structure&lt;/h2&gt;
+
+&lt;p&gt;Algorithmic problems such as tracking the contents of a set arise frequently in the course of building
+systems. Given the variety of possible solutions, the choice of appropriate data structures for
+such tasks is at the heart of building efficient and effective software.&lt;/p&gt;
+
+&lt;p&gt;The Count-Min sketch provides a different kind of solution to count tracking.
+It allocates a fixed amount of space to store count information, which does not vary over time even
+as more and more counts are updated.&lt;/p&gt;
+
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+
+&lt;p&gt;With all data structures, it is important to understand the data organization
+and algorithms for updating the structure, to make clear the relative merits of different choices of
+structure for a given task. The Count-Min Sketch data structure primarily consists of a fixed array
+of counters, of width w and depth d. The counters are initialized to all zeros. Each row of counters
+is associated with a different hash function.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>TAO: Facebook’s Distributed Data Store for the Social Graph</title>
       <link>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</link>
       <pubDate>Thu, 15 Dec 2016 19:36:32 +0200</pubDate>
