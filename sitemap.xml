@@ -1,110 +1,155 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
+  
   <url>
     <loc>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</loc>
     <lastmod>2016-12-15T19:36:32+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</loc>
     <lastmod>2016-12-01T16:05:39+02:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/seda-an-architecture-for-well-conditioned-scalable-internet-services/</loc>
     <lastmod>2016-11-24T19:50:13+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</loc>
     <lastmod>2016-11-17T19:23:07+02:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</loc>
     <lastmod>2016-11-10T22:27:23+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</loc>
     <lastmod>2016-11-06T12:32:44+02:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</loc>
     <lastmod>2016-11-03T19:54:45+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/posts/generating-configuration-from-ansible-variables/</loc>
     <lastmod>2016-11-03T08:48:29+02:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/posts/ansible-testing-multiple-platforms/</loc>
     <lastmod>2016-09-25T19:12:59+03:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</loc>
     <lastmod>2016-08-25T20:39:03+03:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/on-the-fly-garbage-collection/</loc>
     <lastmod>2016-08-25T19:13:56+03:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/queues-are-databases/</loc>
     <lastmod>2016-08-12T16:57:55+03:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</loc>
     <lastmod>2016-08-04T22:02:54+03:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/mesos-platform-for-resource-sharing/</loc>
     <lastmod>2016-04-28T19:50:29+03:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</loc>
     <lastmod>2016-04-22T21:26:15+03:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/container-based-operating-system-virtualization/</loc>
     <lastmod>2016-04-19T19:30:48+03:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/posts/golang-dynamic-struct-decoration/</loc>
     <lastmod>2016-01-28T20:42:45+02:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/posts/racer-with-multiple-rust-versions/</loc>
     <lastmod>2015-09-15T20:43:24+03:00</lastmod>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/posts/readability-tests/</loc>
     <lastmod>2015-04-04T15:13:11+03:00</lastmod>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/posts/programming-languages/</loc>
     <lastmod>2015-03-29T12:59:46+03:00</lastmod>
   </url>
+  
+  
+  
+  
   
   <url>
     <loc>http://out13.com/categories/algorithms/</loc>
@@ -112,11 +157,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/algorithms/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/categories/ansible/</loc>
@@ -124,16 +173,23 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/ansible/</loc>
     <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/categories/</loc>
+    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/cisco/</loc>
@@ -141,11 +197,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/garbage-collection/</loc>
@@ -153,11 +213,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/categories/golang/</loc>
     <lastmod>2016-01-28T20:42:45+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
@@ -165,11 +229,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/operating-systems/</loc>
     <lastmod>2016-12-15T19:36:32+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
@@ -177,11 +245,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/paper/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/performance/</loc>
@@ -189,11 +261,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/personal/</loc>
     <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/posts/</loc>
@@ -201,11 +277,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/research/</loc>
     <lastmod>2016-12-15T19:36:32+02:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
@@ -213,11 +293,15 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/categories/rust/</loc>
     <lastmod>2015-09-15T20:43:24+03:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/rust/</loc>
@@ -225,16 +309,23 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/scientific/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/tags/</loc>
+    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
+  
+  
   
   <url>
     <loc>http://out13.com/tags/testing/</loc>
@@ -242,10 +333,13 @@
     <priority>0</priority>
   </url>
   
+  
+  
   <url>
     <loc>http://out13.com/categories/vim/</loc>
     <lastmod>2015-09-15T20:43:24+03:00</lastmod>
     <priority>0</priority>
   </url>
+  
   
 </urlset>
