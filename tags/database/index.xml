@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/database/index.xml</link>
+    <description>Recent content in Database on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://out13.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Aerospike: Architecture of a Real-Time Operational DBMS</title>
+      <link>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</link>
+      <pubDate>Sun, 29 Jan 2017 13:47:18 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</guid>
+      <description>
+
+&lt;h2 id=&#34;aerospike-architecture&#34;&gt;Aerospike architecture&lt;/h2&gt;
+
+&lt;p&gt;Modeled on the classic shared-nothing database architecture&lt;/p&gt;
+
+&lt;p&gt;Objectives of the cluster management subsystem:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Arrive at a single consistent view of current cluster members across all nodes in the cluster.&lt;/li&gt;
+&lt;li&gt;Automatically detect new node arrival/departure and seamless cluster reconfiguration.&lt;/li&gt;
+&lt;li&gt;Detect network faults and be resilient to such network flakiness.&lt;/li&gt;
+&lt;li&gt;Minimize time to detect and adapt to cluster membership changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;discovery&#34;&gt;Discovery&lt;/h3&gt;
+
+&lt;p&gt;Node arrival or departure is detected via heartbeat messages
+exchanged periodically between nodes.&lt;/p&gt;
+
+&lt;h3 id=&#34;surrogate-heartbeats&#34;&gt;Surrogate heartbeats&lt;/h3&gt;
+
+&lt;p&gt;In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
+between nodes as an alternative secondary heartbeat mechanism.&lt;/p&gt;
+
+&lt;h3 id=&#34;node-health-score&#34;&gt;Node Health Score&lt;/h3&gt;
+
+&lt;p&gt;Every node in the cluster evaluates the health score of each of its
+neighboring nodes by computing the average message loss, which
+is an estimate of how many incoming messages from that node are lost.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-distribution&#34;&gt;Data Distribution&lt;/h3&gt;
+
+&lt;p&gt;A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.&lt;/p&gt;
+
+&lt;p&gt;Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.&lt;/p&gt;
+
+&lt;p&gt;A partition assignment algorithm generates a replication list for every
+partition. The replication list is a permutation of the cluster succession list.&lt;/p&gt;
+
+&lt;p&gt;Reads can also be uniformly spread across all the
+replicas via a runtime configuration setting.&lt;/p&gt;
+
+&lt;h3 id=&#34;master-partition-without-data&#34;&gt;Master Partition Without Data&lt;/h3&gt;
+
+&lt;p&gt;An empty node newly added to a running cluster will be master
+for a proportional fraction of the partitions and have no data for
+those partitions.&lt;/p&gt;
+
+&lt;h3 id=&#34;migration-ordering&#34;&gt;Migration Ordering&lt;/h3&gt;
+
+&lt;h4 id=&#34;smallest-partition-first&#34;&gt;Smallest Partition First&lt;/h4&gt;
+
+&lt;p&gt;Migration is coordinated in such a manner as to let nodes with the
+fewest records in their partition versions start migration first. This
+strategy quickly reduces the number of different copies of a
+specific partition, and does this faster than any other strategy.&lt;/p&gt;
+
+&lt;h4 id=&#34;hottest-partition-first&#34;&gt;Hottest Partition First&lt;/h4&gt;
+
+&lt;p&gt;At times, client accesses are skewed to a very small number of
+keys from the key space. Therefore the latency on these accesses
+could be improved quickly by migrating these hot partitions
+before other partitions.&lt;/p&gt;
+
+&lt;h3 id=&#34;defragmentation&#34;&gt;Defragmentation&lt;/h3&gt;
+
+&lt;p&gt;Aerospike uses a log-structured file system with a copy-on-write
+mechanism. Hence, it needs to reclaim space by continuously
+running a background defragmentation process. Each device
+stores a MAP of block and information relating to the fill-factor of
+each block. The fill-factor of the block is the block fraction
+utilized by valid records. At boot time, this information is loaded
+and kept up-to-date on every write. When the fill-factor of a block
+falls below a certain threshold, the block becomes a candidate for
+defragmentation and is then queued up for the defragmentation
+process.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

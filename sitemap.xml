@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</loc>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
   </url>
@@ -200,8 +207,16 @@
   
   
   <url>
+    <loc>http://out13.com/tags/database/</loc>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,7 +240,7 @@
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -241,7 +256,7 @@
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -249,7 +264,7 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -281,7 +296,7 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2016-12-15T19:36:32+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -289,7 +304,7 @@
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -313,7 +328,7 @@
   
   <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
+    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
     <priority>0</priority>
   </url>
   

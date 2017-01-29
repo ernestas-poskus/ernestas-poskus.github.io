@@ -9,6 +9,92 @@
     <atom:link href="http://out13.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Aerospike: Architecture of a Real-Time Operational DBMS</title>
+      <link>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</link>
+      <pubDate>Sun, 29 Jan 2017 13:47:18 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</guid>
+      <description>
+
+&lt;h2 id=&#34;aerospike-architecture&#34;&gt;Aerospike architecture&lt;/h2&gt;
+
+&lt;p&gt;Modeled on the classic shared-nothing database architecture&lt;/p&gt;
+
+&lt;p&gt;Objectives of the cluster management subsystem:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Arrive at a single consistent view of current cluster members across all nodes in the cluster.&lt;/li&gt;
+&lt;li&gt;Automatically detect new node arrival/departure and seamless cluster reconfiguration.&lt;/li&gt;
+&lt;li&gt;Detect network faults and be resilient to such network flakiness.&lt;/li&gt;
+&lt;li&gt;Minimize time to detect and adapt to cluster membership changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;discovery&#34;&gt;Discovery&lt;/h3&gt;
+
+&lt;p&gt;Node arrival or departure is detected via heartbeat messages
+exchanged periodically between nodes.&lt;/p&gt;
+
+&lt;h3 id=&#34;surrogate-heartbeats&#34;&gt;Surrogate heartbeats&lt;/h3&gt;
+
+&lt;p&gt;In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
+between nodes as an alternative secondary heartbeat mechanism.&lt;/p&gt;
+
+&lt;h3 id=&#34;node-health-score&#34;&gt;Node Health Score&lt;/h3&gt;
+
+&lt;p&gt;Every node in the cluster evaluates the health score of each of its
+neighboring nodes by computing the average message loss, which
+is an estimate of how many incoming messages from that node are lost.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-distribution&#34;&gt;Data Distribution&lt;/h3&gt;
+
+&lt;p&gt;A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.&lt;/p&gt;
+
+&lt;p&gt;Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.&lt;/p&gt;
+
+&lt;p&gt;A partition assignment algorithm generates a replication list for every
+partition. The replication list is a permutation of the cluster succession list.&lt;/p&gt;
+
+&lt;p&gt;Reads can also be uniformly spread across all the
+replicas via a runtime configuration setting.&lt;/p&gt;
+
+&lt;h3 id=&#34;master-partition-without-data&#34;&gt;Master Partition Without Data&lt;/h3&gt;
+
+&lt;p&gt;An empty node newly added to a running cluster will be master
+for a proportional fraction of the partitions and have no data for
+those partitions.&lt;/p&gt;
+
+&lt;h3 id=&#34;migration-ordering&#34;&gt;Migration Ordering&lt;/h3&gt;
+
+&lt;h4 id=&#34;smallest-partition-first&#34;&gt;Smallest Partition First&lt;/h4&gt;
+
+&lt;p&gt;Migration is coordinated in such a manner as to let nodes with the
+fewest records in their partition versions start migration first. This
+strategy quickly reduces the number of different copies of a
+specific partition, and does this faster than any other strategy.&lt;/p&gt;
+
+&lt;h4 id=&#34;hottest-partition-first&#34;&gt;Hottest Partition First&lt;/h4&gt;
+
+&lt;p&gt;At times, client accesses are skewed to a very small number of
+keys from the key space. Therefore the latency on these accesses
+could be improved quickly by migrating these hot partitions
+before other partitions.&lt;/p&gt;
+
+&lt;h3 id=&#34;defragmentation&#34;&gt;Defragmentation&lt;/h3&gt;
+
+&lt;p&gt;Aerospike uses a log-structured file system with a copy-on-write
+mechanism. Hence, it needs to reclaim space by continuously
+running a background defragmentation process. Each device
+stores a MAP of block and information relating to the fill-factor of
+each block. The fill-factor of the block is the block fraction
+utilized by valid records. At boot time, this information is loaded
+and kept up-to-date on every write. When the fill-factor of a block
+falls below a certain threshold, the block becomes a candidate for
+defragmentation and is then queued up for the defragmentation
+process.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Approximating Data with the Count-Min Data Structure</title>
       <link>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</link>
       <pubDate>Thu, 29 Dec 2016 20:25:26 +0200</pubDate>
@@ -789,75 +875,6 @@ To do so, TinyLFU maintains statistics of items frequency over a sizable recent 
 &lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
 
 &lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Container based operating system virtualization</title>
-      <link>http://out13.com/paper/container-based-operating-system-virtualization/</link>
-      <pubDate>Tue, 19 Apr 2016 19:30:48 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
-      <description>
-
-&lt;h2 id=&#34;alternative-to-hypervisors&#34;&gt;Alternative to hypervisors.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Workload requirements for a given system will direct users to the point in the design space that
-requires the least trade-off.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;sharing-over-isolation&#34;&gt;Sharing over isolation?&lt;/h3&gt;
-
-&lt;p&gt;Hypervisors often deployed to let a single machine host multiple, unrelated
-applications, which may run on behalf of independent organizations, as is common when a data center
-consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
-However, when each virtual machine is running the same kernel and similar operating system
-distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
-relative to running all applications on a single kernel.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Software configuration problems incompatibilities between specific OS distributions.&lt;/p&gt;
-
-&lt;p&gt;Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.&lt;/p&gt;
-
-&lt;p&gt;The key point is that both hypervisors and COS&amp;rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.&lt;/p&gt;
-
-&lt;h3 id=&#34;security-isolation&#34;&gt;Security isolation&lt;/h3&gt;
-
-&lt;p&gt;Configuration independence - cannot conflict with other VM&amp;rsquo;s
-Safety - global namespace shared&lt;/p&gt;
-
-&lt;h3 id=&#34;fair-share-and-reservations&#34;&gt;Fair share and Reservations&lt;/h3&gt;
-
-&lt;p&gt;Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.&lt;/p&gt;
-
-&lt;p&gt;For memory storage one can specify the following limits:
- * a) the maximum resident set size (RSS)
- * b) number of anonymous memory pages have (ANON)
- * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).&lt;/p&gt;
-
-&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;Xen is able to support multiple kernels while by design VServer cannot.
-Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Undesired interactions between VMs are sometimes called cross-talk.&lt;/p&gt;
-
-&lt;p&gt;COS - Container based Operating System&lt;/p&gt;
-
-&lt;p&gt;TBF - token bucker filter&lt;/p&gt;
-
-&lt;p&gt;HTB - Hierarchical Token Bucket&lt;/p&gt;
-
-&lt;p&gt;RSS - maximum resident set size&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

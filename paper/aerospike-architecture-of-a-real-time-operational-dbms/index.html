@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>The Interaction of Buffer Size and TCP Protocol Handling and its Impact - Ernestas Poškus.io</title>
+  <title>Aerospike: Architecture of a Real-Time Operational DBMS - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="The Interaction of Buffer Size and TCP Protocol Handling and its Impact" />
+  <meta property="og:title" content="Aerospike: Architecture of a Real-Time Operational DBMS" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/" />
+  <meta property="og:url" content="http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -106,79 +106,95 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>The Interaction of Buffer Size and TCP Protocol Handling and its Impact</h1>
+    <h1>Aerospike: Architecture of a Real-Time Operational DBMS</h1>
     <ul>
-      <li>Author: Miercom</li>
-      <li>Name: Speeding Applications in Data Center Networks The Interaction of Buffer Size and TCP Protocol Handling and its Impact on Data-Mining and Large Enterprise IT Traffic Flows</li>
+      <li>Author: V. Srinivasan, Sunil Sayyaparaju, Ashish Shinde, Brian Bulkowski, Andrew Gooding, Thomas Lopatic, Wei-Ling Chu, Rajkumar Iyer</li>
+      <li>Name: Aerospike: Architecture of a Real-Time Operational DBMS</li>
       
-      <li>Link: <a href="http://miercom.com/pdf/reports/20160210.pdf" rel="nofollow" target="_blank">http://miercom.com/pdf/reports/20160210.pdf</a></li>
+      <li>Link: <a href="" rel="nofollow" target="_blank"></a></li>
       
     </ul>
-    <time>Thu, Nov 17, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 467 / <abbr title="Reading time">RT</abbr> 3min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=The%20Interaction%20of%20Buffer%20Size%20and%20TCP%20Protocol%20Handling%20and%20its%20Impact%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Sun, Jan 29, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 413 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Aerospike:%20Architecture%20of%20a%20Real-Time%20Operational%20DBMS%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h3 id="abstract">Abstract</h3>
+<h2 id="aerospike-architecture">Aerospike architecture</h2>
 
-<p>Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
-data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.</p>
+<p>Modeled on the classic shared-nothing database architecture</p>
 
-<h4 id="tcp-congestion-control-versus-system-buffer-management">TCP Congestion Control versus System Buffer Management</h4>
+<p>Objectives of the cluster management subsystem:</p>
 
-<p>TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
-protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
-Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
-reconstructed and verified at the recipient’s end. The congestion-control mechanism
-was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
-transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
-depending on network conditions.</p>
+<ul>
+<li>Arrive at a single consistent view of current cluster members across all nodes in the cluster.</li>
+<li>Automatically detect new node arrival/departure and seamless cluster reconfiguration.</li>
+<li>Detect network faults and be resilient to such network flakiness.</li>
+<li>Minimize time to detect and adapt to cluster membership changes.</li>
+</ul>
 
-<p>System buffer management. Every network device that transports data has buffers,
-usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
-that periodic data bursts can be accommodated without having to drop packets.
-Network systems such as switch-routers are architected differently, however, and can
-vary significantly in the size of their buffers and how they manage different traffic flows.</p>
+<h3 id="discovery">Discovery</h3>
 
-<h4 id="deep-buffer-vs-intelligent-buffer">Deep buffer vs Intelligent buffer</h4>
+<p>Node arrival or departure is detected via heartbeat messages
+exchanged periodically between nodes.</p>
 
-<p>A common practice is to put in as much buffer as possible. However, since the
-buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
-how to use this shared resource can significantly impact applications’ performance.</p>
+<h3 id="surrogate-heartbeats">Surrogate heartbeats</h3>
 
-<p>The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
-not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
-and hence longer flow completion time.</p>
+<p>In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
+between nodes as an alternative secondary heartbeat mechanism.</p>
 
-<p>Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
-resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
-because large buffers do not create more link bandwidth.</p>
+<h3 id="node-health-score">Node Health Score</h3>
 
-<h4 id="conclusion">Conclusion</h4>
+<p>Every node in the cluster evaluates the health score of each of its
+neighboring nodes by computing the average message loss, which
+is an estimate of how many incoming messages from that node are lost.</p>
 
-<p>Since mice flows are often mission critical (including, for example, control and alarm messages,
-Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
-them to complete faster and their applications to perform better overall. The above test results
-show that expediting mice flows and regulating the elephant flows early under the intelligent
-buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
-magnitude better performance for mission critical flows without causing elephant flows to slow
-down.</p>
+<h3 id="data-distribution">Data Distribution</h3>
 
-<p>Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
-there is enough buffer space for the bursts of mice flows while the elephant flows are properly
-regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
-in the form of longer queuing latency, and hence longer flow completion time for all flow types.</p>
+<p>A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.</p>
 
-<h4 id="notes">Notes</h4>
+<p>Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.</p>
 
-<blockquote>
-<p>Elephant - big flows</p>
+<p>A partition assignment algorithm generates a replication list for every
+partition. The replication list is a permutation of the cluster succession list.</p>
 
-<p>Mice - small flows</p>
+<p>Reads can also be uniformly spread across all the
+replicas via a runtime configuration setting.</p>
 
-<p>FCT - flow completion time</p>
-</blockquote>
+<h3 id="master-partition-without-data">Master Partition Without Data</h3>
+
+<p>An empty node newly added to a running cluster will be master
+for a proportional fraction of the partitions and have no data for
+those partitions.</p>
+
+<h3 id="migration-ordering">Migration Ordering</h3>
+
+<h4 id="smallest-partition-first">Smallest Partition First</h4>
+
+<p>Migration is coordinated in such a manner as to let nodes with the
+fewest records in their partition versions start migration first. This
+strategy quickly reduces the number of different copies of a
+specific partition, and does this faster than any other strategy.</p>
+
+<h4 id="hottest-partition-first">Hottest Partition First</h4>
+
+<p>At times, client accesses are skewed to a very small number of
+keys from the key space. Therefore the latency on these accesses
+could be improved quickly by migrating these hot partitions
+before other partitions.</p>
+
+<h3 id="defragmentation">Defragmentation</h3>
+
+<p>Aerospike uses a log-structured file system with a copy-on-write
+mechanism. Hence, it needs to reclaim space by continuously
+running a background defragmentation process. Each device
+stores a MAP of block and information relating to the fill-factor of
+each block. The fill-factor of the block is the block fraction
+utilized by valid records. At boot time, this information is loaded
+and kept up-to-date on every write. When the fill-factor of a block
+falls below a certain threshold, the block becomes a candidate for
+defragmentation and is then queued up for the defragmentation
+process.</p>
 
     <hr />
     <div id="disqus_thread"></div>
