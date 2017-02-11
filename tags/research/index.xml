@@ -9,6 +9,115 @@
     <atom:link href="http://out13.com/tags/research/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Large-scale cluster management at Google with Borg</title>
+      <link>http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/</link>
+      <pubDate>Thu, 09 Feb 2017 20:27:52 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/</guid>
+      <description>
+
+&lt;h2 id=&#34;borg&#34;&gt;Borg&lt;/h2&gt;
+
+&lt;p&gt;Cluster manager that runs hundreds of thousands of jobs, from many thousands of
+different applications, across a number of clusters each with up to tens of thousands of machines.&lt;/p&gt;
+
+&lt;p&gt;3 main benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;hides the details of resource management and failure handling so its users can
+focus on application development instead&lt;/li&gt;
+&lt;li&gt;operates with very high reliability and availability, and supports applications that do the same&lt;/li&gt;
+&lt;li&gt;lets us run workloads across tens of thousands of machines effectively&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A key design feature in Borg is that already-running tasks
+continue to run even if the Borgmaster or a task’s Borglet
+goes down. But keeping the master up is still important
+because when it is down new jobs cannot be submitted
+or existing ones updated, and tasks from failed machines
+cannot be rescheduled.&lt;/p&gt;
+
+&lt;p&gt;Each job runs in one Borg cell, a set of machines that are managed as a unit.&lt;/p&gt;
+
+&lt;p&gt;The machines in a cell belong to a single cluster. A cluster lives inside a single datacenter
+building, and a collection of buildings makes up a site.&lt;/p&gt;
+
+&lt;p&gt;Median cell size is about 10 k machines after excluding test cells; some are
+much larger.
+The machines in a cell are heterogeneous in many dimensions: sizes (CPU, RAM,
+disk, network), processor type, performance, and capabilities such as an
+external IP address or flash storage.
+Borg isolates users from most of these differences by determining where in a
+cell to run tasks, allocating their resources, installing their programs and
+other dependencies, monitoring their health, and restarting them if they fail.&lt;/p&gt;
+
+&lt;h3 id=&#34;jobs&#34;&gt;Jobs&lt;/h3&gt;
+
+&lt;p&gt;A Borg alloc (short for allocation) is a reserved set of resources on a machine
+in which one or more tasks can be run; the resources remain assigned whether or
+not they are used.&lt;/p&gt;
+
+&lt;p&gt;Quota is used to decide which jobs to admit for scheduling.
+Quota is expressed as a vector of resource quantities (CPU, RAM, disk, etc.)
+at a given priority, for a period of time (typically months).&lt;/p&gt;
+
+&lt;p&gt;Every job has a priority, a small positive integer. A high priority task
+can obtain resources at the expense of a lower priority one,
+even if that involves preempting (killing) the latter.&lt;/p&gt;
+
+&lt;h3 id=&#34;naming-and-monitoring&#34;&gt;Naming and monitoring&lt;/h3&gt;
+
+&lt;p&gt;BNS (DNS) for Borg jobs for each task that includes the cell name, job name, and task number.
+Borg writes the task’s hostname and port into a consistent,
+highly-available file in Chubby with this name, which
+is used by our RPC system to find the task endpoint.&lt;/p&gt;
+
+&lt;p&gt;Borg also writes job size and task health information into
+Chubby whenever it changes, so load balancers can see
+where to route requests to.&lt;/p&gt;
+
+&lt;p&gt;Borg monitors the health-check URL and restarts
+tasks that do not respond promptly or return an HTTP error code.&lt;/p&gt;
+
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;A Borg cell consists of a set of machines, a logically centralized
+controller called the Borgmaster, and an agent process
+called the Borglet that runs on each machine in a cell.&lt;/p&gt;
+
+&lt;p&gt;Borgmaster process handles client RPCs that either
+mutate state (e.g., create job) or provide read-only access
+to data (e.g., lookup job).&lt;/p&gt;
+
+&lt;h2 id=&#34;scheduling&#34;&gt;Scheduling&lt;/h2&gt;
+
+&lt;p&gt;The scheduling algorithm has two parts: feasibility checking, to find
+machines on which the task could run, and scoring, which picks
+one of the feasible machines.&lt;/p&gt;
+
+&lt;p&gt;To reduce task startup time, the scheduler prefers to assign
+tasks to machines that already have the necessary packages.&lt;/p&gt;
+
+&lt;p&gt;Borg distributes packages to machines in parallel using tree-
+and torrent-like protocols.&lt;/p&gt;
+
+&lt;h2 id=&#34;borglet&#34;&gt;Borglet&lt;/h2&gt;
+
+&lt;p&gt;Borglet is a local Borg agent that is present on every
+machine in a cell. It starts and stops tasks; restarts them if
+they fail; manages local resources by manipulating OS kernel settings;
+rolls over debug logs; and reports the state of the
+machine to the Borgmaster and other monitoring systems.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;BNS - Borg name system&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Aerospike: Architecture of a Real-Time Operational DBMS</title>
       <link>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</link>
       <pubDate>Sun, 29 Jan 2017 13:47:18 +0200</pubDate>
@@ -847,75 +956,6 @@ To do so, TinyLFU maintains statistics of items frequency over a sizable recent 
 &lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
 
 &lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Container based operating system virtualization</title>
-      <link>http://out13.com/paper/container-based-operating-system-virtualization/</link>
-      <pubDate>Tue, 19 Apr 2016 19:30:48 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
-      <description>
-
-&lt;h2 id=&#34;alternative-to-hypervisors&#34;&gt;Alternative to hypervisors.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Workload requirements for a given system will direct users to the point in the design space that
-requires the least trade-off.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;sharing-over-isolation&#34;&gt;Sharing over isolation?&lt;/h3&gt;
-
-&lt;p&gt;Hypervisors often deployed to let a single machine host multiple, unrelated
-applications, which may run on behalf of independent organizations, as is common when a data center
-consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
-However, when each virtual machine is running the same kernel and similar operating system
-distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
-relative to running all applications on a single kernel.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Software configuration problems incompatibilities between specific OS distributions.&lt;/p&gt;
-
-&lt;p&gt;Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.&lt;/p&gt;
-
-&lt;p&gt;The key point is that both hypervisors and COS&amp;rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.&lt;/p&gt;
-
-&lt;h3 id=&#34;security-isolation&#34;&gt;Security isolation&lt;/h3&gt;
-
-&lt;p&gt;Configuration independence - cannot conflict with other VM&amp;rsquo;s
-Safety - global namespace shared&lt;/p&gt;
-
-&lt;h3 id=&#34;fair-share-and-reservations&#34;&gt;Fair share and Reservations&lt;/h3&gt;
-
-&lt;p&gt;Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.&lt;/p&gt;
-
-&lt;p&gt;For memory storage one can specify the following limits:
- * a) the maximum resident set size (RSS)
- * b) number of anonymous memory pages have (ANON)
- * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).&lt;/p&gt;
-
-&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;Xen is able to support multiple kernels while by design VServer cannot.
-Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Undesired interactions between VMs are sometimes called cross-talk.&lt;/p&gt;
-
-&lt;p&gt;COS - Container based Operating System&lt;/p&gt;
-
-&lt;p&gt;TBF - token bucker filter&lt;/p&gt;
-
-&lt;p&gt;HTB - Hierarchical Token Bucket&lt;/p&gt;
-
-&lt;p&gt;RSS - maximum resident set size&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

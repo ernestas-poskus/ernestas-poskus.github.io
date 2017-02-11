@@ -9,6 +9,115 @@
     <atom:link href="http://out13.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Large-scale cluster management at Google with Borg</title>
+      <link>http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/</link>
+      <pubDate>Thu, 09 Feb 2017 20:27:52 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/</guid>
+      <description>
+
+&lt;h2 id=&#34;borg&#34;&gt;Borg&lt;/h2&gt;
+
+&lt;p&gt;Cluster manager that runs hundreds of thousands of jobs, from many thousands of
+different applications, across a number of clusters each with up to tens of thousands of machines.&lt;/p&gt;
+
+&lt;p&gt;3 main benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;hides the details of resource management and failure handling so its users can
+focus on application development instead&lt;/li&gt;
+&lt;li&gt;operates with very high reliability and availability, and supports applications that do the same&lt;/li&gt;
+&lt;li&gt;lets us run workloads across tens of thousands of machines effectively&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A key design feature in Borg is that already-running tasks
+continue to run even if the Borgmaster or a task’s Borglet
+goes down. But keeping the master up is still important
+because when it is down new jobs cannot be submitted
+or existing ones updated, and tasks from failed machines
+cannot be rescheduled.&lt;/p&gt;
+
+&lt;p&gt;Each job runs in one Borg cell, a set of machines that are managed as a unit.&lt;/p&gt;
+
+&lt;p&gt;The machines in a cell belong to a single cluster. A cluster lives inside a single datacenter
+building, and a collection of buildings makes up a site.&lt;/p&gt;
+
+&lt;p&gt;Median cell size is about 10 k machines after excluding test cells; some are
+much larger.
+The machines in a cell are heterogeneous in many dimensions: sizes (CPU, RAM,
+disk, network), processor type, performance, and capabilities such as an
+external IP address or flash storage.
+Borg isolates users from most of these differences by determining where in a
+cell to run tasks, allocating their resources, installing their programs and
+other dependencies, monitoring their health, and restarting them if they fail.&lt;/p&gt;
+
+&lt;h3 id=&#34;jobs&#34;&gt;Jobs&lt;/h3&gt;
+
+&lt;p&gt;A Borg alloc (short for allocation) is a reserved set of resources on a machine
+in which one or more tasks can be run; the resources remain assigned whether or
+not they are used.&lt;/p&gt;
+
+&lt;p&gt;Quota is used to decide which jobs to admit for scheduling.
+Quota is expressed as a vector of resource quantities (CPU, RAM, disk, etc.)
+at a given priority, for a period of time (typically months).&lt;/p&gt;
+
+&lt;p&gt;Every job has a priority, a small positive integer. A high priority task
+can obtain resources at the expense of a lower priority one,
+even if that involves preempting (killing) the latter.&lt;/p&gt;
+
+&lt;h3 id=&#34;naming-and-monitoring&#34;&gt;Naming and monitoring&lt;/h3&gt;
+
+&lt;p&gt;BNS (DNS) for Borg jobs for each task that includes the cell name, job name, and task number.
+Borg writes the task’s hostname and port into a consistent,
+highly-available file in Chubby with this name, which
+is used by our RPC system to find the task endpoint.&lt;/p&gt;
+
+&lt;p&gt;Borg also writes job size and task health information into
+Chubby whenever it changes, so load balancers can see
+where to route requests to.&lt;/p&gt;
+
+&lt;p&gt;Borg monitors the health-check URL and restarts
+tasks that do not respond promptly or return an HTTP error code.&lt;/p&gt;
+
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;A Borg cell consists of a set of machines, a logically centralized
+controller called the Borgmaster, and an agent process
+called the Borglet that runs on each machine in a cell.&lt;/p&gt;
+
+&lt;p&gt;Borgmaster process handles client RPCs that either
+mutate state (e.g., create job) or provide read-only access
+to data (e.g., lookup job).&lt;/p&gt;
+
+&lt;h2 id=&#34;scheduling&#34;&gt;Scheduling&lt;/h2&gt;
+
+&lt;p&gt;The scheduling algorithm has two parts: feasibility checking, to find
+machines on which the task could run, and scoring, which picks
+one of the feasible machines.&lt;/p&gt;
+
+&lt;p&gt;To reduce task startup time, the scheduler prefers to assign
+tasks to machines that already have the necessary packages.&lt;/p&gt;
+
+&lt;p&gt;Borg distributes packages to machines in parallel using tree-
+and torrent-like protocols.&lt;/p&gt;
+
+&lt;h2 id=&#34;borglet&#34;&gt;Borglet&lt;/h2&gt;
+
+&lt;p&gt;Borglet is a local Borg agent that is present on every
+machine in a cell. It starts and stops tasks; restarts them if
+they fail; manages local resources by manipulating OS kernel settings;
+rolls over debug logs; and reports the state of the
+machine to the Borgmaster and other monitoring systems.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;BNS - Borg name system&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Aerospike: Architecture of a Real-Time Operational DBMS</title>
       <link>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</link>
       <pubDate>Sun, 29 Jan 2017 13:47:18 +0200</pubDate>
@@ -827,54 +936,6 @@ Sharing a cluster between frameworks improves utilization and allows application
 &lt;p&gt;Minimum allocation - frameworks require a certain minimum number of slots before they can start using their slots.&lt;/p&gt;
 
 &lt;p&gt;Task distribution - distribution of the task durations. We consider both homogeneous and heterogeneous distributions.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tiny LFU highly efficient cache admission policy</title>
-      <link>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</link>
-      <pubDate>Fri, 22 Apr 2016 21:26:15 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
-      <description>
-
-&lt;h2 id=&#34;frequency-based-cache-admission-policy&#34;&gt;Frequency based cache admission policy&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;The intuitive reason why caching works is that data accesses in many
-domains of computer science exhibit a considerable degree of “locality”.&lt;/p&gt;
-
-&lt;p&gt;When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss. The ratio between the number of cache hits and the total number of data accesses is known as the cache hit-ratio.&lt;/p&gt;
-
-&lt;p&gt;Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
-To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Time locality - access pattern, and consequently the corresponding probability distribution, change over time&lt;/p&gt;
-
-&lt;p&gt;WLFU - Window Least Frequently Used, access frequency for a window, needs to keep track order of requests. Samples of the request stream (called window).&lt;/p&gt;
-
-&lt;p&gt;PLFU - Perfect LFU, popularity based has metadata with counters&lt;/p&gt;
-
-&lt;p&gt;In-memory LFU, outperformed by WLFU at the cost of larger meta-data&lt;/p&gt;
-
-&lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
-
-&lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>
