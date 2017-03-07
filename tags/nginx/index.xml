@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/nginx/index.xml</link>
+    <description>Recent content in Nginx on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://out13.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Serving fresh assets using Nginx location rewrite</title>
+      <link>http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/</link>
+      <pubDate>Wed, 08 Mar 2017 08:44:03 +0200</pubDate>
+      
+      <guid>http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/</guid>
+      <description>
+
+&lt;p&gt;Recently I have stumbled upon a problem to serve fresh/new assets for user web application.&lt;/p&gt;
+
+&lt;p&gt;As Phil Karlton said:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;There are only two hard things in Computer Science: cache invalidation and naming things.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Historically fresh assets problem was approached either by appending appending
+url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).&lt;/p&gt;
+
+&lt;p&gt;Former is most popular one but not elegant since it brings explicit dependency
+for backend application what fresh/new asset file to include thus requires exact
+name file to be present on web server.&lt;/p&gt;
+
+&lt;p&gt;This draws 5 main disadvantages of completely hashed asset name:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;explicit dependency to include&lt;/li&gt;
+&lt;li&gt;no fallback mechanism&lt;/li&gt;
+&lt;li&gt;hashed asset name&lt;/li&gt;
+&lt;li&gt;exact file name presence on web server&lt;/li&gt;
+&lt;li&gt;removal of stale assets&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;   location @css_assets {
+       rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;
+   }
+   location /css/ {
+       try_files $uri $uri/ @css_assets;
+   }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First &lt;code&gt;location /css/ {&lt;/code&gt; block matches path of /css/ which later executes
+&lt;code&gt;try_files&lt;/code&gt; followed by &lt;code&gt;location @css_assets {&lt;/code&gt; location block.&lt;/p&gt;
+
+&lt;p&gt;Secondly this rewrite &lt;code&gt;rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;&lt;/code&gt; matches
+beginning of /css/ path followed by 2 tracked matches.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;/css/app.117c7f2fa4b6ea7a2c077a3dbc9662e6b1c278bd.css&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In above example first match tracks (app) and second one (css).
+Matched information constructs new implicitly requested file like below.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;/css/app.css&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Newly constructed file will be processed by Nginx without redirects and browser
+knowing original file name.&lt;/p&gt;
+
+&lt;h3 id=&#34;constructing-asset-hash&#34;&gt;Constructing asset hash&lt;/h3&gt;
+
+&lt;p&gt;To tell your application which asset must be served use ENVIRONMENT variable and checksum
+of asset to be included. Or you can dynamically invalidate/create asset hash for
+example hourly or daily depending on release cycle.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;/css/app.$CSS_ASSET_HASH.css&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In my case I use simple function below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-rust&#34;&gt;lazy_static! {
+    static ref CSS_ASSETS_HASH: String = {
+        match env::var(&amp;quot;CSS_ASSETS_HASH&amp;quot;) {
+            Ok(hash) =&amp;gt; format!(&amp;quot;.{}.&amp;quot;, hash),
+            Err(_) =&amp;gt; &amp;quot;.&amp;quot;.to_string(),
+        }
+    };
+}
+
+html! {
+  (Css(format!(&amp;quot;/css/app{}css&amp;quot;, *CSS_ASSETS_HASH)))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Above example is actual code used in production. It tries to statically initialize
+&lt;code&gt;CSS_ASSETS_HASH&lt;/code&gt; variable, if expected environment is not defined it fallbacks to
+dot &lt;code&gt;.&lt;/code&gt; else it appends 2 dots between supplied environment variable &lt;code&gt;.ENVIRONMENT_VARIABLE.&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;My solution eliminates almost all of main disadvantages of most popular way of asset
+inclusion.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;del&gt;explicit dependency to include&lt;/del&gt; - depends if hash is generated
+dynamically or real checksum of asset file is used.&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;no fallback mechanism&lt;/del&gt; - if environment is not defined or any hash is
+supplied it still fallbacks to original requested asset due to regex
+catchall.&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;hashed asset name&lt;/del&gt; - asset name is explicit and easily understood&lt;/li&gt;
+&lt;li&gt;exact file name presence on web server&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;removal of stale assets&lt;/del&gt; - only original file is deployed&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

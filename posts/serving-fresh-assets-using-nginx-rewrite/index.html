@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Efficient Reconciliation and Flow Control for Anti-Entropy Protocols - Ernestas Poškus.io</title>
-  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <title>Serving fresh assets using Nginx location rewrite - Ernestas Poškus.io</title>
+  <meta name="description" content="Serving fresh hashed assets using Nginx location blocks with rewrite."/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Efficient Reconciliation and Flow Control for Anti-Entropy Protocols" />
-  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:title" content="Serving fresh assets using Nginx location rewrite" />
+  <meta property="og:description" content="Serving fresh hashed assets using Nginx location blocks with rewrite." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/" />
+  <meta property="og:url" content="http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -110,79 +110,113 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Efficient Reconciliation and Flow Control for Anti-Entropy Protocols</h1>
-    <ul>
-      <li>Author: Robbert van Renesse, Dan Dumitriu, Valient Gough, Chris Thomas</li>
-      <li>Name: Efficient Reconciliation and Flow Control for Anti-Entropy Protocols</li>
-      
-      <li>Link: <a href="https://www.cs.cornell.edu/home/rvr/papers/flowgossip.pdf" rel="nofollow" target="_blank">https://www.cs.cornell.edu/home/rvr/papers/flowgossip.pdf</a></li>
-      
-    </ul>
-    <time>Thu, Dec 1, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 436 / <abbr title="Reading time">RT</abbr> 3min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Efficient%20Reconciliation%20and%20Flow%20Control%20for%20Anti-Entropy%20Protocols%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <h1>Serving fresh assets using Nginx location rewrite</h1>
+    <time>Wed, Mar 8, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 425 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Serving%20fresh%20assets%20using%20Nginx%20location%20rewrite%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="flow-gossip">Flow Gossip</h2>
+<p>Recently I have stumbled upon a problem to serve fresh/new assets for user web application.</p>
 
-<p>Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements.
-With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss.
-The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.</p>
-
-<h3 id="gossip-basics">Gossip basics</h3>
-
-<p>There are two classes of gossip: anti-entropy and rumor mongering protocols.
-Anti-entropy protocols gossip information until it is made obsolete by newer information,
-and are useful for reliably sharing information among a group of participants.
-Rumor-mongering has participants gossip information for some amount of time chosen sufficiently
-high so that with high likelihood all participants receive the information.</p>
-
-<p>3 Gossip styles:</p>
-
-<ul>
-<li>push: push everything and apply everything</li>
-<li>pull: sends its state with values removed, leaving only keys and version numbers, then returns only necessary updates</li>
-<li>push-pull: like pull but sends a list of participant-key pairs for which if has outdated entries (most efficient)</li>
-</ul>
-
-<h3 id="precise-reconciliation">Precise reconciliation</h3>
-
-<p>The two participants in a gossip exchange send exactly those mappings that are more recent
-than those of the peer. Thus, if the participants are p and q, p sends to q the set of deltas.</p>
-
-<h3 id="scuttlebutt-reconciliation">Scuttlebutt reconciliation</h3>
-
-<p>A gossiper never transmits updates that were already known at the receiver.
-If gossip messages were unlimited in size, then the sets contains the exact differences, just like with precise reconciliation.
-If a set does not fit in the gossip message, then it is not allowed to use an arbitrary subsetas in precise reconciliation.</p>
-
-<h3 id="flow-control">Flow control</h3>
-
-<p>The objective of a flow control mechanism for gossip is to determine, adaptively,
-the maximum rate at which a participant can submit updates without creating a backlog of updates.
-A flow control mechanism should be fair, and under high load afford each participant that wants to submit updates the same update rate.
-As there is no global oversight, the flow control mechanism has to be decentralized,
-where the desired behavior emerges from participants responding to local events.</p>
-
-<h3 id="local-adaptation">Local adaptation</h3>
-
-<p>For local adaptation, we use an approach inspired by TCP flow control.
-In TCP, the send window adapts according to a strategy called Additive Increase Multiplicative decrease.</p>
-
-<p>In this strategy, window size grows linearly with each successful transmission,
-but is decreased by a certain factor whenever overflow occurs.
-In the case of TCP, the overflow signal is the absence of an acknowledgment.</p>
-
-<h4 id="notes">Notes</h4>
+<p>As Phil Karlton said:</p>
 
 <blockquote>
-<p>Anti-entropy - gossip information until it is made obsolete.</p>
-
-<p>Rumor-mongering - gossip information for some of high amount of time with high likelihood all participants received the information.</p>
-
-<p>AIMD - additive increase multiplicative decrease</p>
+<p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
 </blockquote>
+
+<p>Historically fresh assets problem was approached either by appending appending
+url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).</p>
+
+<p>Former is most popular one but not elegant since it brings explicit dependency
+for backend application what fresh/new asset file to include thus requires exact
+name file to be present on web server.</p>
+
+<p>This draws 5 main disadvantages of completely hashed asset name:</p>
+
+<ol>
+<li>explicit dependency to include</li>
+<li>no fallback mechanism</li>
+<li>hashed asset name</li>
+<li>exact file name presence on web server</li>
+<li>removal of stale assets</li>
+</ol>
+
+<p>I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.</p>
+
+<pre><code class="language-nginx">   location @css_assets {
+       rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;
+   }
+   location /css/ {
+       try_files $uri $uri/ @css_assets;
+   }
+</code></pre>
+
+<p>First <code>location /css/ {</code> block matches path of /css/ which later executes
+<code>try_files</code> followed by <code>location @css_assets {</code> location block.</p>
+
+<p>Secondly this rewrite <code>rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;</code> matches
+beginning of /css/ path followed by 2 tracked matches.</p>
+
+<blockquote>
+<p>/css/app.117c7f2fa4b6ea7a2c077a3dbc9662e6b1c278bd.css</p>
+</blockquote>
+
+<p>In above example first match tracks (app) and second one (css).
+Matched information constructs new implicitly requested file like below.</p>
+
+<blockquote>
+<p>/css/app.css</p>
+</blockquote>
+
+<p>Newly constructed file will be processed by Nginx without redirects and browser
+knowing original file name.</p>
+
+<h3 id="constructing-asset-hash">Constructing asset hash</h3>
+
+<p>To tell your application which asset must be served use ENVIRONMENT variable and checksum
+of asset to be included. Or you can dynamically invalidate/create asset hash for
+example hourly or daily depending on release cycle.</p>
+
+<blockquote>
+<p>/css/app.$CSS_ASSET_HASH.css</p>
+</blockquote>
+
+<p>In my case I use simple function below.</p>
+
+<pre><code class="language-rust">lazy_static! {
+    static ref CSS_ASSETS_HASH: String = {
+        match env::var(&quot;CSS_ASSETS_HASH&quot;) {
+            Ok(hash) =&gt; format!(&quot;.{}.&quot;, hash),
+            Err(_) =&gt; &quot;.&quot;.to_string(),
+        }
+    };
+}
+
+html! {
+  (Css(format!(&quot;/css/app{}css&quot;, *CSS_ASSETS_HASH)))
+}
+</code></pre>
+
+<p>Above example is actual code used in production. It tries to statically initialize
+<code>CSS_ASSETS_HASH</code> variable, if expected environment is not defined it fallbacks to
+dot <code>.</code> else it appends 2 dots between supplied environment variable <code>.ENVIRONMENT_VARIABLE.</code>.</p>
+
+<p>My solution eliminates almost all of main disadvantages of most popular way of asset
+inclusion.</p>
+
+<ol>
+<li><del>explicit dependency to include</del> - depends if hash is generated
+dynamically or real checksum of asset file is used.</li>
+<li><del>no fallback mechanism</del> - if environment is not defined or any hash is
+supplied it still fallbacks to original requested asset due to regex
+catchall.</li>
+<li><del>hashed asset name</del> - asset name is explicit and easily understood</li>
+<li>exact file name presence on web server</li>
+<li><del>removal of stale assets</del> - only original file is deployed</li>
+</ol>
+
+<p>Regards.</p>
 
     <hr />
     <div id="disqus_thread"></div>
