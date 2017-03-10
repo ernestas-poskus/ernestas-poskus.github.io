@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Large-scale cluster management at Google with Borg - Ernestas Poškus.io</title>
+  <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Large-scale cluster management at Google with Borg" />
+  <meta property="og:title" content="LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/" />
+  <meta property="og:url" content="http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -110,117 +110,66 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Large-scale cluster management at Google with Borg</h1>
+    <h1>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</h1>
     <ul>
-      <li>Author: Abhishek Verma, Luis Pedrosa, Madhukar R. Korupolu, David Oppenheimer, Eric Tune, John Wilkes</li>
-      <li>Name: Large-scale cluster management at Google with Borg</li>
+      <li>Author: Song Jiang, Xiaodong Zhang</li>
+      <li>Name: LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</li>
       
-      <li>Link: <a href="https://research.google.com/pubs/pub43438.html" rel="nofollow" target="_blank">https://research.google.com/pubs/pub43438.html</a></li>
+      <li>Link: <a href="http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/papers/TR-02-6.pdf" rel="nofollow" target="_blank">http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/papers/TR-02-6.pdf</a></li>
       
     </ul>
-    <time>Thu, Feb 9, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 617 / <abbr title="Reading time">RT</abbr> 3min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Large-scale%20cluster%20management%20at%20Google%20with%20Borg%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Mar 9, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 273 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=LIRS:%20An%20Efficient%20Low%20Inter-reference%20Recency%20Set%20Replacement%20Policy%20to%20Improve%20Buffer%20Cache%20Perfor%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="borg">Borg</h2>
+<h3 id="lirs">LIRS</h3>
 
-<p>Cluster manager that runs hundreds of thousands of jobs, from many thousands of
-different applications, across a number of clusters each with up to tens of thousands of machines.</p>
+<p>LRU replacement policy has been commonly used in the buffer cache management,
+it is well known for its inability to cope with access patterns with weak locality.</p>
 
-<p>3 main benefits:</p>
+<p>LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
+Recency (IRR) for making a replacement decision.</p>
+
+<h4 id="lru-inefficiency">LRU inefficiency</h4>
 
 <ul>
-<li>hides the details of resource management and failure handling so its users can
-focus on application development instead</li>
-<li>operates with very high reliability and availability, and supports applications that do the same</li>
-<li>lets us run workloads across tens of thousands of machines effectively</li>
+<li><p>Under the LRU policy, a burst of references to infrequently used blocks such
+as “sequential scans” through a large file, may cause
+replacement of commonly referenced blocks in the cache.</p></li>
+
+<li><p>For a cyclic (loop-like) pattern of accesses to a file that is only slightly
+larger than the cache size, LRU always mistakenly evicts the blocks that will
+be accessed soonest, because these blocks have not been accessed for the longest time.</p></li>
 </ul>
 
-<p>A key design feature in Borg is that already-running tasks
-continue to run even if the Borgmaster or a task’s Borglet
-goes down. But keeping the master up is still important
-because when it is down new jobs cannot be submitted
-or existing ones updated, and tasks from failed machines
-cannot be rescheduled.</p>
+<p>The reason for LRU to behave poorly in these situations is
+that LRU makes a bold assumption – a block that has not
+been accessed the longest would wait for relatively longest
+time to be accessed again.</p>
 
-<p>Each job runs in one Borg cell, a set of machines that are managed as a unit.</p>
+<h4 id="implementation">Implementation</h4>
 
-<p>The machines in a cell belong to a single cluster. A cluster lives inside a single datacenter
-building, and a collection of buildings makes up a site.</p>
+<p>IRR as the recorded history information of each block, where IRR of a block
+refers to the number of other blocks accessed between two consecutive references
+to the block.</p>
 
-<p>Median cell size is about 10 k machines after excluding test cells; some are
-much larger.
-The machines in a cell are heterogeneous in many dimensions: sizes (CPU, RAM,
-disk, network), processor type, performance, and capabilities such as an
-external IP address or flash storage.
-Borg isolates users from most of these differences by determining where in a
-cell to run tasks, allocating their resources, installing their programs and
-other dependencies, monitoring their health, and restarting them if they fail.</p>
+<p>Specifically, the recency refers to the number of other blocks accessed from
+last reference to the current time.</p>
 
-<h3 id="jobs">Jobs</h3>
-
-<p>A Borg alloc (short for allocation) is a reserved set of resources on a machine
-in which one or more tasks can be run; the resources remain assigned whether or
-not they are used.</p>
-
-<p>Quota is used to decide which jobs to admit for scheduling.
-Quota is expressed as a vector of resource quantities (CPU, RAM, disk, etc.)
-at a given priority, for a period of time (typically months).</p>
-
-<p>Every job has a priority, a small positive integer. A high priority task
-can obtain resources at the expense of a lower priority one,
-even if that involves preempting (killing) the latter.</p>
-
-<h3 id="naming-and-monitoring">Naming and monitoring</h3>
-
-<p>BNS (DNS) for Borg jobs for each task that includes the cell name, job name, and task number.
-Borg writes the task’s hostname and port into a consistent,
-highly-available file in Chubby with this name, which
-is used by our RPC system to find the task endpoint.</p>
-
-<p>Borg also writes job size and task health information into
-Chubby whenever it changes, so load balancers can see
-where to route requests to.</p>
-
-<p>Borg monitors the health-check URL and restarts
-tasks that do not respond promptly or return an HTTP error code.</p>
-
-<h3 id="architecture">Architecture</h3>
-
-<p>A Borg cell consists of a set of machines, a logically centralized
-controller called the Borgmaster, and an agent process
-called the Borglet that runs on each machine in a cell.</p>
-
-<p>Borgmaster process handles client RPCs that either
-mutate state (e.g., create job) or provide read-only access
-to data (e.g., lookup job).</p>
-
-<h2 id="scheduling">Scheduling</h2>
-
-<p>The scheduling algorithm has two parts: feasibility checking, to find
-machines on which the task could run, and scoring, which picks
-one of the feasible machines.</p>
-
-<p>To reduce task startup time, the scheduler prefers to assign
-tasks to machines that already have the necessary packages.</p>
-
-<p>Borg distributes packages to machines in parallel using tree-
-and torrent-like protocols.</p>
-
-<h2 id="borglet">Borglet</h2>
-
-<p>Borglet is a local Borg agent that is present on every
-machine in a cell. It starts and stops tasks; restarts them if
-they fail; manages local resources by manipulating OS kernel settings;
-rolls over debug logs; and reports the state of the
-machine to the Borgmaster and other monitoring systems.</p>
+<p>It is assumed that if the IRR of a block is large,
+the next IRR of the block is likely to be large again.
+Following this assumption, we select the blocks with large IRRs
+for replacement, because these blocks are highly possible to
+be evicted later by LRU before being referenced again under our assumption.</p>
 
 <h4 id="notes">Notes</h4>
 
 <blockquote>
-<p>BNS - Borg name system</p>
+<p>LIRS - low inter reference set</p>
+
+<p>IRR - inter reference recency</p>
 </blockquote>
 
     <hr />

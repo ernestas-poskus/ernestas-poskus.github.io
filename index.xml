@@ -6,8 +6,66 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Mar 2017 08:44:03 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 09 Mar 2017 19:34:52 +0200</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</title>
+      <link>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</link>
+      <pubDate>Thu, 09 Mar 2017 19:34:52 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</guid>
+      <description>
+
+&lt;h3 id=&#34;lirs&#34;&gt;LIRS&lt;/h3&gt;
+
+&lt;p&gt;LRU replacement policy has been commonly used in the buffer cache management,
+it is well known for its inability to cope with access patterns with weak locality.&lt;/p&gt;
+
+&lt;p&gt;LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
+Recency (IRR) for making a replacement decision.&lt;/p&gt;
+
+&lt;h4 id=&#34;lru-inefficiency&#34;&gt;LRU inefficiency&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Under the LRU policy, a burst of references to infrequently used blocks such
+as “sequential scans” through a large file, may cause
+replacement of commonly referenced blocks in the cache.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;For a cyclic (loop-like) pattern of accesses to a file that is only slightly
+larger than the cache size, LRU always mistakenly evicts the blocks that will
+be accessed soonest, because these blocks have not been accessed for the longest time.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The reason for LRU to behave poorly in these situations is
+that LRU makes a bold assumption – a block that has not
+been accessed the longest would wait for relatively longest
+time to be accessed again.&lt;/p&gt;
+
+&lt;h4 id=&#34;implementation&#34;&gt;Implementation&lt;/h4&gt;
+
+&lt;p&gt;IRR as the recorded history information of each block, where IRR of a block
+refers to the number of other blocks accessed between two consecutive references
+to the block.&lt;/p&gt;
+
+&lt;p&gt;Specifically, the recency refers to the number of other blocks accessed from
+last reference to the current time.&lt;/p&gt;
+
+&lt;p&gt;It is assumed that if the IRR of a block is large,
+the next IRR of the block is likely to be large again.
+Following this assumption, we select the blocks with large IRRs
+for replacement, because these blocks are highly possible to
+be evicted later by LRU before being referenced again under our assumption.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;LIRS - low inter reference set&lt;/p&gt;
+
+&lt;p&gt;IRR - inter reference recency&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Serving fresh assets using Nginx location rewrite</title>
@@ -1102,49 +1160,6 @@ notifications:
 &lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
 
 &lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>On the fly garbage collection</title>
-      <link>http://out13.com/paper/on-the-fly-garbage-collection/</link>
-      <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
-      <description>
-
-&lt;p&gt;In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &amp;ldquo;the
-roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable
-from at least one root via a directed path along the edges.&lt;/p&gt;
-
-&lt;p&gt;The subgraph consists of all reachable nodes and their interconnections is
-called &amp;lsquo;the data structure&amp;rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.&lt;/p&gt;
-
-&lt;p&gt;Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node&lt;/p&gt;
-
-&lt;p&gt;Mutator: redirect an outgoing edge of reachable node towards an already reachable one.&lt;/p&gt;
-
-&lt;p&gt;Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     

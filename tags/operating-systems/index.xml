@@ -9,6 +9,64 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</title>
+      <link>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</link>
+      <pubDate>Thu, 09 Mar 2017 19:34:52 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</guid>
+      <description>
+
+&lt;h3 id=&#34;lirs&#34;&gt;LIRS&lt;/h3&gt;
+
+&lt;p&gt;LRU replacement policy has been commonly used in the buffer cache management,
+it is well known for its inability to cope with access patterns with weak locality.&lt;/p&gt;
+
+&lt;p&gt;LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
+Recency (IRR) for making a replacement decision.&lt;/p&gt;
+
+&lt;h4 id=&#34;lru-inefficiency&#34;&gt;LRU inefficiency&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Under the LRU policy, a burst of references to infrequently used blocks such
+as “sequential scans” through a large file, may cause
+replacement of commonly referenced blocks in the cache.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;For a cyclic (loop-like) pattern of accesses to a file that is only slightly
+larger than the cache size, LRU always mistakenly evicts the blocks that will
+be accessed soonest, because these blocks have not been accessed for the longest time.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The reason for LRU to behave poorly in these situations is
+that LRU makes a bold assumption – a block that has not
+been accessed the longest would wait for relatively longest
+time to be accessed again.&lt;/p&gt;
+
+&lt;h4 id=&#34;implementation&#34;&gt;Implementation&lt;/h4&gt;
+
+&lt;p&gt;IRR as the recorded history information of each block, where IRR of a block
+refers to the number of other blocks accessed between two consecutive references
+to the block.&lt;/p&gt;
+
+&lt;p&gt;Specifically, the recency refers to the number of other blocks accessed from
+last reference to the current time.&lt;/p&gt;
+
+&lt;p&gt;It is assumed that if the IRR of a block is large,
+the next IRR of the block is likely to be large again.
+Following this assumption, we select the blocks with large IRRs
+for replacement, because these blocks are highly possible to
+be evicted later by LRU before being referenced again under our assumption.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;LIRS - low inter reference set&lt;/p&gt;
+
+&lt;p&gt;IRR - inter reference recency&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>TAO: Facebook’s Distributed Data Store for the Social Graph</title>
       <link>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</link>
       <pubDate>Thu, 15 Dec 2016 19:36:32 +0200</pubDate>

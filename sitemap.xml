@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</loc>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/</loc>
     <lastmod>2017-03-08T08:44:03+02:00</lastmod>
   </url>
@@ -173,14 +180,6 @@
   
   
   <url>
-    <loc>http://out13.com/tags/algorithms/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/categories/algorithms/</loc>
     <lastmod>2015-04-04T15:13:11+03:00</lastmod>
     <priority>0</priority>
@@ -189,8 +188,8 @@
   
   
   <url>
-    <loc>http://out13.com/tags/ansible/</loc>
-    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+    <loc>http://out13.com/tags/algorithms/</loc>
+    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -199,6 +198,14 @@
   <url>
     <loc>http://out13.com/categories/ansible/</loc>
     <lastmod>2016-09-25T19:12:59+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/ansible/</loc>
+    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -238,7 +245,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2017-03-08T08:44:03+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -262,7 +269,7 @@
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -278,7 +285,7 @@
   
   <url>
     <loc>http://out13.com/tags/operating-systems/</loc>
-    <lastmod>2016-12-15T19:36:32+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -286,7 +293,7 @@
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -294,7 +301,7 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -302,7 +309,7 @@
   
   <url>
     <loc>http://out13.com/tags/performance/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -326,7 +333,7 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -334,15 +341,7 @@
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/rust/</loc>
-    <lastmod>2016-08-25T20:39:03+03:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -357,8 +356,16 @@
   
   
   <url>
+    <loc>http://out13.com/tags/rust/</loc>
+    <lastmod>2016-08-25T20:39:03+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
+    <lastmod>2017-03-09T19:34:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
