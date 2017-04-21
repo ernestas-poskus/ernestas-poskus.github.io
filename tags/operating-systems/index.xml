@@ -9,6 +9,52 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>In Search of an Understandable Consensus Algorithm</title>
+      <link>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</link>
+      <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</guid>
+      <description>
+
+&lt;h2 id=&#34;raft&#34;&gt;Raft&lt;/h2&gt;
+
+&lt;p&gt;Consensus algorithm for managing a replicated log.&lt;/p&gt;
+
+&lt;p&gt;Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
+a stronger degree of coherency to reduce the number of states that must be considered.&lt;/p&gt;
+
+&lt;p&gt;Paxos first defines a protocol capable of reaching agreement on a single decision,
+such as a single replicated log entry.&lt;/p&gt;
+
+&lt;p&gt;Raft implements consensus by first electing a distinguished leader,
+then giving the leader complete responsibility for managing the replicated log.
+The leader accepts log entries from clients, replicates them on other servers,
+and tells servers when it is safe to apply log entries to
+their state machines.&lt;/p&gt;
+
+&lt;p&gt;A leader can fail or become disconnected from the other servers, in which case
+a new leader is elected.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Election Safety: at most one leader can be elected in a given term.&lt;/li&gt;
+&lt;li&gt;Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.&lt;/li&gt;
+&lt;li&gt;Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.&lt;/li&gt;
+&lt;li&gt;Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.&lt;/li&gt;
+&lt;li&gt;State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
+At any given time each server is in one of three states: leader, follower, or candidate.&lt;/p&gt;
+
+&lt;p&gt;To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).&lt;/p&gt;
+
+&lt;p&gt;Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</title>
       <link>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</link>
       <pubDate>Thu, 09 Mar 2017 19:34:52 +0200</pubDate>

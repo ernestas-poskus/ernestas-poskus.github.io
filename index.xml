@@ -6,8 +6,54 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Mar 2017 19:34:52 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 20 Apr 2017 19:13:57 +0300</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>In Search of an Understandable Consensus Algorithm</title>
+      <link>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</link>
+      <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</guid>
+      <description>
+
+&lt;h2 id=&#34;raft&#34;&gt;Raft&lt;/h2&gt;
+
+&lt;p&gt;Consensus algorithm for managing a replicated log.&lt;/p&gt;
+
+&lt;p&gt;Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
+a stronger degree of coherency to reduce the number of states that must be considered.&lt;/p&gt;
+
+&lt;p&gt;Paxos first defines a protocol capable of reaching agreement on a single decision,
+such as a single replicated log entry.&lt;/p&gt;
+
+&lt;p&gt;Raft implements consensus by first electing a distinguished leader,
+then giving the leader complete responsibility for managing the replicated log.
+The leader accepts log entries from clients, replicates them on other servers,
+and tells servers when it is safe to apply log entries to
+their state machines.&lt;/p&gt;
+
+&lt;p&gt;A leader can fail or become disconnected from the other servers, in which case
+a new leader is elected.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Election Safety: at most one leader can be elected in a given term.&lt;/li&gt;
+&lt;li&gt;Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.&lt;/li&gt;
+&lt;li&gt;Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.&lt;/li&gt;
+&lt;li&gt;Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.&lt;/li&gt;
+&lt;li&gt;State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
+At any given time each server is in one of three states: leader, follower, or candidate.&lt;/p&gt;
+
+&lt;p&gt;To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).&lt;/p&gt;
+
+&lt;p&gt;Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</title>
@@ -1110,56 +1156,6 @@ script:
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ownership is theft experiences building an embedded os in rust</title>
-      <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
-      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
-      <description>
-
-&lt;h2 id=&#34;embedded-os-in-rust&#34;&gt;Embedded OS in Rust&lt;/h2&gt;
-
-&lt;p&gt;Embedded systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;lack hardware protection mechanism&lt;/li&gt;
-&lt;li&gt;less tolerant to crashes&lt;/li&gt;
-&lt;li&gt;no easy way for debugging&lt;/li&gt;
-&lt;li&gt;GC introduces non-deterministic delay&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
-
-&lt;p&gt;Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.&lt;/p&gt;
-
-&lt;p&gt;Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.&lt;/p&gt;
-
-&lt;p&gt;Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.&lt;/p&gt;
-
-&lt;p&gt;Preserved type safety without relying on a runtime GC for memory management.&lt;/p&gt;
-
-&lt;p&gt;Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Borrowing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Value can only be mutably borrowed if there are no other borrows of the value.&lt;/li&gt;
-&lt;li&gt;Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;execution-context-extension-for-rust&#34;&gt;Execution context (extension for Rust)&lt;/h3&gt;
-
-&lt;p&gt;Reflects the thread of a value&amp;rsquo;s owner in its type.&lt;/p&gt;
-
-&lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
-
-&lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
 </description>
     </item>
     

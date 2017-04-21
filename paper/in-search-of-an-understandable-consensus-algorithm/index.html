@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Generating configuration from Ansible variables - Ernestas Poškus.io</title>
-  <meta name="description" content="Personal findings, thoughts &amp; blog"/>
+  <title>In Search of an Understandable Consensus Algorithm - Ernestas Poškus.io</title>
+  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Generating configuration from Ansible variables" />
-  <meta property="og:description" content="Personal findings, thoughts &amp; blog" />
+  <meta property="og:title" content="In Search of an Understandable Consensus Algorithm" />
+  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/posts/generating-configuration-from-ansible-variables/" />
+  <meta property="og:url" content="http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -88,114 +88,55 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Generating configuration from Ansible variables</h1>
-    <time>Thu, Nov 3, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 281 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Generating%20configuration%20from%20Ansible%20variables%20#out13posts%20@ernestas_poskus">Tweet</a>
+    <h1>In Search of an Understandable Consensus Algorithm</h1>
+    <ul>
+      <li>Author: Diego Ongaro and John Ousterhout</li>
+      <li>Name: In Search of an Understandable Consensus Algorithm</li>
+      
+      <li>Link: <a href="https://raft.github.io/raft.pdf" rel="nofollow" target="_blank">https://raft.github.io/raft.pdf</a></li>
+      
+    </ul>
+    <time>Thu, Apr 20, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 319 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=In%20Search%20of%20an%20Understandable%20Consensus%20Algorithm%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<p>If you have ever tried to render Ansible multi hash or list variable you probably something alike.</p>
+<h2 id="raft">Raft</h2>
 
-<pre><code class="language-yaml">global:
-  scrape_interval: &quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&quot;
-  evaluation_interval: &quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&quot;
-  scrape_timeout: &quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&quot;
-  external_labels: &quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&quot;
-</code></pre>
+<p>Consensus algorithm for managing a replicated log.</p>
 
-<p>This generates invalid and ugly YAML.</p>
+<p>Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
+a stronger degree of coherency to reduce the number of states that must be considered.</p>
 
-<pre><code class="language-yaml">global:
-  scrape_interval: &quot;15s
-...
-&quot;
-  evaluation_interval: &quot;30s
-...
-&quot;
-  scrape_timeout: &quot;10s
-...
-&quot;
-  external_labels: &quot;null
-...
-&quot;
-</code></pre>
+<p>Paxos first defines a protocol capable of reaching agreement on a single decision,
+such as a single replicated log entry.</p>
 
-<h3 id="tldr">TLDR</h3>
+<p>Raft implements consensus by first electing a distinguished leader,
+then giving the leader complete responsibility for managing the replicated log.
+The leader accepts log entries from clients, replicates them on other servers,
+and tells servers when it is safe to apply log entries to
+their state machines.</p>
 
-<p>If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.
-But there is a better way that I came up with.</p>
+<p>A leader can fail or become disconnected from the other servers, in which case
+a new leader is elected.</p>
 
-<pre><code class="language-yaml">{{
-{
-'global': {
-  'scrape_interval': prometheus_config_global_scrape_interval,
-  'evaluation_interval': prometheus_config_global_evaluation_interval,
-  'scrape_timeout': prometheus_config_global_scrape_timeout,
-  'external_labels': prometheus_config_global_external_labels }
-} | to_nice_yaml
-}}
-</code></pre>
+<ul>
+<li>Election Safety: at most one leader can be elected in a given term.</li>
+<li>Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.</li>
+<li>Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.</li>
+<li>Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.</li>
+<li>State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.</li>
+</ul>
 
-<p>Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through <code>to_nice_yaml</code> filter as well.
-This generates pretty and valid YAML.</p>
+<h3 id="basics">Basics</h3>
 
-<pre><code class="language-yaml">global:
-    evaluation_interval: 30s
-    external_labels: null
-    scrape_interval: 15s
-    scrape_timeout: 10s
-</code></pre>
+<p>A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
+At any given time each server is in one of three states: leader, follower, or candidate.</p>
 
-<p>Same applies to more complex variable definitions like this hash configuration inside of array/list.</p>
+<p>To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).</p>
 
-<pre><code class="language-yaml">prometheus_config_scrape_configs:
-  - job_name: 'prometheus'
-    honor_labels: true
-    scrape_interval: '15s'
-    scrape_timeout: '2s'
-    metrics_path: '/metrics'
-    scheme: 'http'
-    static_configs:
-      - targets:
-          - &quot;{{ prometheus_web__listen_address }}&quot; # Prometheus itself
-          - &quot;{{ prometheus_alert_manager_web__listen_address }}&quot; # Alert manager
-
-  - job_name: 'consul-services'
-    consul_sd_configs:
-      - server: &quot;consul.service.consul:8500&quot;
-        services:
-          - nodeexporter
-</code></pre>
-
-<p>Variable used in template.</p>
-
-<pre><code class="language-yaml">{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; 0 %}
-{{ {'scrape_configs': prometheus_config_scrape_configs} | to_nice_yaml }}
-{% endif %}
-</code></pre>
-
-<p>End result here.</p>
-
-<pre><code class="language-yaml">scrape_configs:
--   honor_labels: true
-    job_name: prometheus
-    metrics_path: /metrics
-    scheme: http
-    scrape_interval: 15s
-    scrape_timeout: 2s
-    static_configs:
-    -   targets:
-        - 192.168.250.11:9090
-        - 192.168.250.11:9093
--   consul_sd_configs:
-    -   server: consul.service.consul:8500
-        services:
-        - nodeexporter
-    job_name: consul-services
-</code></pre>
-
-<p>Examples are taken from by ansible-prometheus playbook: <a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a>.</p>
+<p>Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.</p>
 
     <hr />
     <div id="disqus_thread"></div>
