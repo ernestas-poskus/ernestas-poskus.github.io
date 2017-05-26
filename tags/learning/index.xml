@@ -9,6 +9,92 @@
     <atom:link href="http://out13.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Spanner: Google’s Globally-Distributed Database</title>
+      <link>http://out13.com/paper/spanner-google-globally-distributed-database/</link>
+      <pubDate>Thu, 25 May 2017 19:53:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/spanner-google-globally-distributed-database/</guid>
+      <description>
+
+&lt;h2 id=&#34;spanner&#34;&gt;Spanner&lt;/h2&gt;
+
+&lt;p&gt;Spanner is a scalable, globally-distributed database designed, built, and deployed at Google.&lt;/p&gt;
+
+&lt;p&gt;At the highest level of abstraction, it is a database that shards data across many sets of Paxos state machines.&lt;/p&gt;
+
+&lt;p&gt;Replication is used for global availability and geographic locality.&lt;/p&gt;
+
+&lt;p&gt;Spanner is designed to scale up to millions of machines across hundreds of datacenters and trillions of database rows.&lt;/p&gt;
+
+&lt;p&gt;Data is stored in schematized semi-relational tables; data is versioned,
+and each version is automatically timestamped with its commit time; old versions of
+data are subject to configurable garbage-collection policies; and applications can read data at old timestamps.&lt;/p&gt;
+
+&lt;p&gt;Major features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;externally consistent reads and writes&lt;/li&gt;
+&lt;li&gt;globally-consistent reads across the database at a timestamp&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+
+&lt;p&gt;A Spanner deployment is called a universe. Given that Spanner manages data globally,
+there will be only a handful of running universes.&lt;/p&gt;
+
+&lt;p&gt;Spanner is organized as a set of zones, where each zone is the rough analog of a deployment of Bigtable.&lt;/p&gt;
+
+&lt;p&gt;Zones are the unit of administrative deployment.&lt;/p&gt;
+
+&lt;p&gt;Zones are also the unit of physical isolation: there may be one or more zones in a datacenter, for example,
+if different applications’ data must be partitioned across different sets of servers in the same datacenter.&lt;/p&gt;
+
+&lt;p&gt;Each spanserver is responsible for between 100 and 1000 instances of a data structure called a tablet.
+A tablet is similar to Bigtable’s tablet abstraction, in that it implements a bag of the following mappings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(key:string, timestamp:int64) → string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unlike Bigtable, Spanner assigns timestamps to data, which is an important way in which Spanner is more
+like a multi-version database than a key-value store.&lt;/p&gt;
+
+&lt;p&gt;Tablet state is stored in set of B-tree-like files and a write-ahead log,
+all on a distributed file system called Colossus.&lt;/p&gt;
+
+&lt;p&gt;To support replication, each spanserver implements a
+single Paxos state machine on top of each tablet.&lt;/p&gt;
+
+&lt;h3 id=&#34;truetime&#34;&gt;TrueTime&lt;/h3&gt;
+
+&lt;p&gt;TrueTime explicitly represents time as a TTinterval, which is an interval with bounded time
+uncertainty (unlike standard time interfaces that give clients no notion of uncertainty).&lt;/p&gt;
+
+&lt;p&gt;The time epoch is anal-
+ogous to UNIX time with leap-second smearing. De-
+fine the instantaneous error bound as ϵ, which is half of
+the interval’s width, and the average error bound as ϵ.&lt;/p&gt;
+
+&lt;p&gt;TrueTime is implemented by a set of time master machines per datacenter and a timeslave daemon per machine.
+The majority of masters have GPS receivers with dedicated antennas;
+these masters are separated physically to reduce the effects of antenna failures, radio interference, and spoofing.&lt;/p&gt;
+
+&lt;p&gt;The remaining masters (which we refer to as Armageddon masters) are equipped with
+atomic clocks. An atomic clock is not that expensive: the cost of an Armageddon master
+is of the same order as that of a GPS master.&lt;/p&gt;
+
+&lt;p&gt;Between synchronizations, a daemon advertises a slowly increasing time uncertainty.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Colossus - the successor of GFS&lt;/p&gt;
+
+&lt;p&gt;GFS - Google File System&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>In Search of an Understandable Consensus Algorithm</title>
       <link>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</link>
       <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
@@ -877,60 +963,6 @@ data structure are called garbage.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Queues Are Databases</title>
-      <link>http://out13.com/paper/queues-are-databases/</link>
-      <pubDate>Fri, 12 Aug 2016 16:57:55 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/queues-are-databases/</guid>
-      <description>
-
-&lt;h2 id=&#34;queued-transaction-processing-over-pure-client-server-transaction-processing&#34;&gt;Queued transaction processing over pure client-server transaction processing.&lt;/h2&gt;
-
-&lt;p&gt;Queued systems are build on top of direct systems.&lt;/p&gt;
-
-&lt;p&gt;TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.&lt;/p&gt;
-
-&lt;p&gt;Queue manager is best built as a naive resource manager atop an object-relational database system.
-That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.&lt;/p&gt;
-
-&lt;p&gt;Queues pose difficult problems when implemented atop a database:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Performance: An enqueue transaction is an insert followed by a commit. This places
-extreme performance demands on the concurrency control and recovery components
-of a database &amp;ndash; it exposes hotspots and high-overhead code.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Concurrency control: The dequeue transaction typically involves deleting a record from
-the queue, processing the request, enqueuing results in other queues, and then
-committing. Serializable isolation requires that there can be at most one dequeue
-executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read past: locks allow a program to skip over dirty (uncommitted records) to find the
-first committed record. This is what a dequeue() operation wants.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read through: locks allow a program to examine records that have not yet been
-committed. This is useful in polling the status of a queued request that is currently
-being processed.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Notify: allow a program to wait for a state change in a lock. This allows a
-dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MOM - message oriented middleware&lt;/p&gt;
-
-&lt;p&gt;TP - transaction processing&lt;/p&gt;
-
-&lt;p&gt;P2P - peer to peer&lt;/p&gt;
-
-&lt;p&gt;ORB - object request broker&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>
