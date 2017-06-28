@@ -9,6 +9,113 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>slabtop - kernel slab cache information in real time</title>
+      <link>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</link>
+      <pubDate>Wed, 28 Jun 2017 18:57:58 +0300</pubDate>
+      
+      <guid>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</guid>
+      <description>&lt;p&gt;Displays detailed kernel slab cache information by aggregating &lt;code&gt;/proc/slabinfo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tool shows a glimpse into kernel data structures.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sample output below.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;root@ow:~# slabtop -osc | head -n 20
+ Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
+ Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
+ Active / Total Caches (% used)     : 82 / 118 (69.5%)
+ Active / Total Size (% used)       : 1259115.61K / 1273939.45K (98.8%)
+ Minimum / Average / Maximum Object : 0.01K / 0.27K / 18.50K
+
+  OBJS ACTIVE   USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME
+327090 325687   99%    1.05K  10903       30    348896K ext4_inode_cache
+1639344 1639083 99%    0.19K  78064       21    312256K dentry
+217504 216070   99%    1.00K   6797       32    217504K ecryptfs_inode_cache
+196352 192576   98%    0.61K   7552       26    120832K proc_inode_cache
+519792 519564   99%    0.10K  13328       39     53312K buffer_head
+410976 401655   97%    0.12K  12843       32     51372K kmalloc-128
+ 76020  72290   95%    0.57K   2715       28     43440K radix_tree_node
+ 19808  18066   91%    1.00K    619       32     19808K kmalloc-1024
+ 24668  24322   98%    0.55K    881       28     14096K inode_cache
+432640 432640  100%    0.03K   3380      128     13520K kmalloc-32
+337416 335756   99%    0.04K   3308      102     13232K ext4_extent_status
+ 56220  51332   91%    0.20K   2811       20     11244K vm_area_struct
+122368 116329   95%    0.06K   1912       64      7648K kmalloc-64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Interesting object are &lt;code&gt;ext4_inode_cache&lt;/code&gt; and &lt;code&gt;dentry&lt;/code&gt;.
+These are fs cache objects they speed up fs file/directory access.
+The &lt;code&gt;ext4_inode_cache&lt;/code&gt; is underlying fs &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initialized in &lt;code&gt;fs/ext4/super.c&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int __init init_inodecache(void)
+{
+	ext4_inode_cachep = kmem_cache_create(&amp;quot;ext4_inode_cache&amp;quot;,
+					     sizeof(struct ext4_inode_info),
+					     0, (SLAB_RECLAIM_ACCOUNT|
+						SLAB_MEM_SPREAD|SLAB_ACCOUNT),
+					     init_once);
+	if (ext4_inode_cachep == NULL)
+		return -ENOMEM;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;dentry&lt;/code&gt; is &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initialized in &lt;code&gt;kernel/fs/dcache.c&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static void __init dcache_init(void)
+{
+	unsigned int loop;
+
+	/*
+	 * A constructor could be added for stable state like the lists,
+	 * but it is probably not worth it because of the cache nature
+	 * of the dcache.
+	 */
+	dentry_cache = KMEM_CACHE(dentry,
+		SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|SLAB_MEM_SPREAD|SLAB_ACCOUNT);
+
+	/* Hash may have been set up in dcache_init_early */
+	if (!hashdist)
+		return;
+
+	dentry_hashtable =
+		alloc_large_system_hash(&amp;quot;Dentry cache&amp;quot;,
+					sizeof(struct hlist_bl_head),
+					dhash_entries,
+					13,
+					0,
+					&amp;amp;d_hash_shift,
+					&amp;amp;d_hash_mask,
+					0,
+					0);
+
+	for (loop = 0; loop &amp;lt; (1U &amp;lt;&amp;lt; d_hash_shift); loop++)
+		INIT_HLIST_BL_HEAD(dentry_hashtable + loop);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These objects are freed automatically by kernel if there is memory pressure.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;To forcefully clean system slab cache.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 3 &amp;gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>In Search of an Understandable Consensus Algorithm</title>
       <link>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</link>
       <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
@@ -845,42 +952,6 @@ dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt
 &lt;p&gt;P2P - peer to peer&lt;/p&gt;
 
 &lt;p&gt;ORB - object request broker&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An Argument for Increasing TCP’s Initial Congestion Window</title>
-      <link>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</link>
-      <pubDate>Thu, 04 Aug 2016 22:02:54 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</guid>
-      <description>
-
-&lt;h2 id=&#34;tcp-congestion-window&#34;&gt;TCP congestion window&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;TCP flows start with initial congestion window of 4 segments (4KB of data).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Window if critical for how quickly flows can finish.&lt;/p&gt;
-
-&lt;p&gt;Increase in 15KB congestion window improves average HTTP latency by 10%, mostly benefits RTT and BDP.&lt;/p&gt;
-
-&lt;p&gt;Slow start increases congestion window by the number of data segments acknowledged for each received ACK.&lt;/p&gt;
-
-&lt;p&gt;TCP latency is dominated by the number of round-trip times in slow-start phase.&lt;/p&gt;
-
-&lt;p&gt;Increasing init_cwnd enables transfers to finish in fewer RTT.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;BDP - bandwidth delay product.&lt;/p&gt;
-
-&lt;p&gt;RTT - round trip delay time.&lt;/p&gt;
-
-&lt;p&gt;Wep page average size - 384KB.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

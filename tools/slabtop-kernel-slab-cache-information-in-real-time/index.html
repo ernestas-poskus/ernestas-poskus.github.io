@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Serving fresh assets using Nginx location rewrite - Ernestas Poškus.io</title>
-  <meta name="description" content="Serving fresh hashed assets using Nginx location blocks with rewrite."/>
+  <title>slabtop - kernel slab cache information in real time - Ernestas Poškus.io</title>
+  <meta name="description" content="Review of performance tools and ways to use them"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Serving fresh assets using Nginx location rewrite" />
-  <meta property="og:description" content="Serving fresh hashed assets using Nginx location blocks with rewrite." />
+  <meta property="og:title" content="slabtop - kernel slab cache information in real time" />
+  <meta property="og:description" content="Review of performance tools and ways to use them" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/" />
+  <meta property="og:url" content="http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -92,113 +92,115 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Serving fresh assets using Nginx location rewrite</h1>
-    <time>Wed, Mar 8, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 425 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Serving%20fresh%20assets%20using%20Nginx%20location%20rewrite%20#out13posts%20@ernestas_poskus">Tweet</a>
+    <h1>slabtop - kernel slab cache information in real time</h1>
+    <ul>
+      <li>Author: Chris Rivera and Robert Love</li>
+      
+      <li>Command: slabtop -osc</li>
+      <li>Params: -o = display once, -sc = sort by cache size column</li>
+    </ul>
+    <time>Wed, Jun 28, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 368 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=slabtop%20-%20kernel%20slab%20cache%20information%20in%20real%20time%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
+    <p>Displays detailed kernel slab cache information by aggregating <code>/proc/slabinfo</code>.</p>
 
-<p>Recently I have stumbled upon a problem to serve fresh/new assets for user web application.</p>
-
-<p>As Phil Karlton said:</p>
+<p>Tool shows a glimpse into kernel data structures.</p>
 
 <blockquote>
-<p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
+<p>Sample output below.</p>
 </blockquote>
 
-<p>Historically fresh assets problem was approached either by appending appending
-url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).</p>
+<pre><code>root@ow:~# slabtop -osc | head -n 20
+ Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
+ Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
+ Active / Total Caches (% used)     : 82 / 118 (69.5%)
+ Active / Total Size (% used)       : 1259115.61K / 1273939.45K (98.8%)
+ Minimum / Average / Maximum Object : 0.01K / 0.27K / 18.50K
 
-<p>Former is most popular one but not elegant since it brings explicit dependency
-for backend application what fresh/new asset file to include thus requires exact
-name file to be present on web server.</p>
-
-<p>This draws 5 main disadvantages of completely hashed asset name:</p>
-
-<ol>
-<li>explicit dependency to include</li>
-<li>no fallback mechanism</li>
-<li>hashed asset name</li>
-<li>exact file name presence on web server</li>
-<li>removal of stale assets</li>
-</ol>
-
-<p>I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.</p>
-
-<pre><code class="language-nginx">   location @css_assets {
-       rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;
-   }
-   location /css/ {
-       try_files $uri $uri/ @css_assets;
-   }
+  OBJS ACTIVE   USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME
+327090 325687   99%    1.05K  10903       30    348896K ext4_inode_cache
+1639344 1639083 99%    0.19K  78064       21    312256K dentry
+217504 216070   99%    1.00K   6797       32    217504K ecryptfs_inode_cache
+196352 192576   98%    0.61K   7552       26    120832K proc_inode_cache
+519792 519564   99%    0.10K  13328       39     53312K buffer_head
+410976 401655   97%    0.12K  12843       32     51372K kmalloc-128
+ 76020  72290   95%    0.57K   2715       28     43440K radix_tree_node
+ 19808  18066   91%    1.00K    619       32     19808K kmalloc-1024
+ 24668  24322   98%    0.55K    881       28     14096K inode_cache
+432640 432640  100%    0.03K   3380      128     13520K kmalloc-32
+337416 335756   99%    0.04K   3308      102     13232K ext4_extent_status
+ 56220  51332   91%    0.20K   2811       20     11244K vm_area_struct
+122368 116329   95%    0.06K   1912       64      7648K kmalloc-64
 </code></pre>
 
-<p>First <code>location /css/ {</code> block matches path of /css/ which later executes
-<code>try_files</code> followed by <code>location @css_assets {</code> location block.</p>
-
-<p>Secondly this rewrite <code>rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;</code> matches
-beginning of /css/ path followed by 2 tracked matches.</p>
+<p>Interesting object are <code>ext4_inode_cache</code> and <code>dentry</code>.
+These are fs cache objects they speed up fs file/directory access.
+The <code>ext4_inode_cache</code> is underlying fs <code>kmem_cache</code> structure cache.</p>
 
 <blockquote>
-<p>/css/app.117c7f2fa4b6ea7a2c077a3dbc9662e6b1c278bd.css</p>
+<p>Initialized in <code>fs/ext4/super.c</code>.</p>
 </blockquote>
 
-<p>In above example first match tracks (app) and second one (css).
-Matched information constructs new implicitly requested file like below.</p>
-
-<blockquote>
-<p>/css/app.css</p>
-</blockquote>
-
-<p>Newly constructed file will be processed by Nginx without redirects and browser
-knowing original file name.</p>
-
-<h3 id="constructing-asset-hash">Constructing asset hash</h3>
-
-<p>To tell your application which asset must be served use ENVIRONMENT variable and checksum
-of asset to be included. Or you can dynamically invalidate/create asset hash for
-example hourly or daily depending on release cycle.</p>
-
-<blockquote>
-<p>/css/app.$CSS_ASSET_HASH.css</p>
-</blockquote>
-
-<p>In my case I use simple function below.</p>
-
-<pre><code class="language-rust">lazy_static! {
-    static ref CSS_ASSETS_HASH: String = {
-        match env::var(&quot;CSS_ASSETS_HASH&quot;) {
-            Ok(hash) =&gt; format!(&quot;.{}.&quot;, hash),
-            Err(_) =&gt; &quot;.&quot;.to_string(),
-        }
-    };
-}
-
-html! {
-  (Css(format!(&quot;/css/app{}css&quot;, *CSS_ASSETS_HASH)))
+<pre><code class="language-c">static int __init init_inodecache(void)
+{
+	ext4_inode_cachep = kmem_cache_create(&quot;ext4_inode_cache&quot;,
+					     sizeof(struct ext4_inode_info),
+					     0, (SLAB_RECLAIM_ACCOUNT|
+						SLAB_MEM_SPREAD|SLAB_ACCOUNT),
+					     init_once);
+	if (ext4_inode_cachep == NULL)
+		return -ENOMEM;
+	return 0;
 }
 </code></pre>
 
-<p>Above example is actual code used in production. It tries to statically initialize
-<code>CSS_ASSETS_HASH</code> variable, if expected environment is not defined it fallbacks to
-dot <code>.</code> else it appends 2 dots between supplied environment variable <code>.ENVIRONMENT_VARIABLE.</code>.</p>
+<p>The <code>dentry</code> is <code>kmem_cache</code> structure cache.</p>
 
-<p>My solution eliminates almost all of main disadvantages of most popular way of asset
-inclusion.</p>
+<blockquote>
+<p>Initialized in <code>kernel/fs/dcache.c</code></p>
+</blockquote>
 
-<ol>
-<li><del>explicit dependency to include</del> - depends if hash is generated
-dynamically or real checksum of asset file is used.</li>
-<li><del>no fallback mechanism</del> - if environment is not defined or any hash is
-supplied it still fallbacks to original requested asset due to regex
-catchall.</li>
-<li><del>hashed asset name</del> - asset name is explicit and easily understood</li>
-<li>exact file name presence on web server</li>
-<li><del>removal of stale assets</del> - only original file is deployed</li>
-</ol>
+<pre><code class="language-c">static void __init dcache_init(void)
+{
+	unsigned int loop;
 
-<p>Regards.</p>
+	/*
+	 * A constructor could be added for stable state like the lists,
+	 * but it is probably not worth it because of the cache nature
+	 * of the dcache.
+	 */
+	dentry_cache = KMEM_CACHE(dentry,
+		SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|SLAB_MEM_SPREAD|SLAB_ACCOUNT);
+
+	/* Hash may have been set up in dcache_init_early */
+	if (!hashdist)
+		return;
+
+	dentry_hashtable =
+		alloc_large_system_hash(&quot;Dentry cache&quot;,
+					sizeof(struct hlist_bl_head),
+					dhash_entries,
+					13,
+					0,
+					&amp;d_hash_shift,
+					&amp;d_hash_mask,
+					0,
+					0);
+
+	for (loop = 0; loop &lt; (1U &lt;&lt; d_hash_shift); loop++)
+		INIT_HLIST_BL_HEAD(dentry_hashtable + loop);
+}
+</code></pre>
+
+<p>These objects are freed automatically by kernel if there is memory pressure.</p>
+
+<blockquote>
+<p>To forcefully clean system slab cache.</p>
+</blockquote>
+
+<pre><code>echo 3 &gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
+</code></pre>
 
     <hr />
     <div id="disqus_thread"></div>

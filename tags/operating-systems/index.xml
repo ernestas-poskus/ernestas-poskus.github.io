@@ -9,6 +9,113 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>slabtop - kernel slab cache information in real time</title>
+      <link>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</link>
+      <pubDate>Wed, 28 Jun 2017 18:57:58 +0300</pubDate>
+      
+      <guid>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</guid>
+      <description>&lt;p&gt;Displays detailed kernel slab cache information by aggregating &lt;code&gt;/proc/slabinfo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tool shows a glimpse into kernel data structures.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sample output below.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;root@ow:~# slabtop -osc | head -n 20
+ Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
+ Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
+ Active / Total Caches (% used)     : 82 / 118 (69.5%)
+ Active / Total Size (% used)       : 1259115.61K / 1273939.45K (98.8%)
+ Minimum / Average / Maximum Object : 0.01K / 0.27K / 18.50K
+
+  OBJS ACTIVE   USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME
+327090 325687   99%    1.05K  10903       30    348896K ext4_inode_cache
+1639344 1639083 99%    0.19K  78064       21    312256K dentry
+217504 216070   99%    1.00K   6797       32    217504K ecryptfs_inode_cache
+196352 192576   98%    0.61K   7552       26    120832K proc_inode_cache
+519792 519564   99%    0.10K  13328       39     53312K buffer_head
+410976 401655   97%    0.12K  12843       32     51372K kmalloc-128
+ 76020  72290   95%    0.57K   2715       28     43440K radix_tree_node
+ 19808  18066   91%    1.00K    619       32     19808K kmalloc-1024
+ 24668  24322   98%    0.55K    881       28     14096K inode_cache
+432640 432640  100%    0.03K   3380      128     13520K kmalloc-32
+337416 335756   99%    0.04K   3308      102     13232K ext4_extent_status
+ 56220  51332   91%    0.20K   2811       20     11244K vm_area_struct
+122368 116329   95%    0.06K   1912       64      7648K kmalloc-64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Interesting object are &lt;code&gt;ext4_inode_cache&lt;/code&gt; and &lt;code&gt;dentry&lt;/code&gt;.
+These are fs cache objects they speed up fs file/directory access.
+The &lt;code&gt;ext4_inode_cache&lt;/code&gt; is underlying fs &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initialized in &lt;code&gt;fs/ext4/super.c&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int __init init_inodecache(void)
+{
+	ext4_inode_cachep = kmem_cache_create(&amp;quot;ext4_inode_cache&amp;quot;,
+					     sizeof(struct ext4_inode_info),
+					     0, (SLAB_RECLAIM_ACCOUNT|
+						SLAB_MEM_SPREAD|SLAB_ACCOUNT),
+					     init_once);
+	if (ext4_inode_cachep == NULL)
+		return -ENOMEM;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;dentry&lt;/code&gt; is &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initialized in &lt;code&gt;kernel/fs/dcache.c&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static void __init dcache_init(void)
+{
+	unsigned int loop;
+
+	/*
+	 * A constructor could be added for stable state like the lists,
+	 * but it is probably not worth it because of the cache nature
+	 * of the dcache.
+	 */
+	dentry_cache = KMEM_CACHE(dentry,
+		SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|SLAB_MEM_SPREAD|SLAB_ACCOUNT);
+
+	/* Hash may have been set up in dcache_init_early */
+	if (!hashdist)
+		return;
+
+	dentry_hashtable =
+		alloc_large_system_hash(&amp;quot;Dentry cache&amp;quot;,
+					sizeof(struct hlist_bl_head),
+					dhash_entries,
+					13,
+					0,
+					&amp;amp;d_hash_shift,
+					&amp;amp;d_hash_mask,
+					0,
+					0);
+
+	for (loop = 0; loop &amp;lt; (1U &amp;lt;&amp;lt; d_hash_shift); loop++)
+		INIT_HLIST_BL_HEAD(dentry_hashtable + loop);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These objects are freed automatically by kernel if there is memory pressure.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;To forcefully clean system slab cache.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 3 &amp;gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>In Search of an Understandable Consensus Algorithm</title>
       <link>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</link>
       <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
@@ -792,75 +899,6 @@ To do so, TinyLFU maintains statistics of items frequency over a sizable recent 
 &lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
 
 &lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Container based operating system virtualization</title>
-      <link>http://out13.com/paper/container-based-operating-system-virtualization/</link>
-      <pubDate>Tue, 19 Apr 2016 19:30:48 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
-      <description>
-
-&lt;h2 id=&#34;alternative-to-hypervisors&#34;&gt;Alternative to hypervisors.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Workload requirements for a given system will direct users to the point in the design space that
-requires the least trade-off.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;sharing-over-isolation&#34;&gt;Sharing over isolation?&lt;/h3&gt;
-
-&lt;p&gt;Hypervisors often deployed to let a single machine host multiple, unrelated
-applications, which may run on behalf of independent organizations, as is common when a data center
-consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
-However, when each virtual machine is running the same kernel and similar operating system
-distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
-relative to running all applications on a single kernel.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Software configuration problems incompatibilities between specific OS distributions.&lt;/p&gt;
-
-&lt;p&gt;Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.&lt;/p&gt;
-
-&lt;p&gt;The key point is that both hypervisors and COS&amp;rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.&lt;/p&gt;
-
-&lt;h3 id=&#34;security-isolation&#34;&gt;Security isolation&lt;/h3&gt;
-
-&lt;p&gt;Configuration independence - cannot conflict with other VM&amp;rsquo;s
-Safety - global namespace shared&lt;/p&gt;
-
-&lt;h3 id=&#34;fair-share-and-reservations&#34;&gt;Fair share and Reservations&lt;/h3&gt;
-
-&lt;p&gt;Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.&lt;/p&gt;
-
-&lt;p&gt;For memory storage one can specify the following limits:
- * a) the maximum resident set size (RSS)
- * b) number of anonymous memory pages have (ANON)
- * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).&lt;/p&gt;
-
-&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;Xen is able to support multiple kernels while by design VServer cannot.
-Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Undesired interactions between VMs are sometimes called cross-talk.&lt;/p&gt;
-
-&lt;p&gt;COS - Container based Operating System&lt;/p&gt;
-
-&lt;p&gt;TBF - token bucker filter&lt;/p&gt;
-
-&lt;p&gt;HTB - Hierarchical Token Bucket&lt;/p&gt;
-
-&lt;p&gt;RSS - maximum resident set size&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</loc>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/paper/spanner-google-globally-distributed-database/</loc>
     <lastmod>2017-05-25T19:53:19+03:00</lastmod>
   </url>
@@ -259,7 +266,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -290,6 +297,14 @@
   
   
   <url>
+    <loc>http://out13.com/tags/linux/</loc>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/tags/nginx/</loc>
     <lastmod>2017-03-08T08:44:03+02:00</lastmod>
     <priority>0</priority>
@@ -299,7 +314,7 @@
   
   <url>
     <loc>http://out13.com/tags/operating-systems/</loc>
-    <lastmod>2017-04-20T19:13:57+03:00</lastmod>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -323,7 +338,7 @@
   
   <url>
     <loc>http://out13.com/tags/performance/</loc>
-    <lastmod>2017-04-20T19:13:57+03:00</lastmod>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -396,6 +411,22 @@
   <url>
     <loc>http://out13.com/tags/testing/</loc>
     <lastmod>2016-09-25T19:12:59+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/tools/</loc>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tools/</loc>
+    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
     <priority>0</priority>
   </url>
   
