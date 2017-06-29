@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/</loc>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</loc>
     <lastmod>2017-06-28T18:57:58+03:00</lastmod>
   </url>
@@ -201,14 +208,6 @@
   
   
   <url>
-    <loc>http://out13.com/categories/algorithms/</loc>
-    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/tags/algorithms/</loc>
     <lastmod>2016-12-29T20:25:26+02:00</lastmod>
     <priority>0</priority>
@@ -217,8 +216,8 @@
   
   
   <url>
-    <loc>http://out13.com/categories/ansible/</loc>
-    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
+    <loc>http://out13.com/categories/algorithms/</loc>
+    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,6 +226,14 @@
   <url>
     <loc>http://out13.com/tags/ansible/</loc>
     <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/categories/ansible/</loc>
+    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -266,7 +273,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -290,7 +297,7 @@
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -322,7 +329,7 @@
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -330,7 +337,7 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -338,7 +345,7 @@
   
   <url>
     <loc>http://out13.com/tags/performance/</loc>
-    <lastmod>2017-06-28T18:57:58+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -362,7 +369,7 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -370,15 +377,7 @@
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/rust/</loc>
-    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -393,8 +392,16 @@
   
   
   <url>
+    <loc>http://out13.com/categories/rust/</loc>
+    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2017-05-25T19:53:19+03:00</lastmod>
+    <lastmod>2017-06-29T18:11:57+03:00</lastmod>
     <priority>0</priority>
   </url>
   

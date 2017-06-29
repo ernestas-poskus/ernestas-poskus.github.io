@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Bigtable: A Distributed Storage System for Structured Data - Ernestas Poškus.io</title>
+  <title>Maglev: A Fast and Reliable Software Network Load Balancer - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Bigtable: A Distributed Storage System for Structured Data" />
+  <meta property="og:title" content="Maglev: A Fast and Reliable Software Network Load Balancer" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/" />
+  <meta property="og:url" content="http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -92,75 +92,108 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Bigtable: A Distributed Storage System for Structured Data</h1>
+    <h1>Maglev: A Fast and Reliable Software Network Load Balancer</h1>
     <ul>
-      <li>Author: Fay Chang, Jeffrey Dean, Sanjay Ghemawat, Wilson C. Hsieh, Deborah A. Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, Robert E. Gruber</li>
-      <li>Name: Bigtable: A Distributed Storage System for Structured Data</li>
+      <li>Author: Daniel E. Eisenbud, Cheng Yi, Carlo Contavalli, Cody Smith, Roman Kononov, Eric Mann-Hielscher, Ardas Cilingiroglu, Bin Cheyney, Wentao Shang and Jinnah Dylan Hosein</li>
+      <li>Name: Maglev: A Fast and Reliable Software Network Load Balancer</li>
       
-      <li>Link: <a href="http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf" rel="nofollow" target="_blank">http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf</a></li>
+      <li>Link: <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf" rel="nofollow" target="_blank">https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf</a></li>
       
     </ul>
-    <time>Thu, Nov 3, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 352 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Bigtable:%20A%20Distributed%20Storage%20System%20for%20Structured%20Data%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Jun 29, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 530 / <abbr title="Reading time">RT</abbr> 3min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Maglev:%20A%20Fast%20and%20Reliable%20Software%20Network%20Load%20Balancer%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="bigtable">Bigtable</h2>
+<h2 id="maglev-fast-and-reliable-network-balancer">Maglev - fast and reliable network balancer</h2>
 
-<p>Bigtable is a distributed storage system for managing structured data that is
-designed to scale to a very large size: petabytes of data across thousands of commodity servers.</p>
+<p>Packets are distributed through ECMP.</p>
 
-<p>Bigtable does not support a full relational data model; instead, it provides
-clients with a simple data model that supports dynamic control over data layout
-and format, and allows clients to reason about the locality properties of the data
-represented in the underlying storage.</p>
+<p>Serves traffic for Google services &amp; GCP.</p>
 
-<h3 id="data-model">Data model</h3>
+<p>Every Google service has 1 or more VIP&rsquo;s.</p>
 
-<p>A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
-The map is indexed by a row key, column key, and a timestamp; each value in the map
-is an uninterpreted array of bytes.</p>
+<p>Maglev associates each VIP with a set of service endpoints and announces it
+to the router over BGP.
+The router, in turn, announces the VIP to Google backbone.</p>
 
-<blockquote>
-<p>(row:string, column:string, time:int64) → string</p>
-</blockquote>
+<p>Router receives a VIP packet it forwards the packet to 1 of Maglev machines in
+the cluster through ECMP since all Maglev machines announce the VIP with the same cost.
+When Maglev receives it selects and endpoint from the set of service endpoints associated
+with the VIP and encapsulates the packet using GRE.
+When packet arrives at the selected service endpoint, it is decapsulated
+and consumed. The response when ready is put into an IP packet with source address
+being the VIP and the destination being the IP of the user.</p>
 
-<p>Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
-Each row range is called a tablet, which is the unit of distribution and load balancing.</p>
+<h3 id="forwarder">Forwarder</h3>
 
-<h3 id="architecture">Architecture</h3>
+<p>Forwarder receives packets from the NIC, rewrites them with proper GRE/IP headers
+and then sends them back to the NIC (Linux kernel is not involved).</p>
 
-<p>File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.</p>
+<p>Packets received by the NIC are first processed by the steering module
+of the forwarder, which calculates the 5 tuple hash of the packets and
+assigns them to different receiving queues depending on the hash value.
+Each receiving queue is attached to a packet rewriter thread.</p>
 
-<p>First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.</p>
+<p>First packet thread recomputes hash and tries to match each packet to a configured VIP to filter
+out unwanted packets.</p>
 
-<p>Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
-Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.</p>
+<p>Then it looks up the hash value in connection tracking table (hash is recomputed
+to avoid cross-thread sync).</p>
 
-<p>Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure</p>
+<p>The connection table stores backend selection results for recent connections.
+If a match is found and the selected backend is still healthy, the result
+reused. Otherwise, thread consults the consistent hashing module and selects
+new backend for the packet; it also adds an entry to the connection table for
+future packets with the same 5-tuple.
+A packet is dropped if no backend is available.</p>
 
-<h3 id="client">Client</h3>
+<p>The forwarder maintains one connection table per packet thread to avoid
+access contention.</p>
 
-<p>The client library caches tablet locations.
-If the client does not know the location of a tablet, or if it discovers that cached
-location information is incorrect, then it recursively moves up the tablet location hierarchy.</p>
+<p>After a backend is selected, the packet thread encapsulates the packet with
+proper GRE/IP headers and sends it to the attached transmission queue.
+The muxing module then pools all transmission queues and passes the
+packets to the NIC.</p>
 
-<h3 id="caching">Caching</h3>
+<h3 id="structure">Structure</h3>
 
-<p>To improve read performance, tablet servers use two levels of caching.</p>
+<p>Maglev is a userspace application running on commodity Linux servers.
+Since the Linux kernel network stack is rather computationally expensive,
+and Maglev doesn&rsquo;t require any of the Linux stack&rsquo;s features, it is
+desirable to make Maglev bypass the kernel entirely for packet processing.</p>
+
+<h4 id="hashing">Hashing</h4>
 
 <ul>
-<li>Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.</li>
-<li>Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.</li>
+<li><p>load balancing: each backend will receive an almost equal number of connections.</p></li>
+
+<li><p>minimal disruption: when the set of backends changes,
+a connection will likely be sent to the same backend as it was before.</p></li>
 </ul>
 
-<p>Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.</p>
+<p>Maglev hashing is to assign a preference list of all the lookup table positions to each backend.
+Then all the backends take turns filling their most-preferred table positions that are still empty,
+until the lookup table is completely filled in.</p>
+
+<h4 id="failover">Failover</h4>
+
+<p>Active-passive pairs provide failure resilience.
+Only active machines serve traffic in normal situations.</p>
 
 <h4 id="notes">Notes</h4>
 
 <blockquote>
-<p>GFS - Google File System</p>
+<p>ECMP - Equal cost multipath</p>
+
+<p>DSR - Direct server return</p>
+
+<p>VIP - Virtual IP address</p>
+
+<p>GRE - Generic routing encapsulation</p>
+
+<p>NIC - Network interface card</p>
 </blockquote>
 
     <hr />

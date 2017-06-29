@@ -9,6 +9,106 @@
     <atom:link href="http://out13.com/tags/scientific/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Maglev: A Fast and Reliable Software Network Load Balancer</title>
+      <link>http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/</link>
+      <pubDate>Thu, 29 Jun 2017 18:11:57 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/</guid>
+      <description>
+
+&lt;h2 id=&#34;maglev-fast-and-reliable-network-balancer&#34;&gt;Maglev - fast and reliable network balancer&lt;/h2&gt;
+
+&lt;p&gt;Packets are distributed through ECMP.&lt;/p&gt;
+
+&lt;p&gt;Serves traffic for Google services &amp;amp; GCP.&lt;/p&gt;
+
+&lt;p&gt;Every Google service has 1 or more VIP&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;Maglev associates each VIP with a set of service endpoints and announces it
+to the router over BGP.
+The router, in turn, announces the VIP to Google backbone.&lt;/p&gt;
+
+&lt;p&gt;Router receives a VIP packet it forwards the packet to 1 of Maglev machines in
+the cluster through ECMP since all Maglev machines announce the VIP with the same cost.
+When Maglev receives it selects and endpoint from the set of service endpoints associated
+with the VIP and encapsulates the packet using GRE.
+When packet arrives at the selected service endpoint, it is decapsulated
+and consumed. The response when ready is put into an IP packet with source address
+being the VIP and the destination being the IP of the user.&lt;/p&gt;
+
+&lt;h3 id=&#34;forwarder&#34;&gt;Forwarder&lt;/h3&gt;
+
+&lt;p&gt;Forwarder receives packets from the NIC, rewrites them with proper GRE/IP headers
+and then sends them back to the NIC (Linux kernel is not involved).&lt;/p&gt;
+
+&lt;p&gt;Packets received by the NIC are first processed by the steering module
+of the forwarder, which calculates the 5 tuple hash of the packets and
+assigns them to different receiving queues depending on the hash value.
+Each receiving queue is attached to a packet rewriter thread.&lt;/p&gt;
+
+&lt;p&gt;First packet thread recomputes hash and tries to match each packet to a configured VIP to filter
+out unwanted packets.&lt;/p&gt;
+
+&lt;p&gt;Then it looks up the hash value in connection tracking table (hash is recomputed
+to avoid cross-thread sync).&lt;/p&gt;
+
+&lt;p&gt;The connection table stores backend selection results for recent connections.
+If a match is found and the selected backend is still healthy, the result
+reused. Otherwise, thread consults the consistent hashing module and selects
+new backend for the packet; it also adds an entry to the connection table for
+future packets with the same 5-tuple.
+A packet is dropped if no backend is available.&lt;/p&gt;
+
+&lt;p&gt;The forwarder maintains one connection table per packet thread to avoid
+access contention.&lt;/p&gt;
+
+&lt;p&gt;After a backend is selected, the packet thread encapsulates the packet with
+proper GRE/IP headers and sends it to the attached transmission queue.
+The muxing module then pools all transmission queues and passes the
+packets to the NIC.&lt;/p&gt;
+
+&lt;h3 id=&#34;structure&#34;&gt;Structure&lt;/h3&gt;
+
+&lt;p&gt;Maglev is a userspace application running on commodity Linux servers.
+Since the Linux kernel network stack is rather computationally expensive,
+and Maglev doesn&amp;rsquo;t require any of the Linux stack&amp;rsquo;s features, it is
+desirable to make Maglev bypass the kernel entirely for packet processing.&lt;/p&gt;
+
+&lt;h4 id=&#34;hashing&#34;&gt;Hashing&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;load balancing: each backend will receive an almost equal number of connections.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;minimal disruption: when the set of backends changes,
+a connection will likely be sent to the same backend as it was before.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Maglev hashing is to assign a preference list of all the lookup table positions to each backend.
+Then all the backends take turns filling their most-preferred table positions that are still empty,
+until the lookup table is completely filled in.&lt;/p&gt;
+
+&lt;h4 id=&#34;failover&#34;&gt;Failover&lt;/h4&gt;
+
+&lt;p&gt;Active-passive pairs provide failure resilience.
+Only active machines serve traffic in normal situations.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;ECMP - Equal cost multipath&lt;/p&gt;
+
+&lt;p&gt;DSR - Direct server return&lt;/p&gt;
+
+&lt;p&gt;VIP - Virtual IP address&lt;/p&gt;
+
+&lt;p&gt;GRE - Generic routing encapsulation&lt;/p&gt;
+
+&lt;p&gt;NIC - Network interface card&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Spanner: Google’s Globally-Distributed Database</title>
       <link>http://out13.com/paper/spanner-google-globally-distributed-database/</link>
       <pubDate>Thu, 25 May 2017 19:53:19 +0300</pubDate>
@@ -921,49 +1021,6 @@ location information is incorrect, then it recursively moves up the tablet locat
 &lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
 
 &lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>On the fly garbage collection</title>
-      <link>http://out13.com/paper/on-the-fly-garbage-collection/</link>
-      <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
-      <description>
-
-&lt;p&gt;In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &amp;ldquo;the
-roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable
-from at least one root via a directed path along the edges.&lt;/p&gt;
-
-&lt;p&gt;The subgraph consists of all reachable nodes and their interconnections is
-called &amp;lsquo;the data structure&amp;rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.&lt;/p&gt;
-
-&lt;p&gt;Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node&lt;/p&gt;
-
-&lt;p&gt;Mutator: redirect an outgoing edge of reachable node towards an already reachable one.&lt;/p&gt;
-
-&lt;p&gt;Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     
