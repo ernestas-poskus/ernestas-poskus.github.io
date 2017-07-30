@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Aerospike: Architecture of a Real-Time Operational DBMS - Ernestas Poškus.io</title>
+  <title>Scaling Memcache at Facebook - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Aerospike: Architecture of a Real-Time Operational DBMS" />
+  <meta property="og:title" content="Scaling Memcache at Facebook" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/" />
+  <meta property="og:url" content="http://out13.com/paper/scaling-memcache-at-facebook/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -92,95 +92,69 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Aerospike: Architecture of a Real-Time Operational DBMS</h1>
+    <h1>Scaling Memcache at Facebook</h1>
     <ul>
-      <li>Author: V. Srinivasan, Sunil Sayyaparaju, Ashish Shinde, Brian Bulkowski, Andrew Gooding, Thomas Lopatic, Wei-Ling Chu, Rajkumar Iyer</li>
-      <li>Name: Aerospike: Architecture of a Real-Time Operational DBMS</li>
+      <li>Author: Rajesh Nishtala, Hans Fugal, Steven Grimm, Marc Kwiatkowski, Herman Lee, Harry C. Li, Ryan McElroy, Mike Paleczny, Daniel Peek, Paul Saab, David Stafford, Tony Tung, Venkateshwaran Venkataramani</li>
+      <li>Name: Scaling Memcache at Facebook</li>
       
-      <li>Link: <a href="" rel="nofollow" target="_blank"></a></li>
+      <li>Link: <a href="https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf" rel="nofollow" target="_blank">https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf</a></li>
       
     </ul>
-    <time>Sun, Jan 29, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 413 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Aerospike:%20Architecture%20of%20a%20Real-Time%20Operational%20DBMS%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Jul 27, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 404 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Scaling%20Memcache%20at%20Facebook%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="aerospike-architecture">Aerospike architecture</h2>
+<h2 id="memcache-at-facebook">Memcache at Facebook</h2>
 
-<p>Modeled on the classic shared-nothing database architecture</p>
+<p>Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.</p>
 
-<p>Objectives of the cluster management subsystem:</p>
+<p>Items are distributed across the memcached servers through consistent hashing.</p>
 
-<ul>
-<li>Arrive at a single consistent view of current cluster members across all nodes in the cluster.</li>
-<li>Automatically detect new node arrival/departure and seamless cluster reconfiguration.</li>
-<li>Detect network faults and be resilient to such network flakiness.</li>
-<li>Minimize time to detect and adapt to cluster membership changes.</li>
-</ul>
+<p><code>all</code> web servers communicate with every memcached server in a short period of time.
+This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
+Reduce latency mainly by focusing on the memcache client, which runs on each web server.</p>
 
-<h3 id="discovery">Discovery</h3>
+<p>Constructing a directed acyclic graph (DAG) representing the dependencies between data.
+A web server uses this DAG to maximize the number of items that can be fetched concurrently.</p>
 
-<p>Node arrival or departure is detected via heartbeat messages
-exchanged periodically between nodes.</p>
+<p>Clients treat get errors as cache misses, but web servers will skip inserting entries
+into memcached after querying for data to avoid putting additional load on
+a possibly overloaded network or server.</p>
 
-<h3 id="surrogate-heartbeats">Surrogate heartbeats</h3>
+<p>Clients therefore use a sliding window mechanism to control the number of outstanding requests.
+When the client receives a response, the next request can be sent.
+Similar to TCP’s congestion control, the size of this sliding window grows
+slowly upon a successful request and shrinks when a request goes unanswered.</p>
 
-<p>In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
-between nodes as an alternative secondary heartbeat mechanism.</p>
+<p>Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
+failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.</p>
 
-<h3 id="node-health-score">Node Health Score</h3>
+<p>When a memcached client receives no response to its get request,
+the client assumes the server has failed and issues the request again to a special Gutter pool.</p>
 
-<p>Every node in the cluster evaluates the health score of each of its
-neighboring nodes by computing the average message loss, which
-is an estimate of how many incoming messages from that node are lost.</p>
+<p>If this second request misses, the client will insert the appropriate key-value
+pair into the Gutter machine after querying the database.
+Entries in Gutter expire quickly to obviate Gutter invalidations.
+Gutter limits the load on backend services at the cost of slightly stale data.</p>
 
-<h3 id="data-distribution">Data Distribution</h3>
+<p>Deploy invalidation daemons (named mcsqueal) on every database.
+Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
+casts these deletes to the memcache deployment in every frontend cluster in that region.</p>
 
-<p>A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.</p>
+<h3 id="performance-optimizations">Performance optimizations</h3>
 
-<p>Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.</p>
+<p>Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
+were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
+server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
+its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.</p>
 
-<p>A partition assignment algorithm generates a replication list for every
-partition. The replication list is a permutation of the cluster succession list.</p>
+<h4 id="notes">Notes</h4>
 
-<p>Reads can also be uniformly spread across all the
-replicas via a runtime configuration setting.</p>
-
-<h3 id="master-partition-without-data">Master Partition Without Data</h3>
-
-<p>An empty node newly added to a running cluster will be master
-for a proportional fraction of the partitions and have no data for
-those partitions.</p>
-
-<h3 id="migration-ordering">Migration Ordering</h3>
-
-<h4 id="smallest-partition-first">Smallest Partition First</h4>
-
-<p>Migration is coordinated in such a manner as to let nodes with the
-fewest records in their partition versions start migration first. This
-strategy quickly reduces the number of different copies of a
-specific partition, and does this faster than any other strategy.</p>
-
-<h4 id="hottest-partition-first">Hottest Partition First</h4>
-
-<p>At times, client accesses are skewed to a very small number of
-keys from the key space. Therefore the latency on these accesses
-could be improved quickly by migrating these hot partitions
-before other partitions.</p>
-
-<h3 id="defragmentation">Defragmentation</h3>
-
-<p>Aerospike uses a log-structured file system with a copy-on-write
-mechanism. Hence, it needs to reclaim space by continuously
-running a background defragmentation process. Each device
-stores a MAP of block and information relating to the fill-factor of
-each block. The fill-factor of the block is the block fraction
-utilized by valid records. At boot time, this information is loaded
-and kept up-to-date on every write. When the fill-factor of a block
-falls below a certain threshold, the block becomes a candidate for
-defragmentation and is then queued up for the defragmentation
-process.</p>
+<blockquote>
+<p>DAG - directed acyclic graph</p>
+</blockquote>
 
     <hr />
     <div id="disqus_thread"></div>

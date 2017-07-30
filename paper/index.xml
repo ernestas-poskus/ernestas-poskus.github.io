@@ -6,8 +6,68 @@
     <description>Recent content in Papers on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Jun 2017 18:11:57 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 27 Jul 2017 19:47:58 +0300</lastBuildDate>
     <atom:link href="http://out13.com/paper/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Scaling Memcache at Facebook</title>
+      <link>http://out13.com/paper/scaling-memcache-at-facebook/</link>
+      <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/scaling-memcache-at-facebook/</guid>
+      <description>
+
+&lt;h2 id=&#34;memcache-at-facebook&#34;&gt;Memcache at Facebook&lt;/h2&gt;
+
+&lt;p&gt;Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.&lt;/p&gt;
+
+&lt;p&gt;Items are distributed across the memcached servers through consistent hashing.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;all&lt;/code&gt; web servers communicate with every memcached server in a short period of time.
+This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
+Reduce latency mainly by focusing on the memcache client, which runs on each web server.&lt;/p&gt;
+
+&lt;p&gt;Constructing a directed acyclic graph (DAG) representing the dependencies between data.
+A web server uses this DAG to maximize the number of items that can be fetched concurrently.&lt;/p&gt;
+
+&lt;p&gt;Clients treat get errors as cache misses, but web servers will skip inserting entries
+into memcached after querying for data to avoid putting additional load on
+a possibly overloaded network or server.&lt;/p&gt;
+
+&lt;p&gt;Clients therefore use a sliding window mechanism to control the number of outstanding requests.
+When the client receives a response, the next request can be sent.
+Similar to TCP’s congestion control, the size of this sliding window grows
+slowly upon a successful request and shrinks when a request goes unanswered.&lt;/p&gt;
+
+&lt;p&gt;Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
+failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.&lt;/p&gt;
+
+&lt;p&gt;When a memcached client receives no response to its get request,
+the client assumes the server has failed and issues the request again to a special Gutter pool.&lt;/p&gt;
+
+&lt;p&gt;If this second request misses, the client will insert the appropriate key-value
+pair into the Gutter machine after querying the database.
+Entries in Gutter expire quickly to obviate Gutter invalidations.
+Gutter limits the load on backend services at the cost of slightly stale data.&lt;/p&gt;
+
+&lt;p&gt;Deploy invalidation daemons (named mcsqueal) on every database.
+Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
+casts these deletes to the memcache deployment in every frontend cluster in that region.&lt;/p&gt;
+
+&lt;h3 id=&#34;performance-optimizations&#34;&gt;Performance optimizations&lt;/h3&gt;
+
+&lt;p&gt;Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
+were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
+server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
+its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DAG - directed acyclic graph&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Maglev: A Fast and Reliable Software Network Load Balancer</title>
@@ -972,56 +1032,6 @@ location information is incorrect, then it recursively moves up the tablet locat
 &lt;blockquote&gt;
 &lt;p&gt;GFS - Google File System&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ownership is theft experiences building an embedded os in rust</title>
-      <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
-      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
-      <description>
-
-&lt;h2 id=&#34;embedded-os-in-rust&#34;&gt;Embedded OS in Rust&lt;/h2&gt;
-
-&lt;p&gt;Embedded systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;lack hardware protection mechanism&lt;/li&gt;
-&lt;li&gt;less tolerant to crashes&lt;/li&gt;
-&lt;li&gt;no easy way for debugging&lt;/li&gt;
-&lt;li&gt;GC introduces non-deterministic delay&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
-
-&lt;p&gt;Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.&lt;/p&gt;
-
-&lt;p&gt;Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.&lt;/p&gt;
-
-&lt;p&gt;Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.&lt;/p&gt;
-
-&lt;p&gt;Preserved type safety without relying on a runtime GC for memory management.&lt;/p&gt;
-
-&lt;p&gt;Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Borrowing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Value can only be mutably borrowed if there are no other borrows of the value.&lt;/li&gt;
-&lt;li&gt;Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;execution-context-extension-for-rust&#34;&gt;Execution context (extension for Rust)&lt;/h3&gt;
-
-&lt;p&gt;Reflects the thread of a value&amp;rsquo;s owner in its type.&lt;/p&gt;
-
-&lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
-
-&lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
 </description>
     </item>
     

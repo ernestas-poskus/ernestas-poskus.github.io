@@ -9,6 +9,66 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Scaling Memcache at Facebook</title>
+      <link>http://out13.com/paper/scaling-memcache-at-facebook/</link>
+      <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/scaling-memcache-at-facebook/</guid>
+      <description>
+
+&lt;h2 id=&#34;memcache-at-facebook&#34;&gt;Memcache at Facebook&lt;/h2&gt;
+
+&lt;p&gt;Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.&lt;/p&gt;
+
+&lt;p&gt;Items are distributed across the memcached servers through consistent hashing.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;all&lt;/code&gt; web servers communicate with every memcached server in a short period of time.
+This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
+Reduce latency mainly by focusing on the memcache client, which runs on each web server.&lt;/p&gt;
+
+&lt;p&gt;Constructing a directed acyclic graph (DAG) representing the dependencies between data.
+A web server uses this DAG to maximize the number of items that can be fetched concurrently.&lt;/p&gt;
+
+&lt;p&gt;Clients treat get errors as cache misses, but web servers will skip inserting entries
+into memcached after querying for data to avoid putting additional load on
+a possibly overloaded network or server.&lt;/p&gt;
+
+&lt;p&gt;Clients therefore use a sliding window mechanism to control the number of outstanding requests.
+When the client receives a response, the next request can be sent.
+Similar to TCP’s congestion control, the size of this sliding window grows
+slowly upon a successful request and shrinks when a request goes unanswered.&lt;/p&gt;
+
+&lt;p&gt;Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
+failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.&lt;/p&gt;
+
+&lt;p&gt;When a memcached client receives no response to its get request,
+the client assumes the server has failed and issues the request again to a special Gutter pool.&lt;/p&gt;
+
+&lt;p&gt;If this second request misses, the client will insert the appropriate key-value
+pair into the Gutter machine after querying the database.
+Entries in Gutter expire quickly to obviate Gutter invalidations.
+Gutter limits the load on backend services at the cost of slightly stale data.&lt;/p&gt;
+
+&lt;p&gt;Deploy invalidation daemons (named mcsqueal) on every database.
+Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
+casts these deletes to the memcache deployment in every frontend cluster in that region.&lt;/p&gt;
+
+&lt;h3 id=&#34;performance-optimizations&#34;&gt;Performance optimizations&lt;/h3&gt;
+
+&lt;p&gt;Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
+were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
+server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
+its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DAG - directed acyclic graph&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Maglev: A Fast and Reliable Software Network Load Balancer</title>
       <link>http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/</link>
       <pubDate>Thu, 29 Jun 2017 18:11:57 +0300</pubDate>
@@ -956,49 +1016,6 @@ location information is incorrect, then it recursively moves up the tablet locat
 &lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
 
 &lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>On the fly garbage collection</title>
-      <link>http://out13.com/paper/on-the-fly-garbage-collection/</link>
-      <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
-      <description>
-
-&lt;p&gt;In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &amp;ldquo;the
-roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable
-from at least one root via a directed path along the edges.&lt;/p&gt;
-
-&lt;p&gt;The subgraph consists of all reachable nodes and their interconnections is
-called &amp;lsquo;the data structure&amp;rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.&lt;/p&gt;
-
-&lt;p&gt;Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node&lt;/p&gt;
-
-&lt;p&gt;Mutator: redirect an outgoing edge of reachable node towards an already reachable one.&lt;/p&gt;
-
-&lt;p&gt;Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     

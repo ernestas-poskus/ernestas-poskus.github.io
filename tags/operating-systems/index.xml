@@ -9,6 +9,66 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Scaling Memcache at Facebook</title>
+      <link>http://out13.com/paper/scaling-memcache-at-facebook/</link>
+      <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/scaling-memcache-at-facebook/</guid>
+      <description>
+
+&lt;h2 id=&#34;memcache-at-facebook&#34;&gt;Memcache at Facebook&lt;/h2&gt;
+
+&lt;p&gt;Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.&lt;/p&gt;
+
+&lt;p&gt;Items are distributed across the memcached servers through consistent hashing.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;all&lt;/code&gt; web servers communicate with every memcached server in a short period of time.
+This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
+Reduce latency mainly by focusing on the memcache client, which runs on each web server.&lt;/p&gt;
+
+&lt;p&gt;Constructing a directed acyclic graph (DAG) representing the dependencies between data.
+A web server uses this DAG to maximize the number of items that can be fetched concurrently.&lt;/p&gt;
+
+&lt;p&gt;Clients treat get errors as cache misses, but web servers will skip inserting entries
+into memcached after querying for data to avoid putting additional load on
+a possibly overloaded network or server.&lt;/p&gt;
+
+&lt;p&gt;Clients therefore use a sliding window mechanism to control the number of outstanding requests.
+When the client receives a response, the next request can be sent.
+Similar to TCP’s congestion control, the size of this sliding window grows
+slowly upon a successful request and shrinks when a request goes unanswered.&lt;/p&gt;
+
+&lt;p&gt;Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
+failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.&lt;/p&gt;
+
+&lt;p&gt;When a memcached client receives no response to its get request,
+the client assumes the server has failed and issues the request again to a special Gutter pool.&lt;/p&gt;
+
+&lt;p&gt;If this second request misses, the client will insert the appropriate key-value
+pair into the Gutter machine after querying the database.
+Entries in Gutter expire quickly to obviate Gutter invalidations.
+Gutter limits the load on backend services at the cost of slightly stale data.&lt;/p&gt;
+
+&lt;p&gt;Deploy invalidation daemons (named mcsqueal) on every database.
+Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
+casts these deletes to the memcache deployment in every frontend cluster in that region.&lt;/p&gt;
+
+&lt;h3 id=&#34;performance-optimizations&#34;&gt;Performance optimizations&lt;/h3&gt;
+
+&lt;p&gt;Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
+were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
+server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
+its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DAG - directed acyclic graph&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>slabtop - kernel slab cache information in real time</title>
       <link>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</link>
       <pubDate>Wed, 28 Jun 2017 18:57:58 +0300</pubDate>
@@ -851,54 +911,6 @@ dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt
 &lt;p&gt;RTT - round trip delay time.&lt;/p&gt;
 
 &lt;p&gt;Wep page average size - 384KB.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tiny LFU highly efficient cache admission policy</title>
-      <link>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</link>
-      <pubDate>Fri, 22 Apr 2016 21:26:15 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
-      <description>
-
-&lt;h2 id=&#34;frequency-based-cache-admission-policy&#34;&gt;Frequency based cache admission policy&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;The intuitive reason why caching works is that data accesses in many
-domains of computer science exhibit a considerable degree of “locality”.&lt;/p&gt;
-
-&lt;p&gt;When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss. The ratio between the number of cache hits and the total number of data accesses is known as the cache hit-ratio.&lt;/p&gt;
-
-&lt;p&gt;Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
-To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Time locality - access pattern, and consequently the corresponding probability distribution, change over time&lt;/p&gt;
-
-&lt;p&gt;WLFU - Window Least Frequently Used, access frequency for a window, needs to keep track order of requests. Samples of the request stream (called window).&lt;/p&gt;
-
-&lt;p&gt;PLFU - Perfect LFU, popularity based has metadata with counters&lt;/p&gt;
-
-&lt;p&gt;In-memory LFU, outperformed by WLFU at the cost of larger meta-data&lt;/p&gt;
-
-&lt;p&gt;SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period&lt;/p&gt;
-
-&lt;p&gt;LRU-K - combination of LRU &amp;amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>
