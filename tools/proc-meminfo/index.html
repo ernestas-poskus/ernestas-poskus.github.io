@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>/proc/meminfo - memory usage statistics - Ernestas Poškus.io</title>
+  <meta name="description" content="Review of performance tools and ways to use them"/>
+  <meta name="keywords" content=""/>
+
+  <meta property="og:title" content="/proc/meminfo - memory usage statistics" />
+  <meta property="og:description" content="Review of performance tools and ways to use them" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://out13.com/tools/proc-meminfo/" />
+  <meta property="og:image" content="http://out13.com/images/og-image.png" />
+
+  
+  <link rel="stylesheet" href="http://out13.com/css/app.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://out13.com/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://out13.com/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+
+
+  
+</head>
+<body>
+
+<div class="callout large">
+  <div class="row">
+    <div class="large-12 columns">
+      <h1><a href="http://out13.com/">Ernestas Poškus</a></h1>
+
+      <p>
+        
+        <a href="https://github.com/ernestas-poskus" target="_blank">github</a>
+        
+        <a href="https://www.linkedin.com/in/ernestasposkus" target="_blank">linkedin</a>
+        
+        <a href="https://twitter.com/ernestas_poskus" target="_blank">twitter</a>
+        
+      </p>
+
+      
+        <a href="http://out13.com/tags/algorithms">algorithms</a> 1 /
+      
+        <a href="http://out13.com/tags/ansible">ansible</a> 2 /
+      
+        <a href="http://out13.com/tags/cisco">cisco</a> 1 /
+      
+        <a href="http://out13.com/tags/cluster">cluster</a> 1 /
+      
+        <a href="http://out13.com/tags/database">database</a> 1 /
+      
+        <a href="http://out13.com/tags/garbage-collection">garbage-collection</a> 1 /
+      
+        <a href="http://out13.com/tags/learning">learning</a> 22 /
+      
+        <a href="http://out13.com/tags/linux">linux</a> 2 /
+      
+        <a href="http://out13.com/tags/nginx">nginx</a> 1 /
+      
+        <a href="http://out13.com/tags/operating-systems">operating-systems</a> 18 /
+      
+        <a href="http://out13.com/tags/paper">paper</a> 22 /
+      
+        <a href="http://out13.com/tags/performance">performance</a> 22 /
+      
+        <a href="http://out13.com/tags/personal">personal</a> 2 /
+      
+        <a href="http://out13.com/tags/research">research</a> 21 /
+      
+        <a href="http://out13.com/tags/review">review</a> 22 /
+      
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
+      
+        <a href="http://out13.com/tags/scientific">scientific</a> 22 /
+      
+        <a href="http://out13.com/tags/testing">testing</a> 1 /
+      
+        <a href="http://out13.com/tags/tools">tools</a> 2 /
+      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>/proc/meminfo - memory usage statistics</h1>
+    <ul>
+      
+      
+      <li>Link: <a href="http://man7.org/linux/man-pages/man5/proc.5.html" rel="nofollow" target="_blank">http://man7.org/linux/man-pages/man5/proc.5.html</a></li>
+      
+      <li>Command: cat /proc/meminfo</li>
+      
+    </ul>
+    <time>Mon, Jul 31, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 700 / <abbr title="Reading time">RT</abbr> 4min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=/proc/meminfo%20-%20memory%20usage%20statistics%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <hr />
+    
+
+<p>Reports statistics about memory usage on the system.
+Useful for inspecting more granular memory usage.</p>
+
+<blockquote>
+<p>Sample output below.</p>
+</blockquote>
+
+<pre><code>$ cat /proc/meminfo
+MemTotal:       12189912 kB
+MemFree:          231992 kB
+MemAvailable:    4174992 kB
+Buffers:          430884 kB
+Cached:          4515856 kB
+SwapCached:           60 kB
+Active:          8019760 kB
+Inactive:        3120804 kB
+Active(anon):    6121448 kB
+Inactive(anon):  1099620 kB
+Active(file):    1898312 kB
+Inactive(file):  2021184 kB
+Unevictable:        3088 kB
+Mlocked:            3088 kB
+SwapTotal:      12467708 kB
+SwapFree:       12467352 kB
+Dirty:              1568 kB
+Writeback:             0 kB
+AnonPages:       6196916 kB
+Mapped:          1339276 kB
+Shmem:           1027248 kB
+Slab:             584576 kB
+SReclaimable:     349700 kB
+SUnreclaim:       234876 kB
+KernelStack:       20800 kB
+PageTables:        93864 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    18562664 kB
+Committed_AS:   19186116 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1019904 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      386324 kB
+DirectMap2M:    12083200 kB
+DirectMap1G:           0 kB
+</code></pre>
+
+<h3 id="interpreting-each-one">Interpreting each one</h3>
+
+<blockquote>
+<p>MemTotal:       12189912 kB</p>
+</blockquote>
+
+<p>Total usable RAM memory minus reserved bits and kernel binary.</p>
+
+<blockquote>
+<p>MemFree:          231992 kB</p>
+</blockquote>
+
+<p>Sum of <code>LowFree</code> and <code>HighFree</code>.</p>
+
+<blockquote>
+<p>MemAvailable:    4174992 kB</p>
+</blockquote>
+
+<p>Self explanatory.</p>
+
+<blockquote>
+<p>Buffers:          430884 kB</p>
+</blockquote>
+
+<p>Temporary storage for raw disk blocks.</p>
+
+<blockquote>
+<p>Cached:          4515856 kB</p>
+</blockquote>
+
+<p>Does not include <code>SwapCached</code> in memory cache of files read from disk.</p>
+
+<blockquote>
+<p>SwapCached:           60 kB</p>
+</blockquote>
+
+<p>Memory once swapped out and swapped back in but still also in the swap file.
+In event of memory pressure swapped pages don&rsquo;t need to be swapped out again
+since they are already present.</p>
+
+<blockquote>
+<p>Active:          8019760 kB</p>
+</blockquote>
+
+<p>Memory used more recently.</p>
+
+<blockquote>
+<p>Inactive:        3120804 kB</p>
+</blockquote>
+
+<p>Memory used less recently. More eligible to be reclaimed.</p>
+
+<blockquote>
+<p>Active(anon):    6121448 kB</p>
+</blockquote>
+
+<p>Anonymous memory used more recently.</p>
+
+<blockquote>
+<p>Inactive(anon):  1099620 kB</p>
+</blockquote>
+
+<p>Anonymous memory used less recently, can be swapped out.</p>
+
+<blockquote>
+<p>Active(file):    1898312 kB</p>
+</blockquote>
+
+<p>Page cache (file cache) memory used more recently.</p>
+
+<blockquote>
+<p>Inactive(file):  2021184 kB</p>
+</blockquote>
+
+<p>Page cache (file cache) memory used less recently, can be reclaimed.</p>
+
+<blockquote>
+<p>Unevictable:        3088 kB</p>
+</blockquote>
+
+<p>Self explanatory.</p>
+
+<blockquote>
+<p>Mlocked:            3088 kB</p>
+</blockquote>
+
+<p>Locked memory pages using <code>mlock()</code> syscall, unevictable.</p>
+
+<blockquote>
+<p>SwapTotal:      12467708 kB</p>
+</blockquote>
+
+<p>Self explanatory.</p>
+
+<blockquote>
+<p>SwapFree:       12467352 kB</p>
+</blockquote>
+
+<p>Remaining swap space available.</p>
+
+<blockquote>
+<p>Dirty:              1568 kB</p>
+</blockquote>
+
+<p>Memory waiting to be written to disk.</p>
+
+<blockquote>
+<p>Writeback:             0 kB</p>
+</blockquote>
+
+<p>Memory being actively written to disk.</p>
+
+<blockquote>
+<p>AnonPages:       6196916 kB</p>
+</blockquote>
+
+<p>Non-file backed pages mapped in userland.</p>
+
+<blockquote>
+<p>Mapped:          1339276 kB</p>
+</blockquote>
+
+<p>Files mapped to memory using <code>mmapp()</code> syscall.</p>
+
+<blockquote>
+<p>Shmem:           1027248 kB</p>
+</blockquote>
+
+<p>Amount of memory consumed by <code>tmpfs</code> file system.</p>
+
+<blockquote>
+<p>Slab:             584576 kB</p>
+</blockquote>
+
+<p>Kernel data structures cache. More details in <code>/proc/slabinfo</code> || slabtop.
+Sum of <code>SReclaimable</code> +  <code>SUnreclaim</code>.</p>
+
+<blockquote>
+<p>SReclaimable:     349700 kB</p>
+</blockquote>
+
+<p>Part of <code>Slab</code> cache that can be reclaimed.</p>
+
+<blockquote>
+<p>SUnreclaim:       234876 kB</p>
+</blockquote>
+
+<p>Part of <code>Slab</code> cache, unevictable.</p>
+
+<blockquote>
+<p>KernelStack:       20800 kB</p>
+</blockquote>
+
+<p>Amount of memory allocated for Kernel stacks.</p>
+
+<blockquote>
+<p>PageTables:        93864 kB</p>
+</blockquote>
+
+<p>Memory allocated to lowest levels of page tables.</p>
+
+<blockquote>
+<p>NFS_Unstable:          0 kB</p>
+</blockquote>
+
+<p>NFS file system pages sent to server but not yet committed.</p>
+
+<blockquote>
+<p>Bounce:                0 kB</p>
+</blockquote>
+
+<p>Memory used in block device <strong>bounce</strong> buffers.</p>
+
+<blockquote>
+<p>WritebackTmp:          0 kB</p>
+</blockquote>
+
+<p>Memory used in <code>FUSE</code> (file system in user space) for temporary
+write-back buffers.</p>
+
+<blockquote>
+<p>CommitLimit:    18562664 kB</p>
+</blockquote>
+
+<p>Over commit memory limit adhered only if if strict over commit
+accounting is enabled in <code>/proc/sys/vm/overcommit_memory</code>.</p>
+
+<blockquote>
+<p>Committed_AS:   19186116 kB</p>
+</blockquote>
+
+<p>Amount of memory presently allocated on the system.
+Committed memory is the sum of all memory allocated by the process,
+even if it has not been &lsquo;used&rsquo;.</p>
+
+<blockquote>
+<p>VmallocTotal:   34359738367 kB</p>
+</blockquote>
+
+<p>Total sizes of <code>vmalloc</code> memory area.</p>
+
+<blockquote>
+<p>VmallocUsed:           0 kB</p>
+</blockquote>
+
+<p>Amount of <code>vmalloc</code> area which is used.</p>
+
+<blockquote>
+<p>VmallocChunk:          0 kB</p>
+</blockquote>
+
+<p>Largest contiguous block of <code>vmalloc</code> memory which is being used.</p>
+
+<blockquote>
+<p>HardwareCorrupted:     0 kB</p>
+</blockquote>
+
+<p>Amount of memory Kernel identified as corrupted.</p>
+
+<blockquote>
+<p>AnonHugePages:   1019904 kB</p>
+</blockquote>
+
+<p>Non-file backed huge pages mapped into userland page tables.</p>
+
+<blockquote>
+<p>CmaTotal:              0 kB</p>
+</blockquote>
+
+<p>Total pages allocated by contiguous memory allocator <code>CMA</code>.</p>
+
+<blockquote>
+<p>CmaFree:               0 kB</p>
+</blockquote>
+
+<p>Free contiguous memory allocator pages.</p>
+
+<blockquote>
+<p>HugePages_Total:       0</p>
+</blockquote>
+
+<p>Size of the huge page tables.</p>
+
+<blockquote>
+<p>HugePages_Free:        0</p>
+</blockquote>
+
+<p>Number of huge page tables that are free.</p>
+
+<blockquote>
+<p>HugePages_Rsvd:        0</p>
+</blockquote>
+
+<p>Number of huge page tables where commitment to allocate has been made,
+but actual allocation is not yet completed.</p>
+
+<blockquote>
+<p>HugePages_Surp:        0</p>
+</blockquote>
+
+<p>Number of huge page tables above allowed value.</p>
+
+<blockquote>
+<p>Hugepagesize:       2048 kB</p>
+</blockquote>
+
+<p>Size of huge page.</p>
+
+<blockquote>
+<p>DirectMap4k:      386324 kB</p>
+</blockquote>
+
+<p>Number of bytes linearly mapped by Kernel in 4KB pages.</p>
+
+<blockquote>
+<p>DirectMap2M:    12083200 kB</p>
+</blockquote>
+
+<p>Number of bytes linearly mapped by Kernel in 2M pages.</p>
+
+<blockquote>
+<p>DirectMap1G:           0 kB</p>
+</blockquote>
+
+<p>Number of bytes linearly mapped by Kernel in 1G pages.</p>
+
+    <hr />
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'ernestasposkusio';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+</div>
+<hr />
+
+<link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61312403-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+</body>
+</html>
+

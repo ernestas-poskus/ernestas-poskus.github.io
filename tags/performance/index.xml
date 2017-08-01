@@ -9,6 +9,358 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>/proc/meminfo - memory usage statistics</title>
+      <link>http://out13.com/tools/proc-meminfo/</link>
+      <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
+      
+      <guid>http://out13.com/tools/proc-meminfo/</guid>
+      <description>
+
+&lt;p&gt;Reports statistics about memory usage on the system.
+Useful for inspecting more granular memory usage.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sample output below.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /proc/meminfo
+MemTotal:       12189912 kB
+MemFree:          231992 kB
+MemAvailable:    4174992 kB
+Buffers:          430884 kB
+Cached:          4515856 kB
+SwapCached:           60 kB
+Active:          8019760 kB
+Inactive:        3120804 kB
+Active(anon):    6121448 kB
+Inactive(anon):  1099620 kB
+Active(file):    1898312 kB
+Inactive(file):  2021184 kB
+Unevictable:        3088 kB
+Mlocked:            3088 kB
+SwapTotal:      12467708 kB
+SwapFree:       12467352 kB
+Dirty:              1568 kB
+Writeback:             0 kB
+AnonPages:       6196916 kB
+Mapped:          1339276 kB
+Shmem:           1027248 kB
+Slab:             584576 kB
+SReclaimable:     349700 kB
+SUnreclaim:       234876 kB
+KernelStack:       20800 kB
+PageTables:        93864 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    18562664 kB
+Committed_AS:   19186116 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1019904 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      386324 kB
+DirectMap2M:    12083200 kB
+DirectMap1G:           0 kB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;interpreting-each-one&#34;&gt;Interpreting each one&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MemTotal:       12189912 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Total usable RAM memory minus reserved bits and kernel binary.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MemFree:          231992 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sum of &lt;code&gt;LowFree&lt;/code&gt; and &lt;code&gt;HighFree&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MemAvailable:    4174992 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Self explanatory.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Buffers:          430884 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Temporary storage for raw disk blocks.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Cached:          4515856 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Does not include &lt;code&gt;SwapCached&lt;/code&gt; in memory cache of files read from disk.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SwapCached:           60 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory once swapped out and swapped back in but still also in the swap file.
+In event of memory pressure swapped pages don&amp;rsquo;t need to be swapped out again
+since they are already present.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Active:          8019760 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory used more recently.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Inactive:        3120804 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory used less recently. More eligible to be reclaimed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Active(anon):    6121448 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Anonymous memory used more recently.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Inactive(anon):  1099620 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Anonymous memory used less recently, can be swapped out.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Active(file):    1898312 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Page cache (file cache) memory used more recently.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Inactive(file):  2021184 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Page cache (file cache) memory used less recently, can be reclaimed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Unevictable:        3088 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Self explanatory.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Mlocked:            3088 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Locked memory pages using &lt;code&gt;mlock()&lt;/code&gt; syscall, unevictable.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SwapTotal:      12467708 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Self explanatory.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SwapFree:       12467352 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Remaining swap space available.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Dirty:              1568 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory waiting to be written to disk.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Writeback:             0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory being actively written to disk.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;AnonPages:       6196916 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Non-file backed pages mapped in userland.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Mapped:          1339276 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Files mapped to memory using &lt;code&gt;mmapp()&lt;/code&gt; syscall.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Shmem:           1027248 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Amount of memory consumed by &lt;code&gt;tmpfs&lt;/code&gt; file system.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Slab:             584576 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Kernel data structures cache. More details in &lt;code&gt;/proc/slabinfo&lt;/code&gt; || slabtop.
+Sum of &lt;code&gt;SReclaimable&lt;/code&gt; +  &lt;code&gt;SUnreclaim&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SReclaimable:     349700 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Part of &lt;code&gt;Slab&lt;/code&gt; cache that can be reclaimed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SUnreclaim:       234876 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Part of &lt;code&gt;Slab&lt;/code&gt; cache, unevictable.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;KernelStack:       20800 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Amount of memory allocated for Kernel stacks.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;PageTables:        93864 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory allocated to lowest levels of page tables.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NFS_Unstable:          0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;NFS file system pages sent to server but not yet committed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Bounce:                0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory used in block device &lt;strong&gt;bounce&lt;/strong&gt; buffers.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;WritebackTmp:          0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Memory used in &lt;code&gt;FUSE&lt;/code&gt; (file system in user space) for temporary
+write-back buffers.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;CommitLimit:    18562664 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Over commit memory limit adhered only if if strict over commit
+accounting is enabled in &lt;code&gt;/proc/sys/vm/overcommit_memory&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Committed_AS:   19186116 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Amount of memory presently allocated on the system.
+Committed memory is the sum of all memory allocated by the process,
+even if it has not been &amp;lsquo;used&amp;rsquo;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;VmallocTotal:   34359738367 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Total sizes of &lt;code&gt;vmalloc&lt;/code&gt; memory area.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;VmallocUsed:           0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Amount of &lt;code&gt;vmalloc&lt;/code&gt; area which is used.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;VmallocChunk:          0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Largest contiguous block of &lt;code&gt;vmalloc&lt;/code&gt; memory which is being used.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HardwareCorrupted:     0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Amount of memory Kernel identified as corrupted.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;AnonHugePages:   1019904 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Non-file backed huge pages mapped into userland page tables.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;CmaTotal:              0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Total pages allocated by contiguous memory allocator &lt;code&gt;CMA&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;CmaFree:               0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Free contiguous memory allocator pages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HugePages_Total:       0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Size of the huge page tables.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HugePages_Free:        0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of huge page tables that are free.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HugePages_Rsvd:        0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of huge page tables where commitment to allocate has been made,
+but actual allocation is not yet completed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HugePages_Surp:        0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of huge page tables above allowed value.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Hugepagesize:       2048 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Size of huge page.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DirectMap4k:      386324 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of bytes linearly mapped by Kernel in 4KB pages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DirectMap2M:    12083200 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of bytes linearly mapped by Kernel in 2M pages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DirectMap1G:           0 kB&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Number of bytes linearly mapped by Kernel in 1G pages.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Scaling Memcache at Facebook</title>
       <link>http://out13.com/paper/scaling-memcache-at-facebook/</link>
       <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
@@ -966,56 +1318,6 @@ location information is incorrect, then it recursively moves up the tablet locat
 &lt;blockquote&gt;
 &lt;p&gt;GFS - Google File System&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ownership is theft experiences building an embedded os in rust</title>
-      <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
-      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
-      <description>
-
-&lt;h2 id=&#34;embedded-os-in-rust&#34;&gt;Embedded OS in Rust&lt;/h2&gt;
-
-&lt;p&gt;Embedded systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;lack hardware protection mechanism&lt;/li&gt;
-&lt;li&gt;less tolerant to crashes&lt;/li&gt;
-&lt;li&gt;no easy way for debugging&lt;/li&gt;
-&lt;li&gt;GC introduces non-deterministic delay&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
-
-&lt;p&gt;Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.&lt;/p&gt;
-
-&lt;p&gt;Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.&lt;/p&gt;
-
-&lt;p&gt;Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.&lt;/p&gt;
-
-&lt;p&gt;Preserved type safety without relying on a runtime GC for memory management.&lt;/p&gt;
-
-&lt;p&gt;Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Borrowing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Value can only be mutably borrowed if there are no other borrows of the value.&lt;/li&gt;
-&lt;li&gt;Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;execution-context-extension-for-rust&#34;&gt;Execution context (extension for Rust)&lt;/h3&gt;
-
-&lt;p&gt;Reflects the thread of a value&amp;rsquo;s owner in its type.&lt;/p&gt;
-
-&lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
-
-&lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
 </description>
     </item>
     
