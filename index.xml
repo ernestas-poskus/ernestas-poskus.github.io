@@ -6,8 +6,123 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Jul 2017 19:25:47 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 03 Aug 2017 19:10:33 +0300</lastBuildDate>
     <atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Analyzing the Security of Traffic Infrastructure</title>
+      <link>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</link>
+      <pubDate>Thu, 03 Aug 2017 19:10:33 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</guid>
+      <description>
+
+&lt;h2 id=&#34;green-lights-forever&#34;&gt;Green Lights Forever&lt;/h2&gt;
+
+&lt;p&gt;Safety critical nature of traffic infrastructure requires that
+it be secure against computer-based attacks.&lt;/p&gt;
+
+&lt;p&gt;Traffic signals were originally designed as standalone hardware,
+each running on fixed timing schedules, but have evolved into more
+complex, networked systems.&lt;/p&gt;
+
+&lt;p&gt;Traffic controllers now store multiple timing plans, integrate varied
+sensor data, and even communicate with other intersections in order
+to better coordinate traffic.&lt;/p&gt;
+
+&lt;p&gt;Wireless networking has helped to mitigate
+these costs, and many areas now use intelligent wireless
+traffic management systems.&lt;/p&gt;
+
+&lt;h3 id=&#34;controllers&#34;&gt;Controllers&lt;/h3&gt;
+
+&lt;p&gt;Traffic controllers read sensor inputs and control light
+states. The controller is typically placed in a metal cabinet
+by the roadside along with relays to activate the traffic lights.&lt;/p&gt;
+
+&lt;h3 id=&#34;communications&#34;&gt;Communications&lt;/h3&gt;
+
+&lt;p&gt;Radios commonly operate in the ISM band at 900 MHz or 5.8 GHz,
+or in the 4.9 GHz band allocated for public safety.&lt;/p&gt;
+
+&lt;h3 id=&#34;mmu&#34;&gt;MMU&lt;/h3&gt;
+
+&lt;p&gt;Malfunction management unit, also referred to as conflict management
+units, are hardware-level safety mechanisms&lt;/p&gt;
+
+&lt;p&gt;Valid configurations are stored on a circuit board rather than
+in software, with safe configurations literally wired together.&lt;/p&gt;
+
+&lt;p&gt;If an unsafe configuration (e.g. conflicting green lights) is
+detected, the MMU overrides the controller and forces
+the lights into a known-safe configuration.&lt;/p&gt;
+
+&lt;p&gt;The MMU also ensures that durations of lights are long enough.
+Too short of a yellow or red light duration will trigger a fault.&lt;/p&gt;
+
+&lt;h3 id=&#34;network&#34;&gt;Network&lt;/h3&gt;
+
+&lt;p&gt;One intersection acts as a root node and connects back to a
+management server under the control of the road agency.
+Intersections often have two radios, one slave radio to transmit
+to the next intersection towards the root and one master
+radio to receive from one or more
+child nodes beyond it. All devices form a single private
+network and belong to the same IP subnet.&lt;/p&gt;
+
+&lt;p&gt;The proprietary protocol is similar to 802.11 and
+broadcasts an SSID which is visible from standard laptops
+and smartphones but cannot be connected to.&lt;/p&gt;
+
+&lt;p&gt;The wireless connections are unencrypted and the radios
+use factory default usernames and passwords.&lt;/p&gt;
+
+&lt;h3 id=&#34;controller&#34;&gt;Controller&lt;/h3&gt;
+
+&lt;p&gt;A single controller at each intersection reads sensor data
+and controls the traffic lights and pedestrian signs. Many
+settings on the controller are programmable, including
+light timing parameters.&lt;/p&gt;
+
+&lt;p&gt;All of the settings on the controller may be configured
+via the physical interface on the controller, but they may
+also be modified though the network. An FTP connection
+to the device allows access to a writable configuration
+database. This requires a username and password, but
+they are fixed to default values which are published online
+by the manufacturer. It is not possible for a user to modify
+the FTP username or password.&lt;/p&gt;
+
+&lt;p&gt;The controller runs the VxWorks 5.5 real-time operating system.&lt;/p&gt;
+
+&lt;h3 id=&#34;findings&#34;&gt;Findings&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The network is accessible to attackers due to the lack of encryption.&lt;/li&gt;
+&lt;li&gt;Devices on the network lack secure authentication due to the use of default usernames and passwords.&lt;/li&gt;
+&lt;li&gt;The traffic controller is vulnerable to known exploits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;types-of-attacks&#34;&gt;Types of attacks&lt;/h3&gt;
+
+&lt;p&gt;DOS - A denial of service attack in this context refers to stopping normal light functionality.
+  The most obvious way to cause a loss of service is to set all lights to red.&lt;/p&gt;
+
+&lt;p&gt;Traffic Congestion - more subtly, attacks could be made against the entire traffic infrastructure
+  of a city which would manipulate the timings of an intersection relative to its neighbors.&lt;/p&gt;
+
+&lt;p&gt;Light Control - An attacker can also control lights for personal gain.
+  Lights could be changed to be green along the route the attacker is driving.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MMU - Malfunction management unit&lt;/p&gt;
+
+&lt;p&gt;Denial of service&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>/proc/meminfo - memory usage statistics</title>
@@ -1376,76 +1491,6 @@ Event handlers do not have direct control over queue operations or threads.&lt;/
 
 &lt;p&gt;Event queues in SEDA is that they may be finite: that is, an enqueue operation may fail
 if the queue wishes to reject new entries, say, because it has reached a threshold.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Interaction of Buffer Size and TCP Protocol Handling and its Impact</title>
-      <link>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</link>
-      <pubDate>Thu, 17 Nov 2016 19:23:07 +0200</pubDate>
-      
-      <guid>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</guid>
-      <description>
-
-&lt;h3 id=&#34;abstract&#34;&gt;Abstract&lt;/h3&gt;
-
-&lt;p&gt;Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
-data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.&lt;/p&gt;
-
-&lt;h4 id=&#34;tcp-congestion-control-versus-system-buffer-management&#34;&gt;TCP Congestion Control versus System Buffer Management&lt;/h4&gt;
-
-&lt;p&gt;TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
-protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
-Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
-reconstructed and verified at the recipient’s end. The congestion-control mechanism
-was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
-transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
-depending on network conditions.&lt;/p&gt;
-
-&lt;p&gt;System buffer management. Every network device that transports data has buffers,
-usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
-that periodic data bursts can be accommodated without having to drop packets.
-Network systems such as switch-routers are architected differently, however, and can
-vary significantly in the size of their buffers and how they manage different traffic flows.&lt;/p&gt;
-
-&lt;h4 id=&#34;deep-buffer-vs-intelligent-buffer&#34;&gt;Deep buffer vs Intelligent buffer&lt;/h4&gt;
-
-&lt;p&gt;A common practice is to put in as much buffer as possible. However, since the
-buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
-how to use this shared resource can significantly impact applications’ performance.&lt;/p&gt;
-
-&lt;p&gt;The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
-not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
-and hence longer flow completion time.&lt;/p&gt;
-
-&lt;p&gt;Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
-resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
-because large buffers do not create more link bandwidth.&lt;/p&gt;
-
-&lt;h4 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h4&gt;
-
-&lt;p&gt;Since mice flows are often mission critical (including, for example, control and alarm messages,
-Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
-them to complete faster and their applications to perform better overall. The above test results
-show that expediting mice flows and regulating the elephant flows early under the intelligent
-buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
-magnitude better performance for mission critical flows without causing elephant flows to slow
-down.&lt;/p&gt;
-
-&lt;p&gt;Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
-there is enough buffer space for the bursts of mice flows while the elephant flows are properly
-regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
-in the form of longer queuing latency, and hence longer flow completion time for all flow types.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Elephant - big flows&lt;/p&gt;
-
-&lt;p&gt;Mice - small flows&lt;/p&gt;
-
-&lt;p&gt;FCT - flow completion time&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     

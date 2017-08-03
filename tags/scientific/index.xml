@@ -9,6 +9,121 @@
     <atom:link href="http://out13.com/tags/scientific/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Analyzing the Security of Traffic Infrastructure</title>
+      <link>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</link>
+      <pubDate>Thu, 03 Aug 2017 19:10:33 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</guid>
+      <description>
+
+&lt;h2 id=&#34;green-lights-forever&#34;&gt;Green Lights Forever&lt;/h2&gt;
+
+&lt;p&gt;Safety critical nature of traffic infrastructure requires that
+it be secure against computer-based attacks.&lt;/p&gt;
+
+&lt;p&gt;Traffic signals were originally designed as standalone hardware,
+each running on fixed timing schedules, but have evolved into more
+complex, networked systems.&lt;/p&gt;
+
+&lt;p&gt;Traffic controllers now store multiple timing plans, integrate varied
+sensor data, and even communicate with other intersections in order
+to better coordinate traffic.&lt;/p&gt;
+
+&lt;p&gt;Wireless networking has helped to mitigate
+these costs, and many areas now use intelligent wireless
+traffic management systems.&lt;/p&gt;
+
+&lt;h3 id=&#34;controllers&#34;&gt;Controllers&lt;/h3&gt;
+
+&lt;p&gt;Traffic controllers read sensor inputs and control light
+states. The controller is typically placed in a metal cabinet
+by the roadside along with relays to activate the traffic lights.&lt;/p&gt;
+
+&lt;h3 id=&#34;communications&#34;&gt;Communications&lt;/h3&gt;
+
+&lt;p&gt;Radios commonly operate in the ISM band at 900 MHz or 5.8 GHz,
+or in the 4.9 GHz band allocated for public safety.&lt;/p&gt;
+
+&lt;h3 id=&#34;mmu&#34;&gt;MMU&lt;/h3&gt;
+
+&lt;p&gt;Malfunction management unit, also referred to as conflict management
+units, are hardware-level safety mechanisms&lt;/p&gt;
+
+&lt;p&gt;Valid configurations are stored on a circuit board rather than
+in software, with safe configurations literally wired together.&lt;/p&gt;
+
+&lt;p&gt;If an unsafe configuration (e.g. conflicting green lights) is
+detected, the MMU overrides the controller and forces
+the lights into a known-safe configuration.&lt;/p&gt;
+
+&lt;p&gt;The MMU also ensures that durations of lights are long enough.
+Too short of a yellow or red light duration will trigger a fault.&lt;/p&gt;
+
+&lt;h3 id=&#34;network&#34;&gt;Network&lt;/h3&gt;
+
+&lt;p&gt;One intersection acts as a root node and connects back to a
+management server under the control of the road agency.
+Intersections often have two radios, one slave radio to transmit
+to the next intersection towards the root and one master
+radio to receive from one or more
+child nodes beyond it. All devices form a single private
+network and belong to the same IP subnet.&lt;/p&gt;
+
+&lt;p&gt;The proprietary protocol is similar to 802.11 and
+broadcasts an SSID which is visible from standard laptops
+and smartphones but cannot be connected to.&lt;/p&gt;
+
+&lt;p&gt;The wireless connections are unencrypted and the radios
+use factory default usernames and passwords.&lt;/p&gt;
+
+&lt;h3 id=&#34;controller&#34;&gt;Controller&lt;/h3&gt;
+
+&lt;p&gt;A single controller at each intersection reads sensor data
+and controls the traffic lights and pedestrian signs. Many
+settings on the controller are programmable, including
+light timing parameters.&lt;/p&gt;
+
+&lt;p&gt;All of the settings on the controller may be configured
+via the physical interface on the controller, but they may
+also be modified though the network. An FTP connection
+to the device allows access to a writable configuration
+database. This requires a username and password, but
+they are fixed to default values which are published online
+by the manufacturer. It is not possible for a user to modify
+the FTP username or password.&lt;/p&gt;
+
+&lt;p&gt;The controller runs the VxWorks 5.5 real-time operating system.&lt;/p&gt;
+
+&lt;h3 id=&#34;findings&#34;&gt;Findings&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The network is accessible to attackers due to the lack of encryption.&lt;/li&gt;
+&lt;li&gt;Devices on the network lack secure authentication due to the use of default usernames and passwords.&lt;/li&gt;
+&lt;li&gt;The traffic controller is vulnerable to known exploits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;types-of-attacks&#34;&gt;Types of attacks&lt;/h3&gt;
+
+&lt;p&gt;DOS - A denial of service attack in this context refers to stopping normal light functionality.
+  The most obvious way to cause a loss of service is to set all lights to red.&lt;/p&gt;
+
+&lt;p&gt;Traffic Congestion - more subtly, attacks could be made against the entire traffic infrastructure
+  of a city which would manipulate the timings of an intersection relative to its neighbors.&lt;/p&gt;
+
+&lt;p&gt;Light Control - An attacker can also control lights for personal gain.
+  Lights could be changed to be green along the route the attacker is driving.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MMU - Malfunction management unit&lt;/p&gt;
+
+&lt;p&gt;Denial of service&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Scaling Memcache at Facebook</title>
       <link>http://out13.com/paper/scaling-memcache-at-facebook/</link>
       <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
@@ -964,73 +1079,6 @@ more scalable, and more available system.&lt;/p&gt;
 &lt;p&gt;Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
 distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
 higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Bigtable: A Distributed Storage System for Structured Data</title>
-      <link>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</link>
-      <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>
-      
-      <guid>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</guid>
-      <description>
-
-&lt;h2 id=&#34;bigtable&#34;&gt;Bigtable&lt;/h2&gt;
-
-&lt;p&gt;Bigtable is a distributed storage system for managing structured data that is
-designed to scale to a very large size: petabytes of data across thousands of commodity servers.&lt;/p&gt;
-
-&lt;p&gt;Bigtable does not support a full relational data model; instead, it provides
-clients with a simple data model that supports dynamic control over data layout
-and format, and allows clients to reason about the locality properties of the data
-represented in the underlying storage.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-model&#34;&gt;Data model&lt;/h3&gt;
-
-&lt;p&gt;A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
-The map is indexed by a row key, column key, and a timestamp; each value in the map
-is an uninterpreted array of bytes.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;(row:string, column:string, time:int64) → string&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
-Each row range is called a tablet, which is the unit of distribution and load balancing.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.&lt;/p&gt;
-
-&lt;p&gt;First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.&lt;/p&gt;
-
-&lt;p&gt;Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
-Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.&lt;/p&gt;
-
-&lt;p&gt;Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure&lt;/p&gt;
-
-&lt;h3 id=&#34;client&#34;&gt;Client&lt;/h3&gt;
-
-&lt;p&gt;The client library caches tablet locations.
-If the client does not know the location of a tablet, or if it discovers that cached
-location information is incorrect, then it recursively moves up the tablet location hierarchy.&lt;/p&gt;
-
-&lt;h3 id=&#34;caching&#34;&gt;Caching&lt;/h3&gt;
-
-&lt;p&gt;To improve read performance, tablet servers use two levels of caching.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.&lt;/li&gt;
-&lt;li&gt;Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;GFS - Google File System&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     
