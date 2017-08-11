@@ -9,6 +9,55 @@
     <atom:link href="http://out13.com/tags/review/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Cooperative Task Management without Manual Stack Management</title>
+      <link>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</link>
+      <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</guid>
+      <description>
+
+&lt;h2 id=&#34;or-event-driven-programming-is-not-the-opposite-of-threaded-programming&#34;&gt;Or, Event-driven Programming is Not the Opposite of Threaded Programming&lt;/h2&gt;
+
+&lt;p&gt;Two programming styles as a conflation of two concepts: task
+management and stack management.&lt;/p&gt;
+
+&lt;p&gt;Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo;
+programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo;
+in the space that combines the advantages of both programming styles.&lt;/p&gt;
+
+&lt;p&gt;Different task management approaches offer different granularities
+of atomicity on shared state.
+Conflict management considers how to convert available atomicity
+to a meaningful mechanism for avoiding resource conflicts.&lt;/p&gt;
+
+&lt;p&gt;High-performance programs are often written with preemptive task management,
+wherein execution of tasks can interleave on uniprocessors
+or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;The opposite approach, serial task management, runs each task to completion
+before starting the next task. Its advantage is that there is no conflict
+of access to the shared state; one can define inter-task invariants on
+the shared state and be assured that, while the present task is running,
+no other tasks can violate the invariants.&lt;/p&gt;
+
+&lt;p&gt;A compromise approach is cooperative task management.
+In this approach, a task’s code only yields control to other tasks
+at well-defined points in its execution; usually only when the task
+must wait for long-running I/O. The approach is valuable when tasks
+must interleave to avoid waiting on each other’s I/O, but multiprocessor
+parallelism is not crucial for good application performance.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;Serial task management, runs each task to completion before starting the next task.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Analyzing the Security of Traffic Infrastructure</title>
       <link>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</link>
       <pubDate>Thu, 03 Aug 2017 19:10:33 +0300</pubDate>
@@ -1033,52 +1082,6 @@ be moved in order to bring the system back into balance.&lt;/p&gt;
 
 &lt;p&gt;PUSH p - RUSH placement using prime numbers&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Dynamo: Amazon’s Highly Available Key-value Store</title>
-      <link>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</link>
-      <pubDate>Sun, 06 Nov 2016 12:32:44 +0200</pubDate>
-      
-      <guid>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</guid>
-      <description>
-
-&lt;h2 id=&#34;dynamo&#34;&gt;Dynamo&lt;/h2&gt;
-
-&lt;p&gt;Dynamo sacrifices Consistency for Availability under certain failure scenarios.
-It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.&lt;/p&gt;
-
-&lt;p&gt;Gossip based distributed failure detection and membership protocol.&lt;/p&gt;
-
-&lt;h3 id=&#34;query-model&#34;&gt;Query Model&lt;/h3&gt;
-
-&lt;p&gt;Read &amp;amp; Write operations to data item that is uniquely identified by a key.
-State is stored as blobs.
-Targets application that store objects up to 1MB.&lt;/p&gt;
-
-&lt;h3 id=&#34;acid&#34;&gt;ACID&lt;/h3&gt;
-
-&lt;p&gt;Dynamo targets applications that operate with weaker consistency (the “C” in ACID) if this results in high availability.&lt;/p&gt;
-
-&lt;p&gt;No isolation guarantees. Permits only single key updates.&lt;/p&gt;
-
-&lt;h3 id=&#34;design&#34;&gt;Design&lt;/h3&gt;
-
-&lt;p&gt;Incremental scalability: Dynamo should be able to scale out one storage host (henceforth, referred to as “node”) at a time,
-with minimal impact on both operators of the system and the system itself.&lt;/p&gt;
-
-&lt;p&gt;Symmetry: Every node in Dynamo should have the same set of responsibilities as its peers; there should be no distinguished node
-or nodes that take special roles or extra set of responsibilities. In our experience, symmetry simplifies the process of system
-provisioning and maintenance.&lt;/p&gt;
-
-&lt;p&gt;Decentralization: An extension of symmetry, the design should favor decentralized peer-to-peer techniques over centralized
-control. In the past, centralized control has resulted in outages and the goal is to avoid it as much as possible. This leads to a simpler,
-more scalable, and more available system.&lt;/p&gt;
-
-&lt;p&gt;Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
-distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
-higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
 </description>
     </item>
     

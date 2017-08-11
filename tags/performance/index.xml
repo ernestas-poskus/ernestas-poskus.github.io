@@ -9,6 +9,55 @@
     <atom:link href="http://out13.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Cooperative Task Management without Manual Stack Management</title>
+      <link>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</link>
+      <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</guid>
+      <description>
+
+&lt;h2 id=&#34;or-event-driven-programming-is-not-the-opposite-of-threaded-programming&#34;&gt;Or, Event-driven Programming is Not the Opposite of Threaded Programming&lt;/h2&gt;
+
+&lt;p&gt;Two programming styles as a conflation of two concepts: task
+management and stack management.&lt;/p&gt;
+
+&lt;p&gt;Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo;
+programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo;
+in the space that combines the advantages of both programming styles.&lt;/p&gt;
+
+&lt;p&gt;Different task management approaches offer different granularities
+of atomicity on shared state.
+Conflict management considers how to convert available atomicity
+to a meaningful mechanism for avoiding resource conflicts.&lt;/p&gt;
+
+&lt;p&gt;High-performance programs are often written with preemptive task management,
+wherein execution of tasks can interleave on uniprocessors
+or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;The opposite approach, serial task management, runs each task to completion
+before starting the next task. Its advantage is that there is no conflict
+of access to the shared state; one can define inter-task invariants on
+the shared state and be assured that, while the present task is running,
+no other tasks can violate the invariants.&lt;/p&gt;
+
+&lt;p&gt;A compromise approach is cooperative task management.
+In this approach, a task’s code only yields control to other tasks
+at well-defined points in its execution; usually only when the task
+must wait for long-running I/O. The approach is valuable when tasks
+must interleave to avoid waiting on each other’s I/O, but multiprocessor
+parallelism is not crucial for good application performance.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;Serial task management, runs each task to completion before starting the next task.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>/proc/meminfo - memory usage statistics</title>
       <link>http://out13.com/tools/proc-meminfo/</link>
       <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
@@ -1251,73 +1300,6 @@ more scalable, and more available system.&lt;/p&gt;
 &lt;p&gt;Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
 distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
 higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Bigtable: A Distributed Storage System for Structured Data</title>
-      <link>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</link>
-      <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>
-      
-      <guid>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</guid>
-      <description>
-
-&lt;h2 id=&#34;bigtable&#34;&gt;Bigtable&lt;/h2&gt;
-
-&lt;p&gt;Bigtable is a distributed storage system for managing structured data that is
-designed to scale to a very large size: petabytes of data across thousands of commodity servers.&lt;/p&gt;
-
-&lt;p&gt;Bigtable does not support a full relational data model; instead, it provides
-clients with a simple data model that supports dynamic control over data layout
-and format, and allows clients to reason about the locality properties of the data
-represented in the underlying storage.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-model&#34;&gt;Data model&lt;/h3&gt;
-
-&lt;p&gt;A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
-The map is indexed by a row key, column key, and a timestamp; each value in the map
-is an uninterpreted array of bytes.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;(row:string, column:string, time:int64) → string&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
-Each row range is called a tablet, which is the unit of distribution and load balancing.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.&lt;/p&gt;
-
-&lt;p&gt;First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.&lt;/p&gt;
-
-&lt;p&gt;Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
-Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.&lt;/p&gt;
-
-&lt;p&gt;Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure&lt;/p&gt;
-
-&lt;h3 id=&#34;client&#34;&gt;Client&lt;/h3&gt;
-
-&lt;p&gt;The client library caches tablet locations.
-If the client does not know the location of a tablet, or if it discovers that cached
-location information is incorrect, then it recursively moves up the tablet location hierarchy.&lt;/p&gt;
-
-&lt;h3 id=&#34;caching&#34;&gt;Caching&lt;/h3&gt;
-
-&lt;p&gt;To improve read performance, tablet servers use two levels of caching.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.&lt;/li&gt;
-&lt;li&gt;Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;GFS - Google File System&lt;/p&gt;
-&lt;/blockquote&gt;
 </description>
     </item>
     

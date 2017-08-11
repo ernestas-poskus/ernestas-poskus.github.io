@@ -9,6 +9,55 @@
     <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Cooperative Task Management without Manual Stack Management</title>
+      <link>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</link>
+      <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</guid>
+      <description>
+
+&lt;h2 id=&#34;or-event-driven-programming-is-not-the-opposite-of-threaded-programming&#34;&gt;Or, Event-driven Programming is Not the Opposite of Threaded Programming&lt;/h2&gt;
+
+&lt;p&gt;Two programming styles as a conflation of two concepts: task
+management and stack management.&lt;/p&gt;
+
+&lt;p&gt;Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo;
+programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo;
+in the space that combines the advantages of both programming styles.&lt;/p&gt;
+
+&lt;p&gt;Different task management approaches offer different granularities
+of atomicity on shared state.
+Conflict management considers how to convert available atomicity
+to a meaningful mechanism for avoiding resource conflicts.&lt;/p&gt;
+
+&lt;p&gt;High-performance programs are often written with preemptive task management,
+wherein execution of tasks can interleave on uniprocessors
+or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;The opposite approach, serial task management, runs each task to completion
+before starting the next task. Its advantage is that there is no conflict
+of access to the shared state; one can define inter-task invariants on
+the shared state and be assured that, while the present task is running,
+no other tasks can violate the invariants.&lt;/p&gt;
+
+&lt;p&gt;A compromise approach is cooperative task management.
+In this approach, a task’s code only yields control to other tasks
+at well-defined points in its execution; usually only when the task
+must wait for long-running I/O. The approach is valuable when tasks
+must interleave to avoid waiting on each other’s I/O, but multiprocessor
+parallelism is not crucial for good application performance.&lt;/p&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.&lt;/p&gt;
+
+&lt;p&gt;Serial task management, runs each task to completion before starting the next task.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
       <title>/proc/meminfo - memory usage statistics</title>
       <link>http://out13.com/tools/proc-meminfo/</link>
       <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
@@ -1173,60 +1222,6 @@ data structure are called garbage.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Queues Are Databases</title>
-      <link>http://out13.com/paper/queues-are-databases/</link>
-      <pubDate>Fri, 12 Aug 2016 16:57:55 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/queues-are-databases/</guid>
-      <description>
-
-&lt;h2 id=&#34;queued-transaction-processing-over-pure-client-server-transaction-processing&#34;&gt;Queued transaction processing over pure client-server transaction processing.&lt;/h2&gt;
-
-&lt;p&gt;Queued systems are build on top of direct systems.&lt;/p&gt;
-
-&lt;p&gt;TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.&lt;/p&gt;
-
-&lt;p&gt;Queue manager is best built as a naive resource manager atop an object-relational database system.
-That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.&lt;/p&gt;
-
-&lt;p&gt;Queues pose difficult problems when implemented atop a database:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Performance: An enqueue transaction is an insert followed by a commit. This places
-extreme performance demands on the concurrency control and recovery components
-of a database &amp;ndash; it exposes hotspots and high-overhead code.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Concurrency control: The dequeue transaction typically involves deleting a record from
-the queue, processing the request, enqueuing results in other queues, and then
-committing. Serializable isolation requires that there can be at most one dequeue
-executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read past: locks allow a program to skip over dirty (uncommitted records) to find the
-first committed record. This is what a dequeue() operation wants.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read through: locks allow a program to examine records that have not yet been
-committed. This is useful in polling the status of a queued request that is currently
-being processed.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Notify: allow a program to wait for a state change in a lock. This allows a
-dequeue() operation to wait for one or more queues to become non-empty.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MOM - message oriented middleware&lt;/p&gt;
-
-&lt;p&gt;TP - transaction processing&lt;/p&gt;
-
-&lt;p&gt;P2P - peer to peer&lt;/p&gt;
-
-&lt;p&gt;ORB - object request broker&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>
