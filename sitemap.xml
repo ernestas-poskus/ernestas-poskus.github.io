@@ -244,14 +244,6 @@
   
   
   <url>
-    <loc>http://out13.com/tags/algorithms/</loc>
-    <lastmod>2016-12-29T20:25:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/categories/ansible/</loc>
     <lastmod>2016-09-25T19:12:59+03:00</lastmod>
     <priority>0</priority>
@@ -276,40 +268,8 @@
   
   
   <url>
-    <loc>http://out13.com/tags/cisco/</loc>
-    <lastmod>2016-11-17T19:23:07+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/cluster/</loc>
-    <lastmod>2017-02-09T20:27:52+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/database/</loc>
-    <lastmod>2017-01-29T13:47:18+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/</loc>
     <lastmod>2017-08-10T21:48:19+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/garbage-collection/</loc>
-    <lastmod>2016-08-25T19:13:56+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -365,14 +325,6 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/performance/</loc>
     <lastmod>2017-08-10T21:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
@@ -438,14 +390,6 @@
   <url>
     <loc>http://out13.com/tags/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/testing/</loc>
-    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
     <priority>0</priority>
   </url>
   
