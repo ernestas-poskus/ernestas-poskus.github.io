@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Scaling Memcache at Facebook - Ernestas Poškus.io</title>
+  <title>Attacking Branch Predictors to Bypass ASLR - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Scaling Memcache at Facebook" />
+  <meta property="og:title" content="Attacking Branch Predictors to Bypass ASLR" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/scaling-memcache-at-facebook/" />
+  <meta property="og:url" content="http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -82,68 +82,52 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Scaling Memcache at Facebook</h1>
+    <h1>Attacking Branch Predictors to Bypass ASLR</h1>
     <ul>
-      <li>Author: Rajesh Nishtala, Hans Fugal, Steven Grimm, Marc Kwiatkowski, Herman Lee, Harry C. Li, Ryan McElroy, Mike Paleczny, Daniel Peek, Paul Saab, David Stafford, Tony Tung, Venkateshwaran Venkataramani</li>
-      <li>Name: Scaling Memcache at Facebook</li>
+      <li>Author: Dmitry Evtyushkin, Dmitry Ponomarev, Nael Abu-Ghazaleh</li>
+      <li>Name: Jump Over ASLR: Attacking Branch Predictors to Bypass ASLR</li>
       
-      <li>Link: <a href="https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf" rel="nofollow" target="_blank">https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf</a></li>
+      <li>Link: <a href="http://www.cs.ucr.edu/~nael/pubs/micro16.pdf" rel="nofollow" target="_blank">http://www.cs.ucr.edu/~nael/pubs/micro16.pdf</a></li>
       
     </ul>
-    <time>Thu, Jul 27, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 404 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Scaling%20Memcache%20at%20Facebook%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Sep 14, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 140 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Attacking%20Branch%20Predictors%20to%20Bypass%20ASLR%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="memcache-at-facebook">Memcache at Facebook</h2>
+<h2 id="address-space-layout-randomization">Address Space Layout Randomization</h2>
 
-<p>Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.</p>
+<p>ASLR is widely used technique that protects systems against range of attacks.</p>
 
-<p>Items are distributed across the memcached servers through consistent hashing.</p>
+<p>ASLR works by randomizing the offset of key program segments
+in virtual memory, making it difficult for an attacker to derive
+the addresses of specific code objects and consequently redirect
+the control flow to this code.</p>
 
-<p><code>all</code> web servers communicate with every memcached server in a short period of time.
-This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
-Reduce latency mainly by focusing on the memcache client, which runs on each web server.</p>
+<p>Purpose of ASLR is to make it difficult, if not impossible, for the
+attacker to know the location of specific code pages in program address space.</p>
 
-<p>Constructing a directed acyclic graph (DAG) representing the dependencies between data.
-A web server uses this DAG to maximize the number of items that can be fetched concurrently.</p>
-
-<p>Clients treat get errors as cache misses, but web servers will skip inserting entries
-into memcached after querying for data to avoid putting additional load on
-a possibly overloaded network or server.</p>
-
-<p>Clients therefore use a sliding window mechanism to control the number of outstanding requests.
-When the client receives a response, the next request can be sent.
-Similar to TCP’s congestion control, the size of this sliding window grows
-slowly upon a successful request and shrinks when a request goes unanswered.</p>
-
-<p>Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
-failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.</p>
-
-<p>When a memcached client receives no response to its get request,
-the client assumes the server has failed and issues the request again to a special Gutter pool.</p>
-
-<p>If this second request misses, the client will insert the appropriate key-value
-pair into the Gutter machine after querying the database.
-Entries in Gutter expire quickly to obviate Gutter invalidations.
-Gutter limits the load on backend services at the cost of slightly stale data.</p>
-
-<p>Deploy invalidation daemons (named mcsqueal) on every database.
-Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
-casts these deletes to the memcache deployment in every frontend cluster in that region.</p>
-
-<h3 id="performance-optimizations">Performance optimizations</h3>
-
-<p>Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
-were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
-server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
-its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.</p>
+<p>Exploited collisions in shared BTBs to create BTB
+side-channels and allow the attacker process to recover the
+memory layout of both the kernel and user-level applications.</p>
 
 <h4 id="notes">Notes</h4>
 
 <blockquote>
-<p>DAG - directed acyclic graph</p>
+<p>ASLR - address space layout randomization</p>
+
+<p>BTB - branch target buffer</p>
+
+<p>ROP - return oriented programming</p>
+
+<p>KASLR - Kernel ASLR</p>
+
+<p>JOP - jump oriented programming</p>
+
+<p>SDC - same domain collisions</p>
+
+<p>PDE - page directory entry</p>
 </blockquote>
 
     <hr />

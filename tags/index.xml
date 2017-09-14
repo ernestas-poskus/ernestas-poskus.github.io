@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/</link>
+    <description>Recent content in Tags on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Nov 2016 08:48:29 +0200</lastBuildDate>
+    
+	<atom:link href="http://out13.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ansible</title>
+      <link>http://out13.com/tags/ansible/</link>
+      <pubDate>Thu, 03 Nov 2016 08:48:29 +0200</pubDate>
+      
+      <guid>http://out13.com/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kernel</title>
+      <link>http://out13.com/tags/kernel/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/kernel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Learning</title>
+      <link>http://out13.com/tags/learning/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://out13.com/tags/linux/</link>
+      <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>http://out13.com/tags/nginx/</link>
+      <pubDate>Wed, 08 Mar 2017 08:44:03 +0200</pubDate>
+      
+      <guid>http://out13.com/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operating Systems</title>
+      <link>http://out13.com/tags/operating-systems/</link>
+      <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/operating-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paper</title>
+      <link>http://out13.com/tags/paper/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/paper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Personal</title>
+      <link>http://out13.com/tags/personal/</link>
+      <pubDate>Thu, 03 Nov 2016 08:48:29 +0200</pubDate>
+      
+      <guid>http://out13.com/tags/personal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>http://out13.com/tags/research/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Review</title>
+      <link>http://out13.com/tags/review/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>http://out13.com/tags/rust/</link>
+      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scientific</title>
+      <link>http://out13.com/tags/scientific/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/scientific/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>http://out13.com/tags/tools/</link>
+      <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
+      
+      <guid>http://out13.com/tags/tools/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

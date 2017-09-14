@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Operating Systems on Ernestas Poškus.io</title>
-    <link>http://out13.com/tags/operating-systems/index.xml</link>
+    <link>http://out13.com/tags/operating-systems/</link>
     <description>Recent content in Operating Systems on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2017 21:48:19 +0300</lastBuildDate>
+    
+	<atom:link href="http://out13.com/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Cooperative Task Management without Manual Stack Management</title>
@@ -14,47 +17,9 @@
       <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
       
       <guid>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</guid>
-      <description>
-
-&lt;h2 id=&#34;or-event-driven-programming-is-not-the-opposite-of-threaded-programming&#34;&gt;Or, Event-driven Programming is Not the Opposite of Threaded Programming&lt;/h2&gt;
-
-&lt;p&gt;Two programming styles as a conflation of two concepts: task
-management and stack management.&lt;/p&gt;
-
-&lt;p&gt;Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo;
-programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo;
-in the space that combines the advantages of both programming styles.&lt;/p&gt;
-
-&lt;p&gt;Different task management approaches offer different granularities
-of atomicity on shared state.
-Conflict management considers how to convert available atomicity
-to a meaningful mechanism for avoiding resource conflicts.&lt;/p&gt;
-
-&lt;p&gt;High-performance programs are often written with preemptive task management,
-wherein execution of tasks can interleave on uniprocessors
-or overlap on multiprocessors.&lt;/p&gt;
-
-&lt;p&gt;The opposite approach, serial task management, runs each task to completion
-before starting the next task. Its advantage is that there is no conflict
-of access to the shared state; one can define inter-task invariants on
-the shared state and be assured that, while the present task is running,
-no other tasks can violate the invariants.&lt;/p&gt;
-
-&lt;p&gt;A compromise approach is cooperative task management.
-In this approach, a task’s code only yields control to other tasks
-at well-defined points in its execution; usually only when the task
-must wait for long-running I/O. The approach is valuable when tasks
-must interleave to avoid waiting on each other’s I/O, but multiprocessor
-parallelism is not crucial for good application performance.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.&lt;/p&gt;
-
-&lt;p&gt;Serial task management, runs each task to completion before starting the next task.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Or, Event-driven Programming is Not the Opposite of Threaded Programming Two programming styles as a conflation of two concepts: task management and stack management.
+Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo; programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo; in the space that combines the advantages of both programming styles.
+Different task management approaches offer different granularities of atomicity on shared state. Conflict management considers how to convert available atomicity to a meaningful mechanism for avoiding resource conflicts.</description>
     </item>
     
     <item>
@@ -63,350 +28,9 @@ parallelism is not crucial for good application performance.&lt;/p&gt;
       <pubDate>Mon, 31 Jul 2017 19:25:47 +0300</pubDate>
       
       <guid>http://out13.com/tools/proc-meminfo/</guid>
-      <description>
-
-&lt;p&gt;Reports statistics about memory usage on the system.
-Useful for inspecting more granular memory usage.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Sample output below.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cat /proc/meminfo
-MemTotal:       12189912 kB
-MemFree:          231992 kB
-MemAvailable:    4174992 kB
-Buffers:          430884 kB
-Cached:          4515856 kB
-SwapCached:           60 kB
-Active:          8019760 kB
-Inactive:        3120804 kB
-Active(anon):    6121448 kB
-Inactive(anon):  1099620 kB
-Active(file):    1898312 kB
-Inactive(file):  2021184 kB
-Unevictable:        3088 kB
-Mlocked:            3088 kB
-SwapTotal:      12467708 kB
-SwapFree:       12467352 kB
-Dirty:              1568 kB
-Writeback:             0 kB
-AnonPages:       6196916 kB
-Mapped:          1339276 kB
-Shmem:           1027248 kB
-Slab:             584576 kB
-SReclaimable:     349700 kB
-SUnreclaim:       234876 kB
-KernelStack:       20800 kB
-PageTables:        93864 kB
-NFS_Unstable:          0 kB
-Bounce:                0 kB
-WritebackTmp:          0 kB
-CommitLimit:    18562664 kB
-Committed_AS:   19186116 kB
-VmallocTotal:   34359738367 kB
-VmallocUsed:           0 kB
-VmallocChunk:          0 kB
-HardwareCorrupted:     0 kB
-AnonHugePages:   1019904 kB
-CmaTotal:              0 kB
-CmaFree:               0 kB
-HugePages_Total:       0
-HugePages_Free:        0
-HugePages_Rsvd:        0
-HugePages_Surp:        0
-Hugepagesize:       2048 kB
-DirectMap4k:      386324 kB
-DirectMap2M:    12083200 kB
-DirectMap1G:           0 kB
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;interpreting-each-one&#34;&gt;Interpreting each one&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MemTotal:       12189912 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Total usable RAM memory minus reserved bits and kernel binary.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MemFree:          231992 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Sum of &lt;code&gt;LowFree&lt;/code&gt; and &lt;code&gt;HighFree&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MemAvailable:    4174992 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Self explanatory.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Buffers:          430884 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Temporary storage for raw disk blocks.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Cached:          4515856 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Does not include &lt;code&gt;SwapCached&lt;/code&gt; in memory cache of files read from disk.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;SwapCached:           60 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory once swapped out and swapped back in but still also in the swap file.
-In event of memory pressure swapped pages don&amp;rsquo;t need to be swapped out again
-since they are already present.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Active:          8019760 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory used more recently.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Inactive:        3120804 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory used less recently. More eligible to be reclaimed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Active(anon):    6121448 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Anonymous memory used more recently.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Inactive(anon):  1099620 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Anonymous memory used less recently, can be swapped out.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Active(file):    1898312 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Page cache (file cache) memory used more recently.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Inactive(file):  2021184 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Page cache (file cache) memory used less recently, can be reclaimed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Unevictable:        3088 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Self explanatory.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Mlocked:            3088 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Locked memory pages using &lt;code&gt;mlock()&lt;/code&gt; syscall, unevictable.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;SwapTotal:      12467708 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Self explanatory.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;SwapFree:       12467352 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Remaining swap space available.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Dirty:              1568 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory waiting to be written to disk.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Writeback:             0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory being actively written to disk.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;AnonPages:       6196916 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Non-file backed pages mapped in userland.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Mapped:          1339276 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Files mapped to memory using &lt;code&gt;mmapp()&lt;/code&gt; syscall.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Shmem:           1027248 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Amount of memory consumed by &lt;code&gt;tmpfs&lt;/code&gt; file system.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Slab:             584576 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Kernel data structures cache. More details in &lt;code&gt;/proc/slabinfo&lt;/code&gt; || slabtop.
-Sum of &lt;code&gt;SReclaimable&lt;/code&gt; +  &lt;code&gt;SUnreclaim&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;SReclaimable:     349700 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Part of &lt;code&gt;Slab&lt;/code&gt; cache that can be reclaimed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;SUnreclaim:       234876 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Part of &lt;code&gt;Slab&lt;/code&gt; cache, unevictable.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;KernelStack:       20800 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Amount of memory allocated for Kernel stacks.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;PageTables:        93864 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory allocated to lowest levels of page tables.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;NFS_Unstable:          0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;NFS file system pages sent to server but not yet committed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Bounce:                0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory used in block device &lt;strong&gt;bounce&lt;/strong&gt; buffers.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;WritebackTmp:          0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Memory used in &lt;code&gt;FUSE&lt;/code&gt; (file system in user space) for temporary
-write-back buffers.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;CommitLimit:    18562664 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Over commit memory limit adhered only if if strict over commit
-accounting is enabled in &lt;code&gt;/proc/sys/vm/overcommit_memory&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Committed_AS:   19186116 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Amount of memory presently allocated on the system.
-Committed memory is the sum of all memory allocated by the process,
-even if it has not been &amp;lsquo;used&amp;rsquo;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;VmallocTotal:   34359738367 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Total sizes of &lt;code&gt;vmalloc&lt;/code&gt; memory area.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;VmallocUsed:           0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Amount of &lt;code&gt;vmalloc&lt;/code&gt; area which is used.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;VmallocChunk:          0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Largest contiguous block of &lt;code&gt;vmalloc&lt;/code&gt; memory which is being used.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;HardwareCorrupted:     0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Amount of memory Kernel identified as corrupted.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;AnonHugePages:   1019904 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Non-file backed huge pages mapped into userland page tables.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;CmaTotal:              0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Total pages allocated by contiguous memory allocator &lt;code&gt;CMA&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;CmaFree:               0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Free contiguous memory allocator pages.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;HugePages_Total:       0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Size of the huge page tables.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;HugePages_Free:        0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of huge page tables that are free.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;HugePages_Rsvd:        0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of huge page tables where commitment to allocate has been made,
-but actual allocation is not yet completed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;HugePages_Surp:        0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of huge page tables above allowed value.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Hugepagesize:       2048 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Size of huge page.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;DirectMap4k:      386324 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of bytes linearly mapped by Kernel in 4KB pages.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;DirectMap2M:    12083200 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of bytes linearly mapped by Kernel in 2M pages.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;DirectMap1G:           0 kB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Number of bytes linearly mapped by Kernel in 1G pages.&lt;/p&gt;
-</description>
+      <description>Reports statistics about memory usage on the system. Useful for inspecting more granular memory usage.
+ Sample output below.
+ $ cat /proc/meminfo MemTotal: 12189912 kB MemFree: 231992 kB MemAvailable: 4174992 kB Buffers: 430884 kB Cached: 4515856 kB SwapCached: 60 kB Active: 8019760 kB Inactive: 3120804 kB Active(anon): 6121448 kB Inactive(anon): 1099620 kB Active(file): 1898312 kB Inactive(file): 2021184 kB Unevictable: 3088 kB Mlocked: 3088 kB SwapTotal: 12467708 kB SwapFree: 12467352 kB Dirty: 1568 kB Writeback: 0 kB AnonPages: 6196916 kB Mapped: 1339276 kB Shmem: 1027248 kB Slab: 584576 kB SReclaimable: 349700 kB SUnreclaim: 234876 kB KernelStack: 20800 kB PageTables: 93864 kB NFS_Unstable: 0 kB Bounce: 0 kB WritebackTmp: 0 kB CommitLimit: 18562664 kB Committed_AS: 19186116 kB VmallocTotal: 34359738367 kB VmallocUsed: 0 kB VmallocChunk: 0 kB HardwareCorrupted: 0 kB AnonHugePages: 1019904 kB CmaTotal: 0 kB CmaFree: 0 kB HugePages_Total: 0 HugePages_Free: 0 HugePages_Rsvd: 0 HugePages_Surp: 0 Hugepagesize: 2048 kB DirectMap4k: 386324 kB DirectMap2M: 12083200 kB DirectMap1G: 0 kB  Interpreting each one  MemTotal: 12189912 kB</description>
     </item>
     
     <item>
@@ -415,58 +39,9 @@ but actual allocation is not yet completed.&lt;/p&gt;
       <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
       
       <guid>http://out13.com/paper/scaling-memcache-at-facebook/</guid>
-      <description>
-
-&lt;h2 id=&#34;memcache-at-facebook&#34;&gt;Memcache at Facebook&lt;/h2&gt;
-
-&lt;p&gt;Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.&lt;/p&gt;
-
-&lt;p&gt;Items are distributed across the memcached servers through consistent hashing.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;all&lt;/code&gt; web servers communicate with every memcached server in a short period of time.
-This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
-Reduce latency mainly by focusing on the memcache client, which runs on each web server.&lt;/p&gt;
-
-&lt;p&gt;Constructing a directed acyclic graph (DAG) representing the dependencies between data.
-A web server uses this DAG to maximize the number of items that can be fetched concurrently.&lt;/p&gt;
-
-&lt;p&gt;Clients treat get errors as cache misses, but web servers will skip inserting entries
-into memcached after querying for data to avoid putting additional load on
-a possibly overloaded network or server.&lt;/p&gt;
-
-&lt;p&gt;Clients therefore use a sliding window mechanism to control the number of outstanding requests.
-When the client receives a response, the next request can be sent.
-Similar to TCP’s congestion control, the size of this sliding window grows
-slowly upon a successful request and shrinks when a request goes unanswered.&lt;/p&gt;
-
-&lt;p&gt;Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
-failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.&lt;/p&gt;
-
-&lt;p&gt;When a memcached client receives no response to its get request,
-the client assumes the server has failed and issues the request again to a special Gutter pool.&lt;/p&gt;
-
-&lt;p&gt;If this second request misses, the client will insert the appropriate key-value
-pair into the Gutter machine after querying the database.
-Entries in Gutter expire quickly to obviate Gutter invalidations.
-Gutter limits the load on backend services at the cost of slightly stale data.&lt;/p&gt;
-
-&lt;p&gt;Deploy invalidation daemons (named mcsqueal) on every database.
-Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
-casts these deletes to the memcache deployment in every frontend cluster in that region.&lt;/p&gt;
-
-&lt;h3 id=&#34;performance-optimizations&#34;&gt;Performance optimizations&lt;/h3&gt;
-
-&lt;p&gt;Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
-were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
-server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
-its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;DAG - directed acyclic graph&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Memcache at Facebook Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.
+Items are distributed across the memcached servers through consistent hashing.
+all web servers communicate with every memcached server in a short period of time. This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers. Reduce latency mainly by focusing on the memcache client, which runs on each web server.</description>
     </item>
     
     <item>
@@ -475,105 +50,10 @@ its own UDP port to reduce contention when sending replies and later spreading i
       <pubDate>Wed, 28 Jun 2017 18:57:58 +0300</pubDate>
       
       <guid>http://out13.com/tools/slabtop-kernel-slab-cache-information-in-real-time/</guid>
-      <description>&lt;p&gt;Displays detailed kernel slab cache information by aggregating &lt;code&gt;/proc/slabinfo&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Tool shows a glimpse into kernel data structures.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Sample output below.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;root@ow:~# slabtop -osc | head -n 20
- Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
- Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
- Active / Total Caches (% used)     : 82 / 118 (69.5%)
- Active / Total Size (% used)       : 1259115.61K / 1273939.45K (98.8%)
- Minimum / Average / Maximum Object : 0.01K / 0.27K / 18.50K
-
-  OBJS ACTIVE   USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME
-327090 325687   99%    1.05K  10903       30    348896K ext4_inode_cache
-1639344 1639083 99%    0.19K  78064       21    312256K dentry
-217504 216070   99%    1.00K   6797       32    217504K ecryptfs_inode_cache
-196352 192576   98%    0.61K   7552       26    120832K proc_inode_cache
-519792 519564   99%    0.10K  13328       39     53312K buffer_head
-410976 401655   97%    0.12K  12843       32     51372K kmalloc-128
- 76020  72290   95%    0.57K   2715       28     43440K radix_tree_node
- 19808  18066   91%    1.00K    619       32     19808K kmalloc-1024
- 24668  24322   98%    0.55K    881       28     14096K inode_cache
-432640 432640  100%    0.03K   3380      128     13520K kmalloc-32
-337416 335756   99%    0.04K   3308      102     13232K ext4_extent_status
- 56220  51332   91%    0.20K   2811       20     11244K vm_area_struct
-122368 116329   95%    0.06K   1912       64      7648K kmalloc-64
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Interesting object are &lt;code&gt;ext4_inode_cache&lt;/code&gt; and &lt;code&gt;dentry&lt;/code&gt;.
-These are fs cache objects they speed up fs file/directory access.
-The &lt;code&gt;ext4_inode_cache&lt;/code&gt; is underlying fs &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Initialized in &lt;code&gt;fs/ext4/super.c&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int __init init_inodecache(void)
-{
-	ext4_inode_cachep = kmem_cache_create(&amp;quot;ext4_inode_cache&amp;quot;,
-					     sizeof(struct ext4_inode_info),
-					     0, (SLAB_RECLAIM_ACCOUNT|
-						SLAB_MEM_SPREAD|SLAB_ACCOUNT),
-					     init_once);
-	if (ext4_inode_cachep == NULL)
-		return -ENOMEM;
-	return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;dentry&lt;/code&gt; is &lt;code&gt;kmem_cache&lt;/code&gt; structure cache.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Initialized in &lt;code&gt;kernel/fs/dcache.c&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static void __init dcache_init(void)
-{
-	unsigned int loop;
-
-	/*
-	 * A constructor could be added for stable state like the lists,
-	 * but it is probably not worth it because of the cache nature
-	 * of the dcache.
-	 */
-	dentry_cache = KMEM_CACHE(dentry,
-		SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|SLAB_MEM_SPREAD|SLAB_ACCOUNT);
-
-	/* Hash may have been set up in dcache_init_early */
-	if (!hashdist)
-		return;
-
-	dentry_hashtable =
-		alloc_large_system_hash(&amp;quot;Dentry cache&amp;quot;,
-					sizeof(struct hlist_bl_head),
-					dhash_entries,
-					13,
-					0,
-					&amp;amp;d_hash_shift,
-					&amp;amp;d_hash_mask,
-					0,
-					0);
-
-	for (loop = 0; loop &amp;lt; (1U &amp;lt;&amp;lt; d_hash_shift); loop++)
-		INIT_HLIST_BL_HEAD(dentry_hashtable + loop);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;These objects are freed automatically by kernel if there is memory pressure.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;To forcefully clean system slab cache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;echo 3 &amp;gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Displays detailed kernel slab cache information by aggregating /proc/slabinfo.
+Tool shows a glimpse into kernel data structures.
+ Sample output below.
+ root@ow:~# slabtop -osc | head -n 20 Active / Total Objects (% used) : 4649227 / 4694474 (99.0%) Active / Total Slabs (% used) : 153429 / 153429 (100.0%) Active / Total Caches (% used) : 82 / 118 (69.5%) Active / Total Size (% used) : 1259115.61K / 1273939.</description>
     </item>
     
     <item>
@@ -582,44 +62,10 @@ The &lt;code&gt;ext4_inode_cache&lt;/code&gt; is underlying fs &lt;code&gt;kmem_
       <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
       
       <guid>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</guid>
-      <description>
-
-&lt;h2 id=&#34;raft&#34;&gt;Raft&lt;/h2&gt;
-
-&lt;p&gt;Consensus algorithm for managing a replicated log.&lt;/p&gt;
-
-&lt;p&gt;Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
-a stronger degree of coherency to reduce the number of states that must be considered.&lt;/p&gt;
-
-&lt;p&gt;Paxos first defines a protocol capable of reaching agreement on a single decision,
-such as a single replicated log entry.&lt;/p&gt;
-
-&lt;p&gt;Raft implements consensus by first electing a distinguished leader,
-then giving the leader complete responsibility for managing the replicated log.
-The leader accepts log entries from clients, replicates them on other servers,
-and tells servers when it is safe to apply log entries to
-their state machines.&lt;/p&gt;
-
-&lt;p&gt;A leader can fail or become disconnected from the other servers, in which case
-a new leader is elected.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Election Safety: at most one leader can be elected in a given term.&lt;/li&gt;
-&lt;li&gt;Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.&lt;/li&gt;
-&lt;li&gt;Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.&lt;/li&gt;
-&lt;li&gt;Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.&lt;/li&gt;
-&lt;li&gt;State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
-At any given time each server is in one of three states: leader, follower, or candidate.&lt;/p&gt;
-
-&lt;p&gt;To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).&lt;/p&gt;
-
-&lt;p&gt;Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.&lt;/p&gt;
-</description>
+      <description>Raft Consensus algorithm for managing a replicated log.
+Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces a stronger degree of coherency to reduce the number of states that must be considered.
+Paxos first defines a protocol capable of reaching agreement on a single decision, such as a single replicated log entry.
+Raft implements consensus by first electing a distinguished leader, then giving the leader complete responsibility for managing the replicated log.</description>
     </item>
     
     <item>
@@ -628,56 +74,9 @@ At any given time each server is in one of three states: leader, follower, or ca
       <pubDate>Thu, 09 Mar 2017 19:34:52 +0200</pubDate>
       
       <guid>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</guid>
-      <description>
-
-&lt;h3 id=&#34;lirs&#34;&gt;LIRS&lt;/h3&gt;
-
-&lt;p&gt;LRU replacement policy has been commonly used in the buffer cache management,
-it is well known for its inability to cope with access patterns with weak locality.&lt;/p&gt;
-
-&lt;p&gt;LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
-Recency (IRR) for making a replacement decision.&lt;/p&gt;
-
-&lt;h4 id=&#34;lru-inefficiency&#34;&gt;LRU inefficiency&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Under the LRU policy, a burst of references to infrequently used blocks such
-as “sequential scans” through a large file, may cause
-replacement of commonly referenced blocks in the cache.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;For a cyclic (loop-like) pattern of accesses to a file that is only slightly
-larger than the cache size, LRU always mistakenly evicts the blocks that will
-be accessed soonest, because these blocks have not been accessed for the longest time.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The reason for LRU to behave poorly in these situations is
-that LRU makes a bold assumption – a block that has not
-been accessed the longest would wait for relatively longest
-time to be accessed again.&lt;/p&gt;
-
-&lt;h4 id=&#34;implementation&#34;&gt;Implementation&lt;/h4&gt;
-
-&lt;p&gt;IRR as the recorded history information of each block, where IRR of a block
-refers to the number of other blocks accessed between two consecutive references
-to the block.&lt;/p&gt;
-
-&lt;p&gt;Specifically, the recency refers to the number of other blocks accessed from
-last reference to the current time.&lt;/p&gt;
-
-&lt;p&gt;It is assumed that if the IRR of a block is large,
-the next IRR of the block is likely to be large again.
-Following this assumption, we select the blocks with large IRRs
-for replacement, because these blocks are highly possible to
-be evicted later by LRU before being referenced again under our assumption.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;LIRS - low inter reference set&lt;/p&gt;
-
-&lt;p&gt;IRR - inter reference recency&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>LIRS LRU replacement policy has been commonly used in the buffer cache management, it is well known for its inability to cope with access patterns with weak locality.
+LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference Recency (IRR) for making a replacement decision.
+LRU inefficiency  Under the LRU policy, a burst of references to infrequently used blocks such as “sequential scans” through a large file, may cause replacement of commonly referenced blocks in the cache.</description>
     </item>
     
     <item>
@@ -686,63 +85,8 @@ be evicted later by LRU before being referenced again under our assumption.&lt;/
       <pubDate>Thu, 15 Dec 2016 19:36:32 +0200</pubDate>
       
       <guid>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</guid>
-      <description>
-
-&lt;h2 id=&#34;distributed-data-store-for-social-graph&#34;&gt;Distributed data store for social graph&lt;/h2&gt;
-
-&lt;p&gt;TAO is geographically distributed data store that provides efficient and timely
-access to the social graph using a fixed set of queries.
-Read optimized, persisted in MySQL.&lt;/p&gt;
-
-&lt;p&gt;Inefficient edge lists: A key-value cache is not a good
-semantic fit for lists of edges; queries must always fetch
-the entire edge list and changes to a single edge require
-the entire list to be reloaded.&lt;/p&gt;
-
-&lt;p&gt;Distributed control logic: In a lookaside cache architecture
-the control logic is run on clients that don’t communicate
-with each other. This increases the number of
-failure modes, and makes it difficult to avoid thundering herds.&lt;/p&gt;
-
-&lt;p&gt;Expensive read-after-write consistency: Facebook
-uses asynchronous master/slave replication for MySQL,
-which poses a problem for caches in data centers using a
-replica. Writes are forwarded to the master, but some
-time will elapse before they are reflected in the local
-replica. By restricting the data model
-to objects and associations we can update the replica’s
-cache at write time, then use graph semantics to interpret
-cache maintenance messages from concurrent updates.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-model-and-api&#34;&gt;Data model and API&lt;/h3&gt;
-
-&lt;p&gt;Facebook focuses on people, actions, and relationships.
-We model these entities and connections as nodes and
-edges in a graph. This representation is very flexible;
-it directly models real-life objects, and can also be used
-to store an application’s internal implementation-specific
-data.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;TAO needs to handle a far larger volume of data than can be stored on a
-single MySQL server, therefore data is divided into logical shards.&lt;/p&gt;
-
-&lt;h3 id=&#34;mysql-mapping&#34;&gt;MySQL mapping&lt;/h3&gt;
-
-&lt;p&gt;Each shard is assigned to a logical MySQL database
-that has a table for objects and a table
-for associations. All of the fields of an object are serialized into a
-single ‘data‘ column. This approach allows
-us to store objects of different types within the same table,
-Objects that benefit from separate data management
-polices are stored in separate custom tables.
-Associations are stored similarly to objects, but to support
-range queries, their tables have an additional index
-based on id1, atype, and time. To avoid potentially expensive
-SELECT COUNT queries, association counts
-are stored in a separate table.&lt;/p&gt;
-</description>
+      <description>Distributed data store for social graph TAO is geographically distributed data store that provides efficient and timely access to the social graph using a fixed set of queries. Read optimized, persisted in MySQL.
+Inefficient edge lists: A key-value cache is not a good semantic fit for lists of edges; queries must always fetch the entire edge list and changes to a single edge require the entire list to be reloaded.</description>
     </item>
     
     <item>
@@ -751,68 +95,8 @@ are stored in a separate table.&lt;/p&gt;
       <pubDate>Thu, 01 Dec 2016 16:05:39 +0200</pubDate>
       
       <guid>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</guid>
-      <description>
-
-&lt;h2 id=&#34;flow-gossip&#34;&gt;Flow Gossip&lt;/h2&gt;
-
-&lt;p&gt;Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements.
-With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss.
-The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.&lt;/p&gt;
-
-&lt;h3 id=&#34;gossip-basics&#34;&gt;Gossip basics&lt;/h3&gt;
-
-&lt;p&gt;There are two classes of gossip: anti-entropy and rumor mongering protocols.
-Anti-entropy protocols gossip information until it is made obsolete by newer information,
-and are useful for reliably sharing information among a group of participants.
-Rumor-mongering has participants gossip information for some amount of time chosen sufficiently
-high so that with high likelihood all participants receive the information.&lt;/p&gt;
-
-&lt;p&gt;3 Gossip styles:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;push: push everything and apply everything&lt;/li&gt;
-&lt;li&gt;pull: sends its state with values removed, leaving only keys and version numbers, then returns only necessary updates&lt;/li&gt;
-&lt;li&gt;push-pull: like pull but sends a list of participant-key pairs for which if has outdated entries (most efficient)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;precise-reconciliation&#34;&gt;Precise reconciliation&lt;/h3&gt;
-
-&lt;p&gt;The two participants in a gossip exchange send exactly those mappings that are more recent
-than those of the peer. Thus, if the participants are p and q, p sends to q the set of deltas.&lt;/p&gt;
-
-&lt;h3 id=&#34;scuttlebutt-reconciliation&#34;&gt;Scuttlebutt reconciliation&lt;/h3&gt;
-
-&lt;p&gt;A gossiper never transmits updates that were already known at the receiver.
-If gossip messages were unlimited in size, then the sets contains the exact differences, just like with precise reconciliation.
-If a set does not fit in the gossip message, then it is not allowed to use an arbitrary subsetas in precise reconciliation.&lt;/p&gt;
-
-&lt;h3 id=&#34;flow-control&#34;&gt;Flow control&lt;/h3&gt;
-
-&lt;p&gt;The objective of a flow control mechanism for gossip is to determine, adaptively,
-the maximum rate at which a participant can submit updates without creating a backlog of updates.
-A flow control mechanism should be fair, and under high load afford each participant that wants to submit updates the same update rate.
-As there is no global oversight, the flow control mechanism has to be decentralized,
-where the desired behavior emerges from participants responding to local events.&lt;/p&gt;
-
-&lt;h3 id=&#34;local-adaptation&#34;&gt;Local adaptation&lt;/h3&gt;
-
-&lt;p&gt;For local adaptation, we use an approach inspired by TCP flow control.
-In TCP, the send window adapts according to a strategy called Additive Increase Multiplicative decrease.&lt;/p&gt;
-
-&lt;p&gt;In this strategy, window size grows linearly with each successful transmission,
-but is decreased by a certain factor whenever overflow occurs.
-In the case of TCP, the overflow signal is the absence of an acknowledgment.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Anti-entropy - gossip information until it is made obsolete.&lt;/p&gt;
-
-&lt;p&gt;Rumor-mongering - gossip information for some of high amount of time with high likelihood all participants received the information.&lt;/p&gt;
-
-&lt;p&gt;AIMD - additive increase multiplicative decrease&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Flow Gossip Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements. With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss. The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.
+Gossip basics There are two classes of gossip: anti-entropy and rumor mongering protocols.</description>
     </item>
     
     <item>
@@ -821,90 +105,8 @@ In the case of TCP, the overflow signal is the absence of an acknowledgment.&lt;
       <pubDate>Thu, 24 Nov 2016 19:50:13 +0200</pubDate>
       
       <guid>http://out13.com/paper/seda-an-architecture-for-well-conditioned-scalable-internet-services/</guid>
-      <description>
-
-&lt;h2 id=&#34;seda-staged-event-driven-architecture&#34;&gt;SEDA - staged event driven architecture&lt;/h2&gt;
-
-&lt;p&gt;A SEDA is intended to support massive concurrency demands and simplify the construction of well-conditioned services.
-In SEDA, applications consist of a network of event-driven stages connected by explicit queues.
-This architecture allows services to be well-conditioned to load, preventing resources from being overcommitted when demand exceeds service capacity.&lt;/p&gt;
-
-&lt;p&gt;SEDA combines aspects of threads and event-based programming models to manage the concurrency, I/O, scheduling, and resource management needs of Internet services.&lt;/p&gt;
-
-&lt;p&gt;Applications are constructed as a network of stages, each with an associated incoming event queue.
-Each stage represents a robust building block that may be individually conditioned to load by thresholding or filtering its event queue.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;Service is well-conditioned if it behaves like a simple pipeline, where the depth of the pipeline is determined by the path through the network and the processing stages within the service itself.
-As the offered load increases, the delivered throughput increases proportionally until the pipeline is full and the throughput saturates; additional load should not degrade throughput.&lt;/p&gt;
-
-&lt;h4 id=&#34;thread-based-concurrency&#34;&gt;Thread based concurrency&lt;/h4&gt;
-
-&lt;p&gt;Operating system overlaps computation and I/O by transparently switching among threads.
-Although relatively easy to program, the overheads associated with threading — including cache and TLB misses, scheduling overhead,
-and lock contention — can lead to serious performance degradation when the number of threads is large.&lt;/p&gt;
-
-&lt;h4 id=&#34;bounded-thread-pools&#34;&gt;Bounded thread pools&lt;/h4&gt;
-
-&lt;p&gt;To avoid the overuse of threads, a number of systems adopt a coarse form of load conditioning that serves to bound the size of the thread
-pool associated with a service. When the number of requests in the server exceeds some fixed limit, additional connections are not accepted.
-This approach is used by Web servers such as Apache, IIS, and Netscape Enterprise Server.
-By limiting the number of concurrent threads, the server can avoid throughput degradation,
-and the overall performance is more robust than the unconstrained thread-per-task model.&lt;/p&gt;
-
-&lt;h4 id=&#34;event-driven-concurrency&#34;&gt;Event-driven concurrency&lt;/h4&gt;
-
-&lt;p&gt;Server consists of a small number of threads (typically one per CPU) that loop continuously, processing events of different types from a queue.
-Events may be generated by the operating system or internally by the application,
-and generally correspond to network and disk I/O readiness and completion notifications, timers, or other application-specific events.&lt;/p&gt;
-
-&lt;p&gt;Certain I/O operations (in this case, filesystem access) do not have asynchronous interfaces, the main server
-process handles these events by dispatching them to helper processes via IPC.
-Helper processes issue (blocking) I/O requests and return an event to the main process upon completion.&lt;/p&gt;
-
-&lt;p&gt;Important limitation of this model is that it assumes that event handling threads do not block,
-and for this reason nonblocking I/O mechanisms must be employed.&lt;/p&gt;
-
-&lt;h4 id=&#34;structured-event-queues&#34;&gt;Structured event queues&lt;/h4&gt;
-
-&lt;p&gt;Common aspect of these designs is to structure an event-driven application using a
-set of event queues to improve code modularity and simplify application design.&lt;/p&gt;
-
-&lt;h4 id=&#34;staged-event-driven-architecture&#34;&gt;Staged event driven architecture&lt;/h4&gt;
-
-&lt;p&gt;Support massive concurrency: To avoid performance degradation due to threads,
-SEDA makes use of event-driven execution wherever possible.
-This also requires that the system provide efficient and scalable I/O primitives.&lt;/p&gt;
-
-&lt;p&gt;Simplify the construction of well-conditioned services: To reduce the complexity of building Internet services,
-SEDA shields application programmers from many of the details of scheduling and resource management.
-The design also supports modular construction of these applications, and provides support for debugging and performance profiling.&lt;/p&gt;
-
-&lt;p&gt;Enable introspection: Applications should be able to analyze the request stream to adapt behavior to
-changing load conditions. For example, the system should be able to
-prioritize and filter requests to support degraded service under heavy load.&lt;/p&gt;
-
-&lt;p&gt;Support self-tuning resource management: Rather than mandate a priori
-knowledge of application resource requirements and client load
-characteristics, the system should adjust its resource management parameters dynamically
-to meet performance targets. For example, the number of threads allocated to
-a stage can be determined automatically based on perceived concurrency demands,
-rather than hard-coded by the programmer or administrator.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Building blocks&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The fundamental unit of processing within SEDA is the stage.
-Stage is a self-contained application component consisting of an event handler, an incoming event queue, and a thread pool.&lt;/p&gt;
-
-&lt;p&gt;The core logic for each stage is provided by the event handler, the input to which is a batch of multiple events.
-Event handlers do not have direct control over queue operations or threads.&lt;/p&gt;
-
-&lt;p&gt;Event queues in SEDA is that they may be finite: that is, an enqueue operation may fail
-if the queue wishes to reject new entries, say, because it has reached a threshold.&lt;/p&gt;
-</description>
+      <description>SEDA - staged event driven architecture A SEDA is intended to support massive concurrency demands and simplify the construction of well-conditioned services. In SEDA, applications consist of a network of event-driven stages connected by explicit queues. This architecture allows services to be well-conditioned to load, preventing resources from being overcommitted when demand exceeds service capacity.
+SEDA combines aspects of threads and event-based programming models to manage the concurrency, I/O, scheduling, and resource management needs of Internet services.</description>
     </item>
     
     <item>
@@ -913,68 +115,8 @@ if the queue wishes to reject new entries, say, because it has reached a thresho
       <pubDate>Thu, 17 Nov 2016 19:23:07 +0200</pubDate>
       
       <guid>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</guid>
-      <description>
-
-&lt;h3 id=&#34;abstract&#34;&gt;Abstract&lt;/h3&gt;
-
-&lt;p&gt;Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
-data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.&lt;/p&gt;
-
-&lt;h4 id=&#34;tcp-congestion-control-versus-system-buffer-management&#34;&gt;TCP Congestion Control versus System Buffer Management&lt;/h4&gt;
-
-&lt;p&gt;TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
-protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
-Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
-reconstructed and verified at the recipient’s end. The congestion-control mechanism
-was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
-transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
-depending on network conditions.&lt;/p&gt;
-
-&lt;p&gt;System buffer management. Every network device that transports data has buffers,
-usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
-that periodic data bursts can be accommodated without having to drop packets.
-Network systems such as switch-routers are architected differently, however, and can
-vary significantly in the size of their buffers and how they manage different traffic flows.&lt;/p&gt;
-
-&lt;h4 id=&#34;deep-buffer-vs-intelligent-buffer&#34;&gt;Deep buffer vs Intelligent buffer&lt;/h4&gt;
-
-&lt;p&gt;A common practice is to put in as much buffer as possible. However, since the
-buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
-how to use this shared resource can significantly impact applications’ performance.&lt;/p&gt;
-
-&lt;p&gt;The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
-not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
-and hence longer flow completion time.&lt;/p&gt;
-
-&lt;p&gt;Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
-resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
-because large buffers do not create more link bandwidth.&lt;/p&gt;
-
-&lt;h4 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h4&gt;
-
-&lt;p&gt;Since mice flows are often mission critical (including, for example, control and alarm messages,
-Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
-them to complete faster and their applications to perform better overall. The above test results
-show that expediting mice flows and regulating the elephant flows early under the intelligent
-buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
-magnitude better performance for mission critical flows without causing elephant flows to slow
-down.&lt;/p&gt;
-
-&lt;p&gt;Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
-there is enough buffer space for the bursts of mice flows while the elephant flows are properly
-regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
-in the form of longer queuing latency, and hence longer flow completion time for all flow types.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Elephant - big flows&lt;/p&gt;
-
-&lt;p&gt;Mice - small flows&lt;/p&gt;
-
-&lt;p&gt;FCT - flow completion time&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Abstract Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line, data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.
+TCP Congestion Control versus System Buffer Management TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.</description>
     </item>
     
     <item>
@@ -983,41 +125,9 @@ in the form of longer queuing latency, and hence longer flow completion time for
       <pubDate>Thu, 10 Nov 2016 22:27:23 +0200</pubDate>
       
       <guid>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</guid>
-      <description>
-
-&lt;h2 id=&#34;replication-under-scalable-hashing&#34;&gt;Replication Under Scalable Hashing&lt;/h2&gt;
-
-&lt;p&gt;Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used;
-adding or removing components results in either extensive reorganization of data or load imbalance in the system.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants also support weighting, allowing disks of different vintages to be added to a system.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system,
-or old disks are retired, RUSH variants minimize the number of objects that need to
-be moved in order to bring the system back into balance.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants can perform reorganization online without locking the filesystem for a long time to relocate data.&lt;/p&gt;
-
-&lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
-
-&lt;p&gt;Subcluster in a system managed by RUSH t must have at least as many disks as an object has replicas.&lt;/p&gt;
-
-&lt;p&gt;RUSH t is the best algorithms for distributing data over very large clusters of disks.&lt;/p&gt;
-
-&lt;p&gt;RUSH r may be the best option for systems which need to remove disks one at a time from the system.&lt;/p&gt;
-
-&lt;p&gt;RUSH p may be the best option for smaller systems where storage space is at a premium.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;RUSH t - RUSH tree&lt;/p&gt;
-
-&lt;p&gt;RUSH r - RUSH support for removal&lt;/p&gt;
-
-&lt;p&gt;PUSH p - RUSH placement using prime numbers&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Replication Under Scalable Hashing Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used; adding or removing components results in either extensive reorganization of data or load imbalance in the system.
+RUSH variants also support weighting, allowing disks of different vintages to be added to a system.
+RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system, or old disks are retired, RUSH variants minimize the number of objects that need to be moved in order to bring the system back into balance.</description>
     </item>
     
     <item>
@@ -1026,44 +136,9 @@ be moved in order to bring the system back into balance.&lt;/p&gt;
       <pubDate>Sun, 06 Nov 2016 12:32:44 +0200</pubDate>
       
       <guid>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</guid>
-      <description>
-
-&lt;h2 id=&#34;dynamo&#34;&gt;Dynamo&lt;/h2&gt;
-
-&lt;p&gt;Dynamo sacrifices Consistency for Availability under certain failure scenarios.
-It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.&lt;/p&gt;
-
-&lt;p&gt;Gossip based distributed failure detection and membership protocol.&lt;/p&gt;
-
-&lt;h3 id=&#34;query-model&#34;&gt;Query Model&lt;/h3&gt;
-
-&lt;p&gt;Read &amp;amp; Write operations to data item that is uniquely identified by a key.
-State is stored as blobs.
-Targets application that store objects up to 1MB.&lt;/p&gt;
-
-&lt;h3 id=&#34;acid&#34;&gt;ACID&lt;/h3&gt;
-
-&lt;p&gt;Dynamo targets applications that operate with weaker consistency (the “C” in ACID) if this results in high availability.&lt;/p&gt;
-
-&lt;p&gt;No isolation guarantees. Permits only single key updates.&lt;/p&gt;
-
-&lt;h3 id=&#34;design&#34;&gt;Design&lt;/h3&gt;
-
-&lt;p&gt;Incremental scalability: Dynamo should be able to scale out one storage host (henceforth, referred to as “node”) at a time,
-with minimal impact on both operators of the system and the system itself.&lt;/p&gt;
-
-&lt;p&gt;Symmetry: Every node in Dynamo should have the same set of responsibilities as its peers; there should be no distinguished node
-or nodes that take special roles or extra set of responsibilities. In our experience, symmetry simplifies the process of system
-provisioning and maintenance.&lt;/p&gt;
-
-&lt;p&gt;Decentralization: An extension of symmetry, the design should favor decentralized peer-to-peer techniques over centralized
-control. In the past, centralized control has resulted in outages and the goal is to avoid it as much as possible. This leads to a simpler,
-more scalable, and more available system.&lt;/p&gt;
-
-&lt;p&gt;Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
-distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
-higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
-</description>
+      <description>Dynamo Dynamo sacrifices Consistency for Availability under certain failure scenarios. It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.
+Gossip based distributed failure detection and membership protocol.
+Query Model Read &amp;amp; Write operations to data item that is uniquely identified by a key. State is stored as blobs. Targets application that store objects up to 1MB.</description>
     </item>
     
     <item>
@@ -1072,65 +147,8 @@ higher capacity without having to upgrade all hosts at once.&lt;/p&gt;
       <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>
       
       <guid>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</guid>
-      <description>
-
-&lt;h2 id=&#34;bigtable&#34;&gt;Bigtable&lt;/h2&gt;
-
-&lt;p&gt;Bigtable is a distributed storage system for managing structured data that is
-designed to scale to a very large size: petabytes of data across thousands of commodity servers.&lt;/p&gt;
-
-&lt;p&gt;Bigtable does not support a full relational data model; instead, it provides
-clients with a simple data model that supports dynamic control over data layout
-and format, and allows clients to reason about the locality properties of the data
-represented in the underlying storage.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-model&#34;&gt;Data model&lt;/h3&gt;
-
-&lt;p&gt;A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
-The map is indexed by a row key, column key, and a timestamp; each value in the map
-is an uninterpreted array of bytes.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;(row:string, column:string, time:int64) → string&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
-Each row range is called a tablet, which is the unit of distribution and load balancing.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.&lt;/p&gt;
-
-&lt;p&gt;First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.&lt;/p&gt;
-
-&lt;p&gt;Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
-Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.&lt;/p&gt;
-
-&lt;p&gt;Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure&lt;/p&gt;
-
-&lt;h3 id=&#34;client&#34;&gt;Client&lt;/h3&gt;
-
-&lt;p&gt;The client library caches tablet locations.
-If the client does not know the location of a tablet, or if it discovers that cached
-location information is incorrect, then it recursively moves up the tablet location hierarchy.&lt;/p&gt;
-
-&lt;h3 id=&#34;caching&#34;&gt;Caching&lt;/h3&gt;
-
-&lt;p&gt;To improve read performance, tablet servers use two levels of caching.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.&lt;/li&gt;
-&lt;li&gt;Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;GFS - Google File System&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Bigtable Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity servers.
+Bigtable does not support a full relational data model; instead, it provides clients with a simple data model that supports dynamic control over data layout and format, and allows clients to reason about the locality properties of the data represented in the underlying storage.</description>
     </item>
     
     <item>
@@ -1139,48 +157,9 @@ location information is incorrect, then it recursively moves up the tablet locat
       <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
       
       <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
-      <description>
-
-&lt;h2 id=&#34;embedded-os-in-rust&#34;&gt;Embedded OS in Rust&lt;/h2&gt;
-
-&lt;p&gt;Embedded systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;lack hardware protection mechanism&lt;/li&gt;
-&lt;li&gt;less tolerant to crashes&lt;/li&gt;
-&lt;li&gt;no easy way for debugging&lt;/li&gt;
-&lt;li&gt;GC introduces non-deterministic delay&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
-
-&lt;p&gt;Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.&lt;/p&gt;
-
-&lt;p&gt;Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.&lt;/p&gt;
-
-&lt;p&gt;Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.&lt;/p&gt;
-
-&lt;p&gt;Preserved type safety without relying on a runtime GC for memory management.&lt;/p&gt;
-
-&lt;p&gt;Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Borrowing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Value can only be mutably borrowed if there are no other borrows of the value.&lt;/li&gt;
-&lt;li&gt;Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;execution-context-extension-for-rust&#34;&gt;Execution context (extension for Rust)&lt;/h3&gt;
-
-&lt;p&gt;Reflects the thread of a value&amp;rsquo;s owner in its type.&lt;/p&gt;
-
-&lt;p&gt;Allows multiple borrows of a value from within same thread, but not across threads.&lt;/p&gt;
-
-&lt;p&gt;The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.&lt;/p&gt;
-</description>
+      <description>Embedded OS in Rust Embedded systems:
+ lack hardware protection mechanism less tolerant to crashes no easy way for debugging GC introduces non-deterministic delay  Rust Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.
+Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.</description>
     </item>
     
     <item>
@@ -1189,41 +168,54 @@ location information is incorrect, then it recursively moves up the tablet locat
       <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
       
       <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
-      <description>
-
-&lt;p&gt;In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &amp;ldquo;the
-roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable
-from at least one root via a directed path along the edges.&lt;/p&gt;
-
-&lt;p&gt;The subgraph consists of all reachable nodes and their interconnections is
-called &amp;lsquo;the data structure&amp;rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.&lt;/p&gt;
-
-&lt;p&gt;Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&amp;ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node&lt;/p&gt;
-
-&lt;p&gt;Mutator: redirect an outgoing edge of reachable node towards an already reachable one.&lt;/p&gt;
-
-&lt;p&gt;Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Free list - collection of nodes that have been identified as garbage.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>In our abstract form of the problem, we consider a directed graph of varying structure but with a fixed number of nodes, in which each node has at most two outgoing edges. More precisely, each node may have a left-hand outgoing edge and may have a right-hand outgoing edge, but either of them or both may be missing. In this graph a fixed set of nodes exists, called &amp;ldquo;the roots.</description>
+    </item>
+    
+    <item>
+      <title>Queues Are Databases</title>
+      <link>http://out13.com/paper/queues-are-databases/</link>
+      <pubDate>Fri, 12 Aug 2016 16:57:55 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/queues-are-databases/</guid>
+      <description>Queued transaction processing over pure client-server transaction processing. Queued systems are build on top of direct systems.
+TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.
+Queue manager is best built as a naive resource manager atop an object-relational database system. That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.
+Queues pose difficult problems when implemented atop a database:</description>
+    </item>
+    
+    <item>
+      <title>An Argument for Increasing TCP’s Initial Congestion Window</title>
+      <link>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</link>
+      <pubDate>Thu, 04 Aug 2016 22:02:54 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</guid>
+      <description>TCP congestion window  TCP flows start with initial congestion window of 4 segments (4KB of data).
+ Window if critical for how quickly flows can finish.
+Increase in 15KB congestion window improves average HTTP latency by 10%, mostly benefits RTT and BDP.
+Slow start increases congestion window by the number of data segments acknowledged for each received ACK.
+TCP latency is dominated by the number of round-trip times in slow-start phase.</description>
+    </item>
+    
+    <item>
+      <title>Tiny LFU highly efficient cache admission policy</title>
+      <link>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</link>
+      <pubDate>Fri, 22 Apr 2016 21:26:15 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
+      <description>Frequency based cache admission policy  Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.
+ TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.
+Usage The intuitive reason why caching works is that data accesses in many domains of computer science exhibit a considerable degree of “locality”.
+When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss.</description>
+    </item>
+    
+    <item>
+      <title>Container based operating system virtualization</title>
+      <link>http://out13.com/paper/container-based-operating-system-virtualization/</link>
+      <pubDate>Tue, 19 Apr 2016 19:30:48 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
+      <description>Alternative to hypervisors.  Workload requirements for a given system will direct users to the point in the design space that requires the least trade-off.
+ Sharing over isolation? Hypervisors often deployed to let a single machine host multiple, unrelated applications, which may run on behalf of independent organizations, as is common when a data center consolidates multiple physical servers. Hypervisors favor full isolation over sharing. However, when each virtual machine is running the same kernel and similar operating system distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency relative to running all applications on a single kernel.</description>
     </item>
     
   </channel>

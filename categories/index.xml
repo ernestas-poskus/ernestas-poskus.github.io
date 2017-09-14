@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Ernestas Poškus.io</title>
+    <link>http://out13.com/categories/</link>
+    <description>Recent content in Categories on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Apr 2015 15:13:11 +0300</lastBuildDate>
+    
+	<atom:link href="http://out13.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Algorithms</title>
+      <link>http://out13.com/categories/algorithms/</link>
+      <pubDate>Sat, 04 Apr 2015 15:13:11 +0300</pubDate>
+      
+      <guid>http://out13.com/categories/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ansible</title>
+      <link>http://out13.com/categories/ansible/</link>
+      <pubDate>Sun, 25 Sep 2016 19:12:59 +0300</pubDate>
+      
+      <guid>http://out13.com/categories/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>http://out13.com/categories/golang/</link>
+      <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
+      
+      <guid>http://out13.com/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>http://out13.com/categories/rust/</link>
+      <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
+      
+      <guid>http://out13.com/categories/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>http://out13.com/categories/vim/</link>
+      <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
+      
+      <guid>http://out13.com/categories/vim/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

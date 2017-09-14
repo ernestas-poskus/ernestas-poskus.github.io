@@ -2,12 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Ernestas Poškus.io</title>
-    <link>http://out13.com/posts/index.xml</link>
+    <link>http://out13.com/posts/</link>
     <description>Recent content in Posts on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 08 Mar 2017 08:44:03 +0200</lastBuildDate>
-    <atom:link href="http://out13.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://out13.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Serving fresh assets using Nginx location rewrite</title>
@@ -15,109 +17,11 @@
       <pubDate>Wed, 08 Mar 2017 08:44:03 +0200</pubDate>
       
       <guid>http://out13.com/posts/serving-fresh-assets-using-nginx-rewrite/</guid>
-      <description>
-
-&lt;p&gt;Recently I have stumbled upon a problem to serve fresh/new assets for user web application.&lt;/p&gt;
-
-&lt;p&gt;As Phil Karlton said:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;There are only two hard things in Computer Science: cache invalidation and naming things.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Historically fresh assets problem was approached either by appending appending
-url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).&lt;/p&gt;
-
-&lt;p&gt;Former is most popular one but not elegant since it brings explicit dependency
-for backend application what fresh/new asset file to include thus requires exact
-name file to be present on web server.&lt;/p&gt;
-
-&lt;p&gt;This draws 5 main disadvantages of completely hashed asset name:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;explicit dependency to include&lt;/li&gt;
-&lt;li&gt;no fallback mechanism&lt;/li&gt;
-&lt;li&gt;hashed asset name&lt;/li&gt;
-&lt;li&gt;exact file name presence on web server&lt;/li&gt;
-&lt;li&gt;removal of stale assets&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;   location @css_assets {
-       rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;
-   }
-   location /css/ {
-       try_files $uri $uri/ @css_assets;
-   }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;First &lt;code&gt;location /css/ {&lt;/code&gt; block matches path of /css/ which later executes
-&lt;code&gt;try_files&lt;/code&gt; followed by &lt;code&gt;location @css_assets {&lt;/code&gt; location block.&lt;/p&gt;
-
-&lt;p&gt;Secondly this rewrite &lt;code&gt;rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;&lt;/code&gt; matches
-beginning of /css/ path followed by 2 tracked matches.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;/css/app.117c7f2fa4b6ea7a2c077a3dbc9662e6b1c278bd.css&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In above example first match tracks (app) and second one (css).
-Matched information constructs new implicitly requested file like below.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;/css/app.css&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Newly constructed file will be processed by Nginx without redirects and browser
-knowing original file name.&lt;/p&gt;
-
-&lt;h3 id=&#34;constructing-asset-hash&#34;&gt;Constructing asset hash&lt;/h3&gt;
-
-&lt;p&gt;To tell your application which asset must be served use ENVIRONMENT variable and checksum
-of asset to be included. Or you can dynamically invalidate/create asset hash for
-example hourly or daily depending on release cycle.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;/css/app.$CSS_ASSET_HASH.css&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In my case I use simple function below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-rust&#34;&gt;lazy_static! {
-    static ref CSS_ASSETS_HASH: String = {
-        match env::var(&amp;quot;CSS_ASSETS_HASH&amp;quot;) {
-            Ok(hash) =&amp;gt; format!(&amp;quot;.{}.&amp;quot;, hash),
-            Err(_) =&amp;gt; &amp;quot;.&amp;quot;.to_string(),
-        }
-    };
-}
-
-html! {
-  (Css(format!(&amp;quot;/css/app{}css&amp;quot;, *CSS_ASSETS_HASH)))
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Above example is actual code used in production. It tries to statically initialize
-&lt;code&gt;CSS_ASSETS_HASH&lt;/code&gt; variable, if expected environment is not defined it fallbacks to
-dot &lt;code&gt;.&lt;/code&gt; else it appends 2 dots between supplied environment variable &lt;code&gt;.ENVIRONMENT_VARIABLE.&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;My solution eliminates almost all of main disadvantages of most popular way of asset
-inclusion.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;del&gt;explicit dependency to include&lt;/del&gt; - depends if hash is generated
-dynamically or real checksum of asset file is used.&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;no fallback mechanism&lt;/del&gt; - if environment is not defined or any hash is
-supplied it still fallbacks to original requested asset due to regex
-catchall.&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;hashed asset name&lt;/del&gt; - asset name is explicit and easily understood&lt;/li&gt;
-&lt;li&gt;exact file name presence on web server&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;removal of stale assets&lt;/del&gt; - only original file is deployed&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Regards.&lt;/p&gt;
-</description>
+      <description>Recently I have stumbled upon a problem to serve fresh/new assets for user web application.
+As Phil Karlton said:
+ There are only two hard things in Computer Science: cache invalidation and naming things.
+ Historically fresh assets problem was approached either by appending appending url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).
+Former is most popular one but not elegant since it brings explicit dependency for backend application what fresh/new asset file to include thus requires exact name file to be present on web server.</description>
     </item>
     
     <item>
@@ -126,110 +30,9 @@ catchall.&lt;/li&gt;
       <pubDate>Thu, 03 Nov 2016 08:48:29 +0200</pubDate>
       
       <guid>http://out13.com/posts/generating-configuration-from-ansible-variables/</guid>
-      <description>
-
-&lt;p&gt;If you have ever tried to render Ansible multi hash or list variable you probably something alike.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;global:
-  scrape_interval: &amp;quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;quot;
-  evaluation_interval: &amp;quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;quot;
-  scrape_timeout: &amp;quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;quot;
-  external_labels: &amp;quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This generates invalid and ugly YAML.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;global:
-  scrape_interval: &amp;quot;15s
-...
-&amp;quot;
-  evaluation_interval: &amp;quot;30s
-...
-&amp;quot;
-  scrape_timeout: &amp;quot;10s
-...
-&amp;quot;
-  external_labels: &amp;quot;null
-...
-&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;tldr&#34;&gt;TLDR&lt;/h3&gt;
-
-&lt;p&gt;If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.
-But there is a better way that I came up with.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;{{
-{
-&#39;global&#39;: {
-  &#39;scrape_interval&#39;: prometheus_config_global_scrape_interval,
-  &#39;evaluation_interval&#39;: prometheus_config_global_evaluation_interval,
-  &#39;scrape_timeout&#39;: prometheus_config_global_scrape_timeout,
-  &#39;external_labels&#39;: prometheus_config_global_external_labels }
-} | to_nice_yaml
-}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through &lt;code&gt;to_nice_yaml&lt;/code&gt; filter as well.
-This generates pretty and valid YAML.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;global:
-    evaluation_interval: 30s
-    external_labels: null
-    scrape_interval: 15s
-    scrape_timeout: 10s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Same applies to more complex variable definitions like this hash configuration inside of array/list.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;prometheus_config_scrape_configs:
-  - job_name: &#39;prometheus&#39;
-    honor_labels: true
-    scrape_interval: &#39;15s&#39;
-    scrape_timeout: &#39;2s&#39;
-    metrics_path: &#39;/metrics&#39;
-    scheme: &#39;http&#39;
-    static_configs:
-      - targets:
-          - &amp;quot;{{ prometheus_web__listen_address }}&amp;quot; # Prometheus itself
-          - &amp;quot;{{ prometheus_alert_manager_web__listen_address }}&amp;quot; # Alert manager
-
-  - job_name: &#39;consul-services&#39;
-    consul_sd_configs:
-      - server: &amp;quot;consul.service.consul:8500&amp;quot;
-        services:
-          - nodeexporter
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Variable used in template.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &amp;gt; 0 %}
-{{ {&#39;scrape_configs&#39;: prometheus_config_scrape_configs} | to_nice_yaml }}
-{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;End result here.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;scrape_configs:
--   honor_labels: true
-    job_name: prometheus
-    metrics_path: /metrics
-    scheme: http
-    scrape_interval: 15s
-    scrape_timeout: 2s
-    static_configs:
-    -   targets:
-        - 192.168.250.11:9090
-        - 192.168.250.11:9093
--   consul_sd_configs:
-    -   server: consul.service.consul:8500
-        services:
-        - nodeexporter
-    job_name: consul-services
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Examples are taken from by ansible-prometheus playbook: &lt;a href=&#34;https://github.com/ernestas-poskus/ansible-prometheus&#34;&gt;https://github.com/ernestas-poskus/ansible-prometheus&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>If you have ever tried to render Ansible multi hash or list variable you probably something alike.
+global: scrape_interval: &amp;quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;quot; evaluation_interval: &amp;quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;quot; scrape_timeout: &amp;quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;quot; external_labels: &amp;quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;quot;  This generates invalid and ugly YAML.
+global: scrape_interval: &amp;quot;15s ... &amp;quot; evaluation_interval: &amp;quot;30s ... &amp;quot; scrape_timeout: &amp;quot;10s ... &amp;quot; external_labels: &amp;quot;null ... &amp;quot;  TLDR If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.</description>
     </item>
     
     <item>
@@ -238,145 +41,9 @@ This generates pretty and valid YAML.&lt;/p&gt;
       <pubDate>Sun, 25 Sep 2016 19:12:59 +0300</pubDate>
       
       <guid>http://out13.com/posts/ansible-testing-multiple-platforms/</guid>
-      <description>
-
-&lt;p&gt;It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.&lt;/p&gt;
-
-&lt;p&gt;When playbook is created with Ansible command &lt;code&gt;ansible-galaxy init myplaybook&lt;/code&gt; it creates number of directories and files, includes basic Travis CI .travis.yml file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;script:
-  # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.04 LTS Server Edition 64 bit by default.
-This limits testing playbooks on multiple operating systems.
-In fact Travis CI virtual environment is limited to Debian operating systems and includes BETA Ubuntu 14.04 LTS Server Edition 64 bit container configurable via.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;dist: trusty
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;fortunately-travis-supports-docker&#34;&gt;Fortunately Travis supports docker.&lt;/h4&gt;
-
-&lt;p&gt;I have created bare docker containers that include ansible, can be found here &lt;a href=&#34;https://github.com/ansible-docker-images&#34;&gt;https://github.com/ansible-docker-images&lt;/a&gt; and in docker hub &lt;a href=&#34;https://hub.docker.com/r/ernestasposkus&#34;&gt;https://hub.docker.com/r/ernestasposkus&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Currently available containers are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ubuntu1404&lt;/li&gt;
-&lt;li&gt;ubuntu1604&lt;/li&gt;
-&lt;li&gt;centos6&lt;/li&gt;
-&lt;li&gt;centos7&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you need extra platforms let me now or join organization and contribute.&lt;/p&gt;
-
-&lt;h2 id=&#34;drop-in-replacement-travis-yml-script-for-testing-ansible-on-multiple-platforms&#34;&gt;Drop in replacement .travis.yml script for testing ansible on multiple platforms&lt;/h2&gt;
-
-&lt;p&gt;Template can be found here: &lt;a href=&#34;https://github.com/ansible-docker-images/template&#34;&gt;https://github.com/ansible-docker-images/template&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This includes four files:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.travis.yml for starting CI itself&lt;/li&gt;
-&lt;li&gt;tests/dependencies.yml for extra dependencies to be installed before testing playbook&lt;/li&gt;
-&lt;li&gt;playbook.yml for syntax check, first install and idempotence tests&lt;/li&gt;
-&lt;li&gt;test.yml where tests are defined basically Ansible tasks with exit status checking&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you are looking for real examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/AnsibleShipyard/ansible-zookeeper&#34;&gt;https://github.com/AnsibleShipyard/ansible-zookeeper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/AnsibleShipyard/ansible-mesos&#34;&gt;https://github.com/AnsibleShipyard/ansible-mesos&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ernestas-poskus/ansible-nsq&#34;&gt;https://github.com/ernestas-poskus/ansible-nsq&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ernestas-poskus/ansible-prometheus&#34;&gt;https://github.com/ernestas-poskus/ansible-prometheus&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sample .travis.yml script below.
-Includes testing on 4 platforms, dependencies installation, Ansible syntax check, idempotence test and actual tests.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;sudo: required
-
-env:
-  global:
-    # https://github.com/travis-ci/travis-ci/issues/6461#issuecomment-239577306
-    DOCKER_VERSION: &amp;quot;1.9.1-0~trusty&amp;quot;
-  matrix:
-    - distro: ernestasposkus/centos7
-      init: /usr/lib/systemd/systemd
-      run_opts: &amp;quot;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&amp;quot;
-    - distro: ernestasposkus/centos6
-      init: /sbin/init
-      run_opts: &amp;quot;&amp;quot;
-    - distro: ernestasposkus/ubuntu1604
-      init: /lib/systemd/systemd
-      run_opts: &amp;quot;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&amp;quot;
-    - distro: ernestasposkus/ubuntu1404
-      init: /sbin/init
-      run_opts: &amp;quot;&amp;quot;
-
-services:
-  - docker
-
-before_install:
-  # Downgrade to specific version of Docker engine.
-  - sudo apt-get update
-  - sudo apt-get remove docker-engine -yq
-  - sudo apt-get install docker-engine=$DOCKER_VERSION -yq --no-install-suggests --no-install-recommends --force-yes -o Dpkg::Options::=&amp;quot;--force-confnew&amp;quot;
-
-  # Pull container.
-  - &#39;sudo docker pull ${distro}:latest&#39;
-
-script:
-  - container_id=$(mktemp)
-    # Run container in detached state.
-  - &#39;sudo docker run --detach --volume=&amp;quot;${PWD}&amp;quot;:/etc/ansible/roles/role_under_test:ro ${run_opts} ${distro}:latest &amp;quot;${init}&amp;quot; &amp;gt; &amp;quot;${container_id}&amp;quot;&#39;
-
-  # Inspect docker container
-  - &#39;sudo docker inspect $(cat ${container_id})&#39;
-
-  # Print ansible version
-  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible --version&#39;
-
-  # Check Ansible host setup
-  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible all -i &amp;quot;localhost,&amp;quot; -c local -m setup&#39;
-
-  # Install dependencies
-  # Uncomment to install dependencies
-  # - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-galaxy install geerlingguy.java&#39;
-  # - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/dependencies.yml&#39;
-
-  # Ansible syntax check.
-  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml --syntax-check&#39;
-
-  # Test role.
-  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml&#39;
-
-  # Test role idempotence.
-  - idempotence=$(mktemp)
-  - sudo docker exec &amp;quot;$(cat ${container_id})&amp;quot; ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml | tee -a ${idempotence}
-  - &amp;gt;
-    tail ${idempotence}
-    | grep -q &#39;changed=0.*failed=0&#39;
-    &amp;amp;&amp;amp; (echo &#39;Idempotence test: pass&#39; &amp;amp;&amp;amp; exit 0)
-    || (echo &#39;Idempotence test: fail&#39; &amp;amp;&amp;amp; exit 1)
-
-  # Test role.
-  - &#39;sudo docker exec --tty &amp;quot;$(cat ${container_id})&amp;quot; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml&#39;
-
-  # View container logs
-  - &#39;sudo docker logs &amp;quot;$(cat ${container_id})&amp;quot;&#39;
-
-  # Clean up.
-  - &#39;sudo docker stop &amp;quot;$(cat ${container_id})&amp;quot;&#39;
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.
+When playbook is created with Ansible command ansible-galaxy init myplaybook it creates number of directories and files, includes basic Travis CI .travis.yml file.
+script: # Basic role syntax check - ansible-playbook tests/test.yml -i tests/inventory --syntax-check  Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.</description>
     </item>
     
     <item>
@@ -385,48 +52,10 @@ notifications:
       <pubDate>Thu, 28 Jan 2016 20:42:45 +0200</pubDate>
       
       <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
-      <description>
-
-&lt;h2 id=&#34;dynamic-struct-decoration-using-type-assertion&#34;&gt;Dynamic struct decoration using type assertion.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Use cases: API / templates.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Having simple map of:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input :=  map[string]interface{}{
-    &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;},
-    &amp;quot;key3&amp;quot;: nil,
-    &amp;quot;val&amp;quot;: 2,
-    &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;,
-    &amp;quot;val3&amp;quot;: 4,
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;One can decorate it using type assertion by iterating over it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&amp;quot;Count&amp;quot;+key] = len(slice)
-    }
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This becomes very useful when serializing struct into json.
-To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;  input := structs.Map(...)
-
-  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&amp;quot;Count&amp;quot;+key] = len(slice)
-    }
-  }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Dynamic struct decoration using type assertion.  Use cases: API / templates.
+ Having simple map of:
+input := map[string]interface{}{ &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;}, &amp;quot;key3&amp;quot;: nil, &amp;quot;val&amp;quot;: 2, &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;, &amp;quot;val3&amp;quot;: 4, }  One can decorate it using type assertion by iterating over it.
+for key, value := range input { slice, ok := value.([]string) if ok { input[&amp;quot;Count&amp;quot;+key] = len(slice) } }  This becomes very useful when serializing struct into json.</description>
     </item>
     
     <item>
@@ -435,86 +64,12 @@ To serialize struct use &lt;code&gt;github.com/fatih/structs&lt;/code&gt;&lt;/p&
       <pubDate>Tue, 15 Sep 2015 20:43:24 +0300</pubDate>
       
       <guid>http://out13.com/posts/racer-with-multiple-rust-versions/</guid>
-      <description>
-
-&lt;p&gt;Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
-This will let you navigate &amp;amp; jump to definition between Rust versions.&lt;/p&gt;
-
-&lt;h3 id=&#34;1-install-rust-version-manager&#34;&gt;1) Install Rust version manager&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/sdepold/rsvm#installation&#34;&gt;https://github.com/sdepold/rsvm#installation&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;2-install-desired-rust-version&#34;&gt;2) Install desired Rust version&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;rsvm install 0.12.0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;3-switch-use-desired-rust-version&#34;&gt;3) Switch/use desired Rust version&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;rsvm use 0.12.0&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;4-rsvm-makes-symbolic-link-to-current-rust-version-in&#34;&gt;4) rsvm - makes symbolic link to current rust version in&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;ls -la $HOME/.rsvm/current&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;total 56K
-drwxrwxr-x  2 user user 4.0K Sep 14 21:31 test
-drwxrwxr-x  4 user user 4.0K Sep 15 14:33 1.2.0
-drwxrwxr-x  5 user user 4.0K Sep 15 14:48 .
-drwxrwxr-x  8 user user 4.0K Sep 21 22:15 .git
-drwx------ 24 user user 4.0K Sep 21 22:17 ..
--rw-rw-r--  1 user user 1.1K Sep 14 21:31 LICENSE
--rw-rw-r--  1 user user  324 Sep 14 21:31 CHANGELOG.md
--rw-rw-r--  1 user user  249 Sep 14 21:31 .travis.yml
--rw-rw-r--  1 user user 9.1K Sep 14 21:31 rsvm.sh
--rw-rw-r--  1 user user 2.1K Sep 14 21:31 rsvm.fish
--rw-rw-r--  1 user user 1.3K Sep 14 21:31 install.sh
--rw-rw-r--  1 user user 1.8K Sep 14 21:31 README.md
-lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2.0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;5-export-rust-source-path-to-that-symbolic-link&#34;&gt;5) Export Rust source path to that symbolic link&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;export RUST_SRC_PATH=&amp;quot;$HOME/.rsvm/current&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;6-install-rust-racer&#34;&gt;6) Install Rust racer&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;git clone &lt;a href=&#34;https://github.com/phildawes/racer.git&#34;&gt;https://github.com/phildawes/racer.git&lt;/a&gt; &amp;ldquo;$HOME/rust-racer&amp;rdquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;7-build-rust-racer&#34;&gt;7) Build Rust racer&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;cd $HOME/rust-racer; cargo build &amp;ndash;release.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;7-install-vim-racer-vim-plugin-emacs-kate-available&#34;&gt;7) Install vim-racer vim plugin (Emacs, Kate available)&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/phildawes/racer#vim-integration&#34;&gt;https://github.com/phildawes/racer#vim-integration&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;8-define-g-racer-cmd-in-vimrc&#34;&gt;8) Define g:racer_cmd in .vimrc&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;let g:racer_cmd = &amp;ldquo;$HOME/rust-racer/target/release/racer&amp;rdquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;9-done&#34;&gt;9) Done&lt;/h3&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Enjoy multi Rust environment with code completion &amp;amp; goto-definition&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions. This will let you navigate &amp;amp; jump to definition between Rust versions.
+1) Install Rust version manager  https://github.com/sdepold/rsvm#installation
+ 2) Install desired Rust version  rsvm install 0.12.0
+ 3) Switch/use desired Rust version  rsvm use 0.12.0
+ 4) rsvm - makes symbolic link to current rust version in  ls -la $HOME/.rsvm/current
+total 56K drwxrwxr-x 2 user user 4.</description>
     </item>
     
     <item>
@@ -523,116 +78,10 @@ lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&amp;gt; /home/user/.rsvm/1.2
       <pubDate>Sat, 04 Apr 2015 15:13:11 +0300</pubDate>
       
       <guid>http://out13.com/posts/readability-tests/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests&#34;&gt;Flesch–Kincaid readability tests&lt;/a&gt;.
-Are readability tests designed to indicate how difficult a reading passage in English is to understand. There are two tests, the Flesch Reading Ease, and the Flesch–Kincaid Grade Level. [WIKI]&lt;/p&gt;
-
-&lt;p&gt;Due to own usage reasons I have decided to implement these readability tests in favourite language.
-Algorithm is quite simple I will focus on Flesch Reading ease.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Flesch Reading Ease test&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://out13.com/images/reading_ease.png&#34; alt=&#34;Flesh Reading Ease test&#34; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Score&lt;/th&gt;
-&lt;th&gt;Notes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;90.0–100.0&lt;/td&gt;
-&lt;td&gt;easily understood by an average 11-year-old student&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;60.0–70.0&lt;/td&gt;
-&lt;td&gt;easily understood by 13- to 15-year-old students&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;0.0–30.0&lt;/td&gt;
-&lt;td&gt;best understood by university graduates&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Implementation is trivial except &lt;code&gt;total_syllables&lt;/code&gt; part. I have had number of struggles with this one.
-Main caveat with syllables is that there no reliable facicility to reach consensus on exact syllable count.
-Every source where I was verifying number of syllables had a difference usually +/- 1 in some cases +2 syllables per sentence.&lt;/p&gt;
-
-&lt;p&gt;Eventually decided to trust this: &lt;a href=&#34;http://www.syllablecount.com/syllables/word&#34;&gt;http://www.syllablecount.com/syllables/word&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Test cases here: &lt;a href=&#34;https://github.com/ernestas-poskus/syllables/blob/master/syllables_test.go&#34;&gt;syllables_test.go&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;tl;dr&lt;/p&gt;
-
-&lt;h1 id=&#34;flesch-reading-ease-in-action&#34;&gt;Flesch Reading Ease in action&lt;/h1&gt;
-
-&lt;p&gt;Took presidential speeches from &lt;a href=&#34;http://millercenter.org/president/speeches&#34;&gt;http://millercenter.org/president/speeches&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;george-washington-first-inaugural-address-april-30-1789&#34;&gt;George Washington, First Inaugural Address (April 30, 1789)&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;In this conflict of emotions, all I dare aver, is, that it has been my faithful study to collect my duty from a just appreciation of every circumstance, by which it might be affected. All I dare hope, is, that, if in executing this task I have been too much swayed by a grateful remembrance of former instances, or by an affectionate sensibility to this transcendent proof, of the confidence of my fellow-citizens; and have thence too little consulted my incapacity as well as disinclination for the weighty and untried cares before me; my error will be palliated by the motives which misled me, and its consequences be judged by my Country, with some share of the partiality in which they originated.&amp;rdquo;,&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&#34;abraham-lincoln-first-inaugural-address-march-4-1861&#34;&gt;Abraham Lincoln, First Inaugural Address (March 4, 1861)&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;I take the official oath to-day with no mental reservations, and with no purpose to construe the Constitution or laws by any hypercritical rules. And while I do not choose now to specify particular acts of Congress as proper to be enforced, I do suggest that it will be much safer for all, both in official and private stations, to conform to and abide by all those acts which stand unrepealed, than to violate any of them, trusting to find impunity in having them held to be unconstitutional.&amp;rdquo;,&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&#34;barack-obama-acceptance-speech-at-the-democratic-national-convention-august-28-2008&#34;&gt;Barack Obama, Acceptance Speech at the Democratic National Convention (August 28, 2008)&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;It is that promise that has always set this country apart—that through hard work and sacrifice, each of us can pursue our individual dreams but still come together as one American family, to ensure that the next generation can pursue their dreams as well. That&amp;rsquo;s why I stand here tonight. Because for two hundred and thirty two years, at each moment when that promise was in jeopardy, ordinary men and women—students and soldiers, farmers and teachers, nurses and janitors—found the courage to keep it alive. We meet at one of those defining moments—a moment when our nation is at war, our economy is in turmoil, and the American promise has been threatened once more.&amp;rdquo;,&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&#34;results-code-code-flesch-reading-ease-go&#34;&gt;Results &lt;a href=&#34;http://out13.com/code/flesch_reading_ease.go&#34;&gt;code&lt;/a&gt;&lt;/h1&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Author&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;length&lt;/th&gt;
-&lt;th&gt;Score(Flesch Reading ease)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;George Washington&lt;/td&gt;
-&lt;td&gt;1789&lt;/td&gt;
-&lt;td&gt;701&lt;/td&gt;
-&lt;td&gt;16.6&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Abraham Lincoln&lt;/td&gt;
-&lt;td&gt;1861&lt;/td&gt;
-&lt;td&gt;493&lt;/td&gt;
-&lt;td&gt;35.3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Barack Obama&lt;/td&gt;
-&lt;td&gt;2008&lt;/td&gt;
-&lt;td&gt;676&lt;/td&gt;
-&lt;td&gt;50.3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;It is interesting to see how complexity of presidential speeches changed as time passed.&lt;/p&gt;
-</description>
+      <description>Flesch–Kincaid readability tests. Are readability tests designed to indicate how difficult a reading passage in English is to understand. There are two tests, the Flesch Reading Ease, and the Flesch–Kincaid Grade Level. [WIKI]
+Due to own usage reasons I have decided to implement these readability tests in favourite language. Algorithm is quite simple I will focus on Flesch Reading ease.
+ Flesch Reading Ease test
+    Score Notes     90.</description>
     </item>
     
     <item>
@@ -641,78 +90,7 @@ Every source where I was verifying number of syllables had a difference usually 
       <pubDate>Sun, 29 Mar 2015 12:59:46 +0300</pubDate>
       
       <guid>http://out13.com/posts/programming-languages/</guid>
-      <description>&lt;div id=&#34;pieChart&#34;&gt;&lt;/div&gt;
-
-&lt;script src=&#34;//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;http://out13.com/js/d3pie.min.js&#34;&gt;&lt;/script&gt;
-&lt;script&gt;
-var pie = new d3pie(&#34;pieChart&#34;, {
-  &#34;header&#34;: {
-    &#34;subtitle&#34;: {
-      &#34;color&#34;: &#34;#999999&#34;,
-      &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;,
-      &#34;fontSize&#34;: 12,
-      &#34;font&#34;: &#34;open sans&#34;
-    },
-    &#34;titleSubtitlePadding&#34;: 9
-  },
-  &#34;footer&#34;: {
-    &#34;color&#34;: &#34;#999999&#34;,
-    &#34;fontSize&#34;: 10,
-    &#34;font&#34;: &#34;open sans&#34;,
-    &#34;location&#34;: &#34;bottom-left&#34;
-  },
-  &#34;size&#34;: {
-    &#34;canvasHeight&#34;: 400,
-    &#34;canvasWidth&#34;: 490,
-    &#34;pieInnerRadius&#34;: &#34;50%&#34;,
-    &#34;pieOuterRadius&#34;: &#34;80%&#34;
-  },
-  &#34;data&#34;: {
-    &#34;sortOrder&#34;: &#34;value-desc&#34;,
-    &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;, &#34;value&#34;: 89142, &#34;color&#34;: &#34;#dc566d&#34;},{&#34;label&#34;: &#34;Scala&#34;, &#34;value&#34;: 288778, &#34;color&#34;: &#34;#7dd3b0&#34;},{&#34;label&#34;: &#34;Python&#34;, &#34;value&#34;: 308794, &#34;color&#34;: &#34;#3581ba&#34;},{&#34;label&#34;: &#34;Shell&#34;, &#34;value&#34;: 37004, &#34;color&#34;: &#34;#89e051&#34;},{&#34;label&#34;: &#34;CoffeeScript&#34;, &#34;value&#34;: 3723, &#34;color&#34;: &#34;#244776&#34;},{&#34;label&#34;: &#34;Racket&#34;, &#34;value&#34;: 50190, &#34;color&#34;: &#34;#ae17ff&#34;},{&#34;label&#34;: &#34;PHP&#34;, &#34;value&#34;: 431573, &#34;color&#34;: &#34;#4F5D95&#34;},{&#34;label&#34;: &#34;Makefile&#34;, &#34;value&#34;: 3960, &#34;color&#34;: &#34;&#34;},{&#34;label&#34;: &#34;Puppet&#34;, &#34;value&#34;: 15697, &#34;color&#34;: &#34;#cc5555&#34;},{&#34;label&#34;: &#34;Go&#34;, &#34;value&#34;: 823140, &#34;color&#34;: &#34;#375eab&#34;},{&#34;label&#34;: &#34;JavaScript&#34;, &#34;value&#34;: 450901, &#34;color&#34;: &#34;#f1e05a&#34;},{&#34;label&#34;: &#34;C++&#34;, &#34;value&#34;: 40479, &#34;color&#34;: &#34;&#34;},{&#34;label&#34;: &#34;Ruby&#34;, &#34;value&#34;: 253162, &#34;color&#34;: &#34;#701516&#34;},{&#34;label&#34;: &#34;Clojure&#34;, &#34;value&#34;: 1627, &#34;color&#34;: &#34;#db5855&#34;},{&#34;label&#34;: &#34;CSS&#34;, &#34;value&#34;: 13432, &#34;color&#34;: &#34;#563d7c&#34;},{&#34;label&#34;: &#34;VimL&#34;, &#34;value&#34;: 32990, &#34;color&#34;: &#34;#199c4b&#34;},{&#34;label&#34;: &#34;Erlang&#34;, &#34;value&#34;: 395, &#34;color&#34;: &#34;#0faf8d&#34;},{&#34;label&#34;: &#34;C&#34;, &#34;value&#34;: 3968, &#34;color&#34;: &#34;#555&#34;},{&#34;label&#34;: &#34;Java&#34;, &#34;value&#34;: 10361, &#34;color&#34;: &#34;#b07219&#34;}]
-  },
-  &#34;labels&#34;: {
-    &#34;outer&#34;: {
-      &#34;pieDistance&#34;: 20
-    },
-    &#34;inner&#34;: {
-      &#34;hideWhenLessThanPercentage&#34;: 3
-    },
-    &#34;mainLabel&#34;: {
-      &#34;fontSize&#34;: 11
-    },
-    &#34;percentage&#34;: {
-      &#34;color&#34;: &#34;#ffffff&#34;,
-      &#34;decimalPlaces&#34;: 0
-    },
-    &#34;value&#34;: {
-      &#34;color&#34;: &#34;#adadad&#34;,
-      &#34;fontSize&#34;: 11
-    },
-    &#34;lines&#34;: {
-      &#34;enabled&#34;: true
-    }
-  },
-  &#34;effects&#34;: {
-    &#34;pullOutSegmentOnClick&#34;: {
-      &#34;effect&#34;: &#34;linear&#34;,
-      &#34;speed&#34;: 400,
-      &#34;size&#34;: 8
-    }
-  },
-  &#34;misc&#34;: {
-    &#34;gradient&#34;: {
-      &#34;enabled&#34;: true,
-      &#34;percentage&#34;: 100
-    }
-  }
-});
-&lt;/script&gt;
-
-Wrote little Go + d3pie script which shows user programmed languages in bytes (not actual lines of programming language).
-Code can be found here: &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/ernestas-poskus/github-languages&#34;&gt;github.com/ernestas-poskus/github-languages&lt;/a&gt;
-</description>
+      <description>var pie = new d3pie(&#34;pieChart&#34;, { &#34;header&#34;: { &#34;subtitle&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;, &#34;fontSize&#34;: 12, &#34;font&#34;: &#34;open sans&#34; }, &#34;titleSubtitlePadding&#34;: 9 }, &#34;footer&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;fontSize&#34;: 10, &#34;font&#34;: &#34;open sans&#34;, &#34;location&#34;: &#34;bottom-left&#34; }, &#34;size&#34;: { &#34;canvasHeight&#34;: 400, &#34;canvasWidth&#34;: 490, &#34;pieInnerRadius&#34;: &#34;50%&#34;, &#34;pieOuterRadius&#34;: &#34;80%&#34; }, &#34;data&#34;: { &#34;sortOrder&#34;: &#34;value-desc&#34;, &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;, &#34;</description>
     </item>
     
   </channel>

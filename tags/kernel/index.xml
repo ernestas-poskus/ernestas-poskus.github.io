@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kernel on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/kernel/</link>
+    <description>Recent content in Kernel on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Sep 2017 19:48:19 +0300</lastBuildDate>
+    
+	<atom:link href="http://out13.com/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Attacking Branch Predictors to Bypass ASLR</title>
+      <link>http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/</guid>
+      <description>Address Space Layout Randomization ASLR is widely used technique that protects systems against range of attacks.
+ASLR works by randomizing the offset of key program segments in virtual memory, making it difficult for an attacker to derive the addresses of specific code objects and consequently redirect the control flow to this code.
+Purpose of ASLR is to make it difficult, if not impossible, for the attacker to know the location of specific code pages in program address space.</description>
+    </item>
+    
+  </channel>
+</rss>

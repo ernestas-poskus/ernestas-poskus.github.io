@@ -2,11 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scientific on Ernestas Poškus.io</title>
-    <link>http://out13.com/tags/scientific/index.xml</link>
+    <link>http://out13.com/tags/scientific/</link>
     <description>Recent content in Scientific on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://out13.com/tags/scientific/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Sep 2017 19:48:19 +0300</lastBuildDate>
+    
+	<atom:link href="http://out13.com/tags/scientific/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Attacking Branch Predictors to Bypass ASLR</title>
+      <link>http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/</link>
+      <pubDate>Thu, 14 Sep 2017 19:48:19 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/</guid>
+      <description>Address Space Layout Randomization ASLR is widely used technique that protects systems against range of attacks.
+ASLR works by randomizing the offset of key program segments in virtual memory, making it difficult for an attacker to derive the addresses of specific code objects and consequently redirect the control flow to this code.
+Purpose of ASLR is to make it difficult, if not impossible, for the attacker to know the location of specific code pages in program address space.</description>
+    </item>
     
     <item>
       <title>Cooperative Task Management without Manual Stack Management</title>
@@ -14,47 +28,9 @@
       <pubDate>Thu, 10 Aug 2017 21:48:19 +0300</pubDate>
       
       <guid>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</guid>
-      <description>
-
-&lt;h2 id=&#34;or-event-driven-programming-is-not-the-opposite-of-threaded-programming&#34;&gt;Or, Event-driven Programming is Not the Opposite of Threaded Programming&lt;/h2&gt;
-
-&lt;p&gt;Two programming styles as a conflation of two concepts: task
-management and stack management.&lt;/p&gt;
-
-&lt;p&gt;Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo;
-programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo;
-in the space that combines the advantages of both programming styles.&lt;/p&gt;
-
-&lt;p&gt;Different task management approaches offer different granularities
-of atomicity on shared state.
-Conflict management considers how to convert available atomicity
-to a meaningful mechanism for avoiding resource conflicts.&lt;/p&gt;
-
-&lt;p&gt;High-performance programs are often written with preemptive task management,
-wherein execution of tasks can interleave on uniprocessors
-or overlap on multiprocessors.&lt;/p&gt;
-
-&lt;p&gt;The opposite approach, serial task management, runs each task to completion
-before starting the next task. Its advantage is that there is no conflict
-of access to the shared state; one can define inter-task invariants on
-the shared state and be assured that, while the present task is running,
-no other tasks can violate the invariants.&lt;/p&gt;
-
-&lt;p&gt;A compromise approach is cooperative task management.
-In this approach, a task’s code only yields control to other tasks
-at well-defined points in its execution; usually only when the task
-must wait for long-running I/O. The approach is valuable when tasks
-must interleave to avoid waiting on each other’s I/O, but multiprocessor
-parallelism is not crucial for good application performance.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.&lt;/p&gt;
-
-&lt;p&gt;Serial task management, runs each task to completion before starting the next task.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Or, Event-driven Programming is Not the Opposite of Threaded Programming Two programming styles as a conflation of two concepts: task management and stack management.
+Those two concerns define a two-axis space in which &amp;lsquo;multithreaded&amp;rsquo; and &amp;lsquo;event-driven&amp;rsquo; programming are diagonally opposite; there is a third &amp;lsquo;sweet spot&amp;rsquo; in the space that combines the advantages of both programming styles.
+Different task management approaches offer different granularities of atomicity on shared state. Conflict management considers how to convert available atomicity to a meaningful mechanism for avoiding resource conflicts.</description>
     </item>
     
     <item>
@@ -63,113 +39,10 @@ parallelism is not crucial for good application performance.&lt;/p&gt;
       <pubDate>Thu, 03 Aug 2017 19:10:33 +0300</pubDate>
       
       <guid>http://out13.com/paper/green-lights-forever-analyzing-the-security-of-traffic-infrastructure/</guid>
-      <description>
-
-&lt;h2 id=&#34;green-lights-forever&#34;&gt;Green Lights Forever&lt;/h2&gt;
-
-&lt;p&gt;Safety critical nature of traffic infrastructure requires that
-it be secure against computer-based attacks.&lt;/p&gt;
-
-&lt;p&gt;Traffic signals were originally designed as standalone hardware,
-each running on fixed timing schedules, but have evolved into more
-complex, networked systems.&lt;/p&gt;
-
-&lt;p&gt;Traffic controllers now store multiple timing plans, integrate varied
-sensor data, and even communicate with other intersections in order
-to better coordinate traffic.&lt;/p&gt;
-
-&lt;p&gt;Wireless networking has helped to mitigate
-these costs, and many areas now use intelligent wireless
-traffic management systems.&lt;/p&gt;
-
-&lt;h3 id=&#34;controllers&#34;&gt;Controllers&lt;/h3&gt;
-
-&lt;p&gt;Traffic controllers read sensor inputs and control light
-states. The controller is typically placed in a metal cabinet
-by the roadside along with relays to activate the traffic lights.&lt;/p&gt;
-
-&lt;h3 id=&#34;communications&#34;&gt;Communications&lt;/h3&gt;
-
-&lt;p&gt;Radios commonly operate in the ISM band at 900 MHz or 5.8 GHz,
-or in the 4.9 GHz band allocated for public safety.&lt;/p&gt;
-
-&lt;h3 id=&#34;mmu&#34;&gt;MMU&lt;/h3&gt;
-
-&lt;p&gt;Malfunction management unit, also referred to as conflict management
-units, are hardware-level safety mechanisms&lt;/p&gt;
-
-&lt;p&gt;Valid configurations are stored on a circuit board rather than
-in software, with safe configurations literally wired together.&lt;/p&gt;
-
-&lt;p&gt;If an unsafe configuration (e.g. conflicting green lights) is
-detected, the MMU overrides the controller and forces
-the lights into a known-safe configuration.&lt;/p&gt;
-
-&lt;p&gt;The MMU also ensures that durations of lights are long enough.
-Too short of a yellow or red light duration will trigger a fault.&lt;/p&gt;
-
-&lt;h3 id=&#34;network&#34;&gt;Network&lt;/h3&gt;
-
-&lt;p&gt;One intersection acts as a root node and connects back to a
-management server under the control of the road agency.
-Intersections often have two radios, one slave radio to transmit
-to the next intersection towards the root and one master
-radio to receive from one or more
-child nodes beyond it. All devices form a single private
-network and belong to the same IP subnet.&lt;/p&gt;
-
-&lt;p&gt;The proprietary protocol is similar to 802.11 and
-broadcasts an SSID which is visible from standard laptops
-and smartphones but cannot be connected to.&lt;/p&gt;
-
-&lt;p&gt;The wireless connections are unencrypted and the radios
-use factory default usernames and passwords.&lt;/p&gt;
-
-&lt;h3 id=&#34;controller&#34;&gt;Controller&lt;/h3&gt;
-
-&lt;p&gt;A single controller at each intersection reads sensor data
-and controls the traffic lights and pedestrian signs. Many
-settings on the controller are programmable, including
-light timing parameters.&lt;/p&gt;
-
-&lt;p&gt;All of the settings on the controller may be configured
-via the physical interface on the controller, but they may
-also be modified though the network. An FTP connection
-to the device allows access to a writable configuration
-database. This requires a username and password, but
-they are fixed to default values which are published online
-by the manufacturer. It is not possible for a user to modify
-the FTP username or password.&lt;/p&gt;
-
-&lt;p&gt;The controller runs the VxWorks 5.5 real-time operating system.&lt;/p&gt;
-
-&lt;h3 id=&#34;findings&#34;&gt;Findings&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The network is accessible to attackers due to the lack of encryption.&lt;/li&gt;
-&lt;li&gt;Devices on the network lack secure authentication due to the use of default usernames and passwords.&lt;/li&gt;
-&lt;li&gt;The traffic controller is vulnerable to known exploits.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;types-of-attacks&#34;&gt;Types of attacks&lt;/h3&gt;
-
-&lt;p&gt;DOS - A denial of service attack in this context refers to stopping normal light functionality.
-  The most obvious way to cause a loss of service is to set all lights to red.&lt;/p&gt;
-
-&lt;p&gt;Traffic Congestion - more subtly, attacks could be made against the entire traffic infrastructure
-  of a city which would manipulate the timings of an intersection relative to its neighbors.&lt;/p&gt;
-
-&lt;p&gt;Light Control - An attacker can also control lights for personal gain.
-  Lights could be changed to be green along the route the attacker is driving.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;MMU - Malfunction management unit&lt;/p&gt;
-
-&lt;p&gt;Denial of service&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Green Lights Forever Safety critical nature of traffic infrastructure requires that it be secure against computer-based attacks.
+Traffic signals were originally designed as standalone hardware, each running on fixed timing schedules, but have evolved into more complex, networked systems.
+Traffic controllers now store multiple timing plans, integrate varied sensor data, and even communicate with other intersections in order to better coordinate traffic.
+Wireless networking has helped to mitigate these costs, and many areas now use intelligent wireless traffic management systems.</description>
     </item>
     
     <item>
@@ -178,58 +51,9 @@ the FTP username or password.&lt;/p&gt;
       <pubDate>Thu, 27 Jul 2017 19:47:58 +0300</pubDate>
       
       <guid>http://out13.com/paper/scaling-memcache-at-facebook/</guid>
-      <description>
-
-&lt;h2 id=&#34;memcache-at-facebook&#34;&gt;Memcache at Facebook&lt;/h2&gt;
-
-&lt;p&gt;Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.&lt;/p&gt;
-
-&lt;p&gt;Items are distributed across the memcached servers through consistent hashing.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;all&lt;/code&gt; web servers communicate with every memcached server in a short period of time.
-This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
-Reduce latency mainly by focusing on the memcache client, which runs on each web server.&lt;/p&gt;
-
-&lt;p&gt;Constructing a directed acyclic graph (DAG) representing the dependencies between data.
-A web server uses this DAG to maximize the number of items that can be fetched concurrently.&lt;/p&gt;
-
-&lt;p&gt;Clients treat get errors as cache misses, but web servers will skip inserting entries
-into memcached after querying for data to avoid putting additional load on
-a possibly overloaded network or server.&lt;/p&gt;
-
-&lt;p&gt;Clients therefore use a sliding window mechanism to control the number of outstanding requests.
-When the client receives a response, the next request can be sent.
-Similar to TCP’s congestion control, the size of this sliding window grows
-slowly upon a successful request and shrinks when a request goes unanswered.&lt;/p&gt;
-
-&lt;p&gt;Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
-failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.&lt;/p&gt;
-
-&lt;p&gt;When a memcached client receives no response to its get request,
-the client assumes the server has failed and issues the request again to a special Gutter pool.&lt;/p&gt;
-
-&lt;p&gt;If this second request misses, the client will insert the appropriate key-value
-pair into the Gutter machine after querying the database.
-Entries in Gutter expire quickly to obviate Gutter invalidations.
-Gutter limits the load on backend services at the cost of slightly stale data.&lt;/p&gt;
-
-&lt;p&gt;Deploy invalidation daemons (named mcsqueal) on every database.
-Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
-casts these deletes to the memcache deployment in every frontend cluster in that region.&lt;/p&gt;
-
-&lt;h3 id=&#34;performance-optimizations&#34;&gt;Performance optimizations&lt;/h3&gt;
-
-&lt;p&gt;Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
-were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
-server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
-its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;DAG - directed acyclic graph&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Memcache at Facebook Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.
+Items are distributed across the memcached servers through consistent hashing.
+all web servers communicate with every memcached server in a short period of time. This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers. Reduce latency mainly by focusing on the memcache client, which runs on each web server.</description>
     </item>
     
     <item>
@@ -238,98 +62,11 @@ its own UDP port to reduce contention when sending replies and later spreading i
       <pubDate>Thu, 29 Jun 2017 18:11:57 +0300</pubDate>
       
       <guid>http://out13.com/paper/maglev-a-fast-and-reliable-software-network-load-balancer/</guid>
-      <description>
-
-&lt;h2 id=&#34;maglev-fast-and-reliable-network-balancer&#34;&gt;Maglev - fast and reliable network balancer&lt;/h2&gt;
-
-&lt;p&gt;Packets are distributed through ECMP.&lt;/p&gt;
-
-&lt;p&gt;Serves traffic for Google services &amp;amp; GCP.&lt;/p&gt;
-
-&lt;p&gt;Every Google service has 1 or more VIP&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;Maglev associates each VIP with a set of service endpoints and announces it
-to the router over BGP.
-The router, in turn, announces the VIP to Google backbone.&lt;/p&gt;
-
-&lt;p&gt;Router receives a VIP packet it forwards the packet to 1 of Maglev machines in
-the cluster through ECMP since all Maglev machines announce the VIP with the same cost.
-When Maglev receives it selects and endpoint from the set of service endpoints associated
-with the VIP and encapsulates the packet using GRE.
-When packet arrives at the selected service endpoint, it is decapsulated
-and consumed. The response when ready is put into an IP packet with source address
-being the VIP and the destination being the IP of the user.&lt;/p&gt;
-
-&lt;h3 id=&#34;forwarder&#34;&gt;Forwarder&lt;/h3&gt;
-
-&lt;p&gt;Forwarder receives packets from the NIC, rewrites them with proper GRE/IP headers
-and then sends them back to the NIC (Linux kernel is not involved).&lt;/p&gt;
-
-&lt;p&gt;Packets received by the NIC are first processed by the steering module
-of the forwarder, which calculates the 5 tuple hash of the packets and
-assigns them to different receiving queues depending on the hash value.
-Each receiving queue is attached to a packet rewriter thread.&lt;/p&gt;
-
-&lt;p&gt;First packet thread recomputes hash and tries to match each packet to a configured VIP to filter
-out unwanted packets.&lt;/p&gt;
-
-&lt;p&gt;Then it looks up the hash value in connection tracking table (hash is recomputed
-to avoid cross-thread sync).&lt;/p&gt;
-
-&lt;p&gt;The connection table stores backend selection results for recent connections.
-If a match is found and the selected backend is still healthy, the result
-reused. Otherwise, thread consults the consistent hashing module and selects
-new backend for the packet; it also adds an entry to the connection table for
-future packets with the same 5-tuple.
-A packet is dropped if no backend is available.&lt;/p&gt;
-
-&lt;p&gt;The forwarder maintains one connection table per packet thread to avoid
-access contention.&lt;/p&gt;
-
-&lt;p&gt;After a backend is selected, the packet thread encapsulates the packet with
-proper GRE/IP headers and sends it to the attached transmission queue.
-The muxing module then pools all transmission queues and passes the
-packets to the NIC.&lt;/p&gt;
-
-&lt;h3 id=&#34;structure&#34;&gt;Structure&lt;/h3&gt;
-
-&lt;p&gt;Maglev is a userspace application running on commodity Linux servers.
-Since the Linux kernel network stack is rather computationally expensive,
-and Maglev doesn&amp;rsquo;t require any of the Linux stack&amp;rsquo;s features, it is
-desirable to make Maglev bypass the kernel entirely for packet processing.&lt;/p&gt;
-
-&lt;h4 id=&#34;hashing&#34;&gt;Hashing&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;load balancing: each backend will receive an almost equal number of connections.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;minimal disruption: when the set of backends changes,
-a connection will likely be sent to the same backend as it was before.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Maglev hashing is to assign a preference list of all the lookup table positions to each backend.
-Then all the backends take turns filling their most-preferred table positions that are still empty,
-until the lookup table is completely filled in.&lt;/p&gt;
-
-&lt;h4 id=&#34;failover&#34;&gt;Failover&lt;/h4&gt;
-
-&lt;p&gt;Active-passive pairs provide failure resilience.
-Only active machines serve traffic in normal situations.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;ECMP - Equal cost multipath&lt;/p&gt;
-
-&lt;p&gt;DSR - Direct server return&lt;/p&gt;
-
-&lt;p&gt;VIP - Virtual IP address&lt;/p&gt;
-
-&lt;p&gt;GRE - Generic routing encapsulation&lt;/p&gt;
-
-&lt;p&gt;NIC - Network interface card&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Maglev - fast and reliable network balancer Packets are distributed through ECMP.
+Serves traffic for Google services &amp;amp; GCP.
+Every Google service has 1 or more VIP&amp;rsquo;s.
+Maglev associates each VIP with a set of service endpoints and announces it to the router over BGP. The router, in turn, announces the VIP to Google backbone.
+Router receives a VIP packet it forwards the packet to 1 of Maglev machines in the cluster through ECMP since all Maglev machines announce the VIP with the same cost.</description>
     </item>
     
     <item>
@@ -338,84 +75,11 @@ Only active machines serve traffic in normal situations.&lt;/p&gt;
       <pubDate>Thu, 25 May 2017 19:53:19 +0300</pubDate>
       
       <guid>http://out13.com/paper/spanner-google-globally-distributed-database/</guid>
-      <description>
-
-&lt;h2 id=&#34;spanner&#34;&gt;Spanner&lt;/h2&gt;
-
-&lt;p&gt;Spanner is a scalable, globally-distributed database designed, built, and deployed at Google.&lt;/p&gt;
-
-&lt;p&gt;At the highest level of abstraction, it is a database that shards data across many sets of Paxos state machines.&lt;/p&gt;
-
-&lt;p&gt;Replication is used for global availability and geographic locality.&lt;/p&gt;
-
-&lt;p&gt;Spanner is designed to scale up to millions of machines across hundreds of datacenters and trillions of database rows.&lt;/p&gt;
-
-&lt;p&gt;Data is stored in schematized semi-relational tables; data is versioned,
-and each version is automatically timestamped with its commit time; old versions of
-data are subject to configurable garbage-collection policies; and applications can read data at old timestamps.&lt;/p&gt;
-
-&lt;p&gt;Major features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;externally consistent reads and writes&lt;/li&gt;
-&lt;li&gt;globally-consistent reads across the database at a timestamp&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
-
-&lt;p&gt;A Spanner deployment is called a universe. Given that Spanner manages data globally,
-there will be only a handful of running universes.&lt;/p&gt;
-
-&lt;p&gt;Spanner is organized as a set of zones, where each zone is the rough analog of a deployment of Bigtable.&lt;/p&gt;
-
-&lt;p&gt;Zones are the unit of administrative deployment.&lt;/p&gt;
-
-&lt;p&gt;Zones are also the unit of physical isolation: there may be one or more zones in a datacenter, for example,
-if different applications’ data must be partitioned across different sets of servers in the same datacenter.&lt;/p&gt;
-
-&lt;p&gt;Each spanserver is responsible for between 100 and 1000 instances of a data structure called a tablet.
-A tablet is similar to Bigtable’s tablet abstraction, in that it implements a bag of the following mappings:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(key:string, timestamp:int64) → string
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Unlike Bigtable, Spanner assigns timestamps to data, which is an important way in which Spanner is more
-like a multi-version database than a key-value store.&lt;/p&gt;
-
-&lt;p&gt;Tablet state is stored in set of B-tree-like files and a write-ahead log,
-all on a distributed file system called Colossus.&lt;/p&gt;
-
-&lt;p&gt;To support replication, each spanserver implements a
-single Paxos state machine on top of each tablet.&lt;/p&gt;
-
-&lt;h3 id=&#34;truetime&#34;&gt;TrueTime&lt;/h3&gt;
-
-&lt;p&gt;TrueTime explicitly represents time as a TTinterval, which is an interval with bounded time
-uncertainty (unlike standard time interfaces that give clients no notion of uncertainty).&lt;/p&gt;
-
-&lt;p&gt;The time epoch is anal-
-ogous to UNIX time with leap-second smearing. De-
-fine the instantaneous error bound as ϵ, which is half of
-the interval’s width, and the average error bound as ϵ.&lt;/p&gt;
-
-&lt;p&gt;TrueTime is implemented by a set of time master machines per datacenter and a timeslave daemon per machine.
-The majority of masters have GPS receivers with dedicated antennas;
-these masters are separated physically to reduce the effects of antenna failures, radio interference, and spoofing.&lt;/p&gt;
-
-&lt;p&gt;The remaining masters (which we refer to as Armageddon masters) are equipped with
-atomic clocks. An atomic clock is not that expensive: the cost of an Armageddon master
-is of the same order as that of a GPS master.&lt;/p&gt;
-
-&lt;p&gt;Between synchronizations, a daemon advertises a slowly increasing time uncertainty.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Colossus - the successor of GFS&lt;/p&gt;
-
-&lt;p&gt;GFS - Google File System&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Spanner Spanner is a scalable, globally-distributed database designed, built, and deployed at Google.
+At the highest level of abstraction, it is a database that shards data across many sets of Paxos state machines.
+Replication is used for global availability and geographic locality.
+Spanner is designed to scale up to millions of machines across hundreds of datacenters and trillions of database rows.
+Data is stored in schematized semi-relational tables; data is versioned, and each version is automatically timestamped with its commit time; old versions of data are subject to configurable garbage-collection policies; and applications can read data at old timestamps.</description>
     </item>
     
     <item>
@@ -424,44 +88,10 @@ is of the same order as that of a GPS master.&lt;/p&gt;
       <pubDate>Thu, 20 Apr 2017 19:13:57 +0300</pubDate>
       
       <guid>http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/</guid>
-      <description>
-
-&lt;h2 id=&#34;raft&#34;&gt;Raft&lt;/h2&gt;
-
-&lt;p&gt;Consensus algorithm for managing a replicated log.&lt;/p&gt;
-
-&lt;p&gt;Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
-a stronger degree of coherency to reduce the number of states that must be considered.&lt;/p&gt;
-
-&lt;p&gt;Paxos first defines a protocol capable of reaching agreement on a single decision,
-such as a single replicated log entry.&lt;/p&gt;
-
-&lt;p&gt;Raft implements consensus by first electing a distinguished leader,
-then giving the leader complete responsibility for managing the replicated log.
-The leader accepts log entries from clients, replicates them on other servers,
-and tells servers when it is safe to apply log entries to
-their state machines.&lt;/p&gt;
-
-&lt;p&gt;A leader can fail or become disconnected from the other servers, in which case
-a new leader is elected.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Election Safety: at most one leader can be elected in a given term.&lt;/li&gt;
-&lt;li&gt;Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.&lt;/li&gt;
-&lt;li&gt;Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.&lt;/li&gt;
-&lt;li&gt;Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.&lt;/li&gt;
-&lt;li&gt;State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
-At any given time each server is in one of three states: leader, follower, or candidate.&lt;/p&gt;
-
-&lt;p&gt;To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).&lt;/p&gt;
-
-&lt;p&gt;Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.&lt;/p&gt;
-</description>
+      <description>Raft Consensus algorithm for managing a replicated log.
+Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces a stronger degree of coherency to reduce the number of states that must be considered.
+Paxos first defines a protocol capable of reaching agreement on a single decision, such as a single replicated log entry.
+Raft implements consensus by first electing a distinguished leader, then giving the leader complete responsibility for managing the replicated log.</description>
     </item>
     
     <item>
@@ -470,56 +100,9 @@ At any given time each server is in one of three states: leader, follower, or ca
       <pubDate>Thu, 09 Mar 2017 19:34:52 +0200</pubDate>
       
       <guid>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</guid>
-      <description>
-
-&lt;h3 id=&#34;lirs&#34;&gt;LIRS&lt;/h3&gt;
-
-&lt;p&gt;LRU replacement policy has been commonly used in the buffer cache management,
-it is well known for its inability to cope with access patterns with weak locality.&lt;/p&gt;
-
-&lt;p&gt;LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
-Recency (IRR) for making a replacement decision.&lt;/p&gt;
-
-&lt;h4 id=&#34;lru-inefficiency&#34;&gt;LRU inefficiency&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Under the LRU policy, a burst of references to infrequently used blocks such
-as “sequential scans” through a large file, may cause
-replacement of commonly referenced blocks in the cache.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;For a cyclic (loop-like) pattern of accesses to a file that is only slightly
-larger than the cache size, LRU always mistakenly evicts the blocks that will
-be accessed soonest, because these blocks have not been accessed for the longest time.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The reason for LRU to behave poorly in these situations is
-that LRU makes a bold assumption – a block that has not
-been accessed the longest would wait for relatively longest
-time to be accessed again.&lt;/p&gt;
-
-&lt;h4 id=&#34;implementation&#34;&gt;Implementation&lt;/h4&gt;
-
-&lt;p&gt;IRR as the recorded history information of each block, where IRR of a block
-refers to the number of other blocks accessed between two consecutive references
-to the block.&lt;/p&gt;
-
-&lt;p&gt;Specifically, the recency refers to the number of other blocks accessed from
-last reference to the current time.&lt;/p&gt;
-
-&lt;p&gt;It is assumed that if the IRR of a block is large,
-the next IRR of the block is likely to be large again.
-Following this assumption, we select the blocks with large IRRs
-for replacement, because these blocks are highly possible to
-be evicted later by LRU before being referenced again under our assumption.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;LIRS - low inter reference set&lt;/p&gt;
-
-&lt;p&gt;IRR - inter reference recency&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>LIRS LRU replacement policy has been commonly used in the buffer cache management, it is well known for its inability to cope with access patterns with weak locality.
+LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference Recency (IRR) for making a replacement decision.
+LRU inefficiency  Under the LRU policy, a burst of references to infrequently used blocks such as “sequential scans” through a large file, may cause replacement of commonly referenced blocks in the cache.</description>
     </item>
     
     <item>
@@ -528,107 +111,9 @@ be evicted later by LRU before being referenced again under our assumption.&lt;/
       <pubDate>Thu, 09 Feb 2017 20:27:52 +0200</pubDate>
       
       <guid>http://out13.com/paper/large-scale-cluster-management-at-google-with-borg/</guid>
-      <description>
-
-&lt;h2 id=&#34;borg&#34;&gt;Borg&lt;/h2&gt;
-
-&lt;p&gt;Cluster manager that runs hundreds of thousands of jobs, from many thousands of
-different applications, across a number of clusters each with up to tens of thousands of machines.&lt;/p&gt;
-
-&lt;p&gt;3 main benefits:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;hides the details of resource management and failure handling so its users can
-focus on application development instead&lt;/li&gt;
-&lt;li&gt;operates with very high reliability and availability, and supports applications that do the same&lt;/li&gt;
-&lt;li&gt;lets us run workloads across tens of thousands of machines effectively&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A key design feature in Borg is that already-running tasks
-continue to run even if the Borgmaster or a task’s Borglet
-goes down. But keeping the master up is still important
-because when it is down new jobs cannot be submitted
-or existing ones updated, and tasks from failed machines
-cannot be rescheduled.&lt;/p&gt;
-
-&lt;p&gt;Each job runs in one Borg cell, a set of machines that are managed as a unit.&lt;/p&gt;
-
-&lt;p&gt;The machines in a cell belong to a single cluster. A cluster lives inside a single datacenter
-building, and a collection of buildings makes up a site.&lt;/p&gt;
-
-&lt;p&gt;Median cell size is about 10 k machines after excluding test cells; some are
-much larger.
-The machines in a cell are heterogeneous in many dimensions: sizes (CPU, RAM,
-disk, network), processor type, performance, and capabilities such as an
-external IP address or flash storage.
-Borg isolates users from most of these differences by determining where in a
-cell to run tasks, allocating their resources, installing their programs and
-other dependencies, monitoring their health, and restarting them if they fail.&lt;/p&gt;
-
-&lt;h3 id=&#34;jobs&#34;&gt;Jobs&lt;/h3&gt;
-
-&lt;p&gt;A Borg alloc (short for allocation) is a reserved set of resources on a machine
-in which one or more tasks can be run; the resources remain assigned whether or
-not they are used.&lt;/p&gt;
-
-&lt;p&gt;Quota is used to decide which jobs to admit for scheduling.
-Quota is expressed as a vector of resource quantities (CPU, RAM, disk, etc.)
-at a given priority, for a period of time (typically months).&lt;/p&gt;
-
-&lt;p&gt;Every job has a priority, a small positive integer. A high priority task
-can obtain resources at the expense of a lower priority one,
-even if that involves preempting (killing) the latter.&lt;/p&gt;
-
-&lt;h3 id=&#34;naming-and-monitoring&#34;&gt;Naming and monitoring&lt;/h3&gt;
-
-&lt;p&gt;BNS (DNS) for Borg jobs for each task that includes the cell name, job name, and task number.
-Borg writes the task’s hostname and port into a consistent,
-highly-available file in Chubby with this name, which
-is used by our RPC system to find the task endpoint.&lt;/p&gt;
-
-&lt;p&gt;Borg also writes job size and task health information into
-Chubby whenever it changes, so load balancers can see
-where to route requests to.&lt;/p&gt;
-
-&lt;p&gt;Borg monitors the health-check URL and restarts
-tasks that do not respond promptly or return an HTTP error code.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;A Borg cell consists of a set of machines, a logically centralized
-controller called the Borgmaster, and an agent process
-called the Borglet that runs on each machine in a cell.&lt;/p&gt;
-
-&lt;p&gt;Borgmaster process handles client RPCs that either
-mutate state (e.g., create job) or provide read-only access
-to data (e.g., lookup job).&lt;/p&gt;
-
-&lt;h2 id=&#34;scheduling&#34;&gt;Scheduling&lt;/h2&gt;
-
-&lt;p&gt;The scheduling algorithm has two parts: feasibility checking, to find
-machines on which the task could run, and scoring, which picks
-one of the feasible machines.&lt;/p&gt;
-
-&lt;p&gt;To reduce task startup time, the scheduler prefers to assign
-tasks to machines that already have the necessary packages.&lt;/p&gt;
-
-&lt;p&gt;Borg distributes packages to machines in parallel using tree-
-and torrent-like protocols.&lt;/p&gt;
-
-&lt;h2 id=&#34;borglet&#34;&gt;Borglet&lt;/h2&gt;
-
-&lt;p&gt;Borglet is a local Borg agent that is present on every
-machine in a cell. It starts and stops tasks; restarts them if
-they fail; manages local resources by manipulating OS kernel settings;
-rolls over debug logs; and reports the state of the
-machine to the Borgmaster and other monitoring systems.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;BNS - Borg name system&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Borg Cluster manager that runs hundreds of thousands of jobs, from many thousands of different applications, across a number of clusters each with up to tens of thousands of machines.
+3 main benefits:
+ hides the details of resource management and failure handling so its users can focus on application development instead operates with very high reliability and availability, and supports applications that do the same lets us run workloads across tens of thousands of machines effectively  A key design feature in Borg is that already-running tasks continue to run even if the Borgmaster or a task’s Borglet goes down.</description>
     </item>
     
     <item>
@@ -637,84 +122,9 @@ machine to the Borgmaster and other monitoring systems.&lt;/p&gt;
       <pubDate>Sun, 29 Jan 2017 13:47:18 +0200</pubDate>
       
       <guid>http://out13.com/paper/aerospike-architecture-of-a-real-time-operational-dbms/</guid>
-      <description>
-
-&lt;h2 id=&#34;aerospike-architecture&#34;&gt;Aerospike architecture&lt;/h2&gt;
-
-&lt;p&gt;Modeled on the classic shared-nothing database architecture&lt;/p&gt;
-
-&lt;p&gt;Objectives of the cluster management subsystem:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Arrive at a single consistent view of current cluster members across all nodes in the cluster.&lt;/li&gt;
-&lt;li&gt;Automatically detect new node arrival/departure and seamless cluster reconfiguration.&lt;/li&gt;
-&lt;li&gt;Detect network faults and be resilient to such network flakiness.&lt;/li&gt;
-&lt;li&gt;Minimize time to detect and adapt to cluster membership changes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;discovery&#34;&gt;Discovery&lt;/h3&gt;
-
-&lt;p&gt;Node arrival or departure is detected via heartbeat messages
-exchanged periodically between nodes.&lt;/p&gt;
-
-&lt;h3 id=&#34;surrogate-heartbeats&#34;&gt;Surrogate heartbeats&lt;/h3&gt;
-
-&lt;p&gt;In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
-between nodes as an alternative secondary heartbeat mechanism.&lt;/p&gt;
-
-&lt;h3 id=&#34;node-health-score&#34;&gt;Node Health Score&lt;/h3&gt;
-
-&lt;p&gt;Every node in the cluster evaluates the health score of each of its
-neighboring nodes by computing the average message loss, which
-is an estimate of how many incoming messages from that node are lost.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-distribution&#34;&gt;Data Distribution&lt;/h3&gt;
-
-&lt;p&gt;A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.&lt;/p&gt;
-
-&lt;p&gt;Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.&lt;/p&gt;
-
-&lt;p&gt;A partition assignment algorithm generates a replication list for every
-partition. The replication list is a permutation of the cluster succession list.&lt;/p&gt;
-
-&lt;p&gt;Reads can also be uniformly spread across all the
-replicas via a runtime configuration setting.&lt;/p&gt;
-
-&lt;h3 id=&#34;master-partition-without-data&#34;&gt;Master Partition Without Data&lt;/h3&gt;
-
-&lt;p&gt;An empty node newly added to a running cluster will be master
-for a proportional fraction of the partitions and have no data for
-those partitions.&lt;/p&gt;
-
-&lt;h3 id=&#34;migration-ordering&#34;&gt;Migration Ordering&lt;/h3&gt;
-
-&lt;h4 id=&#34;smallest-partition-first&#34;&gt;Smallest Partition First&lt;/h4&gt;
-
-&lt;p&gt;Migration is coordinated in such a manner as to let nodes with the
-fewest records in their partition versions start migration first. This
-strategy quickly reduces the number of different copies of a
-specific partition, and does this faster than any other strategy.&lt;/p&gt;
-
-&lt;h4 id=&#34;hottest-partition-first&#34;&gt;Hottest Partition First&lt;/h4&gt;
-
-&lt;p&gt;At times, client accesses are skewed to a very small number of
-keys from the key space. Therefore the latency on these accesses
-could be improved quickly by migrating these hot partitions
-before other partitions.&lt;/p&gt;
-
-&lt;h3 id=&#34;defragmentation&#34;&gt;Defragmentation&lt;/h3&gt;
-
-&lt;p&gt;Aerospike uses a log-structured file system with a copy-on-write
-mechanism. Hence, it needs to reclaim space by continuously
-running a background defragmentation process. Each device
-stores a MAP of block and information relating to the fill-factor of
-each block. The fill-factor of the block is the block fraction
-utilized by valid records. At boot time, this information is loaded
-and kept up-to-date on every write. When the fill-factor of a block
-falls below a certain threshold, the block becomes a candidate for
-defragmentation and is then queued up for the defragmentation
-process.&lt;/p&gt;
-</description>
+      <description>Aerospike architecture Modeled on the classic shared-nothing database architecture
+Objectives of the cluster management subsystem:
+ Arrive at a single consistent view of current cluster members across all nodes in the cluster. Automatically detect new node arrival/departure and seamless cluster reconfiguration. Detect network faults and be resilient to such network flakiness. Minimize time to detect and adapt to cluster membership changes.  Discovery Node arrival or departure is detected via heartbeat messages exchanged periodically between nodes.</description>
     </item>
     
     <item>
@@ -723,26 +133,8 @@ process.&lt;/p&gt;
       <pubDate>Thu, 29 Dec 2016 20:25:26 +0200</pubDate>
       
       <guid>http://out13.com/paper/approximating-data-with-the-count-min-data-structure/</guid>
-      <description>
-
-&lt;h2 id=&#34;count-min-data-structure&#34;&gt;Count-Min Data Structure&lt;/h2&gt;
-
-&lt;p&gt;Algorithmic problems such as tracking the contents of a set arise frequently in the course of building
-systems. Given the variety of possible solutions, the choice of appropriate data structures for
-such tasks is at the heart of building efficient and effective software.&lt;/p&gt;
-
-&lt;p&gt;The Count-Min sketch provides a different kind of solution to count tracking.
-It allocates a fixed amount of space to store count information, which does not vary over time even
-as more and more counts are updated.&lt;/p&gt;
-
-&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
-
-&lt;p&gt;With all data structures, it is important to understand the data organization
-and algorithms for updating the structure, to make clear the relative merits of different choices of
-structure for a given task. The Count-Min Sketch data structure primarily consists of a fixed array
-of counters, of width w and depth d. The counters are initialized to all zeros. Each row of counters
-is associated with a different hash function.&lt;/p&gt;
-</description>
+      <description>Count-Min Data Structure Algorithmic problems such as tracking the contents of a set arise frequently in the course of building systems. Given the variety of possible solutions, the choice of appropriate data structures for such tasks is at the heart of building efficient and effective software.
+The Count-Min sketch provides a different kind of solution to count tracking. It allocates a fixed amount of space to store count information, which does not vary over time even as more and more counts are updated.</description>
     </item>
     
     <item>
@@ -751,63 +143,8 @@ is associated with a different hash function.&lt;/p&gt;
       <pubDate>Thu, 15 Dec 2016 19:36:32 +0200</pubDate>
       
       <guid>http://out13.com/paper/tao-facebooks-distributed-data-store-for-the-social-graph/</guid>
-      <description>
-
-&lt;h2 id=&#34;distributed-data-store-for-social-graph&#34;&gt;Distributed data store for social graph&lt;/h2&gt;
-
-&lt;p&gt;TAO is geographically distributed data store that provides efficient and timely
-access to the social graph using a fixed set of queries.
-Read optimized, persisted in MySQL.&lt;/p&gt;
-
-&lt;p&gt;Inefficient edge lists: A key-value cache is not a good
-semantic fit for lists of edges; queries must always fetch
-the entire edge list and changes to a single edge require
-the entire list to be reloaded.&lt;/p&gt;
-
-&lt;p&gt;Distributed control logic: In a lookaside cache architecture
-the control logic is run on clients that don’t communicate
-with each other. This increases the number of
-failure modes, and makes it difficult to avoid thundering herds.&lt;/p&gt;
-
-&lt;p&gt;Expensive read-after-write consistency: Facebook
-uses asynchronous master/slave replication for MySQL,
-which poses a problem for caches in data centers using a
-replica. Writes are forwarded to the master, but some
-time will elapse before they are reflected in the local
-replica. By restricting the data model
-to objects and associations we can update the replica’s
-cache at write time, then use graph semantics to interpret
-cache maintenance messages from concurrent updates.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-model-and-api&#34;&gt;Data model and API&lt;/h3&gt;
-
-&lt;p&gt;Facebook focuses on people, actions, and relationships.
-We model these entities and connections as nodes and
-edges in a graph. This representation is very flexible;
-it directly models real-life objects, and can also be used
-to store an application’s internal implementation-specific
-data.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;TAO needs to handle a far larger volume of data than can be stored on a
-single MySQL server, therefore data is divided into logical shards.&lt;/p&gt;
-
-&lt;h3 id=&#34;mysql-mapping&#34;&gt;MySQL mapping&lt;/h3&gt;
-
-&lt;p&gt;Each shard is assigned to a logical MySQL database
-that has a table for objects and a table
-for associations. All of the fields of an object are serialized into a
-single ‘data‘ column. This approach allows
-us to store objects of different types within the same table,
-Objects that benefit from separate data management
-polices are stored in separate custom tables.
-Associations are stored similarly to objects, but to support
-range queries, their tables have an additional index
-based on id1, atype, and time. To avoid potentially expensive
-SELECT COUNT queries, association counts
-are stored in a separate table.&lt;/p&gt;
-</description>
+      <description>Distributed data store for social graph TAO is geographically distributed data store that provides efficient and timely access to the social graph using a fixed set of queries. Read optimized, persisted in MySQL.
+Inefficient edge lists: A key-value cache is not a good semantic fit for lists of edges; queries must always fetch the entire edge list and changes to a single edge require the entire list to be reloaded.</description>
     </item>
     
     <item>
@@ -816,68 +153,8 @@ are stored in a separate table.&lt;/p&gt;
       <pubDate>Thu, 01 Dec 2016 16:05:39 +0200</pubDate>
       
       <guid>http://out13.com/paper/efficient-reconciliation-and-flow-control-for-anti-entropy-protocols/</guid>
-      <description>
-
-&lt;h2 id=&#34;flow-gossip&#34;&gt;Flow Gossip&lt;/h2&gt;
-
-&lt;p&gt;Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements.
-With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss.
-The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.&lt;/p&gt;
-
-&lt;h3 id=&#34;gossip-basics&#34;&gt;Gossip basics&lt;/h3&gt;
-
-&lt;p&gt;There are two classes of gossip: anti-entropy and rumor mongering protocols.
-Anti-entropy protocols gossip information until it is made obsolete by newer information,
-and are useful for reliably sharing information among a group of participants.
-Rumor-mongering has participants gossip information for some amount of time chosen sufficiently
-high so that with high likelihood all participants receive the information.&lt;/p&gt;
-
-&lt;p&gt;3 Gossip styles:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;push: push everything and apply everything&lt;/li&gt;
-&lt;li&gt;pull: sends its state with values removed, leaving only keys and version numbers, then returns only necessary updates&lt;/li&gt;
-&lt;li&gt;push-pull: like pull but sends a list of participant-key pairs for which if has outdated entries (most efficient)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;precise-reconciliation&#34;&gt;Precise reconciliation&lt;/h3&gt;
-
-&lt;p&gt;The two participants in a gossip exchange send exactly those mappings that are more recent
-than those of the peer. Thus, if the participants are p and q, p sends to q the set of deltas.&lt;/p&gt;
-
-&lt;h3 id=&#34;scuttlebutt-reconciliation&#34;&gt;Scuttlebutt reconciliation&lt;/h3&gt;
-
-&lt;p&gt;A gossiper never transmits updates that were already known at the receiver.
-If gossip messages were unlimited in size, then the sets contains the exact differences, just like with precise reconciliation.
-If a set does not fit in the gossip message, then it is not allowed to use an arbitrary subsetas in precise reconciliation.&lt;/p&gt;
-
-&lt;h3 id=&#34;flow-control&#34;&gt;Flow control&lt;/h3&gt;
-
-&lt;p&gt;The objective of a flow control mechanism for gossip is to determine, adaptively,
-the maximum rate at which a participant can submit updates without creating a backlog of updates.
-A flow control mechanism should be fair, and under high load afford each participant that wants to submit updates the same update rate.
-As there is no global oversight, the flow control mechanism has to be decentralized,
-where the desired behavior emerges from participants responding to local events.&lt;/p&gt;
-
-&lt;h3 id=&#34;local-adaptation&#34;&gt;Local adaptation&lt;/h3&gt;
-
-&lt;p&gt;For local adaptation, we use an approach inspired by TCP flow control.
-In TCP, the send window adapts according to a strategy called Additive Increase Multiplicative decrease.&lt;/p&gt;
-
-&lt;p&gt;In this strategy, window size grows linearly with each successful transmission,
-but is decreased by a certain factor whenever overflow occurs.
-In the case of TCP, the overflow signal is the absence of an acknowledgment.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Anti-entropy - gossip information until it is made obsolete.&lt;/p&gt;
-
-&lt;p&gt;Rumor-mongering - gossip information for some of high amount of time with high likelihood all participants received the information.&lt;/p&gt;
-
-&lt;p&gt;AIMD - additive increase multiplicative decrease&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Flow Gossip Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements. With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss. The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.
+Gossip basics There are two classes of gossip: anti-entropy and rumor mongering protocols.</description>
     </item>
     
     <item>
@@ -886,90 +163,8 @@ In the case of TCP, the overflow signal is the absence of an acknowledgment.&lt;
       <pubDate>Thu, 24 Nov 2016 19:50:13 +0200</pubDate>
       
       <guid>http://out13.com/paper/seda-an-architecture-for-well-conditioned-scalable-internet-services/</guid>
-      <description>
-
-&lt;h2 id=&#34;seda-staged-event-driven-architecture&#34;&gt;SEDA - staged event driven architecture&lt;/h2&gt;
-
-&lt;p&gt;A SEDA is intended to support massive concurrency demands and simplify the construction of well-conditioned services.
-In SEDA, applications consist of a network of event-driven stages connected by explicit queues.
-This architecture allows services to be well-conditioned to load, preventing resources from being overcommitted when demand exceeds service capacity.&lt;/p&gt;
-
-&lt;p&gt;SEDA combines aspects of threads and event-based programming models to manage the concurrency, I/O, scheduling, and resource management needs of Internet services.&lt;/p&gt;
-
-&lt;p&gt;Applications are constructed as a network of stages, each with an associated incoming event queue.
-Each stage represents a robust building block that may be individually conditioned to load by thresholding or filtering its event queue.&lt;/p&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;Service is well-conditioned if it behaves like a simple pipeline, where the depth of the pipeline is determined by the path through the network and the processing stages within the service itself.
-As the offered load increases, the delivered throughput increases proportionally until the pipeline is full and the throughput saturates; additional load should not degrade throughput.&lt;/p&gt;
-
-&lt;h4 id=&#34;thread-based-concurrency&#34;&gt;Thread based concurrency&lt;/h4&gt;
-
-&lt;p&gt;Operating system overlaps computation and I/O by transparently switching among threads.
-Although relatively easy to program, the overheads associated with threading — including cache and TLB misses, scheduling overhead,
-and lock contention — can lead to serious performance degradation when the number of threads is large.&lt;/p&gt;
-
-&lt;h4 id=&#34;bounded-thread-pools&#34;&gt;Bounded thread pools&lt;/h4&gt;
-
-&lt;p&gt;To avoid the overuse of threads, a number of systems adopt a coarse form of load conditioning that serves to bound the size of the thread
-pool associated with a service. When the number of requests in the server exceeds some fixed limit, additional connections are not accepted.
-This approach is used by Web servers such as Apache, IIS, and Netscape Enterprise Server.
-By limiting the number of concurrent threads, the server can avoid throughput degradation,
-and the overall performance is more robust than the unconstrained thread-per-task model.&lt;/p&gt;
-
-&lt;h4 id=&#34;event-driven-concurrency&#34;&gt;Event-driven concurrency&lt;/h4&gt;
-
-&lt;p&gt;Server consists of a small number of threads (typically one per CPU) that loop continuously, processing events of different types from a queue.
-Events may be generated by the operating system or internally by the application,
-and generally correspond to network and disk I/O readiness and completion notifications, timers, or other application-specific events.&lt;/p&gt;
-
-&lt;p&gt;Certain I/O operations (in this case, filesystem access) do not have asynchronous interfaces, the main server
-process handles these events by dispatching them to helper processes via IPC.
-Helper processes issue (blocking) I/O requests and return an event to the main process upon completion.&lt;/p&gt;
-
-&lt;p&gt;Important limitation of this model is that it assumes that event handling threads do not block,
-and for this reason nonblocking I/O mechanisms must be employed.&lt;/p&gt;
-
-&lt;h4 id=&#34;structured-event-queues&#34;&gt;Structured event queues&lt;/h4&gt;
-
-&lt;p&gt;Common aspect of these designs is to structure an event-driven application using a
-set of event queues to improve code modularity and simplify application design.&lt;/p&gt;
-
-&lt;h4 id=&#34;staged-event-driven-architecture&#34;&gt;Staged event driven architecture&lt;/h4&gt;
-
-&lt;p&gt;Support massive concurrency: To avoid performance degradation due to threads,
-SEDA makes use of event-driven execution wherever possible.
-This also requires that the system provide efficient and scalable I/O primitives.&lt;/p&gt;
-
-&lt;p&gt;Simplify the construction of well-conditioned services: To reduce the complexity of building Internet services,
-SEDA shields application programmers from many of the details of scheduling and resource management.
-The design also supports modular construction of these applications, and provides support for debugging and performance profiling.&lt;/p&gt;
-
-&lt;p&gt;Enable introspection: Applications should be able to analyze the request stream to adapt behavior to
-changing load conditions. For example, the system should be able to
-prioritize and filter requests to support degraded service under heavy load.&lt;/p&gt;
-
-&lt;p&gt;Support self-tuning resource management: Rather than mandate a priori
-knowledge of application resource requirements and client load
-characteristics, the system should adjust its resource management parameters dynamically
-to meet performance targets. For example, the number of threads allocated to
-a stage can be determined automatically based on perceived concurrency demands,
-rather than hard-coded by the programmer or administrator.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Building blocks&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The fundamental unit of processing within SEDA is the stage.
-Stage is a self-contained application component consisting of an event handler, an incoming event queue, and a thread pool.&lt;/p&gt;
-
-&lt;p&gt;The core logic for each stage is provided by the event handler, the input to which is a batch of multiple events.
-Event handlers do not have direct control over queue operations or threads.&lt;/p&gt;
-
-&lt;p&gt;Event queues in SEDA is that they may be finite: that is, an enqueue operation may fail
-if the queue wishes to reject new entries, say, because it has reached a threshold.&lt;/p&gt;
-</description>
+      <description>SEDA - staged event driven architecture A SEDA is intended to support massive concurrency demands and simplify the construction of well-conditioned services. In SEDA, applications consist of a network of event-driven stages connected by explicit queues. This architecture allows services to be well-conditioned to load, preventing resources from being overcommitted when demand exceeds service capacity.
+SEDA combines aspects of threads and event-based programming models to manage the concurrency, I/O, scheduling, and resource management needs of Internet services.</description>
     </item>
     
     <item>
@@ -978,68 +173,8 @@ if the queue wishes to reject new entries, say, because it has reached a thresho
       <pubDate>Thu, 17 Nov 2016 19:23:07 +0200</pubDate>
       
       <guid>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</guid>
-      <description>
-
-&lt;h3 id=&#34;abstract&#34;&gt;Abstract&lt;/h3&gt;
-
-&lt;p&gt;Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
-data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.&lt;/p&gt;
-
-&lt;h4 id=&#34;tcp-congestion-control-versus-system-buffer-management&#34;&gt;TCP Congestion Control versus System Buffer Management&lt;/h4&gt;
-
-&lt;p&gt;TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
-protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
-Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
-reconstructed and verified at the recipient’s end. The congestion-control mechanism
-was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
-transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
-depending on network conditions.&lt;/p&gt;
-
-&lt;p&gt;System buffer management. Every network device that transports data has buffers,
-usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
-that periodic data bursts can be accommodated without having to drop packets.
-Network systems such as switch-routers are architected differently, however, and can
-vary significantly in the size of their buffers and how they manage different traffic flows.&lt;/p&gt;
-
-&lt;h4 id=&#34;deep-buffer-vs-intelligent-buffer&#34;&gt;Deep buffer vs Intelligent buffer&lt;/h4&gt;
-
-&lt;p&gt;A common practice is to put in as much buffer as possible. However, since the
-buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
-how to use this shared resource can significantly impact applications’ performance.&lt;/p&gt;
-
-&lt;p&gt;The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
-not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
-and hence longer flow completion time.&lt;/p&gt;
-
-&lt;p&gt;Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
-resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
-because large buffers do not create more link bandwidth.&lt;/p&gt;
-
-&lt;h4 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h4&gt;
-
-&lt;p&gt;Since mice flows are often mission critical (including, for example, control and alarm messages,
-Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
-them to complete faster and their applications to perform better overall. The above test results
-show that expediting mice flows and regulating the elephant flows early under the intelligent
-buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
-magnitude better performance for mission critical flows without causing elephant flows to slow
-down.&lt;/p&gt;
-
-&lt;p&gt;Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
-there is enough buffer space for the bursts of mice flows while the elephant flows are properly
-regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
-in the form of longer queuing latency, and hence longer flow completion time for all flow types.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Elephant - big flows&lt;/p&gt;
-
-&lt;p&gt;Mice - small flows&lt;/p&gt;
-
-&lt;p&gt;FCT - flow completion time&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Abstract Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line, data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.
+TCP Congestion Control versus System Buffer Management TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.</description>
     </item>
     
     <item>
@@ -1048,41 +183,107 @@ in the form of longer queuing latency, and hence longer flow completion time for
       <pubDate>Thu, 10 Nov 2016 22:27:23 +0200</pubDate>
       
       <guid>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</guid>
-      <description>
-
-&lt;h2 id=&#34;replication-under-scalable-hashing&#34;&gt;Replication Under Scalable Hashing&lt;/h2&gt;
-
-&lt;p&gt;Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used;
-adding or removing components results in either extensive reorganization of data or load imbalance in the system.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants also support weighting, allowing disks of different vintages to be added to a system.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system,
-or old disks are retired, RUSH variants minimize the number of objects that need to
-be moved in order to bring the system back into balance.&lt;/p&gt;
-
-&lt;p&gt;RUSH variants can perform reorganization online without locking the filesystem for a long time to relocate data.&lt;/p&gt;
-
-&lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
-
-&lt;p&gt;Subcluster in a system managed by RUSH t must have at least as many disks as an object has replicas.&lt;/p&gt;
-
-&lt;p&gt;RUSH t is the best algorithms for distributing data over very large clusters of disks.&lt;/p&gt;
-
-&lt;p&gt;RUSH r may be the best option for systems which need to remove disks one at a time from the system.&lt;/p&gt;
-
-&lt;p&gt;RUSH p may be the best option for smaller systems where storage space is at a premium.&lt;/p&gt;
-
-&lt;h4 id=&#34;notes&#34;&gt;Notes&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;RUSH t - RUSH tree&lt;/p&gt;
-
-&lt;p&gt;RUSH r - RUSH support for removal&lt;/p&gt;
-
-&lt;p&gt;PUSH p - RUSH placement using prime numbers&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Replication Under Scalable Hashing Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used; adding or removing components results in either extensive reorganization of data or load imbalance in the system.
+RUSH variants also support weighting, allowing disks of different vintages to be added to a system.
+RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system, or old disks are retired, RUSH variants minimize the number of objects that need to be moved in order to bring the system back into balance.</description>
+    </item>
+    
+    <item>
+      <title>Dynamo: Amazon’s Highly Available Key-value Store</title>
+      <link>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</link>
+      <pubDate>Sun, 06 Nov 2016 12:32:44 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/dynamo-amazon-highly-available-key-value-store/</guid>
+      <description>Dynamo Dynamo sacrifices Consistency for Availability under certain failure scenarios. It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.
+Gossip based distributed failure detection and membership protocol.
+Query Model Read &amp;amp; Write operations to data item that is uniquely identified by a key. State is stored as blobs. Targets application that store objects up to 1MB.</description>
+    </item>
+    
+    <item>
+      <title>Bigtable: A Distributed Storage System for Structured Data</title>
+      <link>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</link>
+      <pubDate>Thu, 03 Nov 2016 19:54:45 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/</guid>
+      <description>Bigtable Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity servers.
+Bigtable does not support a full relational data model; instead, it provides clients with a simple data model that supports dynamic control over data layout and format, and allows clients to reason about the locality properties of the data represented in the underlying storage.</description>
+    </item>
+    
+    <item>
+      <title>Ownership is theft experiences building an embedded os in rust</title>
+      <link>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</link>
+      <pubDate>Thu, 25 Aug 2016 20:39:03 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</guid>
+      <description>Embedded OS in Rust Embedded systems:
+ lack hardware protection mechanism less tolerant to crashes no easy way for debugging GC introduces non-deterministic delay  Rust Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.
+Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.</description>
+    </item>
+    
+    <item>
+      <title>On the fly garbage collection</title>
+      <link>http://out13.com/paper/on-the-fly-garbage-collection/</link>
+      <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
+      <description>In our abstract form of the problem, we consider a directed graph of varying structure but with a fixed number of nodes, in which each node has at most two outgoing edges. More precisely, each node may have a left-hand outgoing edge and may have a right-hand outgoing edge, but either of them or both may be missing. In this graph a fixed set of nodes exists, called &amp;ldquo;the roots.</description>
+    </item>
+    
+    <item>
+      <title>Queues Are Databases</title>
+      <link>http://out13.com/paper/queues-are-databases/</link>
+      <pubDate>Fri, 12 Aug 2016 16:57:55 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/queues-are-databases/</guid>
+      <description>Queued transaction processing over pure client-server transaction processing. Queued systems are build on top of direct systems.
+TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.
+Queue manager is best built as a naive resource manager atop an object-relational database system. That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.
+Queues pose difficult problems when implemented atop a database:</description>
+    </item>
+    
+    <item>
+      <title>An Argument for Increasing TCP’s Initial Congestion Window</title>
+      <link>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</link>
+      <pubDate>Thu, 04 Aug 2016 22:02:54 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/an-argument-for-increasing-tcp-initial-congestion-window/</guid>
+      <description>TCP congestion window  TCP flows start with initial congestion window of 4 segments (4KB of data).
+ Window if critical for how quickly flows can finish.
+Increase in 15KB congestion window improves average HTTP latency by 10%, mostly benefits RTT and BDP.
+Slow start increases congestion window by the number of data segments acknowledged for each received ACK.
+TCP latency is dominated by the number of round-trip times in slow-start phase.</description>
+    </item>
+    
+    <item>
+      <title>Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center</title>
+      <link>http://out13.com/paper/mesos-platform-for-resource-sharing/</link>
+      <pubDate>Thu, 28 Apr 2016 19:50:29 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/mesos-platform-for-resource-sharing/</guid>
+      <description>Platform for resource sharing  Sharing improves cluster utilization and avoids per-framework data repli-cation Organizations will want to run multiple frameworks in the same cluster, picking the best one for each application. Sharing a cluster between frameworks improves utilization and allows applications to share access to large datasets that may be too costly to replicate
+ Architecture Mesos decides how many resources to offer each framework, based on an organizational policy such as fair sharing, while frameworks decide which resources to accept and which tasks to run on them.</description>
+    </item>
+    
+    <item>
+      <title>Tiny LFU highly efficient cache admission policy</title>
+      <link>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</link>
+      <pubDate>Fri, 22 Apr 2016 21:26:15 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/tiny-lfu-highly-efficient-cache-admission-policy/</guid>
+      <description>Frequency based cache admission policy  Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.
+ TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.
+Usage The intuitive reason why caching works is that data accesses in many domains of computer science exhibit a considerable degree of “locality”.
+When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss.</description>
+    </item>
+    
+    <item>
+      <title>Container based operating system virtualization</title>
+      <link>http://out13.com/paper/container-based-operating-system-virtualization/</link>
+      <pubDate>Tue, 19 Apr 2016 19:30:48 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/container-based-operating-system-virtualization/</guid>
+      <description>Alternative to hypervisors.  Workload requirements for a given system will direct users to the point in the design space that requires the least trade-off.
+ Sharing over isolation? Hypervisors often deployed to let a single machine host multiple, unrelated applications, which may run on behalf of independent organizations, as is common when a data center consolidates multiple physical servers. Hypervisors favor full isolation over sharing. However, when each virtual machine is running the same kernel and similar operating system distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency relative to running all applications on a single kernel.</description>
     </item>
     
   </channel>

@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/</loc>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/paper/cooperative-task-management-without-manual-stack-management/</loc>
     <lastmod>2017-08-10T21:48:19+03:00</lastmod>
   </url>
@@ -261,7 +268,7 @@
   
   <url>
     <loc>http://out13.com/categories/</loc>
-    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -269,7 +276,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -284,8 +291,16 @@
   
   
   <url>
+    <loc>http://out13.com/tags/kernel/</loc>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,7 +332,7 @@
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -325,7 +340,7 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -349,7 +364,7 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -357,7 +372,7 @@
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -381,7 +396,7 @@
   
   <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2017-08-10T21:48:19+03:00</lastmod>
+    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -389,15 +404,7 @@
   
   <url>
     <loc>http://out13.com/tags/</loc>
-    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/tools/</loc>
-    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
+    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -405,6 +412,14 @@
   
   <url>
     <loc>http://out13.com/tools/</loc>
+    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/tools/</loc>
     <lastmod>2017-07-31T19:25:47+03:00</lastmod>
     <priority>0</priority>
   </url>
