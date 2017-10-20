@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Scaling Memcache at Facebook - Ernestas Poškus.io</title>
+  <title>Bitcoin a Peer to Peer Electronic Cash System - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Scaling Memcache at Facebook" />
+  <meta property="og:title" content="Bitcoin a Peer to Peer Electronic Cash System" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/scaling-memcache-at-facebook/" />
+  <meta property="og:url" content="http://out13.com/paper/bitcoin-a-peer-to-peer-electronic-cash-system/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -80,69 +80,69 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Scaling Memcache at Facebook</h1>
+    <h1>Bitcoin a Peer to Peer Electronic Cash System</h1>
     <ul>
-      <li>Author: Rajesh Nishtala, Hans Fugal, Steven Grimm, Marc Kwiatkowski, Herman Lee, Harry C. Li, Ryan McElroy, Mike Paleczny, Daniel Peek, Paul Saab, David Stafford, Tony Tung, Venkateshwaran Venkataramani</li>
-      <li>Name: Scaling Memcache at Facebook</li>
+      <li>Author: Satoshi Nakamoto</li>
+      <li>Name: Bitcoin: A Peer-to-Peer Electronic Cash System</li>
       
-      <li>Link: <a href="https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf" rel="nofollow" target="_blank">https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf</a></li>
+      <li>Link: <a href="https://bitcoin.org/bitcoin.pdf" rel="nofollow" target="_blank">https://bitcoin.org/bitcoin.pdf</a></li>
       
     </ul>
-    <time>Thu, Jul 27, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 404 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Scaling%20Memcache%20at%20Facebook%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Oct 19, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 327 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Bitcoin%20a%20Peer%20to%20Peer%20Electronic%20Cash%20System%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="memcache-at-facebook">Memcache at Facebook</h2>
+<h2 id="p2p-electronic-cash-system">P2P Electronic Cash System</h2>
 
-<p>Largest memcached installation in the world, processing over a billion requests per second and storing trillions of items.</p>
+<p>A purely peer-to-peer version of electronic cash would allow online
+payments to be sent directly from one party to another without going through a
+financial institution.</p>
 
-<p>Items are distributed across the memcached servers through consistent hashing.</p>
+<p>Prevent double-spending problem using a peer-to-peer network.</p>
 
-<p><code>all</code> web servers communicate with every memcached server in a short period of time.
-This all-to-all communication pattern can cause incast congestion or allow a single server to become the bottleneck for many web servers.
-Reduce latency mainly by focusing on the memcache client, which runs on each web server.</p>
+<p>As long as a majority of CPU power is controlled by nodes that are not cooperating to
+attack the network, they&rsquo;ll generate the longest chain and outpace attackers.</p>
 
-<p>Constructing a directed acyclic graph (DAG) representing the dependencies between data.
-A web server uses this DAG to maximize the number of items that can be fetched concurrently.</p>
+<p>The system is secure as long as honest nodes collectively control more CPU power than any
+cooperating group of attacker nodes.</p>
 
-<p>Clients treat get errors as cache misses, but web servers will skip inserting entries
-into memcached after querying for data to avoid putting additional load on
-a possibly overloaded network or server.</p>
+<h3 id="transactions">Transactions</h3>
 
-<p>Clients therefore use a sliding window mechanism to control the number of outstanding requests.
-When the client receives a response, the next request can be sent.
-Similar to TCP’s congestion control, the size of this sliding window grows
-slowly upon a successful request and shrinks when a request goes unanswered.</p>
+<p>We define an electronic coin as a chain of digital signatures. Each owner transfers the coin to the
+next by digitally signing a hash of the previous transaction and the public key of the next owner
+and adding these to the end of the coin.</p>
 
-<p>Dedicate a small set of machines, named Gutter, to take over the responsibilities of a few
-failed servers. Gutter accounts for approximately 1% of the memcached servers in a cluster.</p>
+<h3 id="timestamp-server">Timestamp server</h3>
 
-<p>When a memcached client receives no response to its get request,
-the client assumes the server has failed and issues the request again to a special Gutter pool.</p>
+<p>The timestamp proves that the data must have existed at the
+time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in
+its hash, forming a chain, with each additional timestamp reinforcing the ones before it.</p>
 
-<p>If this second request misses, the client will insert the appropriate key-value
-pair into the Gutter machine after querying the database.
-Entries in Gutter expire quickly to obviate Gutter invalidations.
-Gutter limits the load on backend services at the cost of slightly stale data.</p>
+<h3 id="network">Network</h3>
 
-<p>Deploy invalidation daemons (named mcsqueal) on every database.
-Each daemon inspects the SQL statements that its database commits, extracts any deletes, and broad-
-casts these deletes to the memcache deployment in every frontend cluster in that region.</p>
+<p>1) New transactions are broadcast to all nodes.</p>
 
-<h3 id="performance-optimizations">Performance optimizations</h3>
+<p>2) Each node collects new transactions into a block.</p>
 
-<p>Began with a single-threaded memcached which used a fixed-size hash table. The first major optimizations
-were to: (1) allow automatic expansion of the hash table to avoid look-up times drifting to O(n), make the
-server multi-threaded using a global lock to protect multiple data structures, and (3) giving each thread
-its own UDP port to reduce contention when sending replies and later spreading interrupt processing overhead.</p>
+<p>3) Each node works on finding a difficult proof-of-work for its block.</p>
+
+<p>4) When a node finds a proof-of-work, it broadcasts the block to all nodes.</p>
+
+<p>5) Nodes accept the block only if all transactions in it are valid and not already spent.</p>
+
+<p>6) Nodes express their acceptance of the block by working on creating the next block in the chain, using the hash of the accepted block as the previous hash.</p>
+
+<p>Nodes always consider the longest chain to be the correct one and will keep working on extending it.</p>
+
+<h3 id="privacy">Privacy</h3>
+
+<p>Additional firewall, a new key pair should be used for each transaction to keep them
+from being linked to a common owner. Some linking is still unavoidable with multi-input transactions,
+which necessarily reveal that their inputs were owned by the same owner.</p>
 
 <h4 id="notes">Notes</h4>
-
-<blockquote>
-<p>DAG - directed acyclic graph</p>
-</blockquote>
 
     <hr />
     <div id="disqus_thread"></div>

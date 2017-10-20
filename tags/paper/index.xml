@@ -6,10 +6,22 @@
     <description>Recent content in Paper on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Sep 2017 19:48:19 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 19 Oct 2017 20:23:22 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bitcoin a Peer to Peer Electronic Cash System</title>
+      <link>http://out13.com/paper/bitcoin-a-peer-to-peer-electronic-cash-system/</link>
+      <pubDate>Thu, 19 Oct 2017 20:23:22 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/bitcoin-a-peer-to-peer-electronic-cash-system/</guid>
+      <description>P2P Electronic Cash System A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.
+Prevent double-spending problem using a peer-to-peer network.
+As long as a majority of CPU power is controlled by nodes that are not cooperating to attack the network, they&amp;rsquo;ll generate the longest chain and outpace attackers.
+The system is secure as long as honest nodes collectively control more CPU power than any cooperating group of attacker nodes.</description>
+    </item>
     
     <item>
       <title>Attacking Branch Predictors to Bypass ASLR</title>
