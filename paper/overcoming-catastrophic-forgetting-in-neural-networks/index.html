@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Queues Are Databases - Ernestas Poškus.io</title>
+  <title>Overcoming catastrophic forgetting in neural networks - Ernestas Poškus.io</title>
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Queues Are Databases" />
+  <meta property="og:title" content="Overcoming catastrophic forgetting in neural networks" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/queues-are-databases/" />
+  <meta property="og:url" content="http://out13.com/paper/overcoming-catastrophic-forgetting-in-neural-networks/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -80,62 +80,56 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Queues Are Databases</h1>
+    <h1>Overcoming catastrophic forgetting in neural networks</h1>
     <ul>
-      <li>Author: Jim Gray</li>
-      <li>Name: Queues Are Databases</li>
+      <li>Author: James Kirkpatrick, Razvan Pascanu, Neil Rabinowitz, Joel Veness, Guillaume Desjardins, Andrei A. Rusu, Kieran Milan, John Quan, Tiago Ramalho, Agnieszka Grabska-Barwinska, Demis Hassabis, Claudia Clopath b , Dharshan Kumaran, and Raia Hadsell</li>
+      <li>Name: Overcoming catastrophic forgetting in neural networks</li>
       
-      <li>Link: <a href="https://arxiv.org/pdf/cs/0701158.pdf" rel="nofollow" target="_blank">https://arxiv.org/pdf/cs/0701158.pdf</a></li>
+      <li>Link: <a href="https://arxiv.org/abs/1612.00796" rel="nofollow" target="_blank">https://arxiv.org/abs/1612.00796</a></li>
       
     </ul>
-    <time>Fri, Aug 12, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 261 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Queues%20Are%20Databases%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Sun, Nov 12, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 244 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Overcoming%20catastrophic%20forgetting%20in%20neural%20networks%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     
 
-<h2 id="queued-transaction-processing-over-pure-client-server-transaction-processing">Queued transaction processing over pure client-server transaction processing.</h2>
+<h2 id="catastrophic-forgetting-in-neural-networks">Catastrophic forgetting in neural networks</h2>
 
-<p>Queued systems are build on top of direct systems.</p>
+<p>The ability to learn tasks in a sequential fashion is crucial to the development of
+artificial intelligence. Neural networks are not, in general, capable of this and it
+has been widely thought that catastrophic forgetting is an inevitable feature of
+connectionist models.</p>
 
-<p>TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.</p>
+<p>It is possible to overcome this limitation.</p>
 
-<p>Queue manager is best built as a naive resource manager atop an object-relational database system.
-That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.</p>
+<p>Our approach remembers old tasks by selectively slowing down
+learning on the weights important for those tasks.</p>
 
-<p>Queues pose difficult problems when implemented atop a database:</p>
+<p>Achieving artificial general intelligence requires that agents are able to learn and remember many
+different tasks.</p>
 
-<ul>
-<li><p>Performance: An enqueue transaction is an insert followed by a commit. This places
-extreme performance demands on the concurrency control and recovery components
-of a database &ndash; it exposes hotspots and high-overhead code.</p></li>
+<p>A multitask learning paradigm—deep learning techniques have been used to
+train single agents that can successfully play multiple Atari games.</p>
 
-<li><p>Concurrency control: The dequeue transaction typically involves deleting a record from
-the queue, processing the request, enqueuing results in other queues, and then
-committing. Serializable isolation requires that there can be at most one dequeue
-executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.</p></li>
+<p>The lack of algorithms to support continual learning thus remains a key
+barrier to the development of artificial general intelligence.</p>
 
-<li><p>Read past: locks allow a program to skip over dirty (uncommitted records) to find the
-first committed record. This is what a dequeue() operation wants.</p></li>
+<h3 id="elastic-weight-consolidation">Elastic weight consolidation</h3>
 
-<li><p>Read through: locks allow a program to examine records that have not yet been
-committed. This is useful in polling the status of a queued request that is currently
-being processed.</p></li>
+<p>A deep neural network consists of multiple layers of linear projection followed by element-wise
+non-linearities. Learning a task consists of adjusting the set of weights and biases θ of the linear
+projections, to optimize performance.</p>
 
-<li><p>Notify: allow a program to wait for a state change in a lock. This allows a
-dequeue() operation to wait for one or more queues to become non-empty.</p></li>
-</ul>
+<p>In order to justify this choice of constraint and to define which weights are most important for a task,
+it is useful to consider neural network training from a probabilistic perspective.</p>
 
 <h4 id="notes">Notes</h4>
 
 <blockquote>
-<p>MOM - message oriented middleware</p>
+<p>catastrophic forgetting: knowledge of previously learnt task(s) (e.g. task A) to be abruptly lost as information relevant to the current task (e.g. task B) is incorporated.</p>
 
-<p>TP - transaction processing</p>
-
-<p>P2P - peer to peer</p>
-
-<p>ORB - object request broker</p>
+<p>elastic weight consolidation: this algorithm slows down learning on certain weights based on how important they are to previously seen tasks.</p>
 </blockquote>
 
     <hr />
