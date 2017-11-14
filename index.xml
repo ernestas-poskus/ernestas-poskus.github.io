@@ -6,10 +6,27 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2017 23:05:18 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2017 20:35:44 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Socket statistics</title>
+      <link>http://out13.com/mnemonics/socket-statistics/</link>
+      <pubDate>Tue, 14 Nov 2017 20:35:44 +0200</pubDate>
+      
+      <guid>http://out13.com/mnemonics/socket-statistics/</guid>
+      <description>-n, &amp;ndash;numeric | Do now try to resolve service names.
+-a, &amp;ndash;all | Display all sockets.
+-e, &amp;ndash;extended | Show detailed socket information
+-p, &amp;ndash;processes | Show process using socket.
+-t, &amp;ndash;tcp | Display only TCP sockets.
+-u, &amp;ndash;udp | Display only UDP sockets.
+-l, &amp;ndash;listening | Display only listening sockets (these are omitted by default).
+-4, &amp;ndash;ipv4 | Display only IP version 4 sockets (alias for -f inet).
+-6, &amp;ndash;ipv6 | Display only IP version 6 sockets (alias for -f inet6).</description>
+    </item>
     
     <item>
       <title>Overcoming catastrophic forgetting in neural networks</title>

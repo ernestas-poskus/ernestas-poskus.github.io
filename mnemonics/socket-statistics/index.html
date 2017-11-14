@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance - Ernestas Poškus.io</title>
-  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <title>Socket statistics - Ernestas Poškus.io</title>
+  <meta name="description" content="Using mnemonics in software engineering to remember arguments &amp; commands"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance" />
-  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:title" content="Socket statistics" />
+  <meta property="og:description" content="Using mnemonics in software engineering to remember arguments &amp; commands" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/" />
+  <meta property="og:url" content="http://out13.com/mnemonics/socket-statistics/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -82,67 +82,68 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</h1>
+    <h1>Socket statistics</h1>
     <ul>
-      <li>Author: Song Jiang, Xiaodong Zhang</li>
-      <li>Name: LIRS: An Efficient Low Inter-reference Recency Set Replacement Policy to Improve Buffer Cache Performance</li>
       
-      <li>Link: <a href="http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/papers/TR-02-6.pdf" rel="nofollow" target="_blank">http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/papers/TR-02-6.pdf</a></li>
+      <li><a href="https://linux.die.net/man/8/ss" rel="nofollow" target="_blank">https://linux.die.net/man/8/ss</a></li>
       
     </ul>
-    <time>Thu, Mar 9, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 273 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=LIRS:%20An%20Efficient%20Low%20Inter-reference%20Recency%20Set%20Replacement%20Policy%20to%20Improve%20Buffer%20Cache%20Perfor%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Tue, Nov 14, 2017</time>
+    <p><abbr title="Word count">WC</abbr> 173 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Socket%20statistics%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
+    <p>
+      Mnemonics is any learning technique that aids information retention in the human memory.
+      Mnemonics make use of elaborative encoding, retrieval cues, and imagery as specific
+      tools to encode any given information in a way that allows for efficient storage and retrieval.
+      For curious read Tony Buzan books.
+      [<a href="https://en.wikipedia.org/wiki/Mnemonic" target="_blank">wiki</a>]
+    </p>
+    <hr />
+    <h2>ss</h2>
+    <p>-n, &ndash;numeric | Do now try to resolve service names.</p>
 
-<h3 id="lirs">LIRS</h3>
+<p>-a, &ndash;all | Display all sockets.</p>
 
-<p>LRU replacement policy has been commonly used in the buffer cache management,
-it is well known for its inability to cope with access patterns with weak locality.</p>
+<p>-e, &ndash;extended | Show detailed socket information</p>
 
-<p>LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference
-Recency (IRR) for making a replacement decision.</p>
+<p>-p, &ndash;processes | Show process using socket.</p>
 
-<h4 id="lru-inefficiency">LRU inefficiency</h4>
+<p>-t, &ndash;tcp | Display only TCP sockets.</p>
+
+<p>-u, &ndash;udp | Display only UDP sockets.</p>
+
+<p>-l, &ndash;listening | Display only listening sockets (these are omitted by default).</p>
+
+<p>-4, &ndash;ipv4 | Display only IP version 4 sockets (alias for -f inet).</p>
+
+<p>-6, &ndash;ipv6 | Display only IP version 6 sockets (alias for -f inet6).</p>
+
+<hr />
+
+<p>These are the main command arguments, it may be hard to remember them all.
+However if arguments are combined into known words or combinations it becomes
+cheerfully easy to recall them.</p>
 
 <ul>
-<li><p>Under the LRU policy, a burst of references to infrequently used blocks such
-as “sequential scans” through a large file, may cause
-replacement of commonly referenced blocks in the cache.</p></li>
-
-<li><p>For a cyclic (loop-like) pattern of accesses to a file that is only slightly
-larger than the cache size, LRU always mistakenly evicts the blocks that will
-be accessed soonest, because these blocks have not been accessed for the longest time.</p></li>
+<li>ss -nepal: do not resolve, extended, process pids, all and listening</li>
+<li>ss -puta: process pids, UDP &amp; TCP, all</li>
+<li>ss -tuna: TCP &amp; UDP, do not resolve, all</li>
 </ul>
 
-<p>The reason for LRU to behave poorly in these situations is
-that LRU makes a bold assumption – a block that has not
-been accessed the longest would wait for relatively longest
-time to be accessed again.</p>
+<p>Furthermore one can use images to aid visualization of commands.</p>
 
-<h4 id="implementation">Implementation</h4>
+<p><img src="http://out13.com/images/mnemonics/nepal.png" alt="" />
+<img src="http://out13.com/images/mnemonics/puta.jpg" alt="" />
+<img src="http://out13.com/images/mnemonics/tuna.png" alt="" /></p>
 
-<p>IRR as the recorded history information of each block, where IRR of a block
-refers to the number of other blocks accessed between two consecutive references
-to the block.</p>
+<ul>
+<li>Nepal - nice country</li>
+<li>Puta - whore</li>
+<li>Tuna - simply popular fish</li>
+</ul>
 
-<p>Specifically, the recency refers to the number of other blocks accessed from
-last reference to the current time.</p>
-
-<p>It is assumed that if the IRR of a block is large,
-the next IRR of the block is likely to be large again.
-Following this assumption, we select the blocks with large IRRs
-for replacement, because these blocks are highly possible to
-be evicted later by LRU before being referenced again under our assumption.</p>
-
-<h4 id="notes">Notes</h4>
-
-<blockquote>
-<p>LIRS - low inter reference set</p>
-
-<p>IRR - inter reference recency</p>
-</blockquote>
+<p>Imagine whore eating whole tuna in Nepal on mountain Everest.</p>
 
     <hr />
     <div id="disqus_thread"></div>

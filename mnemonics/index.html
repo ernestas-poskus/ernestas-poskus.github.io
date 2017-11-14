@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Attacking Branch Predictors to Bypass ASLR - Ernestas Poškus.io</title>
-  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <title>Mnemonics - Ernestas Poškus.io</title>
+  <meta name="description" content=""/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Attacking Branch Predictors to Bypass ASLR" />
-  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:title" content="Mnemonics" />
+  <meta property="og:description" content="" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/jump-over-aslr-attacking-branch-predictors-to-bypass-aslr/" />
+  <meta property="og:url" content="http://out13.com/mnemonics/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -25,7 +25,7 @@
   <link rel="shortcut icon" href="http://out13.com/favicon.ico">
 
   
-  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+  <link href="http://out13.com/mnemonics/index.xml" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
 
 
   
@@ -82,71 +82,17 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Attacking Branch Predictors to Bypass ASLR</h1>
-    <ul>
-      <li>Author: Dmitry Evtyushkin, Dmitry Ponomarev, Nael Abu-Ghazaleh</li>
-      <li>Name: Jump Over ASLR: Attacking Branch Predictors to Bypass ASLR</li>
+    <ul class="no-bullet">
+      <h1>Mnemonics</h1>
       
-      <li>Link: <a href="http://www.cs.ucr.edu/~nael/pubs/micro16.pdf" rel="nofollow" target="_blank">http://www.cs.ucr.edu/~nael/pubs/micro16.pdf</a></li>
+        <li>
+          <h3>
+            <a href="http://out13.com/mnemonics/socket-statistics/">Socket statistics</a>
+            <small><time>Tue, Nov 14, 2017</time></small>
+          </h3>
+        </li>
       
     </ul>
-    <time>Thu, Sep 14, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 140 / <abbr title="Reading time">RT</abbr> 1min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Attacking%20Branch%20Predictors%20to%20Bypass%20ASLR%20#out13paper%20@ernestas_poskus">Tweet</a>
-    <hr />
-    
-
-<h2 id="address-space-layout-randomization">Address Space Layout Randomization</h2>
-
-<p>ASLR is widely used technique that protects systems against range of attacks.</p>
-
-<p>ASLR works by randomizing the offset of key program segments
-in virtual memory, making it difficult for an attacker to derive
-the addresses of specific code objects and consequently redirect
-the control flow to this code.</p>
-
-<p>Purpose of ASLR is to make it difficult, if not impossible, for the
-attacker to know the location of specific code pages in program address space.</p>
-
-<p>Exploited collisions in shared BTBs to create BTB
-side-channels and allow the attacker process to recover the
-memory layout of both the kernel and user-level applications.</p>
-
-<h4 id="notes">Notes</h4>
-
-<blockquote>
-<p>ASLR - address space layout randomization</p>
-
-<p>BTB - branch target buffer</p>
-
-<p>ROP - return oriented programming</p>
-
-<p>KASLR - Kernel ASLR</p>
-
-<p>JOP - jump oriented programming</p>
-
-<p>SDC - same domain collisions</p>
-
-<p>PDE - page directory entry</p>
-</blockquote>
-
-    <hr />
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-(function() {
-    
-    
-    if (window.location.hostname == "localhost")
-        return;
-
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    var disqus_shortname = 'ernestasposkusio';
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
   </div>
 </div>
 <hr />
