@@ -6,10 +6,19 @@
     <description>Recent content in Employer on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2017 19:21:47 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 15 Nov 2017 19:31:47 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/employer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Elasticsearch more nodes with fewer servers</title>
+      <link>http://out13.com/employer/elasticsearch-more-nodes-with-fewer-servers/</link>
+      <pubDate>Wed, 15 Nov 2017 19:31:47 +0200</pubDate>
+      
+      <guid>http://out13.com/employer/elasticsearch-more-nodes-with-fewer-servers/</guid>
+      <description>Using NUMA in Elasticsearch for more nodes with fewer servers.</description>
+    </item>
     
     <item>
       <title>Sharding out Elasticsearch</title>
