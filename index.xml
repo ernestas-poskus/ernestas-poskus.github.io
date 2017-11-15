@@ -456,10 +456,10 @@ Due to own usage reasons I have decided to implement these readability tests in 
       
       <guid>http://out13.com/cv/</guid>
       <description>Pragmatic &amp;amp; Ambitious
- Keen interest in service oriented architecture, massive scalability, distributed applications, Search Engines.  A programming language that doesn&#39;t change the way you think about programming is not worth knowing. - Alan Perlis  Blog: http://out13.com
+ Keen interest in service oriented architecture, massive scalability, distributed systems, Search Engines.  A programming language that doesn&#39;t change the way you think about programming is not worth knowing. - Alan Perlis  Blog: http://out13.com
 Goodreads: 42270834-ernestas-poskus
 Twitter: @ernestas_poskus
-Open Source  https://github.com/AnsibleShipyard release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.) https://github.com/linkosmos author of 10+ Golang packages https://github.com/ernestas-poskus/ansible-prometheus Ansible playbook for installing Prometheus monitoring system  Experience Systems Engineer @ Vinted Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</description>
+Open Source  https://github.com/AnsibleShipyard release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.) https://github.com/linkosmos author of 10+ Golang packages https://github.com/ernestas-poskus/ansible-prometheus Ansible playbook for installing Prometheus monitoring system https://github.</description>
     </item>
     
   </channel>
