@@ -6,10 +6,19 @@
     <description>Recent content on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Nov 2017 20:35:44 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 15 Nov 2017 19:21:47 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sharding out Elasticsearch</title>
+      <link>http://out13.com/employer/sharding-out-elasticsearch/</link>
+      <pubDate>Wed, 15 Nov 2017 19:21:47 +0200</pubDate>
+      
+      <guid>http://out13.com/employer/sharding-out-elasticsearch/</guid>
+      <description>Optimization of Elasticsearch by sharding out.</description>
+    </item>
     
     <item>
       <title>Socket statistics</title>

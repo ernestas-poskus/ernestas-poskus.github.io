@@ -7,14 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>On the fly garbage collection - Ernestas Poškus.io</title>
-  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <title>Elasticsearch - Ernestas Poškus.io</title>
+  <meta name="description" content=""/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="On the fly garbage collection" />
-  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:title" content="Elasticsearch" />
+  <meta property="og:description" content="" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/on-the-fly-garbage-collection/" />
+  <meta property="og:url" content="http://out13.com/tags/elasticsearch/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
 
   
@@ -25,7 +25,7 @@
   <link rel="shortcut icon" href="http://out13.com/favicon.ico">
 
   
-  <link href="" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
+  <link href="http://out13.com/tags/elasticsearch/index.xml" rel="alternate" type="application/rss+xml" title="Ernestas Poškus.io" />
 
 
   
@@ -88,70 +88,17 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>On the fly garbage collection</h1>
-    <ul>
-      <li>Author: Edsger W. Dijkstra, Leslie Lamport, A.J. Martin, C.S. Scholten, E.F.M. Steffens</li>
-      <li>Name: On-the-Fly Garbage Collection: An Exercise in Cooperation </li>
+    <ul class="no-bullet">
+      <h1>Elasticsearch</h1>
       
-      <li>Link: <a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/garbage.pdf" rel="nofollow" target="_blank">http://research.microsoft.com/en-us/um/people/lamport/pubs/garbage.pdf</a></li>
+        <li>
+          <h3>
+            <a href="http://out13.com/employer/sharding-out-elasticsearch/">Sharding out Elasticsearch</a>
+            <small><time>Wed, Nov 15, 2017</time></small>
+          </h3>
+        </li>
       
     </ul>
-    <time>Thu, Aug 25, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 259 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=On%20the%20fly%20garbage%20collection%20#out13paper%20@ernestas_poskus">Tweet</a>
-    <hr />
-    
-
-<p>In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &ldquo;the
-roots.&rdquo; A node is called &ldquo;reachable&rdquo; if it is reachable
-from at least one root via a directed path along the edges.</p>
-
-<p>The subgraph consists of all reachable nodes and their interconnections is
-called &lsquo;the data structure&rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.</p>
-
-<p>Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node</p>
-
-<p>Mutator: redirect an outgoing edge of reachable node towards an already reachable one.</p>
-
-<p>Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes</p>
-
-<h4 id="notes">Notes</h4>
-
-<blockquote>
-<p>Free list - collection of nodes that have been identified as garbage.</p>
-</blockquote>
-
-    <hr />
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-(function() {
-    
-    
-    if (window.location.hostname == "localhost")
-        return;
-
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    var disqus_shortname = 'ernestasposkusio';
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
   </div>
 </div>
 <hr />

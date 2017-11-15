@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on Ernestas Poškus.io</title>
+    <link>http://out13.com/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2017 19:21:47 +0200</lastBuildDate>
+    
+	<atom:link href="http://out13.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sharding out Elasticsearch</title>
+      <link>http://out13.com/employer/sharding-out-elasticsearch/</link>
+      <pubDate>Wed, 15 Nov 2017 19:21:47 +0200</pubDate>
+      
+      <guid>http://out13.com/employer/sharding-out-elasticsearch/</guid>
+      <description>Optimization of Elasticsearch by sharding out.</description>
+    </item>
+    
+  </channel>
+</rss>
