@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devs on Ernestas Poškus.io</title>
+    <link>http://out13.com/dev/</link>
+    <description>Recent content in Devs on Ernestas Poškus.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Dec 2017 18:50:13 +0200</lastBuildDate>
+    
+	<atom:link href="http://out13.com/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testing Vue.js dynamic &lt;head&gt; meta tags</title>
+      <link>http://out13.com/dev/vue-seo/</link>
+      <pubDate>Wed, 20 Dec 2017 18:50:13 +0200</pubDate>
+      
+      <guid>http://out13.com/dev/vue-seo/</guid>
+      <description>Testing Vue.js dynamic  meta tags indexability by major search engines.
+When Vue app is loaded:
+ meta title should change to: New Title - out13.com meta description should change to: New Dynamic Description      </description>
+    </item>
+    
+  </channel>
+</rss>
