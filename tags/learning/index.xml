@@ -6,10 +6,23 @@
     <description>Recent content in Learning on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2017 23:05:18 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jan 2018 11:32:25 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>B4: Experience with a Globally-Deployed Software Defined WAN</title>
+      <link>http://out13.com/paper/b4-software-defined-wan/</link>
+      <pubDate>Sun, 07 Jan 2018 11:32:25 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/b4-software-defined-wan/</guid>
+      <description>Software defined WAN B4, a private WAN connecting Google’s data centers across the planet.
+i) Massive bandwidth requirements deployed to a modest number of sites.
+ii) Elastic traffic demand that seeks to maximize average bandwidth.
+iii) Full control over the edge servers and network, which enables rate limiting and demand measurement at the edge.
+Design Within each B4 site, the switch hardware layer primarily forwards traffic and does not run complex control software, and the site controller layer consists of Network Control Servers (NCS) hosting both OpenFlow controllers (OFC) and Network Control Applications (NCAs).</description>
+    </item>
     
     <item>
       <title>Overcoming catastrophic forgetting in neural networks</title>
