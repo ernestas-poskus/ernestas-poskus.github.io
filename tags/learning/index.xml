@@ -6,10 +6,19 @@
     <description>Recent content in Learning on Ernestas Poškus.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jan 2018 11:32:25 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jan 2018 19:27:57 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Write Behind Logging</title>
+      <link>http://out13.com/paper/write-behind-logging/</link>
+      <pubDate>Thu, 11 Jan 2018 19:27:57 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/write-behind-logging/</guid>
+      <description>WBL vs WAL Design of the logging and recovery components of database management systems (DBMSs) has always been influenced by the difference in the performance characteristics of volatile (DRAM) and non-volatile storage devices (HDD/SSDs). The key assumption has been that non-volatile storage is much slower than DRAM and only supports block-oriented read/writes. But the arrival of new nonvolatile memory (NVM) storage that is almost as fast as DRAM with fine-grained read/writes invalidates these previous design choices.</description>
+    </item>
     
     <item>
       <title>B4: Experience with a Globally-Deployed Software Defined WAN</title>
