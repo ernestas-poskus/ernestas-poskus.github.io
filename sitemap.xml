@@ -3,6 +3,13 @@
   
   
   <url>
+    <loc>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</loc>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/paper/write-behind-logging/</loc>
     <lastmod>2018-01-11T19:27:57+02:00</lastmod>
   </url>
@@ -307,16 +314,16 @@
   
   
   <url>
-    <loc>http://out13.com/categories/ansible/</loc>
-    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
+    <loc>http://out13.com/tags/ansible/</loc>
+    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   
   
   <url>
-    <loc>http://out13.com/tags/ansible/</loc>
-    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+    <loc>http://out13.com/categories/ansible/</loc>
+    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -356,7 +363,7 @@
   
   <url>
     <loc>http://out13.com/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -380,7 +387,7 @@
   
   <url>
     <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -420,7 +427,7 @@
   
   <url>
     <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -428,7 +435,7 @@
   
   <url>
     <loc>http://out13.com/paper/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -452,7 +459,7 @@
   
   <url>
     <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -460,7 +467,15 @@
   
   <url>
     <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/rust/</loc>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -475,16 +490,8 @@
   
   
   <url>
-    <loc>http://out13.com/tags/rust/</loc>
-    <lastmod>2016-08-25T20:39:03+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2018-01-11T19:27:57+02:00</lastmod>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   

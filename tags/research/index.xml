@@ -6,10 +6,21 @@
     <description>Recent content in Research on Ernestas Poškus</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jan 2018 19:27:57 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 29 Mar 2018 20:00:23 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Uniqueness and Reference Immutability for Safe Parallelism</title>
+      <link>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</link>
+      <pubDate>Thu, 29 Mar 2018 20:00:23 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</guid>
+      <description>Key challenge for concurrent programming is that side-effects (memory operations) in one thread can affect the behavior of another thread.
+We wish to restrict, or tame, side-effects to make programs easier to maintain and understand. To do so, we build on reference immutability.
+To achieve this we give two novel typing rules, which allow recovering isolated or immutable references from arbitrary code checked in environments containing only isolated or immutable inputs.</description>
+    </item>
     
     <item>
       <title>Write Behind Logging</title>
