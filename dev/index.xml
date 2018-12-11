@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devs on Ernestas Poškus</title>
+    <title>Devs on Ernestas Poškus technical blog</title>
     <link>http://out13.com/dev/</link>
-    <description>Recent content in Devs on Ernestas Poškus</description>
+    <description>Recent content in Devs on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Dec 2017 18:50:13 +0200</lastBuildDate>

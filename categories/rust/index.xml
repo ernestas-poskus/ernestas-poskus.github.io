@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust on Ernestas Poškus</title>
+    <title>Rust on Ernestas Poškus technical blog</title>
     <link>http://out13.com/categories/rust/</link>
-    <description>Recent content in Rust on Ernestas Poškus</description>
+    <description>Recent content in Rust on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2015 20:43:24 +0300</lastBuildDate>

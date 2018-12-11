@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Ernestas Poškus</title>
+    <title>Linux on Ernestas Poškus technical blog</title>
     <link>http://out13.com/tags/linux/</link>
-    <description>Recent content in Linux on Ernestas Poškus</description>
+    <description>Recent content in Linux on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 31 Jul 2017 19:25:47 +0300</lastBuildDate>
