@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>In Search of an Understandable Consensus Algorithm - Ernestas Poškus</title>
+  <title>Learn &amp; Recall - Ernestas Poškus</title>
   
-  <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
+  <meta name="description" content=""/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="In Search of an Understandable Consensus Algorithm" />
-  <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
+  <meta property="og:title" content="Learn &amp; Recall" />
+  <meta property="og:description" content="" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/in-search-of-an-understandable-consensus-algorithm/" />
+  <meta property="og:url" content="http://out13.com/learn/learn-and-recall/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -91,55 +91,73 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>In Search of an Understandable Consensus Algorithm</h1>
-    <ul>
-      <li>Author: Diego Ongaro and John Ousterhout</li>
-      <li>Name: In Search of an Understandable Consensus Algorithm</li>
-      
-      <li>Link: <a href="https://raft.github.io/raft.pdf" rel="nofollow" target="_blank">https://raft.github.io/raft.pdf</a></li>
-      
-    </ul>
-    <time>Thu, Apr 20, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 319 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=In%20Search%20of%20an%20Understandable%20Consensus%20Algorithm%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <h1>Learn &amp; Recall</h1>
+    <time>Tue, Dec 11, 2018</time>
+    <p><abbr title="Word count">WC</abbr> 212 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Learn%20&amp;%20Recall%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
+    <p>After reading this book <code>The Complete Problem Solver</code> by John R. Hayes* I decided
+to apply newly learnt principles and share them in this blog.
+I have a number of books in my shelf that are waiting in queue to read.
+I will mostly apply what was in Chapter 6 &lsquo;Using memory effectively&rsquo;
+and Chapter 7 &lsquo;Learning strategies&rsquo;.</p>
 
-<h2 id="raft">Raft</h2>
-
-<p>Consensus algorithm for managing a replicated log.</p>
-
-<p>Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
-a stronger degree of coherency to reduce the number of states that must be considered.</p>
-
-<p>Paxos first defines a protocol capable of reaching agreement on a single decision,
-such as a single replicated log entry.</p>
-
-<p>Raft implements consensus by first electing a distinguished leader,
-then giving the leader complete responsibility for managing the replicated log.
-The leader accepts log entries from clients, replicates them on other servers,
-and tells servers when it is safe to apply log entries to
-their state machines.</p>
-
-<p>A leader can fail or become disconnected from the other servers, in which case
-a new leader is elected.</p>
+<p>I will use following memory techniques:</p>
 
 <ul>
-<li>Election Safety: at most one leader can be elected in a given term.</li>
-<li>Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.</li>
-<li>Log Matching: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.</li>
-<li>Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.</li>
-<li>State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.</li>
+<li>acronyms and acrostics: useful for important lists, rules</li>
+<li>rhyme-key method: arbitrary lists up to 10 items</li>
+<li>multiple-key method: multi digit numbers</li>
+<li>method of loci: arbitrary lists or length limited</li>
+<li>keyword method: vocabulary learning</li>
+<li>image-name technique: learnings names of people</li>
+<li>chaining: arbitrary lits</li>
 </ul>
 
-<h3 id="basics">Basics</h3>
+<p>Strategies:</p>
 
-<p>A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
-At any given time each server is in one of three states: leader, follower, or candidate.</p>
+<ul>
+<li>The structuring strategy</li>
+<li>The context strategy</li>
+<li>Monitoring</li>
+<li>Inferencing</li>
+<li>Instantiation</li>
+<li>Multiple coding</li>
+<li>Attention management</li>
+</ul>
 
-<p>To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).</p>
+<p>Study systems:</p>
 
-<p>Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.</p>
+<ul>
+<li>Survery Q3R</li>
+<li>MURDER system</li>
+<li>Jones et mastery learning system</li>
+<li>Perkins knowledge as design system</li>
+</ul>
+
+<p>Thus my own version of mnemonic major system*.</p>
+
+<pre><code>0 S|Z 		Sauce
+1 T|D 		Tie
+2 N 		Noah
+3 M 		Mum
+4 R 		Ray
+5 L 		Law
+6 J Sh ~Ch ~G 	Jaw Guitar Chemtrail shell
+7 K|C 		Key Citrus
+8 F|V 		Foe UFO
+9 B|P 		Bee Pig
+</code></pre>
+
+<p>I already wrote several posts on mnemonics check them out here <a href="http://out13.com/tags/mnemonics/">/tags/mnemonics</a>.
+My purpose is to learn &amp; share ways of learning and experiences in doing so.</p>
+
+<hr />
+
+<ul>
+<li>*<a href="https://www.goodreads.com/book/show/3356509-the-complete-problem-solver">https://www.goodreads.com/book/show/3356509-the-complete-problem-solver</a></li>
+<li>*<a href="https://en.wikipedia.org/wiki/Mnemonic_major_system">https://en.wikipedia.org/wiki/Mnemonic_major_system</a></li>
+</ul>
 
     <hr />
     <div id="disqus_thread"></div>

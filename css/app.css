@@ -1625,3 +1625,9 @@ pre {
 img {
   max-height: 100px;
   max-width: 100px; }
+
+@media print {
+  code {
+    border: none; }
+  pre {
+    margin-bottom: 0.4em; } }
