@@ -6,10 +6,21 @@
     <description>Recent content in Paper on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Mar 2018 20:00:23 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 11:35:06 +0200</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Amplification Hell: Revisiting Network Protocols for DDoS Abuse</title>
+      <link>http://out13.com/paper/amplification-hell-revisiting-network-protocols-for-ddos-abuse/</link>
+      <pubDate>Sun, 06 Jan 2019 11:35:06 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/amplification-hell-revisiting-network-protocols-for-ddos-abuse/</guid>
+      <description>Amplification attacks Adversaries send requests to public servers (e.g., open recursive DNS resolvers) and spoof the IP address of a victim. These servers, in turn, flood the victim with valid responses and – unknowingly – exhaust its bandwidth.
+Attackers can abuse these protocols to multiply their attack bandwidth by factors from 3.8 (BitTorrent, NetBios) up to 4670 (NTP).
+Exclude all TCP-based protocols from our analysis, as IP address spoofing is restricted to the start of the TCP handshake.</description>
+    </item>
     
     <item>
       <title>Uniqueness and Reference Immutability for Safe Parallelism</title>
