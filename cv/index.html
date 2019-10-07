@@ -41,7 +41,7 @@
 <div class="row" id="content">
   <div class="large-12 columns">
     <h1><a name="cv">CV Ernestas Poškus</a></h1>
-    <small>Last modified: 2018-07-15 11:09:49 &#43;0300 EEST</small>
+    <small>Last modified: 2019-10-07 11:55:54 &#43;0300 EEST</small>
 
     
 
@@ -73,14 +73,15 @@ Twitter: <a href="https://twitter.com/ernestas_poskus">@ernestas_poskus</a></p>
 <li><a href="https://github.com/AnsibleShipyard">https://github.com/AnsibleShipyard</a> release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.)</li>
 <li><a href="https://github.com/linkosmos">https://github.com/linkosmos</a> author of 10+ Golang packages</li>
 <li><a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a> Ansible playbook for installing Prometheus monitoring system</li>
-<li><a href="https://github.com/ernestas-poskus/chef-proxysql">https://github.com/ernestas-poskus/chef-proxysql</a> Chef cookbook for installing ProxySQL with automatic propagation of on disk configuration</li>
+<li><a href="https://github.com/vinted/chef-proxysql">https://github.com/vinted/chef-proxysql</a> Chef cookbook for installing ProxySQL with automatic propagation of on disk configuration</li>
 <li><a href="https://github.com/pagescrape">https://github.com/pagescrape</a> author of Rust crates</li>
-<li><a href="https://github.com/ernestas-poskus/chef-clickhouse">https://github.com/ernestas-poskus/chef-clickhouse</a> Chef cookbook for installing ClickHouse distributed column-oriented DBMS</li>
+<li><a href="https://github.com/vinted/chef-vitess">https://github.com/vinted/chef-vitess</a> Chef cookbook configures Vitess clustering system through custom Chef resources.</li>
+<li><a href="https://github.com/vinted/chef-clickhouse">https://github.com/vinted/chef-clickhouse</a> Chef cookbook configures ClickHouse distributed column-oriented DBMS</li>
 </ul>
 
 <hr />
 
-<h1 id="a-name-posts-posts-a"><a name="Posts">Posts</a></h1>
+<h1 id="a-name-engineering-posts-engineering-posts-a"><a name="engineering-posts">Engineering Posts</a></h1>
 
 <ul>
 <li><a href="http://engineering.vinted.com/2018/04/09/visualizing-physical-hardware-costs/">http://engineering.vinted.com/2018/04/09/visualizing-physical-hardware-costs/</a> Visualizing physical hardware costs</li>
@@ -94,42 +95,72 @@ Twitter: <a href="https://twitter.com/ernestas_poskus">@ernestas_poskus</a></p>
 
 <hr />
 
-<h3 id="sre-vinted-http-vinted-com">SRE @ <a href="http://vinted.com/">Vinted</a></h3>
+<h3 id="staff-engineer-vinted-http-vinted-com">Staff Engineer @ <a href="http://vinted.com/">Vinted</a></h3>
 
 <h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
 
+<h6 id="april-2019-present">April 2019 – present</h6>
+
+<pre><code>Led numerous technical projects
+Coordinated teams by distributed technical tasks
+Coached junior and middle level peers
+Contributed to technical designs of various technical projects
+</code></pre>
+
+<h3 id="sre-vinted-http-vinted-com">SRE @ <a href="http://vinted.com/">Vinted</a></h3>
+
+<h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes-1">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
+
 <h6 id="june-2016-present">June 2016 – present</h6>
 
-<pre><code>ProxySQL cluster deployment with automatic query rules service
-Elasticsearch segments automatic optimization with merging and expunge
+<pre><code>Introduced technologies: Consul, YouTube Vitess MySQL database clustering, ClickHouse, ProxySQL, Cumulus Linux
+ProxySQL: automatic query rules service and dynamic weights for follower replica reads
+Elasticsearch segments automatic optimization with merging and expunging
 Junior peers training
-Chef, Ansible &amp; continuous deployment
-Migrated all services to Systemd
+Chef, Ansible infrastructure as a code
+Improved continuous deployment speed
+Adopted Systemd in all company custom services
 Elasticsearch cluster management, breaking changes upgrading: 2.x, 5.x, 6.x
 Cache layer supervision, high availability Memcached cluster using Facebook mcrouter
-Complete physical hardware automation, automatic registration of all basic
-server resources: CPU, RAM, DISK, NIC, Motherboard.
+Created automatic registration service for all basic server resources to asset management system for data center
+</code></pre>
+
+<h3 id="cto-full-stack-engineer-linkosmos-http-linkosmos-com">CTO / Full stack engineer @ <a href="http://linkosmos.com/">Linkosmos</a></h3>
+
+<h5 id="web-auditing-platform-providing-automatic-seo-improvement-recommendations">Web auditing platform providing automatic SEO improvement recommendations</h5>
+
+<h6 id="september-2015-april-2016-8-months">September 2015 – April 2016 (8 months)</h6>
+
+<pre><code>Created distributed system that ran on bare metal servers using Apache Mesos.
+Used Apache Marathon on top of Mesos for docker containers orchestration.
+Crawled over billion websites using custom Golang web crawler.
+
+Open sourced over 10+ packages: https://github.com/linkosmos
 </code></pre>
 
 <h3 id="backend-developer-vinted-http-vinted-com">Backend developer @ <a href="http://vinted.com/">Vinted</a></h3>
 
-<h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes-1">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
+<h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes-2">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
 
 <h6 id="october-2015-june-2016-9-months">October 2015 – June 2016 (9 months)</h6>
 
-<pre><code>Elasticsearch score functions, complex ranking queries
-Merchandising tools
-Content balancing
+<pre><code>Elasticsearch: researched Lucene internals and development more efficient queries
+Content balancing: ranking of docuemnts, scoring functions, monitoring of results
+Merchandising tools development &amp; integrations with API's
 </code></pre>
 
 <h3 id="software-developer-vinted-http-vinted-com">Software developer @ <a href="http://vinted.com/">Vinted</a></h3>
 
-<h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes-2">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
+<h5 id="peer-to-peer-marketplace-for-women-and-men-to-sell-buy-and-swap-clothes-3">Peer-to-peer marketplace for women and men to sell, buy and swap clothes.</h5>
 
 <h6 id="april-2014-october-2015-1-year-7-months">April 2014 – October 2015 (1 year 7 months)</h6>
 
-<pre><code>Written first service
-Organic traffic optimizations
+<pre><code>Collaborated with frontend teams
+Optimized website SEO and did various organic traffic optimizations
+Created instant buy functionality (anonymous buying)
+Developed SERP ranking algorithm
+Wrote first standalone service in company using Ruby Sinatra framework
+Item Score - onsite scoring items on numerous facts and offsite social data retrieval from API’s
 </code></pre>
 
 <h3 id="software-developer-oxid-esales-ag-https-www-oxid-esales-com">Software developer @ <a href="https://www.oxid-esales.com/">OXID eSales AG</a></h3>
@@ -137,6 +168,18 @@ Organic traffic optimizations
 <h5 id="large-scale-web-e-shops-development-for-germany-neighbor-countries">Large Scale Web E-shops Development for Germany &amp; neighbor countries.</h5>
 
 <h6 id="june-2013-april-2014-11-months">June 2013 – April 2014 (11 months)</h6>
+
+<pre><code>Was outsourced for German company OXID eSales AG, worked at OXID Professional Services team.
+During the time developed several cross-shop modules like: custom sorting by categories
+(with possibility to save state), payment modules, caching module for expensive SQL queries,
+deployment scripts to staging/live systems and more project specific modules.
+Made Web Deployment UI with AJAX, Drag &amp; Drop based on: Git Log and Git Diff for package deployment system.
+
+Learned a lot about Scrum and Agile software development, project management and estimation.
+
+Expanded knowledge about server-architectures, complex SQL queries, server monitoring, deployment strategies,
+caching methods and scaling.
+</code></pre>
 
 <hr />
 
@@ -149,6 +192,25 @@ Organic traffic optimizations
 <h3 id="international-business-school-at-vilnius-university">International Business School at Vilnius University</h3>
 
 <pre><code>Bachelor of International Business, International Business
+
+Micro/Macroeconomics
+Business Mathematics
+Business Psychology
+Civil &amp; Commercial Law
+Management History and Theory
+International Protocol
+Financial Accounting
+Organizational Structures
+Business Statistics
+Project Management
+Financial Markets and Investments
+International Economics and Euro-Integration
+Quantitative Analysis of Economics
+Financial Management
+Quality Management
+Communication Management of Organizations
+Knowledge Management and Innovations
+Fundamental of International Negotiations
 </code></pre>
 
 <h2 id="2010-2012">2010 - 2012</h2>
@@ -156,11 +218,18 @@ Organic traffic optimizations
 <h3 id="vilnius-gediminas-technical-university">Vilnius Gediminas Technical University</h3>
 
 <pre><code>Bachelor of Engineering Informatics, Information Technology
+
+Programming: C, C++
+Integral &amp; Differential Calculus
+Discrete Mathematics
+Computer Graphics
+Algorithms and Data Structures
+Operating Systems
 </code></pre>
 
 <hr />
 
-<h1 id="a-name-coursera-education-coursera-education-a"><a name="coursera-education">Coursera Education</a></h1>
+<h1 id="a-name-oneline-education-oneline-education-a"><a name="oneline-education">Oneline Education</a></h1>
 
 <hr />
 
