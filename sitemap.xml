@@ -10,13 +10,6 @@
   
   
   <url>
-    <loc>http://out13.com/learn/learn-and-recall/</loc>
-    <lastmod>2018-12-11T18:34:43+02:00</lastmod>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</loc>
     <lastmod>2018-03-29T20:00:23+03:00</lastmod>
   </url>
@@ -317,19 +310,16 @@
   
   
   
-  
-  
   <url>
-    <loc>http://out13.com/categories/algorithms/</loc>
-    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
-    <priority>0</priority>
+    <loc>http://out13.com/cv/</loc>
+    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   
   
   <url>
-    <loc>http://out13.com/tags/ansible/</loc>
-    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+    <loc>http://out13.com/categories/algorithms/</loc>
+    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -344,8 +334,8 @@
   
   
   <url>
-    <loc>http://out13.com/tags/books/</loc>
-    <lastmod>2018-12-11T18:34:43+02:00</lastmod>
+    <loc>http://out13.com/tags/ansible/</loc>
+    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -410,14 +400,6 @@
   <url>
     <loc>http://out13.com/tags/learning/</loc>
     <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/learn/</loc>
-    <lastmod>2018-12-11T18:34:43+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -504,16 +486,16 @@
   
   
   <url>
-    <loc>http://out13.com/tags/rust/</loc>
-    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
+    <loc>http://out13.com/categories/rust/</loc>
+    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
     <priority>0</priority>
   </url>
   
   
   
   <url>
-    <loc>http://out13.com/categories/rust/</loc>
-    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+    <loc>http://out13.com/tags/rust/</loc>
+    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
     <priority>0</priority>
   </url>
   

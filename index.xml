@@ -23,17 +23,6 @@ Exclude all TCP-based protocols from our analysis, as IP address spoofing is res
     </item>
     
     <item>
-      <title>Learn &amp; Recall</title>
-      <link>http://out13.com/learn/learn-and-recall/</link>
-      <pubDate>Tue, 11 Dec 2018 18:34:43 +0200</pubDate>
-      
-      <guid>http://out13.com/learn/learn-and-recall/</guid>
-      <description>After reading this book The Complete Problem Solver by John R. Hayes* I decided to apply newly learnt principles and share them in this blog. I have a number of books in my shelf that are waiting in queue to read. I will mostly apply what was in Chapter 6 &amp;lsquo;Using memory effectively&amp;rsquo; and Chapter 7 &amp;lsquo;Learning strategies&amp;rsquo;.
-I will use following memory techniques:
- acronyms and acrostics: useful for important lists, rules rhyme-key method: arbitrary lists up to 10 items multiple-key method: multi digit numbers method of loci: arbitrary lists or length limited keyword method: vocabulary learning image-name technique: learnings names of people chaining: arbitrary lits  Strategies:</description>
-    </item>
-    
-    <item>
       <title>Uniqueness and Reference Immutability for Safe Parallelism</title>
       <link>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</link>
       <pubDate>Thu, 29 Mar 2018 20:00:23 +0300</pubDate>
@@ -516,16 +505,17 @@ Due to own usage reasons I have decided to implement these readability tests in 
     </item>
     
     <item>
-      <title>CV</title>
+      <title></title>
       <link>http://out13.com/cv/</link>
-      <pubDate>Fri, 27 Mar 2015 16:15:10 +0200</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://out13.com/cv/</guid>
-      <description>Pragmatic &amp;amp; Ambitious
- Keen interest in service oriented architecture, massive scalability, distributed systems, Search Engines.  A programming language that doesn&#39;t change the way you think about programming is not worth knowing. - Alan Perlis  Blog: http://out13.com
+      <description>CV - Ernestas Poškus  ul.description { list-style-type: none; margin: 0; padding: 1.2rem; background: #f5f5f5; }    CV: Ernestas Poškus Last modified: 2019-10-10   Pragmatic &amp;amp; Ambitious
+  Keen interest in service oriented architecture, massive scalability, distributed systems, Search Engines.   Blog: http://out13.com
 Goodreads: 42270834-ernestas-poskus
+GitHub: ernestas-poskus
 Twitter: @ernestas_poskus
-Open Source  https://github.com/AnsibleShipyard release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.) https://github.com/linkosmos author of 10+ Golang packages https://github.com/ernestas-poskus/ansible-prometheus Ansible playbook for installing Prometheus monitoring system https://github.</description>
+Open Source  https://github.com/AnsibleShipyard release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.) https://github.com/linkosmos author of 10+ Golang packages https://github.</description>
     </item>
     
   </channel>
