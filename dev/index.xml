@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devs on Ernestas Poškus technical blog</title>
@@ -17,9 +17,9 @@
       <pubDate>Wed, 20 Dec 2017 18:50:13 +0200</pubDate>
       
       <guid>http://out13.com/dev/vue-seo/</guid>
-      <description>Testing Vue.js dynamic  meta tags indexability by major search engines.
+      <description>Testing Vue.js dynamic meta tags indexability by major search engines.
 When Vue app is loaded:
- meta title should change to: It will be a pleasure | Testing Vue.js dynamic  meta tags - Ernestas Poškus.io meta description should change to: A description of the page      </description>
+ meta title should change to: It will be a pleasure | Testing Vue.js dynamic meta tags - Ernestas Poškus.io meta description should change to: A description of the page  </description>
     </item>
     
   </channel>

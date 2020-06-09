@@ -1,15 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kernel on Ernestas Poškus technical blog</title>
+    <title>kernel on Ernestas Poškus technical blog</title>
     <link>http://out13.com/tags/kernel/</link>
-    <description>Recent content in Kernel on Ernestas Poškus technical blog</description>
+    <description>Recent content in kernel on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Sep 2017 19:48:19 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2020 20:55:21 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IO with io_uring</title>
+      <link>http://out13.com/paper/efficient-io-with-io-uring/</link>
+      <pubDate>Tue, 09 Jun 2020 20:55:21 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/efficient-io-with-io-uring/</guid>
+      <description>IO history There are many ways to do file based IO in Linux. The oldest and most basic are the read(2) and write(2) system calls. These were later augmented with pread(2) and pwrite(2) versions which allow passing in of an offset, and later still we got preadv(2) and pwritev(2) which are vector-based versions of the former. Because that still wasn&amp;rsquo;t quite enough, Linux also has preadv2(2) and pwritev2(2) system calls, which further extend the API to allow modifier flags.</description>
+    </item>
     
     <item>
       <title>Attacking Branch Predictors to Bypass ASLR</title>

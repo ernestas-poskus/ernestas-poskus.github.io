@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,47 +95,47 @@
     <p><abbr title="Word count">WC</abbr> 501 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Uniqueness%20and%20Reference%20Immutability%20for%20Safe%20Parallelism%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<p>Key challenge for concurrent programming is that side-effects (memory operations) in one thread can affect the behavior of another thread.</p>
-
+    <p>Key challenge for concurrent programming is that side-effects (memory operations) in one thread can affect the behavior of another thread.</p>
 <p>We wish to restrict, or tame, side-effects to make programs easier to maintain and understand.
 To do so, we build on reference immutability.</p>
-
 <p>To achieve this we give two novel typing
 rules, which allow recovering isolated or immutable references from arbitrary code checked in environments containing only isolated or immutable inputs.
 We provide two forms of parallelism:</p>
-
 <ul>
-<li><p>Symmetric: Assuming that at most one thread may hold
+<li>
+<p>Symmetric: Assuming that at most one thread may hold
 writable references to an object at a given point in time,
 then while all writable references in a context are temporarily forgotten (framed away, in the separation logic
 sense [28, 32]), it becomes safe to share all read-only or immutable references among multiple threads,
-in addition to partitioning externally-unique clusters between threads.</p></li>
-
-<li><p>Asymmetric If all data accessible to a new thread is immutable
+in addition to partitioning externally-unique clusters between threads.</p>
+</li>
+<li>
+<p>Asymmetric If all data accessible to a new thread is immutable
 or from externally-unique clusters which are
 made inaccessible to the spawning thread, then the new
-and old threads may run in parallel without interference.</p></li>
+and old threads may run in parallel without interference.</p>
+</li>
 </ul>
-
 <h3 id="reference-immutability-uniqueness-and-parallelism">Reference Immutability, Uniqueness, and Parallelism</h3>
-
 <ul>
-<li><p>writable: An “ordinary” object reference, which allows mutation of its referent.</p></li>
-
-<li><p>readable: A read-only reference, which allows no mutation of its referent. Furthermore, no heap traversal
+<li>
+<p>writable: An “ordinary” object reference, which allows mutation of its referent.</p>
+</li>
+<li>
+<p>readable: A read-only reference, which allows no mutation of its referent. Furthermore, no heap traversal
 through a read-only reference produces a writable reference (writable references to the same objects may exist
-and be reachable elsewhere, just not through a readable reference). A readable reference may also refer to an immutable object.</p></li>
-
-<li><p>immutable: A read-only reference which additionally notes
+and be reachable elsewhere, just not through a readable reference). A readable reference may also refer to an immutable object.</p>
+</li>
+<li>
+<p>immutable: A read-only reference which additionally notes
 that its referent can never be mutated through any reference.
 Immutable references may be aliased by read-only
 or immutable references, but no other kind of reference.
 All objects reachable from an immutable reference are
-also immutable.</p></li>
-
-<li><p>isolated: An external reference to an externally-unique
+also immutable.</p>
+</li>
+<li>
+<p>isolated: An external reference to an externally-unique
 object cluster. External uniqueness naturally captures
 thread locality of data. An externally-unique aggregate
 is a cluster of objects that freely reference each other,
@@ -157,25 +149,20 @@ adds flexibility without compromising our uses for isolation:
 converting clusters to immutable, and supporting non-interference among threads. This
 change in definition does limit some traditional uses of
 externally-unique references that are not our focus, such
-as resource management tasks.</p></li>
+as resource management tasks.</p>
+</li>
 </ul>
-
 <p>The most obvious use for reference immutability is to control where heap modification may occur in a program,
 similar to the owner-as-modifier discipline in ownership and universe type systems.</p>
-
 <h3 id="safe-symmetric-parallelism">Safe Symmetric Parallelism</h3>
-
 <p>Fork-join concurrency is deterministic when neither forked
 thread interferes with the other by writing to shared memory.</p>
-
 <h3 id="polymorphism">Polymorphism</h3>
-
 <p>Any practical application of this sort of system naturally re-
 quires support for polymorphism over type qualifiers.
 Otherwise code must be duplicated, for example, for each
 possible permission of a collection and each possible
 permission for the objects contained within a collection.</p>
-
 <h4 id="notes">Notes</h4>
 
     <hr />

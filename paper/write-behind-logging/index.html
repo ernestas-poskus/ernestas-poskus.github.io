@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,10 +95,7 @@
     <p><abbr title="Word count">WC</abbr> 541 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Write%20Behind%20Logging%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="wbl-vs-wal">WBL vs WAL</h2>
-
+    <h2 id="wbl-vs-wal">WBL vs WAL</h2>
 <p>Design of the logging and recovery components of database
 management systems (DBMSs) has always been influenced by the
 difference in the performance characteristics of volatile (DRAM)
@@ -115,96 +104,71 @@ has been that non-volatile storage is much slower than DRAM and
 only supports block-oriented read/writes. But the arrival of new nonvolatile
 memory (NVM) storage that is almost as fast as DRAM with
 fine-grained read/writes invalidates these previous design choices.</p>
-
 <h3 id="recovery-principles">Recovery Principles</h3>
-
 <p>A DBMS guarantees the integrity of a database by ensuring</p>
-
 <ul>
 <li>(1) that all of the changes made by committed transactions are durable</li>
 <li>(2) that none of the changes made by aborted transactions or
 transactions that were running at the point of a failure are visible after recovering from the failure.</li>
 </ul>
-
 <p>These two constraints are referred to as durability of updates and failure atomicity, respectively.</p>
-
 <p>DBMS must protect against:</p>
-
 <ul>
 <li>(1) transaction failure</li>
 <li>(2) system failure</li>
 <li>(3) media failure</li>
 </ul>
-
 <h3 id="wal">WAL</h3>
-
 <p>The most well-known recovery method based on WAL is the
 ARIES protocol developed by IBM in the 1990s. ARIES
 is a physiological logging protocol where the DBMS combines a
 physical redo process with a logical undo process. During
 normal operations, the DBMS records transactions’ modifications
 in a durable log that it uses to restore the database after a crash.</p>
-
 <p>A disk-oriented DBMS maintains two meta-data tables at runtime
 that it uses for recovery. The first is the dirty page table (DPT) that
 contains the modified pages that are in DRAM but have not been
 propagated to durable storage.</p>
-
 <p>The second table is the active transaction table (ATT) that tracks the status
 of the running transactions.</p>
-
 <p>With an in-memory DBMS, transactions access tuples through
 pointers without indirection through a buffer pool.</p>
-
 <h4 id="runtime-operations">Runtime operations</h4>
-
 <ul>
 <li>Execute the operation.</li>
 <li>Write changes to table heap on DRAM.</li>
 <li>Construct a log record based on operation.</li>
 <li>Append log record to log entry buffer.</li>
 </ul>
-
 <h4 id="commit-processing">Commit processing</h4>
-
 <ul>
 <li>Collect log entries from log entry buffers.</li>
 <li>Sync the collected entries on durable storage.</li>
 <li>Mark all the transactions as committed.</li>
 <li>Inform workers about group commit.</li>
 </ul>
-
 <h4 id="checkpointing">Checkpointing</h4>
-
 <ul>
 <li>Construct checkpoint containing after-images of visible tuples.</li>
 <li>Write out transactionally consistent checkpoint to durable storage.</li>
 <li>Truncate unnecessary log records.</li>
 </ul>
-
 <h3 id="wbl">WBL</h3>
-
 <p>Write-behind logging leverages fast, byte-addressable
 NVM to reduce the amount of data that the DBMS records in the
 log when a transaction modifies the database.
 Individual bytes in NVM can be accessed by the processor, and hence
 there is no need to organize tuples into pages or go through the I/O subsystem.</p>
-
 <p>WBL reduces data duplication by flushing changes to the database in
 NVM during regular transaction processing.</p>
-
 <p>Log is always (slightly) behind the contents of the database.</p>
-
 <h4 id="runtime-operations-1">Runtime operations</h4>
-
 <ul>
 <li>Execute the operation.</li>
 <li>Write changes to table heap on DRAM.</li>
 <li>Add an entry to the DTT for that modification.</li>
 </ul>
-
 <h4 id="commit-processing-1">Commit processing</h4>
-
 <ul>
 <li>Determine dirty tuples using the DTT.</li>
 <li>Compute changes for this group commit.</li>
@@ -212,26 +176,26 @@ NVM during regular transaction processing.</p>
 <li>Sync a log entry containing changes.</li>
 <li>Inform workers about group commit.</li>
 </ul>
-
 <h4 id="checkpointing-1">Checkpointing</h4>
-
 <ul>
 <li>Construct a checkpoint containing only the active commit identifier gaps (no after-images).</li>
 <li>Write out transactionally consistent checkpoint to durable storage.</li>
 <li>Truncate unnecessary log records.</li>
 </ul>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>WBL - write behind logging</p>
-
+</blockquote>
+<blockquote>
 <p>NVM - non volatile memory</p>
-
+</blockquote>
+<blockquote>
 <p>DBMS - database management system</p>
-
+</blockquote>
+<blockquote>
 <p>DPT - dirty page table</p>
-
+</blockquote>
+<blockquote>
 <p>ATT - active transaction table</p>
 </blockquote>
 

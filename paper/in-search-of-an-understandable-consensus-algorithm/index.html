@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,27 +95,19 @@
     <p><abbr title="Word count">WC</abbr> 319 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=In%20Search%20of%20an%20Understandable%20Consensus%20Algorithm%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="raft">Raft</h2>
-
+    <h2 id="raft">Raft</h2>
 <p>Consensus algorithm for managing a replicated log.</p>
-
 <p>Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces
 a stronger degree of coherency to reduce the number of states that must be considered.</p>
-
 <p>Paxos first defines a protocol capable of reaching agreement on a single decision,
 such as a single replicated log entry.</p>
-
 <p>Raft implements consensus by first electing a distinguished leader,
 then giving the leader complete responsibility for managing the replicated log.
 The leader accepts log entries from clients, replicates them on other servers,
 and tells servers when it is safe to apply log entries to
 their state machines.</p>
-
 <p>A leader can fail or become disconnected from the other servers, in which case
 a new leader is elected.</p>
-
 <ul>
 <li>Election Safety: at most one leader can be elected in a given term.</li>
 <li>Leader Append-Only: a leader never overwrites or deletes entries in its log; it only appends new entries.</li>
@@ -131,14 +115,10 @@ a new leader is elected.</p>
 <li>Leader Completeness: if a log entry is committed in a given term, then that entry will be present in the logs of the leaders for all higher-numbered terms.</li>
 <li>State Machine Safety: if a server has applied a log entry at a given index to its state machine, no other server will ever apply a different log entry for the same index.</li>
 </ul>
-
 <h3 id="basics">Basics</h3>
-
 <p>A Raft cluster contains several servers; five is a typical number, which allows the system to tolerate two failures.
 At any given time each server is in one of three states: leader, follower, or candidate.</p>
-
 <p>To prevent split votes in the first place, election timeouts are chosen randomly from a fixed interval (e.g., 150–300ms).</p>
-
 <p>Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines.</p>
 
     <hr />

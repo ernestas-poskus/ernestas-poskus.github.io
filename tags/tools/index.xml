@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tools on Ernestas Poškus technical blog</title>
+    <title>tools on Ernestas Poškus technical blog</title>
     <link>http://out13.com/tags/tools/</link>
-    <description>Recent content in Tools on Ernestas Poškus technical blog</description>
+    <description>Recent content in tools on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 31 Jul 2017 19:25:47 +0300</lastBuildDate>
@@ -19,7 +19,7 @@
       <guid>http://out13.com/tools/proc-meminfo/</guid>
       <description>Reports statistics about memory usage on the system. Useful for inspecting more granular memory usage.
  Sample output below.
- $ cat /proc/meminfo MemTotal: 12189912 kB MemFree: 231992 kB MemAvailable: 4174992 kB Buffers: 430884 kB Cached: 4515856 kB SwapCached: 60 kB Active: 8019760 kB Inactive: 3120804 kB Active(anon): 6121448 kB Inactive(anon): 1099620 kB Active(file): 1898312 kB Inactive(file): 2021184 kB Unevictable: 3088 kB Mlocked: 3088 kB SwapTotal: 12467708 kB SwapFree: 12467352 kB Dirty: 1568 kB Writeback: 0 kB AnonPages: 6196916 kB Mapped: 1339276 kB Shmem: 1027248 kB Slab: 584576 kB SReclaimable: 349700 kB SUnreclaim: 234876 kB KernelStack: 20800 kB PageTables: 93864 kB NFS_Unstable: 0 kB Bounce: 0 kB WritebackTmp: 0 kB CommitLimit: 18562664 kB Committed_AS: 19186116 kB VmallocTotal: 34359738367 kB VmallocUsed: 0 kB VmallocChunk: 0 kB HardwareCorrupted: 0 kB AnonHugePages: 1019904 kB CmaTotal: 0 kB CmaFree: 0 kB HugePages_Total: 0 HugePages_Free: 0 HugePages_Rsvd: 0 HugePages_Surp: 0 Hugepagesize: 2048 kB DirectMap4k: 386324 kB DirectMap2M: 12083200 kB DirectMap1G: 0 kB  Interpreting each one  MemTotal: 12189912 kB</description>
+ $ cat /proc/meminfo MemTotal: 12189912 kB MemFree: 231992 kB MemAvailable: 4174992 kB Buffers: 430884 kB Cached: 4515856 kB SwapCached: 60 kB Active: 8019760 kB Inactive: 3120804 kB Active(anon): 6121448 kB Inactive(anon): 1099620 kB Active(file): 1898312 kB Inactive(file): 2021184 kB Unevictable: 3088 kB Mlocked: 3088 kB SwapTotal: 12467708 kB SwapFree: 12467352 kB Dirty: 1568 kB Writeback: 0 kB AnonPages: 6196916 kB Mapped: 1339276 kB Shmem: 1027248 kB Slab: 584576 kB SReclaimable: 349700 kB SUnreclaim: 234876 kB KernelStack: 20800 kB PageTables: 93864 kB NFS_Unstable: 0 kB Bounce: 0 kB WritebackTmp: 0 kB CommitLimit: 18562664 kB Committed_AS: 19186116 kB VmallocTotal: 34359738367 kB VmallocUsed: 0 kB VmallocChunk: 0 kB HardwareCorrupted: 0 kB AnonHugePages: 1019904 kB CmaTotal: 0 kB CmaFree: 0 kB HugePages_Total: 0 HugePages_Free: 0 HugePages_Rsvd: 0 HugePages_Surp: 0 Hugepagesize: 2048 kB DirectMap4k: 386324 kB DirectMap2M: 12083200 kB DirectMap1G: 0 kB Interpreting each one  MemTotal: 12189912 kB</description>
     </item>
     
     <item>

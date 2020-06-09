@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,43 +95,36 @@
     <p><abbr title="Word count">WC</abbr> 367 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Tiny%20LFU%20highly%20efficient%20cache%20admission%20policy%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="frequency-based-cache-admission-policy">Frequency based cache admission policy</h2>
-
+    <h2 id="frequency-based-cache-admission-policy">Frequency based cache admission policy</h2>
 <blockquote>
 <p>Approximate LFU structure called TinyLFU, which maintains an approximate representation of the access frequency of a large sample of recently accessed items.</p>
 </blockquote>
-
 <p>TinyLFU is very compact and light-weight as it builds upon Bloom filter theory.</p>
-
 <h3 id="usage">Usage</h3>
-
 <p>The intuitive reason why caching works is that data accesses in many
 domains of computer science exhibit a considerable degree of “locality”.</p>
-
 <p>When a data item is accessed, if it already appears in the cache, we say that there is a cache hit; otherwise, it is a cache miss. The ratio between the number of cache hits and the total number of data accesses is known as the cache hit-ratio.</p>
-
 <p>Admission policy - caching architecture in which an accessed item is only inserted into the cache if an admission policy decides that the cache hit ratio is likely to benefit from replacing it with the cache victim (as chosen by the cache’s replacement policy).</p>
-
 <h3 id="architecture">Architecture</h3>
-
 <p>The cache eviction policy picks a cache victim, while TinyLFU decides if replacing the cache victim with the new item is expected to increase the hit-ratio.
 To do so, TinyLFU maintains statistics of items frequency over a sizable recent history. Storing these statistics is considered prohibitively expensive for practical implementation and therefore TinyLFU approximates them in a highly efficient manner. To keep the history fresh an aging process is performed periodically or incrementally to halve all of the counters.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Time locality - access pattern, and consequently the corresponding probability distribution, change over time</p>
-
+</blockquote>
+<blockquote>
 <p>WLFU - Window Least Frequently Used, access frequency for a window, needs to keep track order of requests. Samples of the request stream (called window).</p>
-
+</blockquote>
+<blockquote>
 <p>PLFU - Perfect LFU, popularity based has metadata with counters</p>
-
+</blockquote>
+<blockquote>
 <p>In-memory LFU, outperformed by WLFU at the cost of larger meta-data</p>
-
+</blockquote>
+<blockquote>
 <p>SLRU - Segmented Least Recently Used, policy captures recent popularity by distinguishing between tem-porally popular items that are accessed at least twice in a short window vs. items accessed only once during that period</p>
-
+</blockquote>
+<blockquote>
 <p>LRU-K - combination of LRU &amp; LFU the last K occurrences of each element are remembered. Using this data, LRU-K statistically estimates the momentary frequency of items in order to keep the most frequent pages in memory.</p>
 </blockquote>
 

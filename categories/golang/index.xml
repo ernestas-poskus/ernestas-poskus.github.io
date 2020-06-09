@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang on Ernestas Poškus technical blog</title>
+    <title>golang on Ernestas Poškus technical blog</title>
     <link>http://out13.com/categories/golang/</link>
-    <description>Recent content in Golang on Ernestas Poškus technical blog</description>
+    <description>Recent content in golang on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Jan 2016 20:42:45 +0200</lastBuildDate>
@@ -19,8 +19,8 @@
       <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
       <description>Dynamic struct decoration using type assertion.  Use cases: API / templates.
  Having simple map of:
-input := map[string]interface{}{ &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;}, &amp;quot;key3&amp;quot;: nil, &amp;quot;val&amp;quot;: 2, &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;, &amp;quot;val3&amp;quot;: 4, }  One can decorate it using type assertion by iterating over it.
-for key, value := range input { slice, ok := value.([]string) if ok { input[&amp;quot;Count&amp;quot;+key] = len(slice) } }  This becomes very useful when serializing struct into json.</description>
+input := map[string]interface{}{ &amp;#34;Key1&amp;#34;: []string{&amp;#34;some&amp;#34;, &amp;#34;key&amp;#34;}, &amp;#34;key3&amp;#34;: nil, &amp;#34;val&amp;#34;: 2, &amp;#34;val2&amp;#34;: &amp;#34;str&amp;#34;, &amp;#34;val3&amp;#34;: 4, } One can decorate it using type assertion by iterating over it.
+for key, value := range input { slice, ok := value.([]string) if ok { input[&amp;#34;Count&amp;#34;+key] = len(slice) } } This becomes very useful when serializing struct into json.</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ Due to own usage reasons I have decided to implement these readability tests in 
       <pubDate>Sun, 29 Mar 2015 12:59:46 +0300</pubDate>
       
       <guid>http://out13.com/posts/programming-languages/</guid>
-      <description>var pie = new d3pie(&#34;pieChart&#34;, { &#34;header&#34;: { &#34;subtitle&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;, &#34;fontSize&#34;: 12, &#34;font&#34;: &#34;open sans&#34; }, &#34;titleSubtitlePadding&#34;: 9 }, &#34;footer&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;fontSize&#34;: 10, &#34;font&#34;: &#34;open sans&#34;, &#34;location&#34;: &#34;bottom-left&#34; }, &#34;size&#34;: { &#34;canvasHeight&#34;: 400, &#34;canvasWidth&#34;: 490, &#34;pieInnerRadius&#34;: &#34;50%&#34;, &#34;pieOuterRadius&#34;: &#34;80%&#34; }, &#34;data&#34;: { &#34;sortOrder&#34;: &#34;value-desc&#34;, &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;, &#34;</description>
+      <description>var pie = new d3pie(&#34;pieChart&#34;, { &#34;header&#34;: { &#34;subtitle&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;, &#34;fontSize&#34;: 12, &#34;font&#34;: &#34;open sans&#34; }, &#34;titleSubtitlePadding&#34;: 9 }, &#34;footer&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;fontSize&#34;: 10, &#34;font&#34;: &#34;open sans&#34;, &#34;location&#34;: &#34;bottom-left&#34; }, &#34;size&#34;: { &#34;canvasHeight&#34;: 400, &#34;canvasWidth&#34;: 490, &#34;pieInnerRadius&#34;: &#34;50%&#34;, &#34;pieOuterRadius&#34;: &#34;80%&#34; }, &#34;data&#34;: { &#34;sortOrder&#34;: &#34;value-desc&#34;, &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;</description>
     </item>
     
   </channel>

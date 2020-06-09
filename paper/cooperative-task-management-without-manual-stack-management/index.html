@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,44 +95,35 @@
     <p><abbr title="Word count">WC</abbr> 250 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Cooperative%20Task%20Management%20without%20Manual%20Stack%20Management%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="or-event-driven-programming-is-not-the-opposite-of-threaded-programming">Or, Event-driven Programming is Not the Opposite of Threaded Programming</h2>
-
+    <h2 id="or-event-driven-programming-is-not-the-opposite-of-threaded-programming">Or, Event-driven Programming is Not the Opposite of Threaded Programming</h2>
 <p>Two programming styles as a conflation of two concepts: task
 management and stack management.</p>
-
 <p>Those two concerns define a two-axis space in which &lsquo;multithreaded&rsquo; and &lsquo;event-driven&rsquo;
 programming are diagonally opposite; there is a third &lsquo;sweet spot&rsquo;
 in the space that combines the advantages of both programming styles.</p>
-
 <p>Different task management approaches offer different granularities
 of atomicity on shared state.
 Conflict management considers how to convert available atomicity
 to a meaningful mechanism for avoiding resource conflicts.</p>
-
 <p>High-performance programs are often written with preemptive task management,
 wherein execution of tasks can interleave on uniprocessors
 or overlap on multiprocessors.</p>
-
 <p>The opposite approach, serial task management, runs each task to completion
 before starting the next task. Its advantage is that there is no conflict
 of access to the shared state; one can define inter-task invariants on
 the shared state and be assured that, while the present task is running,
 no other tasks can violate the invariants.</p>
-
 <p>A compromise approach is cooperative task management.
 In this approach, a task’s code only yields control to other tasks
 at well-defined points in its execution; usually only when the task
 must wait for long-running I/O. The approach is valuable when tasks
 must interleave to avoid waiting on each other’s I/O, but multiprocessor
 parallelism is not crucial for good application performance.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Preemptive - wherein execution of tasks can interleave on uniprocessors or overlap on multiprocessors.</p>
-
+</blockquote>
+<blockquote>
 <p>Serial task management, runs each task to completion before starting the next task.</p>
 </blockquote>
 

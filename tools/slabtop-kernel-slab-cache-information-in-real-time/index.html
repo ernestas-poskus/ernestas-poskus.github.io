@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -107,13 +99,10 @@
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=slabtop%20-%20kernel%20slab%20cache%20information%20in%20real%20time%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
     <p>Displays detailed kernel slab cache information by aggregating <code>/proc/slabinfo</code>.</p>
-
 <p>Tool shows a glimpse into kernel data structures.</p>
-
 <blockquote>
 <p>Sample output below.</p>
 </blockquote>
-
 <pre><code>root@ow:~# slabtop -osc | head -n 20
  Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
  Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
@@ -135,76 +124,63 @@
 337416 335756   99%    0.04K   3308      102     13232K ext4_extent_status
  56220  51332   91%    0.20K   2811       20     11244K vm_area_struct
 122368 116329   95%    0.06K   1912       64      7648K kmalloc-64
-</code></pre>
-
-<p>Interesting object are <code>ext4_inode_cache</code> and <code>dentry</code>.
+</code></pre><p>Interesting object are <code>ext4_inode_cache</code> and <code>dentry</code>.
 These are fs cache objects they speed up fs file/directory access.
 The <code>ext4_inode_cache</code> is underlying fs <code>kmem_cache</code> structure cache.</p>
-
 <blockquote>
 <p>Initialized in <code>fs/ext4/super.c</code>.</p>
 </blockquote>
-
-<pre><code class="language-c">static int __init init_inodecache(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> __init <span style="color:#a6e22e">init_inodecache</span>(<span style="color:#66d9ef">void</span>)
 {
-	ext4_inode_cachep = kmem_cache_create(&quot;ext4_inode_cache&quot;,
-					     sizeof(struct ext4_inode_info),
-					     0, (SLAB_RECLAIM_ACCOUNT|
-						SLAB_MEM_SPREAD|SLAB_ACCOUNT),
+	ext4_inode_cachep <span style="color:#f92672">=</span> kmem_cache_create(<span style="color:#e6db74">&#34;ext4_inode_cache&#34;</span>,
+					     <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> ext4_inode_info),
+					     <span style="color:#ae81ff">0</span>, (SLAB_RECLAIM_ACCOUNT<span style="color:#f92672">|</span>
+						SLAB_MEM_SPREAD<span style="color:#f92672">|</span>SLAB_ACCOUNT),
 					     init_once);
-	if (ext4_inode_cachep == NULL)
-		return -ENOMEM;
-	return 0;
+	<span style="color:#66d9ef">if</span> (ext4_inode_cachep <span style="color:#f92672">==</span> NULL)
+		<span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>ENOMEM;
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>The <code>dentry</code> is <code>kmem_cache</code> structure cache.</p>
-
+</code></pre></div><p>The <code>dentry</code> is <code>kmem_cache</code> structure cache.</p>
 <blockquote>
 <p>Initialized in <code>kernel/fs/dcache.c</code></p>
 </blockquote>
-
-<pre><code class="language-c">static void __init dcache_init(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> __init <span style="color:#a6e22e">dcache_init</span>(<span style="color:#66d9ef">void</span>)
 {
-	unsigned int loop;
+	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> loop;
 
-	/*
-	 * A constructor could be added for stable state like the lists,
-	 * but it is probably not worth it because of the cache nature
-	 * of the dcache.
-	 */
-	dentry_cache = KMEM_CACHE(dentry,
-		SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|SLAB_MEM_SPREAD|SLAB_ACCOUNT);
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">	 * A constructor could be added for stable state like the lists,
+</span><span style="color:#75715e">	 * but it is probably not worth it because of the cache nature
+</span><span style="color:#75715e">	 * of the dcache.
+</span><span style="color:#75715e">	 */</span>
+	dentry_cache <span style="color:#f92672">=</span> KMEM_CACHE(dentry,
+		SLAB_RECLAIM_ACCOUNT<span style="color:#f92672">|</span>SLAB_PANIC<span style="color:#f92672">|</span>SLAB_MEM_SPREAD<span style="color:#f92672">|</span>SLAB_ACCOUNT);
 
-	/* Hash may have been set up in dcache_init_early */
-	if (!hashdist)
-		return;
+	<span style="color:#75715e">/* Hash may have been set up in dcache_init_early */</span>
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>hashdist)
+		<span style="color:#66d9ef">return</span>;
 
-	dentry_hashtable =
-		alloc_large_system_hash(&quot;Dentry cache&quot;,
-					sizeof(struct hlist_bl_head),
+	dentry_hashtable <span style="color:#f92672">=</span>
+		alloc_large_system_hash(<span style="color:#e6db74">&#34;Dentry cache&#34;</span>,
+					<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> hlist_bl_head),
 					dhash_entries,
-					13,
-					0,
-					&amp;d_hash_shift,
-					&amp;d_hash_mask,
-					0,
-					0);
+					<span style="color:#ae81ff">13</span>,
+					<span style="color:#ae81ff">0</span>,
+					<span style="color:#f92672">&amp;</span>d_hash_shift,
+					<span style="color:#f92672">&amp;</span>d_hash_mask,
+					<span style="color:#ae81ff">0</span>,
+					<span style="color:#ae81ff">0</span>);
 
-	for (loop = 0; loop &lt; (1U &lt;&lt; d_hash_shift); loop++)
-		INIT_HLIST_BL_HEAD(dentry_hashtable + loop);
+	<span style="color:#66d9ef">for</span> (loop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; loop <span style="color:#f92672">&lt;</span> (<span style="color:#ae81ff">1U</span> <span style="color:#f92672">&lt;&lt;</span> d_hash_shift); loop<span style="color:#f92672">++</span>)
+		INIT_HLIST_BL_HEAD(dentry_hashtable <span style="color:#f92672">+</span> loop);
 }
-</code></pre>
-
-<p>These objects are freed automatically by kernel if there is memory pressure.</p>
-
+</code></pre></div><p>These objects are freed automatically by kernel if there is memory pressure.</p>
 <blockquote>
 <p>To forcefully clean system slab cache.</p>
 </blockquote>
-
 <pre><code>echo 3 &gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
 </code></pre>
-
     <hr />
     <div id="disqus_thread"></div>
 <script type="text/javascript">

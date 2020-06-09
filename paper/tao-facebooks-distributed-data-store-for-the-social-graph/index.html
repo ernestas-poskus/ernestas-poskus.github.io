@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,24 +95,18 @@
     <p><abbr title="Word count">WC</abbr> 352 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=TAO:%20Facebook%e2%80%99s%20Distributed%20Data%20Store%20for%20the%20Social%20Graph%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="distributed-data-store-for-social-graph">Distributed data store for social graph</h2>
-
+    <h2 id="distributed-data-store-for-social-graph">Distributed data store for social graph</h2>
 <p>TAO is geographically distributed data store that provides efficient and timely
 access to the social graph using a fixed set of queries.
 Read optimized, persisted in MySQL.</p>
-
 <p>Inefficient edge lists: A key-value cache is not a good
 semantic fit for lists of edges; queries must always fetch
 the entire edge list and changes to a single edge require
 the entire list to be reloaded.</p>
-
 <p>Distributed control logic: In a lookaside cache architecture
 the control logic is run on clients that don’t communicate
 with each other. This increases the number of
 failure modes, and makes it difficult to avoid thundering herds.</p>
-
 <p>Expensive read-after-write consistency: Facebook
 uses asynchronous master/slave replication for MySQL,
 which poses a problem for caches in data centers using a
@@ -130,23 +116,17 @@ replica. By restricting the data model
 to objects and associations we can update the replica’s
 cache at write time, then use graph semantics to interpret
 cache maintenance messages from concurrent updates.</p>
-
 <h3 id="data-model-and-api">Data model and API</h3>
-
 <p>Facebook focuses on people, actions, and relationships.
 We model these entities and connections as nodes and
 edges in a graph. This representation is very flexible;
 it directly models real-life objects, and can also be used
 to store an application’s internal implementation-specific
 data.</p>
-
 <h3 id="architecture">Architecture</h3>
-
 <p>TAO needs to handle a far larger volume of data than can be stored on a
 single MySQL server, therefore data is divided into logical shards.</p>
-
 <h3 id="mysql-mapping">MySQL mapping</h3>
-
 <p>Each shard is assigned to a logical MySQL database
 that has a table for objects and a table
 for associations. All of the fields of an object are serialized into a

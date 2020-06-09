@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,73 +95,48 @@
     <p><abbr title="Word count">WC</abbr> 413 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Aerospike:%20Architecture%20of%20a%20Real-Time%20Operational%20DBMS%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="aerospike-architecture">Aerospike architecture</h2>
-
+    <h2 id="aerospike-architecture">Aerospike architecture</h2>
 <p>Modeled on the classic shared-nothing database architecture</p>
-
 <p>Objectives of the cluster management subsystem:</p>
-
 <ul>
 <li>Arrive at a single consistent view of current cluster members across all nodes in the cluster.</li>
 <li>Automatically detect new node arrival/departure and seamless cluster reconfiguration.</li>
 <li>Detect network faults and be resilient to such network flakiness.</li>
 <li>Minimize time to detect and adapt to cluster membership changes.</li>
 </ul>
-
 <h3 id="discovery">Discovery</h3>
-
 <p>Node arrival or departure is detected via heartbeat messages
 exchanged periodically between nodes.</p>
-
 <h3 id="surrogate-heartbeats">Surrogate heartbeats</h3>
-
 <p>In addition to regular heartbeat messages, nodes use other messages that are regularly exchanged
 between nodes as an alternative secondary heartbeat mechanism.</p>
-
 <h3 id="node-health-score">Node Health Score</h3>
-
 <p>Every node in the cluster evaluates the health score of each of its
 neighboring nodes by computing the average message loss, which
 is an estimate of how many incoming messages from that node are lost.</p>
-
 <h3 id="data-distribution">Data Distribution</h3>
-
 <p>A record’s primary key is hashed into a 160-byte digest using the RipeMD160 algorithm.</p>
-
 <p>Colocated indexes and data to avoid any cross-node traffic when running read operations or queries.</p>
-
 <p>A partition assignment algorithm generates a replication list for every
 partition. The replication list is a permutation of the cluster succession list.</p>
-
 <p>Reads can also be uniformly spread across all the
 replicas via a runtime configuration setting.</p>
-
 <h3 id="master-partition-without-data">Master Partition Without Data</h3>
-
 <p>An empty node newly added to a running cluster will be master
 for a proportional fraction of the partitions and have no data for
 those partitions.</p>
-
 <h3 id="migration-ordering">Migration Ordering</h3>
-
 <h4 id="smallest-partition-first">Smallest Partition First</h4>
-
 <p>Migration is coordinated in such a manner as to let nodes with the
 fewest records in their partition versions start migration first. This
 strategy quickly reduces the number of different copies of a
 specific partition, and does this faster than any other strategy.</p>
-
 <h4 id="hottest-partition-first">Hottest Partition First</h4>
-
 <p>At times, client accesses are skewed to a very small number of
 keys from the key space. Therefore the latency on these accesses
 could be improved quickly by migrating these hot partitions
 before other partitions.</p>
-
 <h3 id="defragmentation">Defragmentation</h3>
-
 <p>Aerospike uses a log-structured file system with a copy-on-write
 mechanism. Hence, it needs to reclaim space by continuously
 running a background defragmentation process. Each device

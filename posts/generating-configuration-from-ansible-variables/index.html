@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -96,109 +88,85 @@
     <p><abbr title="Word count">WC</abbr> 281 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Generating%20configuration%20from%20Ansible%20variables%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<p>If you have ever tried to render Ansible multi hash or list variable you probably something alike.</p>
-
-<pre><code class="language-yaml">global:
-  scrape_interval: &quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&quot;
-  evaluation_interval: &quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&quot;
-  scrape_timeout: &quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&quot;
-  external_labels: &quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&quot;
-</code></pre>
-
-<p>This generates invalid and ugly YAML.</p>
-
-<pre><code class="language-yaml">global:
-  scrape_interval: &quot;15s
-...
-&quot;
-  evaluation_interval: &quot;30s
-...
-&quot;
-  scrape_timeout: &quot;10s
-...
-&quot;
-  external_labels: &quot;null
-...
-&quot;
-</code></pre>
-
-<h3 id="tldr">TLDR</h3>
-
+    <p>If you have ever tried to render Ansible multi hash or list variable you probably something alike.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
+  <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&#34;</span>
+  <span style="color:#66d9ef">evaluation_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&#34;</span>
+  <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&#34;</span>
+  <span style="color:#66d9ef">external_labels</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_external_labels | to_nice_yaml }}&#34;</span>
+</code></pre></div><p>This generates invalid and ugly YAML.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
+  <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#34;15s
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">evaluation_interval</span>: <span style="color:#e6db74">&#34;30s
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#34;10s
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">external_labels</span>: <span style="color:#e6db74">&#34;null
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><h3 id="tldr">TLDR</h3>
 <p>If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.
 But there is a better way that I came up with.</p>
-
-<pre><code class="language-yaml">{{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{{
 {
-'global': {
-  'scrape_interval': prometheus_config_global_scrape_interval,
-  'evaluation_interval': prometheus_config_global_evaluation_interval,
-  'scrape_timeout': prometheus_config_global_scrape_timeout,
-  'external_labels': prometheus_config_global_external_labels }
+<span style="color:#66d9ef">&#39;global&#39;</span>: {
+  <span style="color:#66d9ef">&#39;scrape_interval&#39;</span>: prometheus_config_global_scrape_interval,
+  <span style="color:#66d9ef">&#39;evaluation_interval&#39;</span>: prometheus_config_global_evaluation_interval,
+  <span style="color:#66d9ef">&#39;scrape_timeout&#39;</span>: prometheus_config_global_scrape_timeout,
+  <span style="color:#66d9ef">&#39;external_labels&#39;</span>: prometheus_config_global_external_labels }
 } | to_nice_yaml
 }}
-</code></pre>
-
-<p>Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through <code>to_nice_yaml</code> filter as well.
+</code></pre></div><p>Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through <code>to_nice_yaml</code> filter as well.
 This generates pretty and valid YAML.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
+    <span style="color:#66d9ef">evaluation_interval</span>: 30s
+    <span style="color:#66d9ef">external_labels</span>: <span style="color:#66d9ef">null</span>
+    <span style="color:#66d9ef">scrape_interval</span>: 15s
+    <span style="color:#66d9ef">scrape_timeout</span>: 10s
+</code></pre></div><p>Same applies to more complex variable definitions like this hash configuration inside of array/list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">prometheus_config_scrape_configs</span>:
+  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+    <span style="color:#66d9ef">honor_labels</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#39;15s&#39;</span>
+    <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#39;2s&#39;</span>
+    <span style="color:#66d9ef">metrics_path</span>: <span style="color:#e6db74">&#39;/metrics&#39;</span>
+    <span style="color:#66d9ef">scheme</span>: <span style="color:#e6db74">&#39;http&#39;</span>
+    <span style="color:#66d9ef">static_configs</span>:
+      - <span style="color:#66d9ef">targets</span>:
+          - <span style="color:#e6db74">&#34;{{ prometheus_web__listen_address }}&#34;</span> <span style="color:#75715e"># Prometheus itself</span>
+          - <span style="color:#e6db74">&#34;{{ prometheus_alert_manager_web__listen_address }}&#34;</span> <span style="color:#75715e"># Alert manager</span>
 
-<pre><code class="language-yaml">global:
-    evaluation_interval: 30s
-    external_labels: null
-    scrape_interval: 15s
-    scrape_timeout: 10s
-</code></pre>
-
-<p>Same applies to more complex variable definitions like this hash configuration inside of array/list.</p>
-
-<pre><code class="language-yaml">prometheus_config_scrape_configs:
-  - job_name: 'prometheus'
-    honor_labels: true
-    scrape_interval: '15s'
-    scrape_timeout: '2s'
-    metrics_path: '/metrics'
-    scheme: 'http'
-    static_configs:
-      - targets:
-          - &quot;{{ prometheus_web__listen_address }}&quot; # Prometheus itself
-          - &quot;{{ prometheus_alert_manager_web__listen_address }}&quot; # Alert manager
-
-  - job_name: 'consul-services'
-    consul_sd_configs:
-      - server: &quot;consul.service.consul:8500&quot;
-        services:
+  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;consul-services&#39;</span>
+    <span style="color:#66d9ef">consul_sd_configs</span>:
+      - <span style="color:#66d9ef">server</span>: <span style="color:#e6db74">&#34;consul.service.consul:8500&#34;</span>
+        <span style="color:#66d9ef">services</span>:
           - nodeexporter
-</code></pre>
-
-<p>Variable used in template.</p>
-
-<pre><code class="language-yaml">{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; 0 %}
-{{ {'scrape_configs': prometheus_config_scrape_configs} | to_nice_yaml }}
+</code></pre></div><p>Variable used in template.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; <span style="color:#ae81ff">0</span> %}
+{{ {<span style="color:#66d9ef">&#39;scrape_configs&#39;</span>: prometheus_config_scrape_configs} | to_nice_yaml }}
 {% endif %}
-</code></pre>
-
-<p>End result here.</p>
-
-<pre><code class="language-yaml">scrape_configs:
--   honor_labels: true
-    job_name: prometheus
-    metrics_path: /metrics
-    scheme: http
-    scrape_interval: 15s
-    scrape_timeout: 2s
-    static_configs:
-    -   targets:
-        - 192.168.250.11:9090
-        - 192.168.250.11:9093
--   consul_sd_configs:
-    -   server: consul.service.consul:8500
-        services:
+</code></pre></div><p>End result here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">scrape_configs</span>:
+-   <span style="color:#66d9ef">honor_labels</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">job_name</span>: prometheus
+    <span style="color:#66d9ef">metrics_path</span>: /metrics
+    <span style="color:#66d9ef">scheme</span>: http
+    <span style="color:#66d9ef">scrape_interval</span>: 15s
+    <span style="color:#66d9ef">scrape_timeout</span>: 2s
+    <span style="color:#66d9ef">static_configs</span>:
+    -   <span style="color:#66d9ef">targets</span>:
+        - <span style="color:#ae81ff">192.168.250.11</span>:<span style="color:#ae81ff">9090</span>
+        - <span style="color:#ae81ff">192.168.250.11</span>:<span style="color:#ae81ff">9093</span>
+-   <span style="color:#66d9ef">consul_sd_configs</span>:
+    -   <span style="color:#66d9ef">server</span>: consul.service.consul:<span style="color:#ae81ff">8500</span>
+        <span style="color:#66d9ef">services</span>:
         - nodeexporter
-    job_name: consul-services
-</code></pre>
-
-<p>Examples are taken from by ansible-prometheus playbook: <a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a>.</p>
+    <span style="color:#66d9ef">job_name</span>: consul-services
+</code></pre></div><p>Examples are taken from by ansible-prometheus playbook: <a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a>.</p>
 
     <hr />
     <div id="disqus_thread"></div>

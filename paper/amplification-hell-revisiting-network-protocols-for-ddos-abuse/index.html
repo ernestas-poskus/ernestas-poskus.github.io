@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,45 +95,36 @@
     <p><abbr title="Word count">WC</abbr> 239 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Amplification%20Hell:%20Revisiting%20Network%20Protocols%20for%20DDoS%20Abuse%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="amplification-attacks">Amplification attacks</h2>
-
+    <h2 id="amplification-attacks">Amplification attacks</h2>
 <p>Adversaries send requests to public servers (e.g., open
 recursive DNS resolvers) and spoof the IP address of a victim.
 These servers, in turn, flood the victim with valid responses
 and – unknowingly – exhaust its bandwidth.</p>
-
 <p>Attackers can abuse these protocols to multiply their
 attack bandwidth by factors from 3.8 (BitTorrent, NetBios) up to 4670 (NTP).</p>
-
 <p>Exclude all TCP-based protocols from our analysis, as IP address spoofing is
 restricted to the start of the TCP handshake. Although the TCP
 handshake fulfils the reflection criterion, it does not allow for
 easy amplification (since a TCP ACK is not larger than a TCP
 SYN packet). However, we show that 14 popular UDP-based
 network protocols are suitable candidates for DRDoS attacks.</p>
-
 <p>SNMP v2, NTP, DNS, NetBios, SSDP, CharGen, QOTD, BitTorrent, Kad, Quake 3,
 Steam, ZAv2, Sality, Gameover</p>
-
 <p>An attacker A aims to consume all available bandwidth of a victim V . Reflective means
 that A does not directly send traffic to V , but instead uses
 systems that reflect the attack traffic to V (so called amplifiers).
 Distributed accounts for the fact that A abuses thousands of
 amplifiers and V thus faces thousands of attack sources.</p>
-
 <p>BAF = len(UDP payload) amplifier to victim / len(UDP payload) attacker to amplifier</p>
-
 <p>PAF = number or packets amplifier to victim / number of packets attacker to amplifier</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>DRDoS - distributed reflective denial-of-service</p>
-
+</blockquote>
+<blockquote>
 <p>BAF - bandwidth amplification factor</p>
-
+</blockquote>
+<blockquote>
 <p>PAF - packet amplification factor</p>
 </blockquote>
 

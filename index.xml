@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ernestas Poškus technical blog</title>
@@ -6,10 +6,19 @@
     <description>Recent content on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Jan 2019 11:35:06 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2020 20:55:21 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IO with io_uring</title>
+      <link>http://out13.com/paper/efficient-io-with-io-uring/</link>
+      <pubDate>Tue, 09 Jun 2020 20:55:21 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/efficient-io-with-io-uring/</guid>
+      <description>IO history There are many ways to do file based IO in Linux. The oldest and most basic are the read(2) and write(2) system calls. These were later augmented with pread(2) and pwrite(2) versions which allow passing in of an offset, and later still we got preadv(2) and pwritev(2) which are vector-based versions of the former. Because that still wasn&amp;rsquo;t quite enough, Linux also has preadv2(2) and pwritev2(2) system calls, which further extend the API to allow modifier flags.</description>
+    </item>
     
     <item>
       <title>Amplification Hell: Revisiting Network Protocols for DDoS Abuse</title>
@@ -61,9 +70,9 @@ Design Within each B4 site, the switch hardware layer primarily forwards traffic
       <pubDate>Wed, 20 Dec 2017 18:50:13 +0200</pubDate>
       
       <guid>http://out13.com/dev/vue-seo/</guid>
-      <description>Testing Vue.js dynamic  meta tags indexability by major search engines.
+      <description>Testing Vue.js dynamic meta tags indexability by major search engines.
 When Vue app is loaded:
- meta title should change to: It will be a pleasure | Testing Vue.js dynamic  meta tags - Ernestas Poškus.io meta description should change to: A description of the page      </description>
+ meta title should change to: It will be a pleasure | Testing Vue.js dynamic meta tags - Ernestas Poškus.io meta description should change to: A description of the page  </description>
     </item>
     
     <item>
@@ -166,7 +175,7 @@ Wireless networking has helped to mitigate these costs, and many areas now use i
       <guid>http://out13.com/tools/proc-meminfo/</guid>
       <description>Reports statistics about memory usage on the system. Useful for inspecting more granular memory usage.
  Sample output below.
- $ cat /proc/meminfo MemTotal: 12189912 kB MemFree: 231992 kB MemAvailable: 4174992 kB Buffers: 430884 kB Cached: 4515856 kB SwapCached: 60 kB Active: 8019760 kB Inactive: 3120804 kB Active(anon): 6121448 kB Inactive(anon): 1099620 kB Active(file): 1898312 kB Inactive(file): 2021184 kB Unevictable: 3088 kB Mlocked: 3088 kB SwapTotal: 12467708 kB SwapFree: 12467352 kB Dirty: 1568 kB Writeback: 0 kB AnonPages: 6196916 kB Mapped: 1339276 kB Shmem: 1027248 kB Slab: 584576 kB SReclaimable: 349700 kB SUnreclaim: 234876 kB KernelStack: 20800 kB PageTables: 93864 kB NFS_Unstable: 0 kB Bounce: 0 kB WritebackTmp: 0 kB CommitLimit: 18562664 kB Committed_AS: 19186116 kB VmallocTotal: 34359738367 kB VmallocUsed: 0 kB VmallocChunk: 0 kB HardwareCorrupted: 0 kB AnonHugePages: 1019904 kB CmaTotal: 0 kB CmaFree: 0 kB HugePages_Total: 0 HugePages_Free: 0 HugePages_Rsvd: 0 HugePages_Surp: 0 Hugepagesize: 2048 kB DirectMap4k: 386324 kB DirectMap2M: 12083200 kB DirectMap1G: 0 kB  Interpreting each one  MemTotal: 12189912 kB</description>
+ $ cat /proc/meminfo MemTotal: 12189912 kB MemFree: 231992 kB MemAvailable: 4174992 kB Buffers: 430884 kB Cached: 4515856 kB SwapCached: 60 kB Active: 8019760 kB Inactive: 3120804 kB Active(anon): 6121448 kB Inactive(anon): 1099620 kB Active(file): 1898312 kB Inactive(file): 2021184 kB Unevictable: 3088 kB Mlocked: 3088 kB SwapTotal: 12467708 kB SwapFree: 12467352 kB Dirty: 1568 kB Writeback: 0 kB AnonPages: 6196916 kB Mapped: 1339276 kB Shmem: 1027248 kB Slab: 584576 kB SReclaimable: 349700 kB SUnreclaim: 234876 kB KernelStack: 20800 kB PageTables: 93864 kB NFS_Unstable: 0 kB Bounce: 0 kB WritebackTmp: 0 kB CommitLimit: 18562664 kB Committed_AS: 19186116 kB VmallocTotal: 34359738367 kB VmallocUsed: 0 kB VmallocChunk: 0 kB HardwareCorrupted: 0 kB AnonHugePages: 1019904 kB CmaTotal: 0 kB CmaFree: 0 kB HugePages_Total: 0 HugePages_Free: 0 HugePages_Rsvd: 0 HugePages_Surp: 0 Hugepagesize: 2048 kB DirectMap4k: 386324 kB DirectMap2M: 12083200 kB DirectMap1G: 0 kB Interpreting each one  MemTotal: 12189912 kB</description>
     </item>
     
     <item>
@@ -238,7 +247,7 @@ Raft implements consensus by first electing a distinguished leader, then giving 
       <guid>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</guid>
       <description>LIRS LRU replacement policy has been commonly used in the buffer cache management, it is well known for its inability to cope with access patterns with weak locality.
 LIRS effectively addresses the limits of LRU by using recency to evaluate Inter-Reference Recency (IRR) for making a replacement decision.
-LRU inefficiency  Under the LRU policy, a burst of references to infrequently used blocks such as “sequential scans” through a large file, may cause replacement of commonly referenced blocks in the cache.</description>
+LRU inefficiency   Under the LRU policy, a burst of references to infrequently used blocks such as “sequential scans” through a large file, may cause replacement of commonly referenced blocks in the cache.</description>
     </item>
     
     <item>
@@ -323,15 +332,15 @@ SEDA combines aspects of threads and event-based programming models to manage th
       
       <guid>http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/</guid>
       <description>Abstract Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line, data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.
-TCP Congestion Control versus System Buffer Management TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.</description>
+TCP Congestion Control versus System Buffer Management TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact. Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent, reconstructed and verified at the recipient’s end.</description>
     </item>
     
     <item>
       <title>Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution</title>
-      <link>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</link>
+      <link>http://out13.com/paper/replication-under-scalable-hashing-a-family-of-algorithms-for-scalable-decentralized-data-distribution/</link>
       <pubDate>Thu, 10 Nov 2016 22:27:23 +0200</pubDate>
       
-      <guid>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</guid>
+      <guid>http://out13.com/paper/replication-under-scalable-hashing-a-family-of-algorithms-for-scalable-decentralized-data-distribution/</guid>
       <description>Replication Under Scalable Hashing Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used; adding or removing components results in either extensive reorganization of data or load imbalance in the system.
 RUSH variants also support weighting, allowing disks of different vintages to be added to a system.
 RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system, or old disks are retired, RUSH variants minimize the number of objects that need to be moved in order to bring the system back into balance.</description>
@@ -365,8 +374,8 @@ Bigtable does not support a full relational data model; instead, it provides cli
       
       <guid>http://out13.com/posts/generating-configuration-from-ansible-variables/</guid>
       <description>If you have ever tried to render Ansible multi hash or list variable you probably something alike.
-global: scrape_interval: &amp;quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;quot; evaluation_interval: &amp;quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;quot; scrape_timeout: &amp;quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;quot; external_labels: &amp;quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;quot;  This generates invalid and ugly YAML.
-global: scrape_interval: &amp;quot;15s ... &amp;quot; evaluation_interval: &amp;quot;30s ... &amp;quot; scrape_timeout: &amp;quot;10s ... &amp;quot; external_labels: &amp;quot;null ... &amp;quot;  TLDR If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.</description>
+global: scrape_interval: &amp;#34;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;#34; evaluation_interval: &amp;#34;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;#34; scrape_timeout: &amp;#34;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;#34; external_labels: &amp;#34;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;#34; This generates invalid and ugly YAML.
+global: scrape_interval: &amp;#34;15s ... &amp;#34; evaluation_interval: &amp;#34;30s ... &amp;#34; scrape_timeout: &amp;#34;10s ... &amp;#34; external_labels: &amp;#34;null ... &amp;#34; TLDR If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.</description>
     </item>
     
     <item>
@@ -377,7 +386,7 @@ global: scrape_interval: &amp;quot;15s ... &amp;quot; evaluation_interval: &amp;
       <guid>http://out13.com/posts/ansible-testing-multiple-platforms/</guid>
       <description>It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.
 When playbook is created with Ansible command ansible-galaxy init myplaybook it creates number of directories and files, includes basic Travis CI .travis.yml file.
-script: # Basic role syntax check - ansible-playbook tests/test.yml -i tests/inventory --syntax-check  Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.</description>
+script: # Basic role syntax check - ansible-playbook tests/test.yml -i tests/inventory --syntax-check Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.04 LTS Server Edition 64 bit by default.</description>
     </item>
     
     <item>
@@ -397,7 +406,7 @@ Rust’s ownership model prevents otherwise safe resource sharing common in the 
       <pubDate>Thu, 25 Aug 2016 19:13:56 +0300</pubDate>
       
       <guid>http://out13.com/paper/on-the-fly-garbage-collection/</guid>
-      <description>In our abstract form of the problem, we consider a directed graph of varying structure but with a fixed number of nodes, in which each node has at most two outgoing edges. More precisely, each node may have a left-hand outgoing edge and may have a right-hand outgoing edge, but either of them or both may be missing. In this graph a fixed set of nodes exists, called &amp;ldquo;the roots.</description>
+      <description>In our abstract form of the problem, we consider a directed graph of varying structure but with a fixed number of nodes, in which each node has at most two outgoing edges. More precisely, each node may have a left-hand outgoing edge and may have a right-hand outgoing edge, but either of them or both may be missing. In this graph a fixed set of nodes exists, called &amp;ldquo;the roots.&amp;rdquo; A node is called &amp;ldquo;reachable&amp;rdquo; if it is reachable from at least one root via a directed path along the edges.</description>
     </item>
     
     <item>
@@ -465,8 +474,8 @@ When a data item is accessed, if it already appears in the cache, we say that th
       <guid>http://out13.com/posts/golang-dynamic-struct-decoration/</guid>
       <description>Dynamic struct decoration using type assertion.  Use cases: API / templates.
  Having simple map of:
-input := map[string]interface{}{ &amp;quot;Key1&amp;quot;: []string{&amp;quot;some&amp;quot;, &amp;quot;key&amp;quot;}, &amp;quot;key3&amp;quot;: nil, &amp;quot;val&amp;quot;: 2, &amp;quot;val2&amp;quot;: &amp;quot;str&amp;quot;, &amp;quot;val3&amp;quot;: 4, }  One can decorate it using type assertion by iterating over it.
-for key, value := range input { slice, ok := value.([]string) if ok { input[&amp;quot;Count&amp;quot;+key] = len(slice) } }  This becomes very useful when serializing struct into json.</description>
+input := map[string]interface{}{ &amp;#34;Key1&amp;#34;: []string{&amp;#34;some&amp;#34;, &amp;#34;key&amp;#34;}, &amp;#34;key3&amp;#34;: nil, &amp;#34;val&amp;#34;: 2, &amp;#34;val2&amp;#34;: &amp;#34;str&amp;#34;, &amp;#34;val3&amp;#34;: 4, } One can decorate it using type assertion by iterating over it.
+for key, value := range input { slice, ok := value.([]string) if ok { input[&amp;#34;Count&amp;#34;+key] = len(slice) } } This becomes very useful when serializing struct into json.</description>
     </item>
     
     <item>
@@ -480,7 +489,7 @@ for key, value := range input { slice, ok := value.([]string) if ok { input[&amp
  2) Install desired Rust version  rsvm install 0.12.0
  3) Switch/use desired Rust version  rsvm use 0.12.0
  4) rsvm - makes symbolic link to current rust version in  ls -la $HOME/.rsvm/current
-total 56K drwxrwxr-x 2 user user 4.</description>
+ total 56K drwxrwxr-x 2 user user 4.</description>
     </item>
     
     <item>
@@ -501,21 +510,7 @@ Due to own usage reasons I have decided to implement these readability tests in 
       <pubDate>Sun, 29 Mar 2015 12:59:46 +0300</pubDate>
       
       <guid>http://out13.com/posts/programming-languages/</guid>
-      <description>var pie = new d3pie(&#34;pieChart&#34;, { &#34;header&#34;: { &#34;subtitle&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;, &#34;fontSize&#34;: 12, &#34;font&#34;: &#34;open sans&#34; }, &#34;titleSubtitlePadding&#34;: 9 }, &#34;footer&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;fontSize&#34;: 10, &#34;font&#34;: &#34;open sans&#34;, &#34;location&#34;: &#34;bottom-left&#34; }, &#34;size&#34;: { &#34;canvasHeight&#34;: 400, &#34;canvasWidth&#34;: 490, &#34;pieInnerRadius&#34;: &#34;50%&#34;, &#34;pieOuterRadius&#34;: &#34;80%&#34; }, &#34;data&#34;: { &#34;sortOrder&#34;: &#34;value-desc&#34;, &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;, &#34;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://out13.com/cv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://out13.com/cv/</guid>
-      <description>CV - Ernestas Poškus  ul.description { list-style-type: none; margin: 0; padding: 1.2rem; background: #f5f5f5; }    CV: Ernestas Poškus Last modified: 2019-10-10   Pragmatic &amp;amp; Ambitious
-  Keen interest in service oriented architecture, massive scalability, distributed systems, Search Engines.   Blog: http://out13.com
-Goodreads: 42270834-ernestas-poskus
-GitHub: ernestas-poskus
-Twitter: @ernestas_poskus
-Open Source  https://github.com/AnsibleShipyard release manager/contributor of major Ansible playbooks (Zookeeper, Mesos, Marathon, etc.) https://github.com/linkosmos author of 10+ Golang packages https://github.</description>
+      <description>var pie = new d3pie(&#34;pieChart&#34;, { &#34;header&#34;: { &#34;subtitle&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;text&#34;: &#34;Generated from github.com/ernestas-poskus&#34;, &#34;fontSize&#34;: 12, &#34;font&#34;: &#34;open sans&#34; }, &#34;titleSubtitlePadding&#34;: 9 }, &#34;footer&#34;: { &#34;color&#34;: &#34;#999999&#34;, &#34;fontSize&#34;: 10, &#34;font&#34;: &#34;open sans&#34;, &#34;location&#34;: &#34;bottom-left&#34; }, &#34;size&#34;: { &#34;canvasHeight&#34;: 400, &#34;canvasWidth&#34;: 490, &#34;pieInnerRadius&#34;: &#34;50%&#34;, &#34;pieOuterRadius&#34;: &#34;80%&#34; }, &#34;data&#34;: { &#34;sortOrder&#34;: &#34;value-desc&#34;, &#34;content&#34;: [{&#34;label&#34;: &#34;Haskell&#34;, &#34;value&#34;: 801, &#34;color&#34;: &#34;#29b544&#34;},{&#34;label&#34;: &#34;Lua&#34;, &#34;value&#34;: 1152, &#34;color&#34;: &#34;#fa1fa1&#34;},{&#34;label&#34;: &#34;Standard ML&#34;</description>
     </item>
     
   </channel>

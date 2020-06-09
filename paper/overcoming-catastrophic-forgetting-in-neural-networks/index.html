@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,43 +95,31 @@
     <p><abbr title="Word count">WC</abbr> 244 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Overcoming%20catastrophic%20forgetting%20in%20neural%20networks%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="catastrophic-forgetting-in-neural-networks">Catastrophic forgetting in neural networks</h2>
-
+    <h2 id="catastrophic-forgetting-in-neural-networks">Catastrophic forgetting in neural networks</h2>
 <p>The ability to learn tasks in a sequential fashion is crucial to the development of
 artificial intelligence. Neural networks are not, in general, capable of this and it
 has been widely thought that catastrophic forgetting is an inevitable feature of
 connectionist models.</p>
-
 <p>It is possible to overcome this limitation.</p>
-
 <p>Our approach remembers old tasks by selectively slowing down
 learning on the weights important for those tasks.</p>
-
 <p>Achieving artificial general intelligence requires that agents are able to learn and remember many
 different tasks.</p>
-
 <p>A multitask learning paradigm—deep learning techniques have been used to
 train single agents that can successfully play multiple Atari games.</p>
-
 <p>The lack of algorithms to support continual learning thus remains a key
 barrier to the development of artificial general intelligence.</p>
-
 <h3 id="elastic-weight-consolidation">Elastic weight consolidation</h3>
-
 <p>A deep neural network consists of multiple layers of linear projection followed by element-wise
 non-linearities. Learning a task consists of adjusting the set of weights and biases θ of the linear
 projections, to optimize performance.</p>
-
 <p>In order to justify this choice of constraint and to define which weights are most important for a task,
 it is useful to consider neural network training from a probabilistic perspective.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>catastrophic forgetting: knowledge of previously learnt task(s) (e.g. task A) to be abruptly lost as information relevant to the current task (e.g. task B) is incorporated.</p>
-
+</blockquote>
+<blockquote>
 <p>elastic weight consolidation: this algorithm slows down learning on certain weights based on how important they are to previously seen tasks.</p>
 </blockquote>
 

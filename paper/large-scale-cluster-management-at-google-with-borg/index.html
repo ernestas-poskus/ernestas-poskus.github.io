@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,34 +95,25 @@
     <p><abbr title="Word count">WC</abbr> 617 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Large-scale%20cluster%20management%20at%20Google%20with%20Borg%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="borg">Borg</h2>
-
+    <h2 id="borg">Borg</h2>
 <p>Cluster manager that runs hundreds of thousands of jobs, from many thousands of
 different applications, across a number of clusters each with up to tens of thousands of machines.</p>
-
 <p>3 main benefits:</p>
-
 <ul>
 <li>hides the details of resource management and failure handling so its users can
 focus on application development instead</li>
 <li>operates with very high reliability and availability, and supports applications that do the same</li>
 <li>lets us run workloads across tens of thousands of machines effectively</li>
 </ul>
-
 <p>A key design feature in Borg is that already-running tasks
 continue to run even if the Borgmaster or a task’s Borglet
 goes down. But keeping the master up is still important
 because when it is down new jobs cannot be submitted
 or existing ones updated, and tasks from failed machines
 cannot be rescheduled.</p>
-
 <p>Each job runs in one Borg cell, a set of machines that are managed as a unit.</p>
-
 <p>The machines in a cell belong to a single cluster. A cluster lives inside a single datacenter
 building, and a collection of buildings makes up a site.</p>
-
 <p>Median cell size is about 10 k machines after excluding test cells; some are
 much larger.
 The machines in a cell are heterogeneous in many dimensions: sizes (CPU, RAM,
@@ -139,67 +122,48 @@ external IP address or flash storage.
 Borg isolates users from most of these differences by determining where in a
 cell to run tasks, allocating their resources, installing their programs and
 other dependencies, monitoring their health, and restarting them if they fail.</p>
-
 <h3 id="jobs">Jobs</h3>
-
 <p>A Borg alloc (short for allocation) is a reserved set of resources on a machine
 in which one or more tasks can be run; the resources remain assigned whether or
 not they are used.</p>
-
 <p>Quota is used to decide which jobs to admit for scheduling.
 Quota is expressed as a vector of resource quantities (CPU, RAM, disk, etc.)
 at a given priority, for a period of time (typically months).</p>
-
 <p>Every job has a priority, a small positive integer. A high priority task
 can obtain resources at the expense of a lower priority one,
 even if that involves preempting (killing) the latter.</p>
-
 <h3 id="naming-and-monitoring">Naming and monitoring</h3>
-
 <p>BNS (DNS) for Borg jobs for each task that includes the cell name, job name, and task number.
 Borg writes the task’s hostname and port into a consistent,
 highly-available file in Chubby with this name, which
 is used by our RPC system to find the task endpoint.</p>
-
 <p>Borg also writes job size and task health information into
 Chubby whenever it changes, so load balancers can see
 where to route requests to.</p>
-
 <p>Borg monitors the health-check URL and restarts
 tasks that do not respond promptly or return an HTTP error code.</p>
-
 <h3 id="architecture">Architecture</h3>
-
 <p>A Borg cell consists of a set of machines, a logically centralized
 controller called the Borgmaster, and an agent process
 called the Borglet that runs on each machine in a cell.</p>
-
 <p>Borgmaster process handles client RPCs that either
 mutate state (e.g., create job) or provide read-only access
 to data (e.g., lookup job).</p>
-
 <h2 id="scheduling">Scheduling</h2>
-
 <p>The scheduling algorithm has two parts: feasibility checking, to find
 machines on which the task could run, and scoring, which picks
 one of the feasible machines.</p>
-
 <p>To reduce task startup time, the scheduler prefers to assign
 tasks to machines that already have the necessary packages.</p>
-
 <p>Borg distributes packages to machines in parallel using tree-
 and torrent-like protocols.</p>
-
 <h2 id="borglet">Borglet</h2>
-
 <p>Borglet is a local Borg agent that is present on every
 machine in a cell. It starts and stops tasks; restarts them if
 they fail; manages local resources by manipulating OS kernel settings;
 rolls over debug logs; and reports the state of the
 machine to the Borgmaster and other monitoring systems.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>BNS - Borg name system</p>
 </blockquote>

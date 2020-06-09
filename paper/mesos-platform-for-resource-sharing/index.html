@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,68 +95,59 @@
     <p><abbr title="Word count">WC</abbr> 471 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Mesos:%20A%20Platform%20for%20Fine-Grained%20Resource%20Sharing%20in%20the%20Data%20Center%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="platform-for-resource-sharing">Platform for resource sharing</h2>
-
+    <h2 id="platform-for-resource-sharing">Platform for resource sharing</h2>
 <blockquote>
 <p>Sharing improves cluster utilization and avoids per-framework data repli-cation
 Organizations will want to run multiple frameworks in the same cluster, picking the best one for each application.
 Sharing a cluster between frameworks improves utilization and allows applications to share access to large datasets that may be too costly to replicate</p>
 </blockquote>
-
 <h3 id="architecture">Architecture</h3>
-
 <p>Mesos decides how many resources to offer each framework, based on an organizational policy such as fair sharing, while frameworks decide which resources to accept and which tasks to run on them.</p>
-
 <blockquote>
 <p>Design philosophy - define a minimal interface that enables efficient resource sharing across frameworks, and otherwise push control of task scheduling and execution to the frameworks.</p>
 </blockquote>
-
 <p>The master decides how many resources to offer to each framework according to a given organizational policy, such as fair sharing, or strict priority.</p>
-
 <p>A framework running on top of Mesos consists of two components: a scheduler that registers with the master to be offered resources, and an executor process that is launched on slave nodes to run the framework’s tasks.</p>
-
 <p>Master determines how many resources are offered to each framework, the frameworks’ schedulers select which of the offered resources to use.</p>
-
 <p>When a frameworks accepts offered resources, it passes to Mesos a description of the tasks it wants to run on them.</p>
-
 <p>Frameworks achieve data locality by rejecting offers.</p>
-
 <p>Mesos can reallocate resources if cluster becomes filled with long tasks by revoking (killing) tasks with grace period.</p>
-
 <p>Isolation through existing OS isolation mechanisms usually system containers. These technologies can limit the CPU, memory, network bandwidth and I/O usage of a process tree.</p>
-
 <p>Mesos lets them short-circuit the rejection process and avoid communication by providing filters to the master. We support two types of filters: “only offer nodes from list L” and “only offer nodes with at least R resources free”.</p>
-
 <p>Two types of resources: mandatory and preferred</p>
-
 <ul>
 <li>A resource is mandatory if a framework must acquire it in order to run.</li>
 <li>Preferred if a framework performs “better” using it, but can also run using another equivalent resource.</li>
 </ul>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Two-level scheduling mechanism called resource offers</p>
-
+</blockquote>
+<blockquote>
 <p>Delegating control over scheduling to the framework</p>
-
+</blockquote>
+<blockquote>
 <p>Resource offer - encapsulates a bundle of resources that a framework can allocate on a cluster node to run tasks</p>
-
+</blockquote>
+<blockquote>
 <p>Framework ramp-up time - time it takes a new framework to achieve its allocation</p>
-
+</blockquote>
+<blockquote>
 <p>Job completion time - time it takes a job to complete, assuming one job per framework;</p>
-
+</blockquote>
+<blockquote>
 <p>System utilization - total cluster utilization.</p>
-
+</blockquote>
+<blockquote>
 <p>Scale up - frameworks can elastically increase their allocation to take advantage of free resources.</p>
-
+</blockquote>
+<blockquote>
 <p>Scale down - frameworks can relinquish resources without significantly impacting their performance.</p>
-
+</blockquote>
+<blockquote>
 <p>Minimum allocation - frameworks require a certain minimum number of slots before they can start using their slots.</p>
-
+</blockquote>
+<blockquote>
 <p>Task distribution - distribution of the task durations. We consider both homogeneous and heterogeneous distributions.</p>
 </blockquote>
 

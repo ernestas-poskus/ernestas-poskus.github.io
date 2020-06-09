@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -96,82 +88,57 @@
     <p><abbr title="Word count">WC</abbr> 238 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Setup%20Rust%20Racer%20with%20multiple%20Rust%20versions%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<p>Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
+    <p>Guide to setup Rust Racer [code completion utility] with multiple/nightly Rust versions.
 This will let you navigate &amp; jump to definition between Rust versions.</p>
-
 <h3 id="1-install-rust-version-manager">1) Install Rust version manager</h3>
-
 <blockquote>
 <p><a href="https://github.com/sdepold/rsvm#installation">https://github.com/sdepold/rsvm#installation</a></p>
 </blockquote>
-
 <h3 id="2-install-desired-rust-version">2) Install desired Rust version</h3>
-
 <blockquote>
 <p>rsvm install 0.12.0</p>
 </blockquote>
-
-<h3 id="3-switch-use-desired-rust-version">3) Switch/use desired Rust version</h3>
-
+<h3 id="3-switchuse-desired-rust-version">3) Switch/use desired Rust version</h3>
 <blockquote>
 <p>rsvm use 0.12.0</p>
 </blockquote>
-
-<h3 id="4-rsvm-makes-symbolic-link-to-current-rust-version-in">4) rsvm - makes symbolic link to current rust version in</h3>
-
+<h3 id="4-rsvm---makes-symbolic-link-to-current-rust-version-in">4) rsvm - makes symbolic link to current rust version in</h3>
 <blockquote>
 <p>ls -la $HOME/.rsvm/current</p>
-
-<pre><code class="language-bash">total 56K
-drwxrwxr-x  2 user user 4.0K Sep 14 21:31 test
-drwxrwxr-x  4 user user 4.0K Sep 15 14:33 1.2.0
-drwxrwxr-x  5 user user 4.0K Sep 15 14:48 .
-drwxrwxr-x  8 user user 4.0K Sep 21 22:15 .git
-drwx------ 24 user user 4.0K Sep 21 22:17 ..
--rw-rw-r--  1 user user 1.1K Sep 14 21:31 LICENSE
--rw-rw-r--  1 user user  324 Sep 14 21:31 CHANGELOG.md
--rw-rw-r--  1 user user  249 Sep 14 21:31 .travis.yml
--rw-rw-r--  1 user user 9.1K Sep 14 21:31 rsvm.sh
--rw-rw-r--  1 user user 2.1K Sep 14 21:31 rsvm.fish
--rw-rw-r--  1 user user 1.3K Sep 14 21:31 install.sh
--rw-rw-r--  1 user user 1.8K Sep 14 21:31 README.md
-lrwxrwxrwx  1 user user   20 Sep 15 14:48 current -&gt; /home/user/.rsvm/1.2.0
-</code></pre>
 </blockquote>
-
-<h3 id="5-export-rust-source-path-to-that-symbolic-link">5) Export Rust source path to that symbolic link</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">total 56K
+drwxrwxr-x  <span style="color:#ae81ff">2</span> user user 4.0K Sep <span style="color:#ae81ff">14</span> 21:31 test
+drwxrwxr-x  <span style="color:#ae81ff">4</span> user user 4.0K Sep <span style="color:#ae81ff">15</span> 14:33 1.2.0
+drwxrwxr-x  <span style="color:#ae81ff">5</span> user user 4.0K Sep <span style="color:#ae81ff">15</span> 14:48 .
+drwxrwxr-x  <span style="color:#ae81ff">8</span> user user 4.0K Sep <span style="color:#ae81ff">21</span> 22:15 .git
+drwx------ <span style="color:#ae81ff">24</span> user user 4.0K Sep <span style="color:#ae81ff">21</span> 22:17 ..
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user 1.1K Sep <span style="color:#ae81ff">14</span> 21:31 LICENSE
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user  <span style="color:#ae81ff">324</span> Sep <span style="color:#ae81ff">14</span> 21:31 CHANGELOG.md
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user  <span style="color:#ae81ff">249</span> Sep <span style="color:#ae81ff">14</span> 21:31 .travis.yml
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user 9.1K Sep <span style="color:#ae81ff">14</span> 21:31 rsvm.sh
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user 2.1K Sep <span style="color:#ae81ff">14</span> 21:31 rsvm.fish
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user 1.3K Sep <span style="color:#ae81ff">14</span> 21:31 install.sh
+-rw-rw-r--  <span style="color:#ae81ff">1</span> user user 1.8K Sep <span style="color:#ae81ff">14</span> 21:31 README.md
+lrwxrwxrwx  <span style="color:#ae81ff">1</span> user user   <span style="color:#ae81ff">20</span> Sep <span style="color:#ae81ff">15</span> 14:48 current -&gt; /home/user/.rsvm/1.2.0
+</code></pre></div><h3 id="5-export-rust-source-path-to-that-symbolic-link">5) Export Rust source path to that symbolic link</h3>
 <pre><code>export RUST_SRC_PATH=&quot;$HOME/.rsvm/current&quot;
-</code></pre>
-
-<h3 id="6-install-rust-racer">6) Install Rust racer</h3>
-
+</code></pre><h3 id="6-install-rust-racer">6) Install Rust racer</h3>
 <blockquote>
 <p>git clone <a href="https://github.com/phildawes/racer.git">https://github.com/phildawes/racer.git</a> &ldquo;$HOME/rust-racer&rdquo;</p>
 </blockquote>
-
 <h3 id="7-build-rust-racer">7) Build Rust racer</h3>
-
 <blockquote>
 <p>cd $HOME/rust-racer; cargo build &ndash;release.</p>
 </blockquote>
-
 <h3 id="7-install-vim-racer-vim-plugin-emacs-kate-available">7) Install vim-racer vim plugin (Emacs, Kate available)</h3>
-
 <blockquote>
 <p><a href="https://github.com/phildawes/racer#vim-integration">https://github.com/phildawes/racer#vim-integration</a></p>
 </blockquote>
-
-<h3 id="8-define-g-racer-cmd-in-vimrc">8) Define g:racer_cmd in .vimrc</h3>
-
+<h3 id="8-define-gracer_cmd-in-vimrc">8) Define g:racer_cmd in .vimrc</h3>
 <blockquote>
 <p>let g:racer_cmd = &ldquo;$HOME/rust-racer/target/release/racer&rdquo;</p>
 </blockquote>
-
 <h3 id="9-done">9) Done</h3>
-
 <blockquote>
 <p>Enjoy multi Rust environment with code completion &amp; goto-definition</p>
 </blockquote>

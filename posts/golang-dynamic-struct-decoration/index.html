@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -96,48 +88,36 @@
     <p><abbr title="Word count">WC</abbr> 96 / <abbr title="Reading time">RT</abbr> 1min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Golang%20dynamic%20struct%20decoration%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="dynamic-struct-decoration-using-type-assertion">Dynamic struct decoration using type assertion.</h2>
-
+    <h2 id="dynamic-struct-decoration-using-type-assertion">Dynamic struct decoration using type assertion.</h2>
 <blockquote>
 <p>Use cases: API / templates.</p>
 </blockquote>
-
 <p>Having simple map of:</p>
-
-<pre><code class="language-go">  input :=  map[string]interface{}{
-    &quot;Key1&quot;: []string{&quot;some&quot;, &quot;key&quot;},
-    &quot;key3&quot;: nil,
-    &quot;val&quot;: 2,
-    &quot;val2&quot;: &quot;str&quot;,
-    &quot;val3&quot;: 4,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span>  <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
+    <span style="color:#e6db74">&#34;Key1&#34;</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;some&#34;</span>, <span style="color:#e6db74">&#34;key&#34;</span>},
+    <span style="color:#e6db74">&#34;key3&#34;</span>: <span style="color:#66d9ef">nil</span>,
+    <span style="color:#e6db74">&#34;val&#34;</span>: <span style="color:#ae81ff">2</span>,
+    <span style="color:#e6db74">&#34;val2&#34;</span>: <span style="color:#e6db74">&#34;str&#34;</span>,
+    <span style="color:#e6db74">&#34;val3&#34;</span>: <span style="color:#ae81ff">4</span>,
   }
-</code></pre>
-
-<p>One can decorate it using type assertion by iterating over it.</p>
-
-<pre><code class="language-go">  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
+</code></pre></div><p>One can decorate it using type assertion by iterating over it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">input</span> {
+    <span style="color:#a6e22e">slice</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.([]<span style="color:#66d9ef">string</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> {
+      <span style="color:#a6e22e">input</span>[<span style="color:#e6db74">&#34;Count&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">key</span>] = len(<span style="color:#a6e22e">slice</span>)
     }
   }
-</code></pre>
-
-<p>This becomes very useful when serializing struct into json.
+</code></pre></div><p>This becomes very useful when serializing struct into json.
 To serialize struct use <code>github.com/fatih/structs</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">structs</span>.<span style="color:#a6e22e">Map</span>(<span style="color:#f92672">...</span>)
 
-<pre><code class="language-go">  input := structs.Map(...)
-
-  for key, value := range input {
-    slice, ok := value.([]string)
-    if ok {
-      input[&quot;Count&quot;+key] = len(slice)
+  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">input</span> {
+    <span style="color:#a6e22e">slice</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.([]<span style="color:#66d9ef">string</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> {
+      <span style="color:#a6e22e">input</span>[<span style="color:#e6db74">&#34;Count&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">key</span>] = len(<span style="color:#a6e22e">slice</span>)
     }
   }
-</code></pre>
-
+</code></pre></div>
     <hr />
     <div id="disqus_thread"></div>
 <script type="text/javascript">

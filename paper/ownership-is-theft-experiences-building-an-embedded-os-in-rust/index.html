@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,46 +95,30 @@
     <p><abbr title="Word count">WC</abbr> 208 / <abbr title="Reading time">RT</abbr> 1min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Ownership%20is%20theft%20experiences%20building%20an%20embedded%20os%20in%20rust%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="embedded-os-in-rust">Embedded OS in Rust</h2>
-
+    <h2 id="embedded-os-in-rust">Embedded OS in Rust</h2>
 <p>Embedded systems:</p>
-
 <ul>
 <li>lack hardware protection mechanism</li>
 <li>less tolerant to crashes</li>
 <li>no easy way for debugging</li>
 <li>GC introduces non-deterministic delay</li>
 </ul>
-
 <h3 id="rust">Rust</h3>
-
 <p>Rust, a new systems programming language, provides compile-time memory safety checks to help eliminate runtime bugs that manifest from improper memory management.</p>
-
 <p>Rust’s ownership model prevents otherwise safe resource sharing common in the embedded domain, conflicts with the reality of hardware resources, and hinders using closures for programming asynchronously.</p>
-
 <p>Rust achieves memory and type safety without garbage collection by using mechanism, derived from affine type and unique pointers, called ownership.</p>
-
 <p>Preserved type safety without relying on a runtime GC for memory management.</p>
-
 <p>Allows the programmer to explicitly separate code which is strictly bound to the type system from code which may subvert it.</p>
-
 <blockquote>
 <p>Borrowing</p>
 </blockquote>
-
 <ul>
 <li>Value can only be mutably borrowed if there are no other borrows of the value.</li>
 <li>Borrows cannot outlive the value they borrow. This prevents dangling pointer bugs.</li>
 </ul>
-
 <h3 id="execution-context-extension-for-rust">Execution context (extension for Rust)</h3>
-
 <p>Reflects the thread of a value&rsquo;s owner in its type.</p>
-
 <p>Allows multiple borrows of a value from within same thread, but not across threads.</p>
-
 <p>The goal of execution context is to allow program mutably borrow values multiple times as long as those borrows are never shared between threads.</p>
 
     <hr />

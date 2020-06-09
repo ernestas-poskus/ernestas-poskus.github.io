@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vim on Ernestas Poškus technical blog</title>
+    <title>vim on Ernestas Poškus technical blog</title>
     <link>http://out13.com/categories/vim/</link>
-    <description>Recent content in Vim on Ernestas Poškus technical blog</description>
+    <description>Recent content in vim on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2015 20:43:24 +0300</lastBuildDate>
@@ -22,7 +22,7 @@
  2) Install desired Rust version  rsvm install 0.12.0
  3) Switch/use desired Rust version  rsvm use 0.12.0
  4) rsvm - makes symbolic link to current rust version in  ls -la $HOME/.rsvm/current
-total 56K drwxrwxr-x 2 user user 4.</description>
+ total 56K drwxrwxr-x 2 user user 4.</description>
     </item>
     
   </channel>

@@ -1,5 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://out13.com/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/paper/efficient-io-with-io-uring/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/kernel/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/paper/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/paper/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/</loc>
+    <lastmod>2020-06-09T20:55:21+03:00</lastmod>
+  </url>
+  
   
   
   <url>
@@ -31,8 +72,22 @@
   
   
   <url>
+    <loc>http://out13.com/dev/</loc>
+    <lastmod>2017-12-20T18:50:13+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/dev/vue-seo/</loc>
     <lastmod>2017-12-20T18:50:13+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/elasticsearch/</loc>
+    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
   </url>
   
   
@@ -45,8 +100,36 @@
   
   
   <url>
+    <loc>http://out13.com/employer/</loc>
+    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/personal/</loc>
+    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/employer/sharding-out-elasticsearch/</loc>
     <lastmod>2017-11-15T19:21:47+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/mnemonics/</loc>
+    <lastmod>2017-11-14T20:35:44+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/mnemonics/</loc>
+    <lastmod>2017-11-14T20:35:44+02:00</lastmod>
   </url>
   
   
@@ -101,6 +184,27 @@
   
   
   <url>
+    <loc>http://out13.com/tags/linux/</loc>
+    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tools/</loc>
+    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/tools/</loc>
+    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/paper/scaling-memcache-at-facebook/</loc>
     <lastmod>2017-07-27T19:47:58+03:00</lastmod>
   </url>
@@ -138,6 +242,20 @@
   <url>
     <loc>http://out13.com/paper/lirs-efficient-low-inter-reference-recency-set-replacement-policy-to-improve-buffer-cache-performance/</loc>
     <lastmod>2017-03-09T19:34:52+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/nginx/</loc>
+    <lastmod>2017-03-08T08:44:03+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/posts/</loc>
+    <lastmod>2017-03-08T08:44:03+02:00</lastmod>
   </url>
   
   
@@ -199,7 +317,7 @@
   
   
   <url>
-    <loc>http://out13.com/paper/replication-under-scalable-hashing--a-family-of-algorithms-for-scalable-decentralized-data-distribution/</loc>
+    <loc>http://out13.com/paper/replication-under-scalable-hashing-a-family-of-algorithms-for-scalable-decentralized-data-distribution/</loc>
     <lastmod>2016-11-10T22:27:23+02:00</lastmod>
   </url>
   
@@ -220,8 +338,29 @@
   
   
   <url>
+    <loc>http://out13.com/tags/ansible/</loc>
+    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/posts/generating-configuration-from-ansible-variables/</loc>
     <lastmod>2016-11-03T08:48:29+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/categories/ansible/</loc>
+    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/categories/</loc>
+    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
   </url>
   
   
@@ -235,6 +374,13 @@
   
   <url>
     <loc>http://out13.com/paper/ownership-is-theft-experiences-building-an-embedded-os-in-rust/</loc>
+    <lastmod>2016-08-25T20:39:03+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/tags/rust/</loc>
     <lastmod>2016-08-25T20:39:03+03:00</lastmod>
   </url>
   
@@ -283,6 +429,13 @@
   
   
   <url>
+    <loc>http://out13.com/categories/golang/</loc>
+    <lastmod>2016-01-28T20:42:45+02:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/posts/golang-dynamic-struct-decoration/</loc>
     <lastmod>2016-01-28T20:42:45+02:00</lastmod>
   </url>
@@ -290,8 +443,29 @@
   
   
   <url>
+    <loc>http://out13.com/categories/rust/</loc>
+    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://out13.com/posts/racer-with-multiple-rust-versions/</loc>
     <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/categories/vim/</loc>
+    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://out13.com/categories/algorithms/</loc>
+    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
   </url>
   
   
@@ -306,237 +480,6 @@
   <url>
     <loc>http://out13.com/posts/programming-languages/</loc>
     <lastmod>2015-03-29T12:59:46+03:00</lastmod>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/cv/</loc>
-    <lastmod>0001-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/algorithms/</loc>
-    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/ansible/</loc>
-    <lastmod>2016-09-25T19:12:59+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/ansible/</loc>
-    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/</loc>
-    <lastmod>2015-04-04T15:13:11+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/dev/</loc>
-    <lastmod>2017-12-20T18:50:13+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/elasticsearch/</loc>
-    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/employer/</loc>
-    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/golang/</loc>
-    <lastmod>2016-01-28T20:42:45+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/kernel/</loc>
-    <lastmod>2017-09-14T19:48:19+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/learning/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/linux/</loc>
-    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/mnemonics/</loc>
-    <lastmod>2017-11-14T20:35:44+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/mnemonics/</loc>
-    <lastmod>2017-11-14T20:35:44+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/nginx/</loc>
-    <lastmod>2017-03-08T08:44:03+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/paper/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/paper/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/personal/</loc>
-    <lastmod>2017-11-15T19:31:47+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/posts/</loc>
-    <lastmod>2017-03-08T08:44:03+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/research/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/review/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/rust/</loc>
-    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/rust/</loc>
-    <lastmod>2018-03-29T20:00:23+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/scientific/</loc>
-    <lastmod>2019-01-06T11:35:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/</loc>
-    <lastmod>2016-11-03T08:48:29+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tools/</loc>
-    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/tags/tools/</loc>
-    <lastmod>2017-07-31T19:25:47+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://out13.com/categories/vim/</loc>
-    <lastmod>2015-09-15T20:43:24+03:00</lastmod>
-    <priority>0</priority>
   </url>
   
   

@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -96,25 +88,17 @@
     <p><abbr title="Word count">WC</abbr> 425 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Serving%20fresh%20assets%20using%20Nginx%20location%20rewrite%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<p>Recently I have stumbled upon a problem to serve fresh/new assets for user web application.</p>
-
+    <p>Recently I have stumbled upon a problem to serve fresh/new assets for user web application.</p>
 <p>As Phil Karlton said:</p>
-
 <blockquote>
 <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
 </blockquote>
-
 <p>Historically fresh assets problem was approached either by appending appending
 url query params (?v=20130102) or renaming/hashing asset file completely (/css/default-2j9alkjan2k2.css).</p>
-
 <p>Former is most popular one but not elegant since it brings explicit dependency
 for backend application what fresh/new asset file to include thus requires exact
 name file to be present on web server.</p>
-
 <p>This draws 5 main disadvantages of completely hashed asset name:</p>
-
 <ol>
 <li>explicit dependency to include</li>
 <li>no fallback mechanism</li>
@@ -122,70 +106,52 @@ name file to be present on web server.</p>
 <li>exact file name presence on web server</li>
 <li>removal of stale assets</li>
 </ol>
-
 <p>I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.</p>
-
-<pre><code class="language-nginx">   location @css_assets {
-       rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx">   <span style="color:#66d9ef">location</span> <span style="color:#e6db74">@css_assets</span> {
+       <span style="color:#f92672">rewrite</span> <span style="color:#e6db74">^/css/(.*)\..*\.(.*)</span>$ <span style="color:#e6db74">/css/</span>$1.$2 <span style="color:#e6db74">last</span>;
    }
-   location /css/ {
-       try_files $uri $uri/ @css_assets;
+   <span style="color:#66d9ef">location</span> <span style="color:#e6db74">/css/</span> {
+       <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">@css_assets</span>;
    }
-</code></pre>
-
-<p>First <code>location /css/ {</code> block matches path of /css/ which later executes
+</code></pre></div><p>First <code>location /css/ {</code> block matches path of /css/ which later executes
 <code>try_files</code> followed by <code>location @css_assets {</code> location block.</p>
-
 <p>Secondly this rewrite <code>rewrite ^/css/(.*)\..*\.(.*)$ /css/$1.$2 last;</code> matches
 beginning of /css/ path followed by 2 tracked matches.</p>
-
 <blockquote>
 <p>/css/app.117c7f2fa4b6ea7a2c077a3dbc9662e6b1c278bd.css</p>
 </blockquote>
-
 <p>In above example first match tracks (app) and second one (css).
 Matched information constructs new implicitly requested file like below.</p>
-
 <blockquote>
 <p>/css/app.css</p>
 </blockquote>
-
 <p>Newly constructed file will be processed by Nginx without redirects and browser
 knowing original file name.</p>
-
 <h3 id="constructing-asset-hash">Constructing asset hash</h3>
-
 <p>To tell your application which asset must be served use ENVIRONMENT variable and checksum
 of asset to be included. Or you can dynamically invalidate/create asset hash for
 example hourly or daily depending on release cycle.</p>
-
 <blockquote>
 <p>/css/app.$CSS_ASSET_HASH.css</p>
 </blockquote>
-
 <p>In my case I use simple function below.</p>
-
-<pre><code class="language-rust">lazy_static! {
-    static ref CSS_ASSETS_HASH: String = {
-        match env::var(&quot;CSS_ASSETS_HASH&quot;) {
-            Ok(hash) =&gt; format!(&quot;.{}.&quot;, hash),
-            Err(_) =&gt; &quot;.&quot;.to_string(),
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">lazy_static<span style="color:#f92672">!</span> {
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">ref</span> CSS_ASSETS_HASH: String <span style="color:#f92672">=</span> {
+        <span style="color:#66d9ef">match</span> env::var(<span style="color:#e6db74">&#34;CSS_ASSETS_HASH&#34;</span>) {
+            Ok(hash) <span style="color:#f92672">=&gt;</span> format<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;.{}.&#34;</span>, hash),
+            Err(_) <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;.&#34;</span>.to_string(),
         }
     };
 }
 
-html! {
-  (Css(format!(&quot;/css/app{}css&quot;, *CSS_ASSETS_HASH)))
+html<span style="color:#f92672">!</span> {
+  (Css(format<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;/css/app{}css&#34;</span>, <span style="color:#f92672">*</span>CSS_ASSETS_HASH)))
 }
-</code></pre>
-
-<p>Above example is actual code used in production. It tries to statically initialize
+</code></pre></div><p>Above example is actual code used in production. It tries to statically initialize
 <code>CSS_ASSETS_HASH</code> variable, if expected environment is not defined it fallbacks to
 dot <code>.</code> else it appends 2 dots between supplied environment variable <code>.ENVIRONMENT_VARIABLE.</code>.</p>
-
 <p>My solution eliminates almost all of main disadvantages of most popular way of asset
 inclusion.</p>
-
 <ol>
 <li><del>explicit dependency to include</del> - depends if hash is generated
 dynamically or real checksum of asset file is used.</li>
@@ -196,7 +162,6 @@ catchall.</li>
 <li>exact file name presence on web server</li>
 <li><del>removal of stale assets</del> - only original file is deployed</li>
 </ol>
-
 <p>Regards.</p>
 
     <hr />

@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,33 +95,22 @@
     <p><abbr title="Word count">WC</abbr> 248 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=B4:%20Experience%20with%20a%20Globally-Deployed%20Software%20Defined%20WAN%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="software-defined-wan">Software defined WAN</h2>
-
+    <h2 id="software-defined-wan">Software defined WAN</h2>
 <p>B4, a private WAN connecting Google’s data centers across the planet.</p>
-
 <p>i) Massive bandwidth requirements deployed to a modest number of sites.</p>
-
 <p>ii) Elastic traffic demand that seeks to maximize average bandwidth.</p>
-
 <p>iii) Full control over the edge servers and network, which enables rate limiting and demand measurement at the edge.</p>
-
 <h3 id="design">Design</h3>
-
 <p>Within each B4 site, the switch hardware layer primarily forwards traffic and does not run complex control
 software, and the site controller layer consists of Network Control Servers (NCS) hosting both OpenFlow controllers (OFC)
 and Network Control Applications (NCAs).</p>
-
 <ul>
 <li>B4 routers built from merchant switch silicon</li>
 <li>Drive links to 100% utilization</li>
 <li>Centralized traffic engineering</li>
 <li>Separate hardware from software</li>
 </ul>
-
 <h3 id="centralized-te-architecture">Centralized TE Architecture</h3>
-
 <ul>
 <li>The Network Topology graph represents sites as vertices and site to site connectivity as edges. The SDN Gateway consolidates topology events from multiple sites and individual switches to TE. TE aggregates trunks to compute site-site edges. This abstraction significantly reduces the size of the graph input to the TE Optimization Algorithm.</li>
 <li>Flow Group (FG): For scalability, TE cannot operate at the granularity of individual applications. Therefore, we aggregate applications to a Flow Group defined as {source site, dest site, QoS} tuple.</li>
@@ -137,9 +118,7 @@ and Network Control Applications (NCAs).</p>
 <li>A Tunnel Group (TG) maps FGs to a set of tunnels and corresponding weights.
 The weight specifies the fraction of FG traffic to be forwarded along each tunnel.</li>
 </ul>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>TE - traffic engineering</p>
 </blockquote>

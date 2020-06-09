@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,40 +95,26 @@
     <p><abbr title="Word count">WC</abbr> 269 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Dynamo:%20Amazon%e2%80%99s%20Highly%20Available%20Key-value%20Store%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="dynamo">Dynamo</h2>
-
+    <h2 id="dynamo">Dynamo</h2>
 <p>Dynamo sacrifices Consistency for Availability under certain failure scenarios.
 It makes extensive use of object versioning and application-assisted conflict resolution in a manner that provides a novel interface for developers to use.</p>
-
 <p>Gossip based distributed failure detection and membership protocol.</p>
-
 <h3 id="query-model">Query Model</h3>
-
 <p>Read &amp; Write operations to data item that is uniquely identified by a key.
 State is stored as blobs.
 Targets application that store objects up to 1MB.</p>
-
 <h3 id="acid">ACID</h3>
-
 <p>Dynamo targets applications that operate with weaker consistency (the “C” in ACID) if this results in high availability.</p>
-
 <p>No isolation guarantees. Permits only single key updates.</p>
-
 <h3 id="design">Design</h3>
-
 <p>Incremental scalability: Dynamo should be able to scale out one storage host (henceforth, referred to as “node”) at a time,
 with minimal impact on both operators of the system and the system itself.</p>
-
 <p>Symmetry: Every node in Dynamo should have the same set of responsibilities as its peers; there should be no distinguished node
 or nodes that take special roles or extra set of responsibilities. In our experience, symmetry simplifies the process of system
 provisioning and maintenance.</p>
-
 <p>Decentralization: An extension of symmetry, the design should favor decentralized peer-to-peer techniques over centralized
 control. In the past, centralized control has resulted in outages and the goal is to avoid it as much as possible. This leads to a simpler,
 more scalable, and more available system.</p>
-
 <p>Heterogeneity: The system needs to be able to exploit heterogeneity in the infrastructure it runs on. e.g. the work
 distribution must be proportional to the capabilities of the individual servers. This is essential in adding new nodes with
 higher capacity without having to upgrade all hosts at once.</p>

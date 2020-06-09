@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,49 +95,49 @@
     <p><abbr title="Word count">WC</abbr> 261 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Queues%20Are%20Databases%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="queued-transaction-processing-over-pure-client-server-transaction-processing">Queued transaction processing over pure client-server transaction processing.</h2>
-
+    <h2 id="queued-transaction-processing-over-pure-client-server-transaction-processing">Queued transaction processing over pure client-server transaction processing.</h2>
 <p>Queued systems are build on top of direct systems.</p>
-
 <p>TP systems offer both queued and direct transaction processing. They offer both client-server and P2P direct processing.</p>
-
 <p>Queue manager is best built as a naive resource manager atop an object-relational database system.
 That system must have good concurrency control, recovery, triggers, security, operations interfaces, and utilities.</p>
-
 <p>Queues pose difficult problems when implemented atop a database:</p>
-
 <ul>
-<li><p>Performance: An enqueue transaction is an insert followed by a commit. This places
+<li>
+<p>Performance: An enqueue transaction is an insert followed by a commit. This places
 extreme performance demands on the concurrency control and recovery components
-of a database &ndash; it exposes hotspots and high-overhead code.</p></li>
-
-<li><p>Concurrency control: The dequeue transaction typically involves deleting a record from
+of a database &ndash; it exposes hotspots and high-overhead code.</p>
+</li>
+<li>
+<p>Concurrency control: The dequeue transaction typically involves deleting a record from
 the queue, processing the request, enqueuing results in other queues, and then
 committing. Serializable isolation requires that there can be at most one dequeue
-executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.</p></li>
-
-<li><p>Read past: locks allow a program to skip over dirty (uncommitted records) to find the
-first committed record. This is what a dequeue() operation wants.</p></li>
-
-<li><p>Read through: locks allow a program to examine records that have not yet been
+executing at a time against each queue. This suggests that queues need lower, indeed specialized, isolation levels.</p>
+</li>
+<li>
+<p>Read past: locks allow a program to skip over dirty (uncommitted records) to find the
+first committed record. This is what a dequeue() operation wants.</p>
+</li>
+<li>
+<p>Read through: locks allow a program to examine records that have not yet been
 committed. This is useful in polling the status of a queued request that is currently
-being processed.</p></li>
-
-<li><p>Notify: allow a program to wait for a state change in a lock. This allows a
-dequeue() operation to wait for one or more queues to become non-empty.</p></li>
+being processed.</p>
+</li>
+<li>
+<p>Notify: allow a program to wait for a state change in a lock. This allows a
+dequeue() operation to wait for one or more queues to become non-empty.</p>
+</li>
 </ul>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>MOM - message oriented middleware</p>
-
+</blockquote>
+<blockquote>
 <p>TP - transaction processing</p>
-
+</blockquote>
+<blockquote>
 <p>P2P - peer to peer</p>
-
+</blockquote>
+<blockquote>
 <p>ORB - object request broker</p>
 </blockquote>
 

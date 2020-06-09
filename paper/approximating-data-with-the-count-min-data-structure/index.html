@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,20 +95,14 @@
     <p><abbr title="Word count">WC</abbr> 154 / <abbr title="Reading time">RT</abbr> 1min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Approximating%20Data%20with%20the%20Count-Min%20Data%20Structure%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="count-min-data-structure">Count-Min Data Structure</h2>
-
+    <h2 id="count-min-data-structure">Count-Min Data Structure</h2>
 <p>Algorithmic problems such as tracking the contents of a set arise frequently in the course of building
 systems. Given the variety of possible solutions, the choice of appropriate data structures for
 such tasks is at the heart of building efficient and effective software.</p>
-
 <p>The Count-Min sketch provides a different kind of solution to count tracking.
 It allocates a fixed amount of space to store count information, which does not vary over time even
 as more and more counts are updated.</p>
-
 <h3 id="implementation">Implementation</h3>
-
 <p>With all data structures, it is important to understand the data organization
 and algorithms for updating the structure, to make clear the relative merits of different choices of
 structure for a given task. The Count-Min Sketch data structure primarily consists of a fixed array

@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -103,65 +95,49 @@
     <p><abbr title="Word count">WC</abbr> 436 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Efficient%20Reconciliation%20and%20Flow%20Control%20for%20Anti-Entropy%20Protocols%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="flow-gossip">Flow Gossip</h2>
-
+    <h2 id="flow-gossip">Flow Gossip</h2>
 <p>Anti-entropy, or gossip, is an attractive way of replicating state that does not have strong consistency requirements.
 With few limitations, updates spread in expected time that grows logarithmic in the number of participating hosts, even in the face of host failures and message loss.
 The behavior of update propagation is easily modeled with well-known epidemic analysis techniques.</p>
-
 <h3 id="gossip-basics">Gossip basics</h3>
-
 <p>There are two classes of gossip: anti-entropy and rumor mongering protocols.
 Anti-entropy protocols gossip information until it is made obsolete by newer information,
 and are useful for reliably sharing information among a group of participants.
 Rumor-mongering has participants gossip information for some amount of time chosen sufficiently
 high so that with high likelihood all participants receive the information.</p>
-
 <p>3 Gossip styles:</p>
-
 <ul>
 <li>push: push everything and apply everything</li>
 <li>pull: sends its state with values removed, leaving only keys and version numbers, then returns only necessary updates</li>
 <li>push-pull: like pull but sends a list of participant-key pairs for which if has outdated entries (most efficient)</li>
 </ul>
-
 <h3 id="precise-reconciliation">Precise reconciliation</h3>
-
 <p>The two participants in a gossip exchange send exactly those mappings that are more recent
 than those of the peer. Thus, if the participants are p and q, p sends to q the set of deltas.</p>
-
 <h3 id="scuttlebutt-reconciliation">Scuttlebutt reconciliation</h3>
-
 <p>A gossiper never transmits updates that were already known at the receiver.
 If gossip messages were unlimited in size, then the sets contains the exact differences, just like with precise reconciliation.
 If a set does not fit in the gossip message, then it is not allowed to use an arbitrary subsetas in precise reconciliation.</p>
-
 <h3 id="flow-control">Flow control</h3>
-
 <p>The objective of a flow control mechanism for gossip is to determine, adaptively,
 the maximum rate at which a participant can submit updates without creating a backlog of updates.
 A flow control mechanism should be fair, and under high load afford each participant that wants to submit updates the same update rate.
 As there is no global oversight, the flow control mechanism has to be decentralized,
 where the desired behavior emerges from participants responding to local events.</p>
-
 <h3 id="local-adaptation">Local adaptation</h3>
-
 <p>For local adaptation, we use an approach inspired by TCP flow control.
 In TCP, the send window adapts according to a strategy called Additive Increase Multiplicative decrease.</p>
-
 <p>In this strategy, window size grows linearly with each successful transmission,
 but is decreased by a certain factor whenever overflow occurs.
 In the case of TCP, the overflow signal is the absence of an acknowledgment.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Anti-entropy - gossip information until it is made obsolete.</p>
-
+</blockquote>
+<blockquote>
 <p>Rumor-mongering - gossip information for some of high amount of time with high likelihood all participants received the information.</p>
-
+</blockquote>
+<blockquote>
 <p>AIMD - additive increase multiplicative decrease</p>
 </blockquote>
 

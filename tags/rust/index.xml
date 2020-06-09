@@ -1,26 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust on Ernestas Poškus technical blog</title>
+    <title>rust on Ernestas Poškus technical blog</title>
     <link>http://out13.com/tags/rust/</link>
-    <description>Recent content in Rust on Ernestas Poškus technical blog</description>
+    <description>Recent content in rust on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Mar 2018 20:00:23 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 25 Aug 2016 20:39:03 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Uniqueness and Reference Immutability for Safe Parallelism</title>
-      <link>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</link>
-      <pubDate>Thu, 29 Mar 2018 20:00:23 +0300</pubDate>
-      
-      <guid>http://out13.com/paper/uniqueness-and-reference-immutability-for-safe-parallelism/</guid>
-      <description>Key challenge for concurrent programming is that side-effects (memory operations) in one thread can affect the behavior of another thread.
-We wish to restrict, or tame, side-effects to make programs easier to maintain and understand. To do so, we build on reference immutability.
-To achieve this we give two novel typing rules, which allow recovering isolated or immutable references from arbitrary code checked in environments containing only isolated or immutable inputs.</description>
-    </item>
     
     <item>
       <title>Ownership is theft experiences building an embedded os in rust</title>

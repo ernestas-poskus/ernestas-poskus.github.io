@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Personal on Ernestas Poškus technical blog</title>
+    <title>personal on Ernestas Poškus technical blog</title>
     <link>http://out13.com/tags/personal/</link>
-    <description>Recent content in Personal on Ernestas Poškus technical blog</description>
+    <description>Recent content in personal on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Nov 2017 19:31:47 +0200</lastBuildDate>
@@ -53,8 +53,8 @@
       
       <guid>http://out13.com/posts/generating-configuration-from-ansible-variables/</guid>
       <description>If you have ever tried to render Ansible multi hash or list variable you probably something alike.
-global: scrape_interval: &amp;quot;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;quot; evaluation_interval: &amp;quot;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;quot; scrape_timeout: &amp;quot;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;quot; external_labels: &amp;quot;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;quot;  This generates invalid and ugly YAML.
-global: scrape_interval: &amp;quot;15s ... &amp;quot; evaluation_interval: &amp;quot;30s ... &amp;quot; scrape_timeout: &amp;quot;10s ... &amp;quot; external_labels: &amp;quot;null ... &amp;quot;  TLDR If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.</description>
+global: scrape_interval: &amp;#34;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&amp;#34; evaluation_interval: &amp;#34;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&amp;#34; scrape_timeout: &amp;#34;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&amp;#34; external_labels: &amp;#34;{{ prometheus_config_global_external_labels | to_nice_yaml }}&amp;#34; This generates invalid and ugly YAML.
+global: scrape_interval: &amp;#34;15s ... &amp;#34; evaluation_interval: &amp;#34;30s ... &amp;#34; scrape_timeout: &amp;#34;10s ... &amp;#34; external_labels: &amp;#34;null ... &amp;#34; TLDR If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.</description>
     </item>
     
     <item>
@@ -65,7 +65,7 @@ global: scrape_interval: &amp;quot;15s ... &amp;quot; evaluation_interval: &amp;
       <guid>http://out13.com/posts/ansible-testing-multiple-platforms/</guid>
       <description>It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.
 When playbook is created with Ansible command ansible-galaxy init myplaybook it creates number of directories and files, includes basic Travis CI .travis.yml file.
-script: # Basic role syntax check - ansible-playbook tests/test.yml -i tests/inventory --syntax-check  Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.</description>
+script: # Basic role syntax check - ansible-playbook tests/test.yml -i tests/inventory --syntax-check Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.04 LTS Server Edition 64 bit by default.</description>
     </item>
     
   </channel>

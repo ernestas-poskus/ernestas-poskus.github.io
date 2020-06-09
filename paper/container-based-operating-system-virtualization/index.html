@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -100,67 +92,54 @@
       
     </ul>
     <time>Tue, Apr 19, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 368 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <p><abbr title="Word count">WC</abbr> 365 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Container%20based%20operating%20system%20virtualization%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<h2 id="alternative-to-hypervisors">Alternative to hypervisors.</h2>
-
+    <h2 id="alternative-to-hypervisors">Alternative to hypervisors.</h2>
 <blockquote>
 <p>Workload requirements for a given system will direct users to the point in the design space that
 requires the least trade-off.</p>
 </blockquote>
-
 <h3 id="sharing-over-isolation">Sharing over isolation?</h3>
-
 <p>Hypervisors often deployed to let a single machine host multiple, unrelated
 applications, which may run on behalf of independent organizations, as is common when a data center
 consolidates multiple physical servers. Hypervisors favor full isolation over sharing.
 However, when each virtual machine is running the same kernel and similar operating system
 distributions, the degree of isolation offered by hypervisors comes at the cost of efficiency
 relative to running all applications on a single kernel.</p>
-
 <h3 id="usage">Usage</h3>
-
 <p>Software configuration problems incompatibilities between specific OS distributions.</p>
-
 <p>Resource isolation corresponds to the ability to account for and enforce the resource consumption of one VM such that guarantees and fair shares are preserved for other VM&rsquo;s.</p>
-
 <p>Many hybrid approaches are also possible: for instance, a system may enforce fair sharing of resources between classes of VMs, which lets one overbook available resources while preventing starvation in overload scenarios.</p>
-
 <p>The key point is that both hypervisors and COS&rsquo;s incorporate sophisticated resource schedulers to avoid or minimize crosstalk.</p>
-
 <h3 id="security-isolation">Security isolation</h3>
-
 <p>Configuration independence - cannot conflict with other VM&rsquo;s
 Safety - global namespace shared</p>
-
 <h3 id="fair-share-and-reservations">Fair share and Reservations</h3>
-
 <p>Vserver implements CPU isolation by overlaying a token TBF on top of standard O(1) Linux CPU scheduler.</p>
-
-<p>For memory storage one can specify the following limits:
- * a) the maximum resident set size (RSS)
- * b) number of anonymous memory pages have (ANON)
- * c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).</p>
-
+<p>For memory storage one can specify the following limits:</p>
+<ul>
+<li>a) the maximum resident set size (RSS)</li>
+<li>b) number of anonymous memory pages have (ANON)</li>
+<li>c) number of pages that may be pinned into memory using mlock() and mlockall() that processes may have within a VM (MEMLOCK).</li>
+</ul>
 <h3 id="conclusion">Conclusion</h3>
-
 <p>Xen is able to support multiple kernels while by design VServer cannot.
 Xen also has greater support for virtualizing the network stack and allows for the possibility of VM migration, a feature that is possible for a COS design, but not yet available in VServer. VServer, in turn, maintains a small kernel footprint and performs equally with native Linux kernels in most cases.</p>
-
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Undesired interactions between VMs are sometimes called cross-talk.</p>
-
+</blockquote>
+<blockquote>
 <p>COS - Container based Operating System</p>
-
+</blockquote>
+<blockquote>
 <p>TBF - token bucker filter</p>
-
+</blockquote>
+<blockquote>
 <p>HTB - Hierarchical Token Bucket</p>
-
+</blockquote>
+<blockquote>
 <p>RSS - maximum resident set size</p>
 </blockquote>
 

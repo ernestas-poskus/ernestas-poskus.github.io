@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>The Interaction of Buffer Size and TCP Protocol Handling and its Impact - Ernestas Poškus technical blog</title>
+  <title>Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution - Ernestas Poškus technical blog</title>
   
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="The Interaction of Buffer Size and TCP Protocol Handling and its Impact" />
+  <meta property="og:title" content="Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/the-interaction-of-buffer-size-and-tcp-protocol-handling/" />
+  <meta property="og:url" content="http://out13.com/paper/replication-under-scalable-hashing-a-family-of-algorithms-for-scalable-decentralized-data-distribution/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -83,65 +83,40 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>The Interaction of Buffer Size and TCP Protocol Handling and its Impact</h1>
+    <h1>Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution</h1>
     <ul>
-      <li>Author: Miercom</li>
-      <li>Name: Speeding Applications in Data Center Networks The Interaction of Buffer Size and TCP Protocol Handling and its Impact on Data-Mining and Large Enterprise IT Traffic Flows</li>
+      <li>Author: R. J. Honicky and Ethan L. Miller</li>
+      <li>Name: Replication Under Scalable Hashing: A Family of Algorithms for Scalable Decentralized Data Distribution</li>
       
-      <li>Link: <a href="http://miercom.com/pdf/reports/20160210.pdf" rel="nofollow" target="_blank">http://miercom.com/pdf/reports/20160210.pdf</a></li>
+      <li>Link: <a href="http://www.ssrc.ucsc.edu/media/papers/honicky-ipdps04.pdf" rel="nofollow" target="_blank">http://www.ssrc.ucsc.edu/media/papers/honicky-ipdps04.pdf</a></li>
       
     </ul>
-    <time>Thu, Nov 17, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 467 / <abbr title="Reading time">RT</abbr> 3min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=The%20Interaction%20of%20Buffer%20Size%20and%20TCP%20Protocol%20Handling%20and%20its%20Impact%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, Nov 10, 2016</time>
+    <p><abbr title="Word count">WC</abbr> 209 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Replication%20Under%20Scalable%20Hashing:%20A%20Family%20of%20Algorithms%20for%20Scalable%20Decentralized%20Data%20Distribut%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    <h3 id="abstract">Abstract</h3>
-<p>Miercom was engaged by Cisco Systems to conduct independent testing of two vendors’ top of the line,
-data-center switch-routers, including the Cisco Nexus 92160YC-X and Nexus 9272Q switches and the Arista 7280SE-72 switch.</p>
-<h4 id="tcp-congestion-control-versus-system-buffer-management">TCP Congestion Control versus System Buffer Management</h4>
-<p>TCP congestion control. The Transmission Control Protocol (TCP) is the Layer-4 control
-protocol (atop IP at Layer 3) that ensures a block of data that’s sent is received intact.
-Invented 35 years ago, TCP handles how blocks of data are broken up, sequenced, sent,
-reconstructed and verified at the recipient’s end. The congestion-control mechanism
-was added to TCP in 1988 to avoid network congestion meltdown. It makes sure data
-transfers are accelerated or slowed down, exploiting the bandwidth that’s available,
-depending on network conditions.</p>
-<p>System buffer management. Every network device that transports data has buffers,
-usually statically allocated on a per-port basis or dynamically shared by multiple ports, so
-that periodic data bursts can be accommodated without having to drop packets.
-Network systems such as switch-routers are architected differently, however, and can
-vary significantly in the size of their buffers and how they manage different traffic flows.</p>
-<h4 id="deep-buffer-vs-intelligent-buffer">Deep buffer vs Intelligent buffer</h4>
-<p>A common practice is to put in as much buffer as possible. However, since the
-buffer space is a common resource shared by the inevitable mixture of elephant and mice flows,
-how to use this shared resource can significantly impact applications’ performance.</p>
-<p>The deeper the buffer, the longer the queue and the longer the latency. So more buffer does
-not necessarily guarantee better small-flow performance, it often leads to longer queuing delay
-and hence longer flow completion time.</p>
-<p>Therefore, no one benefits from simple deep buffering: mice flows aren’t guaranteed buffer
-resources and can suffer from long queuing delays and bandwidth hungry elephant flows suffer
-because large buffers do not create more link bandwidth.</p>
-<h4 id="conclusion">Conclusion</h4>
-<p>Since mice flows are often mission critical (including, for example, control and alarm messages,
-Hadoop application communications, etc.), giving these flows a priority buffer pathway enables
-them to complete faster and their applications to perform better overall. The above test results
-show that expediting mice flows and regulating the elephant flows early under the intelligent
-buffer architecture on the Cisco Nexus 92160YC-X and 9272Q switches can bring orders of
-magnitude better performance for mission critical flows without causing elephant flows to slow
-down.</p>
-<p>Intelligent buffering allows the elephant and mice flows to share network buffers gracefully:
-there is enough buffer space for the bursts of mice flows while the elephant flows are properly
-regulated to fully utilize the link capacity. Simple, deep buffering can lead to collateral damage
-in the form of longer queuing latency, and hence longer flow completion time for all flow types.</p>
+    <h2 id="replication-under-scalable-hashing">Replication Under Scalable Hashing</h2>
+<p>Typical algorithms for decentralized data distribution work best in a system that is fully built before it first used;
+adding or removing components results in either extensive reorganization of data or load imbalance in the system.</p>
+<p>RUSH variants also support weighting, allowing disks of different vintages to be added to a system.</p>
+<p>RUSH variants is optimal or near-optimal reorganization. When new disks are added to the system,
+or old disks are retired, RUSH variants minimize the number of objects that need to
+be moved in order to bring the system back into balance.</p>
+<p>RUSH variants can perform reorganization online without locking the filesystem for a long time to relocate data.</p>
+<h3 id="algorithm">Algorithm</h3>
+<p>Subcluster in a system managed by RUSH t must have at least as many disks as an object has replicas.</p>
+<p>RUSH t is the best algorithms for distributing data over very large clusters of disks.</p>
+<p>RUSH r may be the best option for systems which need to remove disks one at a time from the system.</p>
+<p>RUSH p may be the best option for smaller systems where storage space is at a premium.</p>
 <h4 id="notes">Notes</h4>
 <blockquote>
-<p>Elephant - big flows</p>
+<p>RUSH t - RUSH tree</p>
 </blockquote>
 <blockquote>
-<p>Mice - small flows</p>
+<p>RUSH r - RUSH support for removal</p>
 </blockquote>
 <blockquote>
-<p>FCT - flow completion time</p>
+<p>PUSH p - RUSH placement using prime numbers</p>
 </blockquote>
 
     <hr />

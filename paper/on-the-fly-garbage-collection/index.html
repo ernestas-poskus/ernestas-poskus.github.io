@@ -61,9 +61,7 @@
       
         <a href="http://out13.com/tags/elasticsearch">elasticsearch</a> 2 /
       
-        <a href="http://out13.com/tags/kernel">kernel</a> 1 /
-      
-        <a href="http://out13.com/tags/learning">learning</a> 31 /
+        <a href="http://out13.com/tags/kernel">kernel</a> 2 /
       
         <a href="http://out13.com/tags/linux">linux</a> 2 /
       
@@ -71,17 +69,11 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 31 /
+        <a href="http://out13.com/tags/paper">paper</a> 32 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
-        <a href="http://out13.com/tags/research">research</a> 30 /
-      
-        <a href="http://out13.com/tags/review">review</a> 31 /
-      
-        <a href="http://out13.com/tags/rust">rust</a> 2 /
-      
-        <a href="http://out13.com/tags/scientific">scientific</a> 31 /
+        <a href="http://out13.com/tags/rust">rust</a> 1 /
       
         <a href="http://out13.com/tags/tools">tools</a> 2 /
       
@@ -100,12 +92,10 @@
       
     </ul>
     <time>Thu, Aug 25, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 259 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <p><abbr title="Word count">WC</abbr> 252 / <abbr title="Reading time">RT</abbr> 2min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=On%20the%20fly%20garbage%20collection%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    
-
-<p>In our abstract form of the problem, we consider a
+    <p>In our abstract form of the problem, we consider a
 directed graph of varying structure but with a fixed
 number of nodes, in which each node has at most two
 outgoing edges. More precisely, each node may have a
@@ -114,26 +104,24 @@ outgoing edge, but either of them or both may be missing.
 In this graph a fixed set of nodes exists, called &ldquo;the
 roots.&rdquo; A node is called &ldquo;reachable&rdquo; if it is reachable
 from at least one root via a directed path along the edges.</p>
-
 <p>The subgraph consists of all reachable nodes and their interconnections is
 called &lsquo;the data structure&rsquo;; nonreachable nodes that do not belong to the
 data structure are called garbage.</p>
-
-<p>Data structure can modified:
- - Redirecting an outgoing edge of a reachable node towards an already reachable one.
- - Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.
- - Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.
- - Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.
- - Removing an outgoing edge of a reachable node</p>
-
+<p>Data structure can modified:</p>
+<ul>
+<li>Redirecting an outgoing edge of a reachable node towards an already reachable one.</li>
+<li>Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.</li>
+<li>Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.</li>
+<li>Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.</li>
+<li>Removing an outgoing edge of a reachable node</li>
+</ul>
 <p>Mutator: redirect an outgoing edge of reachable node towards an already reachable one.</p>
-
-<p>Collector:
- - marking phase: mark all reachable nodes
- - appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes</p>
-
+<p>Collector:</p>
+<ul>
+<li>marking phase: mark all reachable nodes</li>
+<li>appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes</li>
+</ul>
 <h4 id="notes">Notes</h4>
-
 <blockquote>
 <p>Free list - collection of nodes that have been identified as garbage.</p>
 </blockquote>
