@@ -6,10 +6,22 @@
     <description>Recent content on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Jun 2020 20:55:21 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 19:31:13 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Five Stage Model of the Mental Activities Involved in Directed Skill Acquisition</title>
+      <link>http://out13.com/paper/five-stage-model-of-the-mental-activities-involved-in-directed-skill-acquisition/</link>
+      <pubDate>Thu, 06 May 2021 19:31:13 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/five-stage-model-of-the-mental-activities-involved-in-directed-skill-acquisition/</guid>
+      <description>Five-stage model of the mental activities In acquiring a skill by means of instruction and experience, the student normally passes through five develop- mental stages which we designate novice, competence, proficiency, expertise and mastery.
+As the student becomes skilled, he depends less on abstract principles and more on concrete experience.
+Two options to pick a skill:
+ like a baby, pick it up by imitation and floundering trial-and-error aid of an instructor or instruction manual  Erroneous information obtained by scientific methods (and therefore having an aura of truth) is more harmful than no information at all.</description>
+    </item>
     
     <item>
       <title>IO with io_uring</title>
