@@ -6,10 +6,20 @@
     <description>Recent content in Papers on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 May 2021 19:31:13 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 20:21:50 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/paper/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Availability in Globally Distributed Storage Systems</title>
+      <link>http://out13.com/paper/availability-in-globally-distributed-storage-systems/</link>
+      <pubDate>Thu, 06 May 2021 20:21:50 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/availability-in-globally-distributed-storage-systems/</guid>
+      <description>Highly available cloud storage is often implemented with complex, multi-tiered distributed systems built on top of clusters of commodity servers and disk drives. Sophisticated management, load balancing and recovery techniques are needed to achieve high performance and availability amidst an abundance of failure sources that include software, hardware, network connectivity, and power issues.
+Component availability  Compare mean time to failure for system components at different granularities, including disks, machines and racks of machines.</description>
+    </item>
     
     <item>
       <title>A Five Stage Model of the Mental Activities Involved in Directed Skill Acquisition</title>

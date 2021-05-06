@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>B4: Experience with a Globally-Deployed Software Defined WAN - Ernestas Poškus technical blog</title>
+  <title>Availability in Globally Distributed Storage Systems - Ernestas Poškus technical blog</title>
   
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="B4: Experience with a Globally-Deployed Software Defined WAN" />
+  <meta property="og:title" content="Availability in Globally Distributed Storage Systems" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/b4-software-defined-wan/" />
+  <meta property="og:url" content="http://out13.com/paper/availability-in-globally-distributed-storage-systems/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -83,44 +83,43 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>B4: Experience with a Globally-Deployed Software Defined WAN</h1>
+    <h1>Availability in Globally Distributed Storage Systems</h1>
     <ul>
-      <li>Author: Sushant Jain, Alok Kumar, Subhasree Mandal, Joon Ong, Leon Poutievski, Arjun Singh, Subbaiah Venkata, Jim Wanderer, Junlan Zhou, Min Zhu, Jonathan Zolla, Urs Hölzle, Stephen Stuart, Amin Vahdat</li>
-      <li>Name: B4: Experience with a Globally-Deployed Software Defined WAN</li>
+      <li>Author: Daniel Ford, François Labelle, Florentina I. Popovici, Murray Stokely, Van-Anh Truong, Luiz Barroso, Carrie Grimes, and Sean Quinlan</li>
+      <li>Name: Globally distributed storage systems</li>
       
-      <li>Link: <a href="http://cseweb.ucsd.edu/~vahdat/papers/b4-sigcomm13.pdf" rel="nofollow" target="_blank">http://cseweb.ucsd.edu/~vahdat/papers/b4-sigcomm13.pdf</a></li>
+      <li>Link: <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36737.pdf" rel="nofollow" target="_blank">https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36737.pdf</a></li>
       
     </ul>
-    <time>Sun, Jan 7, 2018</time>
-    <p><abbr title="Word count">WC</abbr> 248 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=B4:%20Experience%20with%20a%20Globally-Deployed%20Software%20Defined%20WAN%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, May 6, 2021</time>
+    <p><abbr title="Word count">WC</abbr> 246 / <abbr title="Reading time">RT</abbr> 2min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Availability%20in%20Globally%20Distributed%20Storage%20Systems%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    <h2 id="software-defined-wan">Software defined WAN</h2>
-<p>B4, a private WAN connecting Google’s data centers across the planet.</p>
-<p>i) Massive bandwidth requirements deployed to a modest number of sites.</p>
-<p>ii) Elastic traffic demand that seeks to maximize average bandwidth.</p>
-<p>iii) Full control over the edge servers and network, which enables rate limiting and demand measurement at the edge.</p>
-<h3 id="design">Design</h3>
-<p>Within each B4 site, the switch hardware layer primarily forwards traffic and does not run complex control
-software, and the site controller layer consists of Network Control Servers (NCS) hosting both OpenFlow controllers (OFC)
-and Network Control Applications (NCAs).</p>
+    <p>Highly available cloud storage is often implemented with complex, multi-tiered distributed systems built on top of clusters of commodity servers and disk drives.
+Sophisticated management, load balancing and recovery techniques are needed to achieve high performance and availability amidst an abundance of failure sources that include software, hardware, network connectivity, and power issues.</p>
+<h2 id="component-availability">Component availability</h2>
 <ul>
-<li>B4 routers built from merchant switch silicon</li>
-<li>Drive links to 100% utilization</li>
-<li>Centralized traffic engineering</li>
-<li>Separate hardware from software</li>
+<li>Compare mean time to failure for system components at different granularities, including disks, machines and racks of machines.</li>
+<li>Classify the failure causes for storage nodes, their characteristics and contribution to overall unavailability.</li>
+<li>Apply a clustering heuristic for grouping failures which occurs almost simultaneously and show that a large fraction of failures happen in bursts.</li>
+<li>Quantify how likely a failure burst is associated with a given failure domain. We find that most large bursts of failures are associated with rack- or multi-rack level events.</li>
 </ul>
-<h3 id="centralized-te-architecture">Centralized TE Architecture</h3>
+<h2 id="data-availability">Data availability</h2>
 <ul>
-<li>The Network Topology graph represents sites as vertices and site to site connectivity as edges. The SDN Gateway consolidates topology events from multiple sites and individual switches to TE. TE aggregates trunks to compute site-site edges. This abstraction significantly reduces the size of the graph input to the TE Optimization Algorithm.</li>
-<li>Flow Group (FG): For scalability, TE cannot operate at the granularity of individual applications. Therefore, we aggregate applications to a Flow Group defined as {source site, dest site, QoS} tuple.</li>
-<li>A Tunnel (T) represents a site-level path in the network. B4 implements tunnels using IP in IP encapsulation.</li>
-<li>A Tunnel Group (TG) maps FGs to a set of tunnels and corresponding weights.
-The weight specifies the fraction of FG traffic to be forwarded along each tunnel.</li>
+<li>Demonstrate the importance of modeling correlated failures when predicting availability, and show their impact under a variety of replication schemes and placement policies.</li>
+<li>Formulate a Markov model for data availability, that can scale to arbitrary cell sizes, and captures the interaction of failures with replication policies and recovery times.</li>
+<li>Introduce multi-cell replication schemes and compare the availability and bandwidth trade-offs against single-cell schemes.</li>
+<li>Show the impact of hardware failure on our cells is significantly smaller than the impact of effectively tuning recovery and replication parameters.</li>
 </ul>
 <h4 id="notes">Notes</h4>
 <blockquote>
-<p>TE - traffic engineering</p>
+<p>MTTF (mean time to failure) = uptime / number failures</p>
+</blockquote>
+<blockquote>
+<p>ARR - annual replacement rate</p>
+</blockquote>
+<blockquote>
+<p>AFR - annual failure rate</p>
 </blockquote>
 
     <hr />
