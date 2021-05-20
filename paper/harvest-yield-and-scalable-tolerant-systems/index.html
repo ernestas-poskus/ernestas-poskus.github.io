@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Bitcoin a Peer to Peer Electronic Cash System - Ernestas Poškus technical blog</title>
+  <title>Harvest Yield and Scalable Tolerant Systems - Ernestas Poškus technical blog</title>
   
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Bitcoin a Peer to Peer Electronic Cash System" />
+  <meta property="og:title" content="Harvest Yield and Scalable Tolerant Systems" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/bitcoin-a-peer-to-peer-electronic-cash-system/" />
+  <meta property="og:url" content="http://out13.com/paper/harvest-yield-and-scalable-tolerant-systems/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -83,62 +83,25 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Bitcoin a Peer to Peer Electronic Cash System</h1>
+    <h1>Harvest Yield and Scalable Tolerant Systems</h1>
     <ul>
-      <li>Author: Satoshi Nakamoto</li>
-      <li>Name: Bitcoin: A Peer-to-Peer Electronic Cash System</li>
+      <li>Author: Armando Fox, Eric A. Brewer</li>
+      <li>Name: Harvest, Yield, and Scalable Tolerant Systems</li>
       
-      <li>Link: <a href="https://bitcoin.org/bitcoin.pdf" rel="nofollow" target="_blank">https://bitcoin.org/bitcoin.pdf</a></li>
+      <li>Link: <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.24.3690&amp;rep=rep1&amp;type=pdf" rel="nofollow" target="_blank">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.24.3690&amp;rep=rep1&amp;type=pdf</a></li>
       
     </ul>
-    <time>Thu, Oct 19, 2017</time>
-    <p><abbr title="Word count">WC</abbr> 321 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Bitcoin%20a%20Peer%20to%20Peer%20Electronic%20Cash%20System%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Fri, May 7, 2021</time>
+    <p><abbr title="Word count">WC</abbr> 153 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Harvest%20Yield%20and%20Scalable%20Tolerant%20Systems%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    <h2 id="p2p-electronic-cash-system">P2P Electronic Cash System</h2>
-<p>A purely peer-to-peer version of electronic cash would allow online
-payments to be sent directly from one party to another without going through a
-financial institution.</p>
-<p>Prevent double-spending problem using a peer-to-peer network.</p>
-<p>As long as a majority of CPU power is controlled by nodes that are not cooperating to
-attack the network, they&rsquo;ll generate the longest chain and outpace attackers.</p>
-<p>The system is secure as long as honest nodes collectively control more CPU power than any
-cooperating group of attacker nodes.</p>
-<h3 id="transactions">Transactions</h3>
-<p>We define an electronic coin as a chain of digital signatures. Each owner transfers the coin to the
-next by digitally signing a hash of the previous transaction and the public key of the next owner
-and adding these to the end of the coin.</p>
-<h3 id="timestamp-server">Timestamp server</h3>
-<p>The timestamp proves that the data must have existed at the
-time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in
-its hash, forming a chain, with each additional timestamp reinforcing the ones before it.</p>
-<h3 id="network">Network</h3>
-<ol>
-<li>
-<p>New transactions are broadcast to all nodes.</p>
-</li>
-<li>
-<p>Each node collects new transactions into a block.</p>
-</li>
-<li>
-<p>Each node works on finding a difficult proof-of-work for its block.</p>
-</li>
-<li>
-<p>When a node finds a proof-of-work, it broadcasts the block to all nodes.</p>
-</li>
-<li>
-<p>Nodes accept the block only if all transactions in it are valid and not already spent.</p>
-</li>
-<li>
-<p>Nodes express their acceptance of the block by working on creating the next block in the chain, using the hash of the accepted block as the previous hash.</p>
-</li>
-</ol>
-<p>Nodes always consider the longest chain to be the correct one and will keep working on extending it.</p>
-<h3 id="privacy">Privacy</h3>
-<p>Additional firewall, a new key pair should be used for each transaction to keep them
-from being linked to a common owner. Some linking is still unavoidable with multi-input transactions,
-which necessarily reveal that their inputs were owned by the same owner.</p>
-<h4 id="notes">Notes</h4>
+    <h2 id="scalable-tolerant-systems">Scalable tolerant systems</h2>
+<p>Degradation in terms of harvest and yield, and map it directly onto engineering mechanisms that enhance availability by improving fault isolation, and in some cases also simplify programming.</p>
+<p>CA without P: Databases that provide distributed transactional semantics can only do so in the absence of a network partition separating server peers.</p>
+<p>CP without A: In the event of a partition, further transactions to an ACID database may be blocked until the partition heals, to avoid the risk of introducing merge conflicts (and thus inconsistency).</p>
+<p>AP without C: HTTP Web caching provides client-server partition resilience by replicating documents, but a client-server partition prevents verification of the freshness of an expired replica.
+In general, any distributed database problem can be solved with either expiration-based caching to get AP, or replicas and majority voting to get PC (the minority is unavailable).</p>
+<p>Many applications are best described in terms of reduced consistency or availability.</p>
 
     <hr />
     <div id="disqus_thread"></div>
