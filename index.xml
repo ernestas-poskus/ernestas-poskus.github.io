@@ -6,10 +6,21 @@
     <description>Recent content on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 May 2021 20:01:12 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 23 May 2021 07:19:49 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Wormhole: Reliable Pub-Sub to Support Geo-replicated Internet Services</title>
+      <link>http://out13.com/paper/reliable-pub-sub-to-support-geo-replicated-internet-services/</link>
+      <pubDate>Sun, 23 May 2021 07:19:49 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/reliable-pub-sub-to-support-geo-replicated-internet-services/</guid>
+      <description>Wormhole Wormhole is a publish-subscribe (pub-sub) system developed for use within Facebook’s geographically replicated datacenters. It is used to reliably replicate changes among several Facebook services including TAO, Graph Search and Memcache.
+Facebook production deployment of Wormhole transfers over 35 GBytes/sec in steady state (50 millions messages/sec or 5 trillion messages/day) across all deployments with bursts up to 200 GBytes/sec during failure recovery.
+Wormhole, a pub-sub system that identifies new writes and publishes updates to all interested applications.</description>
+    </item>
     
     <item>
       <title>Swim Scalable Weakly Consistent Infection Style Process Group Membership Protocol</title>
