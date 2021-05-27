@@ -6,10 +6,20 @@
     <description>Recent content in Papers on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 May 2021 07:19:49 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 27 May 2021 22:43:14 +0300</lastBuildDate>
     
 	<atom:link href="http://out13.com/paper/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Searching for Build Debt Experiences Managing Technical Debt at Google</title>
+      <link>http://out13.com/paper/searching-for-build-debt-experiences-managing-technical-debt-at-google/</link>
+      <pubDate>Thu, 27 May 2021 22:43:14 +0300</pubDate>
+      
+      <guid>http://out13.com/paper/searching-for-build-debt-experiences-managing-technical-debt-at-google/</guid>
+      <description>Technical debt at Google Google engineers also make efforts to pay down that debt, whether through special Fixit days, or via dedicated teams, variously known as janitors, cultivators, or demolition experts.
+ Automation. Use automated techniques to analyze and (where possible) fix issues that contribute to our most egregious technical debt. Several teams are working on tools to make large scale changes easier. Our uniform development style makes it feasible to do this at scale.</description>
+    </item>
     
     <item>
       <title>Wormhole: Reliable Pub-Sub to Support Geo-replicated Internet Services</title>

@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>On the fly garbage collection - Ernestas Poškus technical blog</title>
+  <title>Searching for Build Debt Experiences Managing Technical Debt at Google - Ernestas Poškus technical blog</title>
   
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="On the fly garbage collection" />
+  <meta property="og:title" content="Searching for Build Debt Experiences Managing Technical Debt at Google" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/on-the-fly-garbage-collection/" />
+  <meta property="og:url" content="http://out13.com/paper/searching-for-build-debt-experiences-managing-technical-debt-at-google/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -83,48 +83,43 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>On the fly garbage collection</h1>
+    <h1>Searching for Build Debt Experiences Managing Technical Debt at Google</h1>
     <ul>
-      <li>Author: Edsger W. Dijkstra, Leslie Lamport, A.J. Martin, C.S. Scholten, E.F.M. Steffens</li>
-      <li>Name: On-the-Fly Garbage Collection: An Exercise in Cooperation </li>
+      <li>Author: J. David Morgenthaler, Misha Gridnev, Raluca Sauciuc, and Sanjay Bhansali</li>
+      <li>Name: Technical Debt at Google</li>
       
-      <li>Link: <a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/garbage.pdf" rel="nofollow" target="_blank">http://research.microsoft.com/en-us/um/people/lamport/pubs/garbage.pdf</a></li>
+      <li>Link: <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37755.pdf" rel="nofollow" target="_blank">https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37755.pdf</a></li>
       
     </ul>
-    <time>Thu, Aug 25, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 252 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=On%20the%20fly%20garbage%20collection%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Thu, May 27, 2021</time>
+    <p><abbr title="Word count">WC</abbr> 210 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Searching%20for%20Build%20Debt%20Experiences%20Managing%20Technical%20Debt%20at%20Google%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    <p>In our abstract form of the problem, we consider a
-directed graph of varying structure but with a fixed
-number of nodes, in which each node has at most two
-outgoing edges. More precisely, each node may have a
-left-hand outgoing edge and may have a right-hand
-outgoing edge, but either of them or both may be missing.
-In this graph a fixed set of nodes exists, called &ldquo;the
-roots.&rdquo; A node is called &ldquo;reachable&rdquo; if it is reachable
-from at least one root via a directed path along the edges.</p>
-<p>The subgraph consists of all reachable nodes and their interconnections is
-called &lsquo;the data structure&rsquo;; nonreachable nodes that do not belong to the
-data structure are called garbage.</p>
-<p>Data structure can modified:</p>
+    <h2 id="technical-debt-at-google">Technical debt at Google</h2>
+<p>Google engineers also make efforts to pay down that debt, whether through special Fixit
+days, or via dedicated teams, variously known as janitors, cultivators, or demolition experts.</p>
 <ul>
-<li>Redirecting an outgoing edge of a reachable node towards an already reachable one.</li>
-<li>Redirecting an outgoing edge of a reachable node towards a not yet reachable one without outgoing edges.</li>
-<li>Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards an already reachable one.</li>
-<li>Adding&ndash;where an outgoing edge was missing an edge pointing from a reachable node towards a not yet reachable one without outgoing edges.</li>
-<li>Removing an outgoing edge of a reachable node</li>
+<li>Automation. Use automated techniques to analyze and
+(where possible) fix issues that contribute to our most
+egregious technical debt. Several teams are working on
+tools to make large scale changes easier. Our uniform
+development style makes it feasible to do this at scale.</li>
+<li>Make it easy to do the right thing. Many times technical
+debt is incurred because people are not aware of it. If
+we can analyze changes that developers are about to
+make as part of their normal workflow (during editing,
+browsing, or code review), we can prevent certain kinds
+of debt. The size of the codebase and the rate at which
+it changes makes this a non-trivial problem.</li>
+<li>Make it hard to do the wrong thing. This is similar
+to the above point, but with a greater emphasis on
+introducing stricter checks on the kinds of actions
+developers can do. For example, prevent people from
+taking a dependency on code that is not ready for prime
+time. Another example is to build stricter checks into
+the compilation process and make them compile time
+warnings or errors.</li>
 </ul>
-<p>Mutator: redirect an outgoing edge of reachable node towards an already reachable one.</p>
-<p>Collector:</p>
-<ul>
-<li>marking phase: mark all reachable nodes</li>
-<li>appending phase: append all unmarked nodes to the free list and remove the markings from all marked nodes</li>
-</ul>
-<h4 id="notes">Notes</h4>
-<blockquote>
-<p>Free list - collection of nodes that have been identified as garbage.</p>
-</blockquote>
 
     <hr />
     <div id="disqus_thread"></div>
