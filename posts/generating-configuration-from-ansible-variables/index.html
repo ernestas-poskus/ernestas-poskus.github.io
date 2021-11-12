@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -89,83 +89,83 @@
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Generating%20configuration%20from%20Ansible%20variables%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
     <p>If you have ever tried to render Ansible multi hash or list variable you probably something alike.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
-  <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&#34;</span>
-  <span style="color:#66d9ef">evaluation_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&#34;</span>
-  <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&#34;</span>
-  <span style="color:#66d9ef">external_labels</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_external_labels | to_nice_yaml }}&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">global</span>:
+  <span style="color:#f92672">scrape_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_interval | to_nice_yaml }}&#34;</span>
+  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_evaluation_interval | to_nice_yaml }}&#34;</span>
+  <span style="color:#f92672">scrape_timeout</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_scrape_timeout | to_nice_yaml }}&#34;</span>
+  <span style="color:#f92672">external_labels</span>: <span style="color:#e6db74">&#34;{{ prometheus_config_global_external_labels | to_nice_yaml }}&#34;</span>
 </code></pre></div><p>This generates invalid and ugly YAML.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
-  <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#34;15s
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">global</span>:
+  <span style="color:#f92672">scrape_interval</span>: <span style="color:#e6db74">&#34;15s
 </span><span style="color:#e6db74">...
 </span><span style="color:#e6db74">&#34;</span>
-  <span style="color:#66d9ef">evaluation_interval</span>: <span style="color:#e6db74">&#34;30s
+  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#e6db74">&#34;30s
 </span><span style="color:#e6db74">...
 </span><span style="color:#e6db74">&#34;</span>
-  <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#34;10s
+  <span style="color:#f92672">scrape_timeout</span>: <span style="color:#e6db74">&#34;10s
 </span><span style="color:#e6db74">...
 </span><span style="color:#e6db74">&#34;</span>
-  <span style="color:#66d9ef">external_labels</span>: <span style="color:#e6db74">&#34;null
+  <span style="color:#f92672">external_labels</span>: <span style="color:#e6db74">&#34;null
 </span><span style="color:#e6db74">...
 </span><span style="color:#e6db74">&#34;</span>
 </code></pre></div><h3 id="tldr">TLDR</h3>
 <p>If you are persistent thus configuration maniac you probably found a way either by destructuring hash or made extra redundant variables around complex one.
 But there is a better way that I came up with.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{{
 {
-<span style="color:#66d9ef">&#39;global&#39;</span>: {
-  <span style="color:#66d9ef">&#39;scrape_interval&#39;</span>: prometheus_config_global_scrape_interval,
-  <span style="color:#66d9ef">&#39;evaluation_interval&#39;</span>: prometheus_config_global_evaluation_interval,
-  <span style="color:#66d9ef">&#39;scrape_timeout&#39;</span>: prometheus_config_global_scrape_timeout,
-  <span style="color:#66d9ef">&#39;external_labels&#39;</span>: prometheus_config_global_external_labels }
-} | to_nice_yaml
+<span style="color:#f92672">&#39;global&#39;</span>: {
+  <span style="color:#f92672">&#39;scrape_interval&#39;</span>: <span style="color:#ae81ff">prometheus_config_global_scrape_interval,</span>
+  <span style="color:#f92672">&#39;evaluation_interval&#39;</span>: <span style="color:#ae81ff">prometheus_config_global_evaluation_interval,</span>
+  <span style="color:#f92672">&#39;scrape_timeout&#39;</span>: <span style="color:#ae81ff">prometheus_config_global_scrape_timeout,</span>
+  <span style="color:#f92672">&#39;external_labels&#39;</span>: <span style="color:#ae81ff">prometheus_config_global_external_labels }</span>
+} <span style="color:#ae81ff">| to_nice_yaml</span>
 }}
 </code></pre></div><p>Here we are using Jinja 2 hash syntax and creating new hash with wanted keys inside of block later piping through <code>to_nice_yaml</code> filter as well.
 This generates pretty and valid YAML.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
-    <span style="color:#66d9ef">evaluation_interval</span>: 30s
-    <span style="color:#66d9ef">external_labels</span>: <span style="color:#66d9ef">null</span>
-    <span style="color:#66d9ef">scrape_interval</span>: 15s
-    <span style="color:#66d9ef">scrape_timeout</span>: 10s
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">global</span>:
+    <span style="color:#f92672">evaluation_interval</span>: <span style="color:#ae81ff">30s</span>
+    <span style="color:#f92672">external_labels</span>: <span style="color:#66d9ef">null</span>
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">15s</span>
+    <span style="color:#f92672">scrape_timeout</span>: <span style="color:#ae81ff">10s</span>
 </code></pre></div><p>Same applies to more complex variable definitions like this hash configuration inside of array/list.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">prometheus_config_scrape_configs</span>:
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
-    <span style="color:#66d9ef">honor_labels</span>: <span style="color:#66d9ef">true</span>
-    <span style="color:#66d9ef">scrape_interval</span>: <span style="color:#e6db74">&#39;15s&#39;</span>
-    <span style="color:#66d9ef">scrape_timeout</span>: <span style="color:#e6db74">&#39;2s&#39;</span>
-    <span style="color:#66d9ef">metrics_path</span>: <span style="color:#e6db74">&#39;/metrics&#39;</span>
-    <span style="color:#66d9ef">scheme</span>: <span style="color:#e6db74">&#39;http&#39;</span>
-    <span style="color:#66d9ef">static_configs</span>:
-      - <span style="color:#66d9ef">targets</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">prometheus_config_scrape_configs</span>:
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+    <span style="color:#f92672">honor_labels</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#e6db74">&#39;15s&#39;</span>
+    <span style="color:#f92672">scrape_timeout</span>: <span style="color:#e6db74">&#39;2s&#39;</span>
+    <span style="color:#f92672">metrics_path</span>: <span style="color:#e6db74">&#39;/metrics&#39;</span>
+    <span style="color:#f92672">scheme</span>: <span style="color:#e6db74">&#39;http&#39;</span>
+    <span style="color:#f92672">static_configs</span>:
+      - <span style="color:#f92672">targets</span>:
           - <span style="color:#e6db74">&#34;{{ prometheus_web__listen_address }}&#34;</span> <span style="color:#75715e"># Prometheus itself</span>
           - <span style="color:#e6db74">&#34;{{ prometheus_alert_manager_web__listen_address }}&#34;</span> <span style="color:#75715e"># Alert manager</span>
 
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;consul-services&#39;</span>
-    <span style="color:#66d9ef">consul_sd_configs</span>:
-      - <span style="color:#66d9ef">server</span>: <span style="color:#e6db74">&#34;consul.service.consul:8500&#34;</span>
-        <span style="color:#66d9ef">services</span>:
-          - nodeexporter
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;consul-services&#39;</span>
+    <span style="color:#f92672">consul_sd_configs</span>:
+      - <span style="color:#f92672">server</span>: <span style="color:#e6db74">&#34;consul.service.consul:8500&#34;</span>
+        <span style="color:#f92672">services</span>:
+          - <span style="color:#ae81ff">nodeexporter</span>
 </code></pre></div><p>Variable used in template.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; <span style="color:#ae81ff">0</span> %}
-{{ {<span style="color:#66d9ef">&#39;scrape_configs&#39;</span>: prometheus_config_scrape_configs} | to_nice_yaml }}
-{% endif %}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#ae81ff">% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length &gt; 0 %}</span>
+{{ {<span style="color:#f92672">&#39;scrape_configs&#39;</span>: <span style="color:#ae81ff">prometheus_config_scrape_configs} | to_nice_yaml }}</span>
+{<span style="color:#ae81ff">% endif %}</span>
 </code></pre></div><p>End result here.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">scrape_configs</span>:
--   <span style="color:#66d9ef">honor_labels</span>: <span style="color:#66d9ef">true</span>
-    <span style="color:#66d9ef">job_name</span>: prometheus
-    <span style="color:#66d9ef">metrics_path</span>: /metrics
-    <span style="color:#66d9ef">scheme</span>: http
-    <span style="color:#66d9ef">scrape_interval</span>: 15s
-    <span style="color:#66d9ef">scrape_timeout</span>: 2s
-    <span style="color:#66d9ef">static_configs</span>:
-    -   <span style="color:#66d9ef">targets</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">scrape_configs</span>:
+-   <span style="color:#f92672">honor_labels</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">prometheus</span>
+    <span style="color:#f92672">metrics_path</span>: <span style="color:#ae81ff">/metrics</span>
+    <span style="color:#f92672">scheme</span>: <span style="color:#ae81ff">http</span>
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">15s</span>
+    <span style="color:#f92672">scrape_timeout</span>: <span style="color:#ae81ff">2s</span>
+    <span style="color:#f92672">static_configs</span>:
+    -   <span style="color:#f92672">targets</span>:
         - <span style="color:#ae81ff">192.168.250.11</span>:<span style="color:#ae81ff">9090</span>
         - <span style="color:#ae81ff">192.168.250.11</span>:<span style="color:#ae81ff">9093</span>
--   <span style="color:#66d9ef">consul_sd_configs</span>:
-    -   <span style="color:#66d9ef">server</span>: consul.service.consul:<span style="color:#ae81ff">8500</span>
-        <span style="color:#66d9ef">services</span>:
-        - nodeexporter
-    <span style="color:#66d9ef">job_name</span>: consul-services
+-   <span style="color:#f92672">consul_sd_configs</span>:
+    -   <span style="color:#f92672">server</span>: <span style="color:#ae81ff">consul.service.consul:8500</span>
+        <span style="color:#f92672">services</span>:
+        - <span style="color:#ae81ff">nodeexporter</span>
+    <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">consul-services</span>
 </code></pre></div><p>Examples are taken from by ansible-prometheus playbook: <a href="https://github.com/ernestas-poskus/ansible-prometheus">https://github.com/ernestas-poskus/ansible-prometheus</a>.</p>
 
     <hr />

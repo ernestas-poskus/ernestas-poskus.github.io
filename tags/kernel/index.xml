@@ -6,11 +6,7 @@
     <description>Recent content in kernel on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Jun 2020 20:55:21 +0300</lastBuildDate>
-    
-	<atom:link href="http://out13.com/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 09 Jun 2020 20:55:21 +0300</lastBuildDate><atom:link href="http://out13.com/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IO with io_uring</title>
       <link>http://out13.com/paper/efficient-io-with-io-uring/</link>

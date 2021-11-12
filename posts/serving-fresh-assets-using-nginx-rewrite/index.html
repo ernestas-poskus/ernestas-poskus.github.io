@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -107,7 +107,7 @@ name file to be present on web server.</p>
 <li>removal of stale assets</li>
 </ol>
 <p>I came with solution to use Nginx rewrite block that implicitly drops hash of requested file and serves requested asset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx">   <span style="color:#66d9ef">location</span> <span style="color:#e6db74">@css_assets</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx">   <span style="color:#66d9ef">location</span> <span style="color:#e6db74">@css_assets</span> {
        <span style="color:#f92672">rewrite</span> <span style="color:#e6db74">^/css/(.*)\..*\.(.*)</span>$ <span style="color:#e6db74">/css/</span>$1.$2 <span style="color:#e6db74">last</span>;
    }
    <span style="color:#66d9ef">location</span> <span style="color:#e6db74">/css/</span> {
@@ -135,17 +135,17 @@ example hourly or daily depending on release cycle.</p>
 <p>/css/app.$CSS_ASSET_HASH.css</p>
 </blockquote>
 <p>In my case I use simple function below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">lazy_static<span style="color:#f92672">!</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">lazy_static<span style="color:#f92672">!</span> {
     <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">ref</span> CSS_ASSETS_HASH: String <span style="color:#f92672">=</span> {
         <span style="color:#66d9ef">match</span> env::var(<span style="color:#e6db74">&#34;CSS_ASSETS_HASH&#34;</span>) {
-            Ok(hash) <span style="color:#f92672">=&gt;</span> format<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;.{}.&#34;</span>, hash),
+            Ok(hash) <span style="color:#f92672">=&gt;</span> format!(<span style="color:#e6db74">&#34;.{}.&#34;</span>, hash),
             Err(_) <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;.&#34;</span>.to_string(),
         }
     };
 }
 
 html<span style="color:#f92672">!</span> {
-  (Css(format<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;/css/app{}css&#34;</span>, <span style="color:#f92672">*</span>CSS_ASSETS_HASH)))
+  (Css(format!(<span style="color:#e6db74">&#34;/css/app{}css&#34;</span>, <span style="color:#f92672">*</span>CSS_ASSETS_HASH)))
 }
 </code></pre></div><p>Above example is actual code used in production. It tries to statically initialize
 <code>CSS_ASSETS_HASH</code> variable, if expected environment is not defined it fallbacks to

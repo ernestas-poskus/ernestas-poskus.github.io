@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -85,18 +85,18 @@
   <div class="large-12 columns">
     <h1>Testing Ansible on multiple platforms</h1>
     <time>Sun, Sep 25, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 530 / <abbr title="Reading time">RT</abbr> 3min</p>
+    <p><abbr title="Word count">WC</abbr> 529 / <abbr title="Reading time">RT</abbr> 3min</p>
     <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Testing%20Ansible%20on%20multiple%20platforms%20#out13posts%20@ernestas_poskus">Tweet</a>
     <hr />
     <p>It is very uncommon to find tests on Ansible playbooks. However when they exist it means playbook was created with care.</p>
 <p>When playbook is created with Ansible command <code>ansible-galaxy init myplaybook</code> it creates number of directories and files, includes basic Travis CI .travis.yml file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">script</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">script</span>:
   <span style="color:#75715e"># Basic role syntax check</span>
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - <span style="color:#ae81ff">ansible-playbook tests/test.yml -i tests/inventory --syntax-check</span>
 </code></pre></div><p>Basic Travis script brings standard virtual environment operating system which is Ubuntu 12.04 LTS Server Edition 64 bit by default.
 This limits testing playbooks on multiple operating systems.
 In fact Travis CI virtual environment is limited to Debian operating systems and includes BETA Ubuntu 14.04 LTS Server Edition 64 bit container configurable via.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">dist</span>: trusty
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">dist</span>: <span style="color:#ae81ff">trusty</span>
 </code></pre></div><hr>
 <h4 id="fortunately-travis-supports-docker">Fortunately Travis supports docker.</h4>
 <p>I have created bare docker containers that include ansible, can be found here <a href="https://github.com/ansible-docker-images">https://github.com/ansible-docker-images</a> and in docker hub <a href="https://hub.docker.com/r/ernestasposkus">https://hub.docker.com/r/ernestasposkus</a>.</p>
@@ -126,40 +126,40 @@ In fact Travis CI virtual environment is limited to Debian operating systems and
 </ul>
 <p>Sample .travis.yml script below.
 Includes testing on 4 platforms, dependencies installation, Ansible syntax check, idempotence test and actual tests.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">sudo</span>: required
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">sudo</span>: <span style="color:#ae81ff">required</span>
 
-<span style="color:#66d9ef">env</span>:
-  <span style="color:#66d9ef">global</span>:
+<span style="color:#f92672">env</span>:
+  <span style="color:#f92672">global</span>:
     <span style="color:#75715e"># https://github.com/travis-ci/travis-ci/issues/6461#issuecomment-239577306</span>
-    <span style="color:#66d9ef">DOCKER_VERSION</span>: <span style="color:#e6db74">&#34;1.9.1-0~trusty&#34;</span>
-  <span style="color:#66d9ef">matrix</span>:
-    - <span style="color:#66d9ef">distro</span>: ernestasposkus/centos7
-      <span style="color:#66d9ef">init</span>: /usr/lib/systemd/systemd
-      <span style="color:#66d9ef">run_opts</span>: <span style="color:#e6db74">&#34;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&#34;</span>
-    - <span style="color:#66d9ef">distro</span>: ernestasposkus/centos6
-      <span style="color:#66d9ef">init</span>: /sbin/init
-      <span style="color:#66d9ef">run_opts</span>: <span style="color:#e6db74">&#34;&#34;</span>
-    - <span style="color:#66d9ef">distro</span>: ernestasposkus/ubuntu1604
-      <span style="color:#66d9ef">init</span>: /lib/systemd/systemd
-      <span style="color:#66d9ef">run_opts</span>: <span style="color:#e6db74">&#34;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&#34;</span>
-    - <span style="color:#66d9ef">distro</span>: ernestasposkus/ubuntu1404
-      <span style="color:#66d9ef">init</span>: /sbin/init
-      <span style="color:#66d9ef">run_opts</span>: <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#f92672">DOCKER_VERSION</span>: <span style="color:#e6db74">&#34;1.9.1-0~trusty&#34;</span>
+  <span style="color:#f92672">matrix</span>:
+    - <span style="color:#f92672">distro</span>: <span style="color:#ae81ff">ernestasposkus/centos7</span>
+      <span style="color:#f92672">init</span>: <span style="color:#ae81ff">/usr/lib/systemd/systemd</span>
+      <span style="color:#f92672">run_opts</span>: <span style="color:#e6db74">&#34;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&#34;</span>
+    - <span style="color:#f92672">distro</span>: <span style="color:#ae81ff">ernestasposkus/centos6</span>
+      <span style="color:#f92672">init</span>: <span style="color:#ae81ff">/sbin/init</span>
+      <span style="color:#f92672">run_opts</span>: <span style="color:#e6db74">&#34;&#34;</span>
+    - <span style="color:#f92672">distro</span>: <span style="color:#ae81ff">ernestasposkus/ubuntu1604</span>
+      <span style="color:#f92672">init</span>: <span style="color:#ae81ff">/lib/systemd/systemd</span>
+      <span style="color:#f92672">run_opts</span>: <span style="color:#e6db74">&#34;--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro&#34;</span>
+    - <span style="color:#f92672">distro</span>: <span style="color:#ae81ff">ernestasposkus/ubuntu1404</span>
+      <span style="color:#f92672">init</span>: <span style="color:#ae81ff">/sbin/init</span>
+      <span style="color:#f92672">run_opts</span>: <span style="color:#e6db74">&#34;&#34;</span>
 
-<span style="color:#66d9ef">services</span>:
-  - docker
+<span style="color:#f92672">services</span>:
+  - <span style="color:#ae81ff">docker</span>
 
-<span style="color:#66d9ef">before_install</span>:
+<span style="color:#f92672">before_install</span>:
   <span style="color:#75715e"># Downgrade to specific version of Docker engine.</span>
-  - sudo apt-get update
-  - sudo apt-get remove docker-engine -yq
-  - sudo apt-get install docker-engine=$DOCKER_VERSION -yq --no-install-suggests --no-install-recommends --force-yes -o Dpkg::Options::=<span style="color:#e6db74">&#34;--force-confnew&#34;</span>
+  - <span style="color:#ae81ff">sudo apt-get update</span>
+  - <span style="color:#ae81ff">sudo apt-get remove docker-engine -yq</span>
+  - <span style="color:#ae81ff">sudo apt-get install docker-engine=$DOCKER_VERSION -yq --no-install-suggests --no-install-recommends --force-yes -o Dpkg::Options::=&#34;--force-confnew&#34;</span>
 
   <span style="color:#75715e"># Pull container.</span>
   - <span style="color:#e6db74">&#39;sudo docker pull ${distro}:latest&#39;</span>
 
-<span style="color:#66d9ef">script</span>:
-  - container_id=$(mktemp)
+<span style="color:#f92672">script</span>:
+  - <span style="color:#ae81ff">container_id=$(mktemp)</span>
     <span style="color:#75715e"># Run container in detached state.</span>
   - <span style="color:#e6db74">&#39;sudo docker run --detach --volume=&#34;${PWD}&#34;:/etc/ansible/roles/role_under_test:ro ${run_opts} ${distro}:latest &#34;${init}&#34; &gt; &#34;${container_id}&#34;&#39;</span>
 
@@ -184,25 +184,25 @@ Includes testing on 4 platforms, dependencies installation, Ansible syntax check
   - <span style="color:#e6db74">&#39;sudo docker exec --tty &#34;$(cat ${container_id})&#34; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml&#39;</span>
 
   <span style="color:#75715e"># Test role idempotence.</span>
-  - idempotence=$(mktemp)
-  - sudo docker exec <span style="color:#e6db74">&#34;$(cat ${container_id})&#34;</span> ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml | tee -a ${idempotence}
-  - <span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">    tail ${idempotence}</span>
-    | grep -q <span style="color:#e6db74">&#39;changed=0.*failed=0&#39;</span>
-    <span style="color:#75715e">&amp;&amp;</span> <span style="color:#66d9ef">(echo &#39;Idempotence test</span>: pass<span style="color:#e6db74">&#39; &amp;&amp; exit 0)
-</span><span style="color:#e6db74">    || (echo &#39;</span><span style="color:#66d9ef">Idempotence test</span>: fail<span style="color:#e6db74">&#39; &amp;&amp; exit 1)
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">  # Test role.
-</span><span style="color:#e6db74">  - &#39;</span>sudo docker exec --tty <span style="color:#e6db74">&#34;$(cat ${container_id})&#34;</span> env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml<span style="color:#e6db74">&#39;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">  # View container logs
-</span><span style="color:#e6db74">  - &#39;</span>sudo docker logs <span style="color:#e6db74">&#34;$(cat ${container_id})&#34;</span><span style="color:#e6db74">&#39;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">  # Clean up.
-</span><span style="color:#e6db74">  - &#39;</span>sudo docker stop <span style="color:#e6db74">&#34;$(cat ${container_id})&#34;</span>&#39;
+  - <span style="color:#ae81ff">idempotence=$(mktemp)</span>
+  - <span style="color:#ae81ff">sudo docker exec &#34;$(cat ${container_id})&#34; ansible-playbook /etc/ansible/roles/role_under_test/tests/playbook.yml | tee -a ${idempotence}</span>
+  - &gt;<span style="color:#e6db74">
+</span><span style="color:#e6db74">    tail ${idempotence}
+</span><span style="color:#e6db74">    | grep -q &#39;changed=0.*failed=0&#39;
+</span><span style="color:#e6db74">    &amp;&amp; (echo &#39;Idempotence test: pass&#39; &amp;&amp; exit 0)
+</span><span style="color:#e6db74">    || (echo &#39;Idempotence test: fail&#39; &amp;&amp; exit 1)</span>    
 
-<span style="color:#66d9ef">notifications</span>:
-  <span style="color:#66d9ef">webhooks</span>: https://galaxy.ansible.com/api/v1/notifications/
+  <span style="color:#75715e"># Test role.</span>
+  - <span style="color:#e6db74">&#39;sudo docker exec --tty &#34;$(cat ${container_id})&#34; env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml&#39;</span>
+
+  <span style="color:#75715e"># View container logs</span>
+  - <span style="color:#e6db74">&#39;sudo docker logs &#34;$(cat ${container_id})&#34;&#39;</span>
+
+  <span style="color:#75715e"># Clean up.</span>
+  - <span style="color:#e6db74">&#39;sudo docker stop &#34;$(cat ${container_id})&#34;&#39;</span>
+
+<span style="color:#f92672">notifications</span>:
+  <span style="color:#f92672">webhooks</span>: <span style="color:#ae81ff">https://galaxy.ansible.com/api/v1/notifications/</span>
 </code></pre></div>
     <hr />
     <div id="disqus_thread"></div>

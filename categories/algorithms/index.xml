@@ -6,11 +6,7 @@
     <description>Recent content in algorithms on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2015 15:13:11 +0300</lastBuildDate>
-    
-	<atom:link href="http://out13.com/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 04 Apr 2015 15:13:11 +0300</lastBuildDate><atom:link href="http://out13.com/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Readability tests</title>
       <link>http://out13.com/posts/readability-tests/</link>

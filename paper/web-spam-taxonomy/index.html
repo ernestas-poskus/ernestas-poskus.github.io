@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Bigtable: A Distributed Storage System for Structured Data - Ernestas Poškus technical blog</title>
+  <title>Spam Taxonomy - Ernestas Poškus technical blog</title>
   
   <meta name="description" content="Take away from scientific papers, discussion &amp; summary"/>
   <meta name="keywords" content=""/>
 
-  <meta property="og:title" content="Bigtable: A Distributed Storage System for Structured Data" />
+  <meta property="og:title" content="Spam Taxonomy" />
   <meta property="og:description" content="Take away from scientific papers, discussion &amp; summary" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://out13.com/paper/bigtable-a-distributed-storage-system-for-structured-data/" />
+  <meta property="og:url" content="http://out13.com/paper/web-spam-taxonomy/" />
   <meta property="og:image" content="http://out13.com/images/og-image.png" />
   
 
@@ -83,55 +83,34 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>Bigtable: A Distributed Storage System for Structured Data</h1>
+    <h1>Spam Taxonomy</h1>
     <ul>
-      <li>Author: Fay Chang, Jeffrey Dean, Sanjay Ghemawat, Wilson C. Hsieh, Deborah A. Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, Robert E. Gruber</li>
-      <li>Name: Bigtable: A Distributed Storage System for Structured Data</li>
+      <li>Author: Zoltán Gyöngyi, Hector Garcia-Molina</li>
+      <li>Name: Web Spam Taxonomy</li>
       
-      <li>Link: <a href="http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf" rel="nofollow" target="_blank">http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf</a></li>
+      <li>Link: <a href="http://ilpubs.stanford.edu:8090/771/1/2005-9.pdf" rel="nofollow" target="_blank">http://ilpubs.stanford.edu:8090/771/1/2005-9.pdf</a></li>
       
     </ul>
-    <time>Thu, Nov 3, 2016</time>
-    <p><abbr title="Word count">WC</abbr> 352 / <abbr title="Reading time">RT</abbr> 2min</p>
-    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Bigtable:%20A%20Distributed%20Storage%20System%20for%20Structured%20Data%20#out13paper%20@ernestas_poskus">Tweet</a>
+    <time>Fri, Nov 12, 2021</time>
+    <p><abbr title="Word count">WC</abbr> 140 / <abbr title="Reading time">RT</abbr> 1min</p>
+    <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text=Spam%20Taxonomy%20#out13paper%20@ernestas_poskus">Tweet</a>
     <hr />
-    <h2 id="bigtable">Bigtable</h2>
-<p>Bigtable is a distributed storage system for managing structured data that is
-designed to scale to a very large size: petabytes of data across thousands of commodity servers.</p>
-<p>Bigtable does not support a full relational data model; instead, it provides
-clients with a simple data model that supports dynamic control over data layout
-and format, and allows clients to reason about the locality properties of the data
-represented in the underlying storage.</p>
-<h3 id="data-model">Data model</h3>
-<p>A Bigtable is a sparse, distributed, persistent multidimensional sorted map.
-The map is indexed by a row key, column key, and a timestamp; each value in the map
-is an uninterpreted array of bytes.</p>
-<blockquote>
-<p>(row:string, column:string, time:int64) → string</p>
-</blockquote>
-<p>Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned.
-Each row range is called a tablet, which is the unit of distribution and load balancing.</p>
-<h3 id="architecture">Architecture</h3>
-<p>File format to store data: SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.</p>
-<p>First find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk.</p>
-<p>Bigtable relies on a highly-available and persistent distributed lock service called Chubby.
-Chubby service consists of five active replicas, one of which is elected to be the master and actively serve requests.</p>
-<p>Chubby uses the Paxos algorithm to keep its replicas consistent in the face of failure</p>
-<h3 id="client">Client</h3>
-<p>The client library caches tablet locations.
-If the client does not know the location of a tablet, or if it discovers that cached
-location information is incorrect, then it recursively moves up the tablet location hierarchy.</p>
-<h3 id="caching">Caching</h3>
-<p>To improve read performance, tablet servers use two levels of caching.</p>
+    <p>Web spamming refers to actions intended to mislead search engines into ranking some pages higher than they deserve.
+The primary consequence of web spamming is that the quality of search results decreases.
+The secondary consequence of spamming is that search engine indexes are inflated with useless pages, increasing the cost of each processed query.</p>
+<p>We use the term spamming (also, spamdexing) to refer to any deliberate human action that is meant to
+trigger an unjustifiably favorable relevance or importance for some web page, considering the page’s true value.</p>
+<p>All types of actions intended to boost ranking (either relevance, or importance, or both), without improving the true value of a page, are considered spamming.</p>
+<p>Spamming techniques:</p>
 <ul>
-<li>Scan Cache is a higher-level cache that caches the key-value pairs returned by the SSTable interface to the tablet server code.</li>
-<li>Block Cache is a lower-level cache that caches SSTables blocks that were read from GFS.</li>
+<li>Body spam</li>
+<li>Title spam</li>
+<li>Meta tag spam</li>
+<li>Anchor text spam</li>
+<li>Repetition of terms</li>
+<li>Dumping large number of unrelated terms</li>
+<li>Weaving of spam terms into contents</li>
 </ul>
-<p>Bloom filter allows us to ask whether an SSTable might contain any data for a specified row/column pair.</p>
-<h4 id="notes">Notes</h4>
-<blockquote>
-<p>GFS - Google File System</p>
-</blockquote>
 
     <hr />
     <div id="disqus_thread"></div>

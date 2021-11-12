@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -103,7 +103,7 @@
 <blockquote>
 <p>Sample output below.</p>
 </blockquote>
-<pre><code>root@ow:~# slabtop -osc | head -n 20
+<pre tabindex="0"><code>root@ow:~# slabtop -osc | head -n 20
  Active / Total Objects (% used)    : 4649227 / 4694474 (99.0%)
  Active / Total Slabs (% used)      : 153429 / 153429 (100.0%)
  Active / Total Caches (% used)     : 82 / 118 (69.5%)
@@ -130,7 +130,7 @@ The <code>ext4_inode_cache</code> is underlying fs <code>kmem_cache</code> struc
 <blockquote>
 <p>Initialized in <code>fs/ext4/super.c</code>.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> __init <span style="color:#a6e22e">init_inodecache</span>(<span style="color:#66d9ef">void</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> __init <span style="color:#a6e22e">init_inodecache</span>(<span style="color:#66d9ef">void</span>)
 {
 	ext4_inode_cachep <span style="color:#f92672">=</span> kmem_cache_create(<span style="color:#e6db74">&#34;ext4_inode_cache&#34;</span>,
 					     <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> ext4_inode_info),
@@ -145,7 +145,7 @@ The <code>ext4_inode_cache</code> is underlying fs <code>kmem_cache</code> struc
 <blockquote>
 <p>Initialized in <code>kernel/fs/dcache.c</code></p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> __init <span style="color:#a6e22e">dcache_init</span>(<span style="color:#66d9ef">void</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> __init <span style="color:#a6e22e">dcache_init</span>(<span style="color:#66d9ef">void</span>)
 {
 	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> loop;
 
@@ -179,7 +179,7 @@ The <code>ext4_inode_cache</code> is underlying fs <code>kmem_cache</code> struc
 <blockquote>
 <p>To forcefully clean system slab cache.</p>
 </blockquote>
-<pre><code>echo 3 &gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
+<pre tabindex="0"><code>echo 3 &gt; /proc/sys/vm/drop_caches # free pagecache, dentries and inodes
 </code></pre>
     <hr />
     <div id="disqus_thread"></div>

@@ -6,10 +6,16 @@
     <description>Recent content in paper on Ernestas Poškus technical blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 May 2021 22:43:14 +0300</lastBuildDate>
-    
-	<atom:link href="http://out13.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 12 Nov 2021 21:02:45 +0200</lastBuildDate><atom:link href="http://out13.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spam Taxonomy</title>
+      <link>http://out13.com/paper/web-spam-taxonomy/</link>
+      <pubDate>Fri, 12 Nov 2021 21:02:45 +0200</pubDate>
+      
+      <guid>http://out13.com/paper/web-spam-taxonomy/</guid>
+      <description>Web spamming refers to actions intended to mislead search engines into ranking some pages higher than they deserve. The primary consequence of web spamming is that the quality of search results decreases. The secondary consequence of spamming is that search engine indexes are inflated with useless pages, increasing the cost of each processed query.
+We use the term spamming (also, spamdexing) to refer to any deliberate human action that is meant to trigger an unjustifiably favorable relevance or importance for some web page, considering the page’s true value.</description>
+    </item>
     
     <item>
       <title>Searching for Build Debt Experiences Managing Technical Debt at Google</title>

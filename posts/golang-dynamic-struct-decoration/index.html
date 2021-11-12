@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -93,7 +93,7 @@
 <p>Use cases: API / templates.</p>
 </blockquote>
 <p>Having simple map of:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span>  <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span>  <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
     <span style="color:#e6db74">&#34;Key1&#34;</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;some&#34;</span>, <span style="color:#e6db74">&#34;key&#34;</span>},
     <span style="color:#e6db74">&#34;key3&#34;</span>: <span style="color:#66d9ef">nil</span>,
     <span style="color:#e6db74">&#34;val&#34;</span>: <span style="color:#ae81ff">2</span>,
@@ -101,7 +101,7 @@
     <span style="color:#e6db74">&#34;val3&#34;</span>: <span style="color:#ae81ff">4</span>,
   }
 </code></pre></div><p>One can decorate it using type assertion by iterating over it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">input</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">input</span> {
     <span style="color:#a6e22e">slice</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.([]<span style="color:#66d9ef">string</span>)
     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> {
       <span style="color:#a6e22e">input</span>[<span style="color:#e6db74">&#34;Count&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">key</span>] = len(<span style="color:#a6e22e">slice</span>)
@@ -109,7 +109,7 @@
   }
 </code></pre></div><p>This becomes very useful when serializing struct into json.
 To serialize struct use <code>github.com/fatih/structs</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">structs</span>.<span style="color:#a6e22e">Map</span>(<span style="color:#f92672">...</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">  <span style="color:#a6e22e">input</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">structs</span>.<span style="color:#a6e22e">Map</span>(<span style="color:#f92672">...</span>)
 
   <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">input</span> {
     <span style="color:#a6e22e">slice</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.([]<span style="color:#66d9ef">string</span>)

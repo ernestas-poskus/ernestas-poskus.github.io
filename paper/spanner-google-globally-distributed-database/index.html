@@ -69,7 +69,7 @@
       
         <a href="http://out13.com/tags/nginx">nginx</a> 1 /
       
-        <a href="http://out13.com/tags/paper">paper</a> 38 /
+        <a href="http://out13.com/tags/paper">paper</a> 39 /
       
         <a href="http://out13.com/tags/personal">personal</a> 5 /
       
@@ -117,7 +117,7 @@ there will be only a handful of running universes.</p>
 if different applications’ data must be partitioned across different sets of servers in the same datacenter.</p>
 <p>Each spanserver is responsible for between 100 and 1000 instances of a data structure called a tablet.
 A tablet is similar to Bigtable’s tablet abstraction, in that it implements a bag of the following mappings:</p>
-<pre><code>(key:string, timestamp:int64) → string
+<pre tabindex="0"><code>(key:string, timestamp:int64) → string
 </code></pre><p>Unlike Bigtable, Spanner assigns timestamps to data, which is an important way in which Spanner is more
 like a multi-version database than a key-value store.</p>
 <p>Tablet state is stored in set of B-tree-like files and a write-ahead log,
